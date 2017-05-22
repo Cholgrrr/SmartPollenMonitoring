@@ -1,0 +1,7 @@
+https://github.com/Esri/wind-js
+
+https://opendata.stackexchange.com/questions/5214/where-can-i-aquire-global-wind-speed-and-direction-data
+
+https://community.windytv.com/
+
+https://www.windy.com/menu?rain,42.666,17.205,7

@@ -53,7 +53,7 @@ const db = pgp(connection);
 
 
 
-// ---------------------------------------------------------------------------
+// -----------------------------------------------------------------------
 // EXAMPLE: Request data through url call (http://localhost:3000/test)
 	
 app.get('/test', function(req, res) {
