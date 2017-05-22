@@ -59,7 +59,7 @@ const db = pgp(connection);
 app.get('/test', function(req, res) {
   
 	try {
-		db.result("select * from treecataster where tree_id = '2'", false)
+	    db.result("select * from treecataster ", false) //where tree_id = '2'
 		.then(result => {
 			// rowCount = number of rows affected by the query
 			res.json(result.rows);
