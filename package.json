@@ -1,0 +1,23 @@
+{
+  "name": "nasaproject",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "ajax-request": "^1.2.1",
+    "body-parser": "^1.17.2",
+    "express": "^4.15.2",
+    "nodemon": "^1.11.0",
+    "pg": "^6.1.5",
+    "pg-format": "^1.0.4",
+    "pg-promise": "^5.7.0",
+    "require": "^2.4.20",
+    "url-join": "^2.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

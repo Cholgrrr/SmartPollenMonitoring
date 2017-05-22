@@ -1,0 +1,37 @@
+body {
+  padding: 50px;
+  padding-top: 10px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+/*.dropdown {
+    color: palevioletred
+}
+.navbar-nav > li > .dropdown-menu { background-color: red; }
+.btn-block {
+    color: red;
+}
+#projectionDropdown {
+    color:red;
+}
+.btn-info{
+    border-color:red;
+}*/
+.dropCss{
+    border-color: darkseagreen;
+    background-color: darkseagreen;
+}
+.overhead{
+    padding: 120px;
+    font: 20px;
+    padding:10px;
+     margin-top:10px;
+}
+#h1{
+    font-size: 30px;
+    padding: 10px;
+    margin-top:10px;
+}
