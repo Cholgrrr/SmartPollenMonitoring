@@ -1,13 +1,13 @@
 body {
   padding: 50px;
+  padding-top: 10px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  color: red;
 }
 
 a {
   color: #00B7FF;
 }
-.dropdown {
+/*.dropdown {
     color: palevioletred
 }
 .navbar-nav > li > .dropdown-menu { background-color: red; }
@@ -19,9 +19,19 @@ a {
 }
 .btn-info{
     border-color:red;
-}
+}*/
 .dropCss{
-    border-color: red;
-    color: red;
-
+    border-color: darkseagreen;
+    background-color: darkseagreen;
+}
+.overhead{
+    padding: 120px;
+    font: 20px;
+    padding:10px;
+     margin-top:10px;
+}
+#h1{
+    font-size: 30px;
+    padding: 10px;
+    margin-top:10px;
 }
