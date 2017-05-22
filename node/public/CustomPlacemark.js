@@ -7,17 +7,6 @@
  *
  * @version $Id: CustomPlacemark.js 3320 2015-07-15 20:53:05Z dcollins $
  */
-var test
-
-//
-//$.get("/test", function (data) {
-//    test = data;
-//    $(".result").html(data);
-//    alert("Load was performed.");
-//});
-
-
-
 
 requirejs(['./src/WorldWind',
         './LayerManager'],
@@ -25,19 +14,11 @@ requirejs(['./src/WorldWind',
               LayerManager) {
         "use strict";
 
-        //
-
-
-
-
-
-
         // Tell World Wind to log only warnings.
         WorldWind.Logger.setLoggingLevel(WorldWind.Logger.LEVEL_WARNING);
 
         // Create the World Window.
         var wwd = new WorldWind.WorldWindow("canvasOne");
-        
         // World Window.
         wwd.navigator.lookAtLocation.latitude = 50.11;
         wwd.navigator.lookAtLocation.longitude = 8.68;
@@ -58,63 +39,46 @@ requirejs(['./src/WorldWind',
             wwd.addLayer(layers[l].layer);
         }
 
-        //################################################
-        //Data From Server
-        $.get("/test", function (data) {
-            for (var i = 0; i < data.length; i++) {
-                test = data[i];
-                $(".result").html(data);
-                //alert("Load was performed.");
-                console.log(test.north);
-                var placemark,
-                    placemarkAttributes = new WorldWind.PlacemarkAttributes(null),
-                    highlightAttributes,
-                    placemarkLayer = new WorldWind.RenderableLayer("Placemarks"),
-                    latitude = test.north || 50,
-                    longitude = test.east || 8;
-                //Functioning Code
-                //var placemark,
-                //    placemarkAttributes = new WorldWind.PlacemarkAttributes(null),
-                //    highlightAttributes,
-                //    placemarkLayer = new WorldWind.RenderableLayer("Placemarks"),
-                //    latitude = 50.11,
-                //    longitude = 8.68;
+        var placemark,
+            placemarkAttributes = new WorldWind.PlacemarkAttributes(null),
+            highlightAttributes,
+            placemarkLayer = new WorldWind.RenderableLayer("Placemarks"),
+            latitude = 50.11,
+            longitude = 8.68;
 
-                // Set up the common placemark attributes.
-                placemarkAttributes.imageScale = 0.05;
-                placemarkAttributes.imageOffset = new WorldWind.Offset(
-                    WorldWind.OFFSET_FRACTION, 0.5,
-                    WorldWind.OFFSET_FRACTION, 0.5);
-                placemarkAttributes.imageColor = WorldWind.Color.WHITE;
+        // Set up the common placemark attributes.
+        placemarkAttributes.imageScale = 0.05;
+        placemarkAttributes.imageOffset = new WorldWind.Offset(
+            WorldWind.OFFSET_FRACTION, 0.5,
+            WorldWind.OFFSET_FRACTION, 0.5);
+        placemarkAttributes.imageColor = WorldWind.Color.WHITE;
 
-                // Create the placemark.
-                placemark = new WorldWind.Placemark(new WorldWind.Position(latitude, longitude, 1e2), false, null);
-                placemark.altitudeMode = WorldWind.RELATIVE_TO_GROUND;
+        // Create the placemark.
+        placemark = new WorldWind.Placemark(new WorldWind.Position(latitude, longitude, 1e2), false, null);
+        placemark.altitudeMode = WorldWind.RELATIVE_TO_GROUND;
 
-                // Create the placemark attributes for the placemark.
-                placemarkAttributes = new WorldWind.PlacemarkAttributes(placemarkAttributes);
-                // Wrap the canvas created above in an ImageSource object to specify it as the placemark image source.
-                placemarkAttributes.imageSource = WorldWind.configuration.baseUrl + "images/tree.png";
-                placemark.attributes = placemarkAttributes;
+        // Create the placemark attributes for the placemark.
+        placemarkAttributes = new WorldWind.PlacemarkAttributes(placemarkAttributes);
+        // Wrap the canvas created above in an ImageSource object to specify it as the placemark image source.
+        placemarkAttributes.imageSource = WorldWind.configuration.baseUrl + "images/tree.png";
+        placemark.attributes = placemarkAttributes;
 
-                // Create the highlight attributes for this placemark. Note that the normal attributes are specified as
-                // the default highlight attributes so that all properties are identical except the image scale. You could
-                // instead vary the color, image, or other property to control the highlight representation.
-                highlightAttributes = new WorldWind.PlacemarkAttributes(placemarkAttributes);
-                highlightAttributes.imageScale = 0.2;
-                placemark.highlightAttributes = highlightAttributes;
+        // Create the highlight attributes for this placemark. Note that the normal attributes are specified as
+        // the default highlight attributes so that all properties are identical except the image scale. You could
+        // instead vary the color, image, or other property to control the highlight representation.
+        highlightAttributes = new WorldWind.PlacemarkAttributes(placemarkAttributes);
+        highlightAttributes.imageScale = 0.2;
+        placemark.highlightAttributes = highlightAttributes;
 
-                // Add the placemark to the layer.
-                placemarkLayer.addRenderable(placemark);
+        // Add the placemark to the layer.
+        placemarkLayer.addRenderable(placemark);
 
-                // Add the placemarks layer to the World Window's layer list.
-                wwd.addLayer(placemarkLayer);
+        // Add the placemarks layer to the World Window's layer list.
+        wwd.addLayer(placemarkLayer);
 
-                // Create a layer manager for controlling layer visibility.
-                var layerManger = new LayerManager(wwd);
+        // Create a layer manager for controlling layer visibility.
+        var layerManger = new LayerManager(wwd);
 
-                // Now set up to handle highlighting.
-                var highlightController = new WorldWind.HighlightController(wwd);
-            }
-        });
+        // Now set up to handle highlighting.
+        var highlightController = new WorldWind.HighlightController(wwd);
     });

@@ -59,7 +59,7 @@ const db = pgp(connection);
 app.get('/test', function(req, res) {
   
 	try {
-	    db.result("select * from treecataster ", false) //where tree_id = '2'
+		db.result("select * from treecataster where tree_id = '2'", false)
 		.then(result => {
 			// rowCount = number of rows affected by the query
 			res.json(result.rows);
@@ -140,12 +140,12 @@ function insertFunc() {
  
 }
 
-//try {
-//	insert_current_wind();
-//}
-//catch(err) {
-//		console.log('execution of function insert_current_wind failde!')
-//}
+try {
+	insert_current_wind();
+}
+catch(err) {
+		console.log('execution of function insert_current_wind failde!')
+}
 
 // -------------------------------------------------------------------------------------
 
