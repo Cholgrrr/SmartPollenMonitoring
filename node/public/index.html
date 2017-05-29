@@ -11,17 +11,14 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script data-main="CustomPlacemark" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.17/require.min.js"></script>
 	<script src="javascripts/post_wind.js"></script>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
 </head>
 <body>
-<div class="container">
+<!--<div class="container">-->
     <div class="overhead"> <!--jumbotron hidden-xs overhead-->
         <div><h1 class="overhead" style="width:80%;text-align:center;">Pollen distribution in Frankfurt with NASA World Wind</h1></div>
     <!--</div>
-    <div style="width:20%;">-->
-        <img  src="./images/flower.jpg" alt="flower" style="width:10%;float:right;">
-    </div>
-    <div class="row">
+    <!--<div class="row">-->
         <div class="col-sm-3">
             <h4>Recent or historic Wind Data</h4>
             <div class="dropdown dropCss" id="historicDropdown">
@@ -61,11 +58,11 @@
             </div>-->
         </div>
         <div class="col-sm-9" id="globe">
-            <canvas id="canvasOne" width="1000" height="1000" style="width: 100%; height: auto">
+            <canvas id="canvasOne" style="width: 100%; height: 100%">
                 Your browser does not support HTML5 Canvas.
             </canvas>
         </div>
-    </div>
+    <!--</div>-->
 	<!--
 	<div>
 	
@@ -73,6 +70,6 @@
 		<button onclick="getTrees()">get trees</button>
 	</div>
 	!-->
-</div>
+<!--</div>-->
 </body>
 </html>
