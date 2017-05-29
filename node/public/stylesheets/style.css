@@ -1,17 +1,17 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+/*body {
+ 
+  font: 10px "Lucida Grande", Helvetica, Arial, sans-serif;
   color: red;
-}
+}*/
 
-a {
+/*a {
   color: #00B7FF;
 }
 .dropdown {
     color: palevioletred
-}
-.navbar-nav > li > .dropdown-menu { background-color: red; }
-.btn-block {
+}*/
+/*.navbar-nav > li > .dropdown-menu { background-color: red; }*/
+/*.btn-block {
     color: red;
 }
 #projectionDropdown {
@@ -25,15 +25,9 @@ a {
     color: red;
 
 }
-body {
-  padding: 50px;
-  padding-top: 10px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
-
 a {
   color: #00B7FF;
-}
+}*/
 /*.dropdown {
     color: palevioletred
 }
@@ -47,32 +41,45 @@ a {
 .btn-info{
     border-color:red;
 }*/
-.dropCss{
+/*.dropCss{
     border-color: darkseagreen;
     background-color: darkseagreen;
-}
-.overhead{
-    padding: 120px;
+}*/
+/*.overhead{
     font: 20px;
-    padding:10px;
-     margin-top:10px;
-}
-#h1{
+}*/
+/*#h1{
     font-size: 30px;
     padding: 10px;
     margin-top:10px;
-}
+}*/
 #canvasOne{
 position: absolute;
-    left: 100px;
-    top: 100px;
+    left: 2%;
+    right: 2%;
+    bottom: 2%;
+    top: 2%;
+   
     z-index: -1;
+    min-height: 98%;
+    min-width: 98%;
+    vertical-align: middle;
 }
 #globe{
 position: absolute;
-    left: 0px;
-    top: 0px;
+    /*margin-left: 2%;
+    margin-right :2%;
+    margin-bottom:2%;
+    margin-top: 2%;*/
+   
     z-index: -1;
-    min-height: 1000px;
-    min-width: 1000px;
+    min-height: 98%;
+    min-width: 98%;
+    vertical-align: middle;
+}
+.btn{
+    position:absolute;
+    left:0;
+
+
 }

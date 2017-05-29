@@ -12,13 +12,135 @@
     <script data-main="CustomPlacemark" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.17/require.min.js"></script>
 	<script src="javascripts/post_wind.js"></script>
     <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/default.css" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/component.css" />
+    <script src="javascripts/modernizr.custom.js"></script>
 </head>
 <body>
 <!--<div class="container">-->
-    <div class="overhead"> <!--jumbotron hidden-xs overhead-->
-        <div><h1 class="overhead" style="width:80%;text-align:center;">Pollen distribution in Frankfurt with NASA World Wind</h1></div>
+    <!--jumbotron hidden-xs overhead-->
+        <!--<div>
+        <h1 class="overhead" style="width:80%;text-align:center;">Pollen distribution in Frankfurt with NASA World Wind</h1>
+        </div>-->
     <!--</div>
     <!--<div class="row">-->
+
+        
+        <div class="main clearfix">
+                <div class="column">
+                <div id="dl-menu" class="dl-menuwrapper">
+                    <button class="dl-trigger">Open Menu</button>
+                    <ul class="dl-menu">
+                        <li>
+                            <a href="#">Fashion</a>
+                            <ul class="dl-submenu">
+                                <li>
+                                    <a href="#">Men</a>
+                                    <ul class="dl-submenu">
+                                        <li><a href="#">Shirts</a></li>
+                                        <li><a href="#">Jackets</a></li>
+                                        <li><a href="#">Chinos &amp; Trousers</a></li>
+                                        <li><a href="#">Jeans</a></li>
+                                        <li><a href="#">T-Shirts</a></li>
+                                        <li><a href="#">Underwear</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">Women</a>
+                                    <ul class="dl-submenu">
+                                        <li><a href="#">Jackets</a></li>
+                                        <li><a href="#">Knits</a></li>
+                                        <li><a href="#">Jeans</a></li>
+                                        <li><a href="#">Dresses</a></li>
+                                        <li><a href="#">Blouses</a></li>
+                                        <li><a href="#">T-Shirts</a></li>
+                                        <li><a href="#">Underwear</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">Children</a>
+                                    <ul class="dl-submenu">
+                                        <li><a href="#">Boys</a></li>
+                                        <li><a href="#">Girls</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">Electronics</a>
+                            <ul class="dl-submenu">
+                                <li><a href="#">Camera &amp; Photo</a></li>
+                                <li><a href="#">TV &amp; Home Cinema</a></li>
+                                <li><a href="#">Phones</a></li>
+                                <li><a href="#">PC &amp; Video Games</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">Furniture</a>
+                            <ul class="dl-submenu">
+                                <li>
+                                    <a href="#">Living Room</a>
+                                    <ul class="dl-submenu">
+                                        <li><a href="#">Sofas &amp; Loveseats</a></li>
+                                        <li><a href="#">Coffee &amp; Accent Tables</a></li>
+                                        <li><a href="#">Chairs &amp; Recliners</a></li>
+                                        <li><a href="#">Bookshelves</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">Bedroom</a>
+                                    <ul class="dl-submenu">
+                                        <li>
+                                            <a href="#">Beds</a>
+                                            <ul class="dl-submenu">
+                                                <li><a href="#">Upholstered Beds</a></li>
+                                                <li><a href="#">Divans</a></li>
+                                                <li><a href="#">Metal Beds</a></li>
+                                                <li><a href="#">Storage Beds</a></li>
+                                                <li><a href="#">Wooden Beds</a></li>
+                                                <li><a href="#">Children's Beds</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a href="#">Bedroom Sets</a></li>
+                                        <li><a href="#">Chests &amp; Dressers</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">Home Office</a></li>
+                                <li><a href="#">Dining &amp; Bar</a></li>
+                                <li><a href="#">Patio</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">Jewelry &amp; Watches</a>
+                            <ul class="dl-submenu">
+                                <li><a href="#">Fine Jewelry</a></li>
+                                <li><a href="#">Fashion Jewelry</a></li>
+                                <li><a href="#">Watches</a></li>
+                                <li>
+                                    <a href="#">Wedding Jewelry</a>
+                                    <ul class="dl-submenu">
+                                        <li><a href="#">Engagement Rings</a></li>
+                                        <li><a href="#">Bridal Sets</a></li>
+                                        <li><a href="#">Women's Wedding Bands</a></li>
+                                        <li><a href="#">Men's Wedding Bands</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div><!-- /dl-menuwrapper -->
+            </div>
+        </div>
+
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+          <script src="javascripts/jquery.dlmenu.js"></script>
+        <script>
+			$(function() {
+				$( '#dl-menu' ).dlmenu({
+					animationClasses : { classin : 'dl-animate-in-3', classout : 'dl-animate-out-3' }
+				});
+			});
+    </script>
         <div class="col-sm-3">
             <h4>Recent or historic Wind Data</h4>
             <div class="dropdown dropCss" id="historicDropdown">
@@ -58,7 +180,7 @@
             </div>-->
         </div>
         <div class="col-sm-9" id="globe">
-            <canvas id="canvasOne" style="width: 100%; height: 100%">
+            <canvas id="canvasOne">
                 Your browser does not support HTML5 Canvas.
             </canvas>
         </div>
@@ -70,6 +192,6 @@
 		<button onclick="getTrees()">get trees</button>
 	</div>
 	!-->
-<!--</div>-->
+
 </body>
 </html>
