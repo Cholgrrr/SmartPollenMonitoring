@@ -55,15 +55,13 @@ a {
 }*/
 #canvasOne{
 position: absolute;
-    left: 2%;
-    right: 2%;
-    bottom: 2%;
-    top: 2%;
-   
-    z-index: -1;
-    min-height: 98%;
-    min-width: 98%;
+    top: 0;
+    left: 0;
+    z-index: -100;
+    min-height: 100%;
+    min-width: 100%;
     vertical-align: middle;
+    overflow:hidden;
 }
 #globe{
 position: absolute;
@@ -72,14 +70,40 @@ position: absolute;
     margin-bottom:2%;
     margin-top: 2%;*/
    
-    z-index: -1;
+    z-index: -100;
     min-height: 98%;
     min-width: 98%;
     vertical-align: middle;
+    overflow:hidden;
+}
+#wrapper{
+        position: relative;
+
+}
+.main{
+    /*position:fixed;
+   top:0;
+   left:0;*/
+   z-index:100;
+}
+.column{
+    /*position:fixed;
+   top:0;
+   left:0;*/
+    z-index:100;
 }
 .btn{
     position:absolute;
     left:0;
 
 
+}
+.bootstrap-select.btn-group:not(.input-group-btn), .bootstrap-select.btn-group[class*="span"] {
+    margin: 0 !important;
+}
+.btn-group{
+    margin-top:4px;
+}
+.btn-primary{
+    margin-top:4px;
 }

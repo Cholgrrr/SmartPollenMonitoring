@@ -11,187 +11,261 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script data-main="CustomPlacemark" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.17/require.min.js"></script>
 	<script src="javascripts/post_wind.js"></script>
+    
+
+    <script type="text/javascript" src="javascripts/prettify.js"></script>
+    <link rel="stylesheet" href="stylesheets/prettify.css" type="text/css">
+
+    <script type="text/javascript">
+            $(document).ready(function() {
+                window.prettyPrint() && prettyPrint();
+            });
+    </script>
+
+    <link rel="stylesheet" href="stylesheets/bootstrap-multiselect.css" type="text/css">
+    <script type="text/javascript" src="javascripts/bootstrap-multiselect.js"></script>
+
     <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
-    <link rel="stylesheet" type="text/css" href="stylesheets/default.css" />
+    <!--<link rel="stylesheet" type="text/css" href="stylesheets/default.css" />
     <link rel="stylesheet" type="text/css" href="stylesheets/component.css" />
-    <script src="javascripts/modernizr.custom.js"></script>
+    <script src="javascripts/modernizr.custom.js"></script>-->
 </head>
 <body>
-<!--<div class="container">-->
-    <!--jumbotron hidden-xs overhead-->
-        <!--<div>
-        <h1 class="overhead" style="width:80%;text-align:center;">Pollen distribution in Frankfurt with NASA World Wind</h1>
-        </div>-->
-    <!--</div>
-    <!--<div class="row">-->
-
-        
-        <div class="main clearfix">
-                <div class="column">
-                <div id="dl-menu" class="dl-menuwrapper">
-                    <button class="dl-trigger">Open Menu</button>
-                    <ul class="dl-menu">
-                        <li>
-                            <a href="#">Fashion</a>
-                            <ul class="dl-submenu">
-                                <li>
-                                    <a href="#">Men</a>
-                                    <ul class="dl-submenu">
-                                        <li><a href="#">Shirts</a></li>
-                                        <li><a href="#">Jackets</a></li>
-                                        <li><a href="#">Chinos &amp; Trousers</a></li>
-                                        <li><a href="#">Jeans</a></li>
-                                        <li><a href="#">T-Shirts</a></li>
-                                        <li><a href="#">Underwear</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#">Women</a>
-                                    <ul class="dl-submenu">
-                                        <li><a href="#">Jackets</a></li>
-                                        <li><a href="#">Knits</a></li>
-                                        <li><a href="#">Jeans</a></li>
-                                        <li><a href="#">Dresses</a></li>
-                                        <li><a href="#">Blouses</a></li>
-                                        <li><a href="#">T-Shirts</a></li>
-                                        <li><a href="#">Underwear</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#">Children</a>
-                                    <ul class="dl-submenu">
-                                        <li><a href="#">Boys</a></li>
-                                        <li><a href="#">Girls</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">Electronics</a>
-                            <ul class="dl-submenu">
-                                <li><a href="#">Camera &amp; Photo</a></li>
-                                <li><a href="#">TV &amp; Home Cinema</a></li>
-                                <li><a href="#">Phones</a></li>
-                                <li><a href="#">PC &amp; Video Games</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">Furniture</a>
-                            <ul class="dl-submenu">
-                                <li>
-                                    <a href="#">Living Room</a>
-                                    <ul class="dl-submenu">
-                                        <li><a href="#">Sofas &amp; Loveseats</a></li>
-                                        <li><a href="#">Coffee &amp; Accent Tables</a></li>
-                                        <li><a href="#">Chairs &amp; Recliners</a></li>
-                                        <li><a href="#">Bookshelves</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#">Bedroom</a>
-                                    <ul class="dl-submenu">
-                                        <li>
-                                            <a href="#">Beds</a>
-                                            <ul class="dl-submenu">
-                                                <li><a href="#">Upholstered Beds</a></li>
-                                                <li><a href="#">Divans</a></li>
-                                                <li><a href="#">Metal Beds</a></li>
-                                                <li><a href="#">Storage Beds</a></li>
-                                                <li><a href="#">Wooden Beds</a></li>
-                                                <li><a href="#">Children's Beds</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="#">Bedroom Sets</a></li>
-                                        <li><a href="#">Chests &amp; Dressers</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">Home Office</a></li>
-                                <li><a href="#">Dining &amp; Bar</a></li>
-                                <li><a href="#">Patio</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">Jewelry &amp; Watches</a>
-                            <ul class="dl-submenu">
-                                <li><a href="#">Fine Jewelry</a></li>
-                                <li><a href="#">Fashion Jewelry</a></li>
-                                <li><a href="#">Watches</a></li>
-                                <li>
-                                    <a href="#">Wedding Jewelry</a>
-                                    <ul class="dl-submenu">
-                                        <li><a href="#">Engagement Rings</a></li>
-                                        <li><a href="#">Bridal Sets</a></li>
-                                        <li><a href="#">Women's Wedding Bands</a></li>
-                                        <li><a href="#">Men's Wedding Bands</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div><!-- /dl-menuwrapper -->
-            </div>
-        </div>
-
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-          <script src="javascripts/jquery.dlmenu.js"></script>
-        <script>
-			$(function() {
-				$( '#dl-menu' ).dlmenu({
-					animationClasses : { classin : 'dl-animate-in-3', classout : 'dl-animate-out-3' }
-				});
-			});
-    </script>
-        <div class="col-sm-3">
-            <h4>Recent or historic Wind Data</h4>
-            <div class="dropdown dropCss" id="historicDropdown">
-                <button class="btn btn-info btn-block dropdown-toggle dropCss" type="button" data-toggle="dropdown">
-                    Select
-                    <span class="caret"></span>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
                 </button>
-                <ul class="dropdown-menu">
-                    <li><a>Historic Data</a></li>
-                    <li><a>Recent Data</a></li>
+                <a class="navbar-brand" href="#">Smart Pollen Map (aka SmartyPlants)</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Map use<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Recent Data</a></li>
+                            <li><a href="#">Historic Data</a></li>
+                            <!--<li><a href="#">Something else here</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">One more separated link</a></li>-->
+                        </ul>
+                    </li>
+                    <!--<li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Months<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">January</a></li>
+                            <li><a href="#">February</a></li>
+                            <li><a href="#">March</a></li>
+                            <li><a href="#">April</a></li>
+                            <li><a href="#">May</a></li>
+                            <li><a href="#">June</a></li>
+                            <li><a href="#">Juli</a></li>
+                            <li><a href="#">August</a></li>
+                            <li><a href="#">September</a></li>
+                            <li><a href="#">October</a></li>
+                            <li><a href="#">November</a></li>
+                            <li><a href="#">December</a></li>
+                        </ul>
+                    </li>-->
+                    <!--<li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tree Type<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Tree1</a></li>
+                            <li><a href="#">Tree2</a></li>
+                        </ul>
+                    </li>-->
+
+                    <!--<li>
+                        <a href="#">About</a>
+                    </li>
+                    <li>
+                        <a href="#">Services</a>
+                    </li>
+                    <li>
+                        <a href="#">Contact</a>
+                    </li>-->
+                    
                 </ul>
+                <div class="example">
+                    <script type="text/javascript">
+                            $(document).ready(function() {
+                                var orderCount = 0;
+                                $('#example-order').multiselect({
+                                    onChange: function(option, checked) {
+                                        if (checked) {
+                                            orderCount++;
+                                            $(option).data('order', orderCount);
+                                        }
+                                        else {
+                                            $(option).data('order', '');
+                                        }
+                                    },
+                                    buttonText: function(options) {
+                                        if (options.length === 0) {
+                                            return 'None selected';
+                                        }
+                                        else if (options.length > 3) {
+                                            return options.length + ' selected';
+                                        }
+                                        else {
+                                            var selected = [];
+                                            options.each(function() {
+                                                selected.push([$(this).text(), $(this).data('order')]);
+                                            });
+
+                                            selected.sort(function(a, b) {
+                                                return a[1] - b[1];
+                                            });
+
+                                            var text = '';
+                                            for (var i = 0; i < selected.length; i++) {
+                                                text += selected[i][0] + ', ';
+                                            }
+
+                                            return text.substr(0, text.length -2);
+                                        }
+                                    }
+                                });
+
+                                $('#example-order-button').on('click', function() {
+                                    var selected = [];
+                                    $('#example-order option:selected').each(function() {
+                                        selected.push([$(this).val(), $(this).data('order')]);
+                                    });
+
+                                    selected.sort(function(a, b) {
+                                        return a[1] - b[1];
+                                    });
+
+                                    var text = '';
+                                    for (var i = 0; i < selected.length; i++) {
+                                        text += selected[i][0] + ', ';
+                                    }
+                                    text = text.substring(0, text.length - 2);
+
+                                    alert(text);
+                                });
+                            });
+                    </script>
+                    
+                    <div class="btn-group">
+                        <select id="example-order" multiple="multiple">
+                            <option value="1">January</option>
+                            <option value="2">February</option>
+                            <option value="3">March</option>
+                            <option value="4">April</option>
+                            <option value="5">Mai</option>
+                            <option value="6">June</option>
+                            <option value="7">July</option>
+                            <option value="8">August</option>
+                            <option value="9">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
+                        </select>
+                        <button id="example-order-button" class="btn btn-primary">Month selection</button>
+                    </div>
+                </div>
+                <div class="example">
+                    <script type="text/javascript">
+                            $(document).ready(function() {
+                                var orderCount = 0;
+                                $('#tree-order').multiselect({
+                                    onChange: function(option, checked) {
+                                        if (checked) {
+                                            orderCount++;
+                                            $(option).data('order', orderCount);
+                                        }
+                                        else {
+                                            $(option).data('order', '');
+                                        }
+                                    },
+                                    buttonText: function(options) {
+                                        if (options.length === 0) {
+                                            return 'None selected';
+                                        }
+                                        else if (options.length > 3) {
+                                            return options.length + ' selected';
+                                        }
+                                        else {
+                                            var selected = [];
+                                            options.each(function() {
+                                                selected.push([$(this).text(), $(this).data('order')]);
+                                            });
+
+                                            selected.sort(function(a, b) {
+                                                return a[1] - b[1];
+                                            });
+
+                                            var text = '';
+                                            for (var i = 0; i < selected.length; i++) {
+                                                text += selected[i][0] + ', ';
+                                            }
+
+                                            return text.substr(0, text.length -2);
+                                        }
+                                    }
+                                });
+
+                                $('#tree-order-button').on('click', function () {
+                                    var selected = [];
+                                    $('#tree-order option:selected').each(function () {
+                                        selected.push([$(this).val(), $(this).data('order')]);
+                                    });
+
+                                    selected.sort(function(a, b) {
+                                        return a[1] - b[1];
+                                    });
+
+                                    var text = '';
+                                    for (var i = 0; i < selected.length; i++) {
+                                        text += selected[i][0] + ', ';
+                                    }
+                                    text = text.substring(0, text.length - 2);
+
+                                    alert(text);
+                                });
+                            });
+                    </script>
+                    <div class="btn-group">
+                        <select id="tree-order" multiple="multiple">
+                            <option value="1">Tree 1</option>
+                            <option value="2">Tree 2</option>
+                            <option value="3">Tree 3</option>
+                            <option value="4">Tree 4</option>
+                            <option value="5">Tree 5</option>
+                            <option value="6">Tree 6</option>
+                        </select>
+                        <button id="tree-order-button" class="btn btn-primary">Tree selection</button>
+                    </div>
+                </div>
+
             </div>
-            <h4>Data for specific Month</h4>
-            <div class="dropdown dropCss" id="projectionDropdown">
-            </div>
-            <br>
-            <h4>Tree Types</h4>
-            <div>
-                <button class="btn btn-info btn-block dropCss" id="BTNTree">Tree1</button><br>
-                <button class="btn btn-info btn-block dropCss" id="BTNTree">Tree2</button><br>
-                <button class="btn btn-info btn-block dropCss" id="BTNTree">Tree3</button><br>
-                <button class="btn btn-info btn-block dropCss" id="BTNTree">Tree4</button><br>
-                <button class="btn btn-info btn-block dropCss" id="BTNTree">Tree5</button><br>
-                <button class="btn btn-info btn-block dropCss" id="BTNTree">Tree6</button>
-            </div>
-            <!--<div class="list-group" id="layerList">
-            </div>-->
-            <br>
-            <!--<h4>Destination</h4>
-            <div class="input-group" id="searchBox">
-                <input type="text" class="form-control" placeholder="GoTo" id="searchText"/>
-                <span class="input-group-btn">
-                    <button id="searchButton" class="btn btn-primary" type="button">
-                        <span class="glyphicon glyphicon-search"></span>
-                    </button>
-                </span>
-            </div>-->
+            <!-- /.navbar-collapse -->
         </div>
+        <!-- /.container -->
+    </nav>
         <div class="col-sm-9" id="globe">
             <canvas id="canvasOne">
                 Your browser does not support HTML5 Canvas.
             </canvas>
         </div>
-    <!--</div>-->
-	<!--
-	<div>
-	
-		<button onclick="postWind()">post wind</button>
-		<button onclick="getTrees()">get trees</button>
-	</div>
-	!-->
+        <!--</div>-->
+        <!--
+        <div>
+
+            <button onclick="postWind()">post wind</button>
+            <button onclick="getTrees()">get trees</button>
+        </div>
+        !-->
 
 </body>
 </html>
