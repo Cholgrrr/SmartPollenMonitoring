@@ -71,8 +71,8 @@ position: absolute;
     margin-top: 2%;*/
    
     z-index: -100;
-    min-height: 98%;
-    min-width: 98%;
+    min-height: 100%;
+    min-width: 100%;
     vertical-align: middle;
     overflow:hidden;
 }
@@ -103,7 +103,26 @@ position: absolute;
 }
 .btn-group{
     margin-top:4px;
+    width:20%;
 }
-.btn-primary{
+.btn-success{
     margin-top:4px;
+}
+
+.navbar-fixed-top{
+    width:100%;
+}
+.container{
+    width:100%;
+}
+.navbar-collapse{
+    width:100%;
+}
+
+#tree-order-button,#example-order-button{
+    width:200px;
+
+}
+#tree-order,#example-order{
+    width:200px;
 }
