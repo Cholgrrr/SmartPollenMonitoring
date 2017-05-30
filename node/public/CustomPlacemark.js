@@ -54,7 +54,7 @@ requirejs(['./src/WorldWind',
         placemarkAttributes.imageColor = WorldWind.Color.WHITE;
 
         // Create the placemark.
-        placemark = new WorldWind.Placemark(new WorldWind.Position(latitude, longitude, 1e2), false, null);
+        placemark = new WorldWind.Placemark(new WorldWind.Position(latitude, longitude, 0e1), false, null);
         placemark.altitudeMode = WorldWind.RELATIVE_TO_GROUND;
 
         // Create the placemark attributes for the placemark.
