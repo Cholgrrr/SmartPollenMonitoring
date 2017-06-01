@@ -48,7 +48,7 @@ requirejs(['./src/WorldWind',
             longitude = 8.68;
 
         // Set up the common placemark attributes.
-        placemarkAttributes.imageScale = 0.05;
+        placemarkAttributes.imageScale = 1;
         placemarkAttributes.imageOffset = new WorldWind.Offset(
             WorldWind.OFFSET_FRACTION, 0.5,
             WorldWind.OFFSET_FRACTION, 0.5);
@@ -65,19 +65,19 @@ requirejs(['./src/WorldWind',
 	//console.log(trees.length);
 	
 		//console.log(trees.length);
-	for (var i=0; i<5; i++){
+	for (var i=0; i<=trees.length-1; i++){
 		//load from database
 		//console.log(data[i].lat);
 		
         // Create the placemark.
 		
-        placemark = new WorldWind.Placemark(new WorldWind.Position(trees[i].lat, trees[i].long, 0), false, null);
+        placemark = new WorldWind.Placemark(new WorldWind.Position(trees[i].lat, trees[i].lon, 0), false, null);
         placemark.altitudeMode = WorldWind.RELATIVE_TO_GROUND;
 
         // Create the placemark attributes for the placemark.
         placemarkAttributes = new WorldWind.PlacemarkAttributes(placemarkAttributes);
         // Wrap the canvas created above in an ImageSource object to specify it as the placemark image source.
-        placemarkAttributes.imageSource = WorldWind.configuration.baseUrl + "images/tree.png";
+        placemarkAttributes.imageSource = WorldWind.configuration.baseUrl + "images/icon.png";
         placemark.attributes = placemarkAttributes;
 
         // Create the highlight attributes for this placemark. Note that the normal attributes are specified as
