@@ -18,7 +18,7 @@ function postWind() {
 	
 }
 
-
+/*
 function getTrees() {
 	
 	$.get("/test", function(data, status){
@@ -27,3 +27,6 @@ function getTrees() {
     });
 	
 }
+*/
+
+

@@ -7,7 +7,7 @@
  *
  * @version $Id: CustomPlacemark.js 3320 2015-07-15 20:53:05Z dcollins $
  */
-
+var trees;
 requirejs(['./src/WorldWind',
         './LayerManager'],
     function (ww,
@@ -16,6 +16,7 @@ requirejs(['./src/WorldWind',
 
         // Tell World Wind to log only warnings.
         WorldWind.Logger.setLoggingLevel(WorldWind.Logger.LEVEL_WARNING);
+		
 
         // Create the World Window.
         var wwd = new WorldWind.WorldWindow("canvasOne");
@@ -52,9 +53,25 @@ requirejs(['./src/WorldWind',
             WorldWind.OFFSET_FRACTION, 0.5,
             WorldWind.OFFSET_FRACTION, 0.5);
         placemarkAttributes.imageColor = WorldWind.Color.WHITE;
+		
 
+	
+	$.get("/test", function(data, status){
+        //alert("Data: " + data + "\nStatus: " + status);
+		//console.log(data);
+    trees = data
+	//console.log('test');
+	//console.log(data[0].lat);
+	//console.log(trees.length);
+	
+		//console.log(trees.length);
+	for (var i=0; i<5; i++){
+		//load from database
+		//console.log(data[i].lat);
+		
         // Create the placemark.
-        placemark = new WorldWind.Placemark(new WorldWind.Position(latitude, longitude, 0e1), false, null);
+		
+        placemark = new WorldWind.Placemark(new WorldWind.Position(trees[i].lat, trees[i].long, 0), false, null);
         placemark.altitudeMode = WorldWind.RELATIVE_TO_GROUND;
 
         // Create the placemark attributes for the placemark.
@@ -72,7 +89,7 @@ requirejs(['./src/WorldWind',
 
         // Add the placemark to the layer.
         placemarkLayer.addRenderable(placemark);
-
+	}
         // Add the placemarks layer to the World Window's layer list.
         wwd.addLayer(placemarkLayer);
 
@@ -81,4 +98,5 @@ requirejs(['./src/WorldWind',
 
         // Now set up to handle highlighting.
         var highlightController = new WorldWind.HighlightController(wwd);
+	});
     });
