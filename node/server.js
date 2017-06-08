@@ -59,7 +59,7 @@ const db = pgp(connection);
 app.get('/test', function(req, res) {
   
 	try {
-		db.result("select * from trees_latlong where gid <= 2000", false)
+		db.result("select * from trees_latlong where gid <= 200", false)
 		.then(result => {
 			// rowCount = number of rows affected by the query
 			res.json(result.rows);
@@ -106,13 +106,13 @@ app.post('/postWind', function(req, res) {
 
 
 // ---------------------------------------------------------------------------------
-// EXAMPLE: Insert wind datat (speed and direction) every 10 minutes in the database
+// EXAMPLE: Insert wind datat (speed and direction) every 5 minutes in the database
 
 let insert_interval;
 let wind_data_current = [];
 
 function insert_current_wind() {
-    insert_interval = setInterval(insertFunc, 60000);
+    insert_interval = setInterval(insertFunc, 30000);
 }
 
 function insertFunc() {

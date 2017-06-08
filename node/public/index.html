@@ -234,6 +234,14 @@
                                     text = text.substring(0, text.length - 2);
 
                                     alert(text);
+									
+									let treeselection_tmp = $('#tree-order option:selected');
+									let treeselection = [];
+									for (i = 0; i < treeselection_tmp.length; i++) {
+										treeselection[i] = treeselection_tmp[i].innerText;  
+									}
+									
+									console.log(treeselection);
                                 });
                             });
                     </script>
