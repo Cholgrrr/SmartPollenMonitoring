@@ -22,6 +22,25 @@
             });
     </script>
 
+
+    <script>
+        $(document).ready(function () {
+            $("#month").hide();
+            $('#recentold-order').on('change', function () {
+                if (this.value == '1')
+                {
+                    $("#month").show();
+                }
+                else
+                {
+                        $("#month").hide();
+                }
+            });
+        });
+
+     
+    </script>
+
     <link rel="stylesheet" href="stylesheets/bootstrap-multiselect.css" type="text/css">
     <script type="text/javascript" src="javascripts/bootstrap-multiselect.js"></script>
 
@@ -47,9 +66,9 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="dropdown">
+                    <!--<li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Map use<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
+                        <ul id="recentold"class="dropdown-menu">
                             <li><a href="#">Recent Data</a></li>
                             <li><a href="#">Historic Data</a></li>
                             <!--<li><a href="#">Something else here</a></li>
@@ -57,9 +76,9 @@
                             <li><a href="#">Separated link</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="#">One more separated link</a></li>-->
-                        </ul>
-                    </li>
-                    <!--<li class="dropdown">
+                        <!--</ul>
+                    </li>-->
+                        <!--<li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Months<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="#">January</a></li>
@@ -95,8 +114,62 @@
                     </li>-->
                     
                 </ul>
-				
                 <div class="example">
+                    <script type="text/javascript">
+                            $(document).ready(function() {
+                                var orderCount = 0;
+                                $('#recentold-order').multiselect({
+                                    onChange: function(option, checked) {
+                                        if (checked) {
+                                            orderCount++;
+                                            $(option).data('order', orderCount);
+                                        }
+                                        else {
+                                            $(option).data('order', '');
+                                        }
+                                    },
+                                    buttonText: function(options) {
+                                        if (options.length === 0) {
+                                            return 'None selected';
+                                        }
+                                        else if (options.length > 3) {
+                                            return options.length + ' selected';
+                                        }
+                                        else {
+                                            var selected = [];
+                                            options.each(function() {
+                                                selected.push([$(this).text(), $(this).data('order')]);
+                                            });
+
+                                            selected.sort(function(a, b) {
+                                                return a[1] - b[1];
+                                            });
+
+                                            var text = '';
+                                            for (var i = 0; i < selected.length; i++) {
+                                                text += selected[i][0] + ', ';
+                                            }
+
+                                            return text.substr(0, text.length -2);
+                                        }
+                                    }
+                                });
+
+                          
+                            });
+                    </script>
+
+                    <div class="btn-group">
+                        <select id="recentold-order" multiple="multiple">
+                            <option value="2">Recent Data</option>
+                            <option value="1">Historic</option>
+                       
+                        </select>
+                        <!--<button id="recentold-order-button" class="btn btn-success">Recent or Historic Data</button>-->
+                    </div>
+                <!--</div>
+				
+                <div id ="month"class="example">-->
                     <script type="text/javascript">
                             $(document).ready(function() {
                                 var orderCount = 0;
@@ -158,7 +231,7 @@
                             });
                     </script>
                     
-                    <div class="btn-group">
+                    <div class="btn-group" id ="month">
                         <select id="example-order" multiple="multiple">
                             <option value="1">January</option>
                             <option value="2">February</option>
@@ -175,8 +248,8 @@
                         </select>
                         <button id="example-order-button" class="btn btn-success">Month selection</button>
                     </div>
-                </div>
-                <div class="example">
+                <!--</div>
+                <div class="example">-->
                     <script type="text/javascript">
                             $(document).ready(function() {
                                 var orderCount = 0;
