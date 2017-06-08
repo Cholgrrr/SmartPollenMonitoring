@@ -103,6 +103,27 @@ app.post('/postWind', function(req, res) {
 		
 });
 
+app.post('/postTreeType', function (req, res) {
+    console.log('angekommen')
+    try {
+        const data = req.body;
+        console.log(data);
+        //const treetypes = [data.speed, data.deg];
+        console.log('Success')
+
+        //db.none('SELECT INTO wind_from_service(speed, direction) VALUES($1, $2)', wind)
+		//	.then(() => {
+		//	    console.log('success');
+		//	})
+		//	.catch(error => {
+		//	    // error;
+		//	});
+    }
+    catch (err) {
+        console.log(err + '..../postTreeData failed!')
+    }
+
+});
 
 
 // ---------------------------------------------------------------------------------

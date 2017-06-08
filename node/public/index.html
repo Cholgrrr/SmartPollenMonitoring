@@ -66,52 +66,7 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <!--<li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Map use<span class="caret"></span></a>
-                        <ul id="recentold"class="dropdown-menu">
-                            <li><a href="#">Recent Data</a></li>
-                            <li><a href="#">Historic Data</a></li>
-                            <!--<li><a href="#">Something else here</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">One more separated link</a></li>-->
-                        <!--</ul>
-                    </li>-->
-                        <!--<li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Months<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">January</a></li>
-                            <li><a href="#">February</a></li>
-                            <li><a href="#">March</a></li>
-                            <li><a href="#">April</a></li>
-                            <li><a href="#">May</a></li>
-                            <li><a href="#">June</a></li>
-                            <li><a href="#">Juli</a></li>
-                            <li><a href="#">August</a></li>
-                            <li><a href="#">September</a></li>
-                            <li><a href="#">October</a></li>
-                            <li><a href="#">November</a></li>
-                            <li><a href="#">December</a></li>
-                        </ul>
-                    </li>-->
-                    <!--<li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tree Type<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Tree1</a></li>
-                            <li><a href="#">Tree2</a></li>
-                        </ul>
-                    </li>-->
-
-                    <!--<li>
-                        <a href="#">About</a>
-                    </li>
-                    <li>
-                        <a href="#">Services</a>
-                    </li>
-                    <li>
-                        <a href="#">Contact</a>
-                    </li>-->
+                   
                     
                 </ul>
                 <div class="example">
@@ -167,9 +122,7 @@
                         </select>
                         <!--<button id="recentold-order-button" class="btn btn-success">Recent or Historic Data</button>-->
                     </div>
-                <!--</div>
-				
-                <div id ="month"class="example">-->
+
                     <script type="text/javascript">
                             $(document).ready(function() {
                                 var orderCount = 0;
@@ -248,8 +201,7 @@
                         </select>
                         <button id="example-order-button" class="btn btn-success">Month selection</button>
                     </div>
-                <!--</div>
-                <div class="example">-->
+
                     <script type="text/javascript">
                             $(document).ready(function() {
                                 var orderCount = 0;
@@ -309,12 +261,23 @@
                                     alert(text);
 									
 									let treeselection_tmp = $('#tree-order option:selected');
-									let treeselection = [];
+									let treeselection = {};
+									
 									for (i = 0; i < treeselection_tmp.length; i++) {
-										treeselection[i] = treeselection_tmp[i].innerText;  
+									    treeselection[i] = treeselection_tmp[i].innerText;
+										//treeselection[i] = treeselection_tmp[i].innerText;  
 									}
 									
 									console.log(treeselection);
+
+                                    $.ajax({
+                                         type: "POST",
+									    url: '/postTreeType',
+									    data: treeselection
+									}).done(function () { console.log('Select Tree was posted'); });
+
+
+
                                 });
                             });
                     </script>
