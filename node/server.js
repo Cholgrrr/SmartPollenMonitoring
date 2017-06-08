@@ -59,7 +59,7 @@ const db = pgp(connection);
 app.get('/test', function(req, res) {
   
 	try {
-		db.result("select * from trees_latlong where gid <= 200", false)
+		db.result("select * from trees_latlon where gid <= 10000", false)
 		.then(result => {
 			// rowCount = number of rows affected by the query
 			res.json(result.rows);
