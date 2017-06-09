@@ -55,50 +55,6 @@
                     
                 </ul>
                 <div class="example">
-                    <!--<script type="text/javascript">
-                            $(document).ready(function() {
-                                var orderCount = 0;
-                                $('#recentold-order').multiselect({
-                                    onChange: function(option, checked) {
-                                        if (checked) {
-                                            orderCount++;
-                                            $(option).data('order', orderCount);
-                                        }
-                                        else {
-                                            $(option).data('order', '');
-                                        }
-                                    },
-                                    buttonText: function(options) {
-                                        if (options.length === 0) {
-                                            return 'Recent Data';
-                                        }
-                                        else if (options.length > 3) {
-                                            return options.length + ' selected';
-                                        }
-                                        else {
-                                            var selected = [];
-                                            options.each(function() {
-                                                selected.push([$(this).text(), $(this).data('order')]);
-                                            });
-
-                                            selected.sort(function(a, b) {
-                                                return a[1] - b[1];
-                                            });
-
-                                            var text = '';
-                                            for (var i = 0; i < selected.length; i++) {
-                                                text += selected[i][0] + ', ';
-                                            }
-
-                                            return text.substr(0, text.length -2);
-                                        }
-                                    }
-                                });
-
-                          
-                            });
-                    </script>-->
-rs
 
                     <div class="btn-group">
                         <select id="recentold-order">
@@ -130,9 +86,7 @@ rs
                         <button id="example-order-button" class="btn btn-success">Month selection</button>
                     </div>
 
-                    <script type="text/javascript">
-                           
-                    </script>
+
                     <div class="btn-group">
                         <select id="tree-order" multiple="multiple">
                             <option value="1">Ulme</option>

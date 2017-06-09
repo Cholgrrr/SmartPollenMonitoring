@@ -1,3 +1,4 @@
+//Javascript for the select Map Type
 $(document).ready(function () {
     $("#month").hide();
     $('#recentold-order').on('change', function () {
@@ -9,7 +10,7 @@ $(document).ready(function () {
         }
     });
 });
-
+// Javascript for the month select
 $(document).ready(function () {
     var orderCount = 0;
     $('#example-order').multiselect({
@@ -68,6 +69,8 @@ $(document).ready(function () {
         alert(text);
     });
 });
+//Javascript function for the tree multiselect
+
 $(document).ready(function () {
     var orderCount = 0;
     $('#tree-order').multiselect({
