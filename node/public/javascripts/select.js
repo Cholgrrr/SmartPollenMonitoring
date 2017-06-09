@@ -154,12 +154,16 @@ $(document).ready(function () {
             type: "POST",
             url: '/postTreeType',
             data: treeselection,
-        }).done(function (treedata) {ttt(treedata);});	//
+        }).done(function (treedata) {callPollen(treedata);});	//
 		console.log(treedata);
 		
-		function ttt (dat) {
-			console.log(dat);
+		function callPollen (treedata) {
+			console.log(treedata);
 			console.log(currentWind);
+
+			for (var i = 0; i <= Object.keys(treedata).length - 1; i++) {
+			    drawPollenSpread(currentWind[0].speed, currentWind[0].direction,treedata[i].lat,treedata[i].lon,5)
+			}
 		}
 
 		
