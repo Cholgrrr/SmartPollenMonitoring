@@ -77,7 +77,7 @@ app.post('/postTreeType', function (req, res) {
 		if (Object.keys(data).length > 0) { 
 			
 			// create query string
-			let query_string = "select * from trees_latlon where treetype = " + "'" + data[0] + "'";
+			let query_string = "select lat, lon from trees_latlon where treetype = " + "'" + data[0] + "'";
 			
 			for (i = 1; i < Object.keys(data).length; i++) {
 				query_string += (" or treetype = " + "'" + data[i] + "'");

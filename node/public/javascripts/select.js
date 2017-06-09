@@ -145,7 +145,14 @@ $(document).ready(function () {
             data: treeselection
         }).done(function () { console.log('Select Tree was posted'); });
 
+		//layerToRefresh.refresh();
+		//var wwd = new WorldWind.WorldWindow("canvasOne");
+		//layerToRefresh.refresh();
+		//wwd.redraw();
 
-
-    });
+		//drawPollenSpread(10.0, 45.0, 48.779871, 9.173436 - 0.002, 5);
+		
+		drawPollenSpread(10.0, 45.0, 48.779826, 9.173486 - 0.002, 5);
+		
+    });  
 });
