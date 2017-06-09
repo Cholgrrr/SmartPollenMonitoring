@@ -1,4 +1,4 @@
-// -----------------------------------------------------------------------
+// -------------------------------------------------------------------------------------------------
 // required variables, dependencies and initialisation 
 
 const http = require('http');
@@ -14,26 +14,10 @@ app.use(express.static('public'));
 app.listen(3000);
 
 
-// ------------------------------------------------------------------------------
-// EXAMPLE: require object to reference to the url: 
-// http://localhost:3000/treerequest/....(e.g.trees) => see routes.treerequest.js
-const treereq = require('./routes/treerequest');
-app.use('/treerequest', treereq);
 
 
-
-// ------------------------------------------------------------------------
-// EXAMPLE: Do anything through calling an url (http://localhost:3000/baum)
-
-app.get('/baum', function(req, res) {
-  //res.send(obje);
-  console.log('baum!')
-});
-
-
-
-// ---------------------------------------------------------
-// EXAMPLE: Generate data base connection to postgres
+// -------------------------------------------------------------------------------------------------
+// Generation data base connection to postgres
 
 const pgp = require('pg-promise')({
     // Initialization Options 
@@ -53,13 +37,13 @@ const db = pgp(connection);
 
 
 
-// -----------------------------------------------------------------------
-// EXAMPLE: Request data through url call (http://localhost:3000/test)
+// -------------------------------------------------------------------------------------------------
+// Request tree data through url call (http://localhost:3000/test)
 	
-app.get('/test', function(req, res) {
+app.get('/treeLoad', function(req, res) {
   
 	try {
-		db.result("select * from trees_latlong where gid <= 2000", false)
+		db.result("select * from trees_latlon where gid <= 100", false)
 		.then(result => {
 			// rowCount = number of rows affected by the query
 			res.json(result.rows);
@@ -78,41 +62,55 @@ app.get('/test', function(req, res) {
 
 
 
-// ---------------------------------------------------------------------------
-// EXAMPLE: Insert single wind data through url call (http://localhost:3000/postWind)
+// -------------------------------------------------------------------------------------------------
+// Select the trees, which were filtered through the multi tree selection
 
-app.post('/postWind', function(req, res) {
-	
-	try {
-		const data = req.body; 
-		console.log(data);
-		const wind = [data.speed, data.deg];
+
+app.post('/postTreeType', function (req, res) {
+    console.log('angekommen')
+    try {
+        const data = req.body;
+        console.log(data);
+        console.log('Success');
+		console.log(data[0]);
 		
+		if (Object.keys(data).length > 0) { 
+			
+			// create query string
+			let query_string = "select lat, lon from trees_latlon where treetype = " + "'" + data[0] + "'";
+			
+			for (i = 1; i < Object.keys(data).length; i++) {
+				query_string += (" or treetype = " + "'" + data[i] + "'");
+			}	
+			query_string += ";";
+			
 
-		db.none('INSERT INTO wind_from_service(speed, direction) VALUES($1, $2)', wind)
-			.then(() => {
-				console.log('success');
+			// request the data 
+			db.result(query_string)
+			.then(result => {
+				res.json(result.rows);
 			})
 			.catch(error => {
-				// error;
+				console.log('ERROR:', error);
 			});
-	}
-	catch(err) {
-		console.log('..../postWind failed!')
-	}
-		
+				
+		}
+    }
+    catch (err) {
+        console.log(err + '..../postTreeData failed!')
+    }
+
 });
 
 
-
-// ---------------------------------------------------------------------------------
-// EXAMPLE: Insert wind datat (speed and direction) every 10 minutes in the database
+// -------------------------------------------------------------------------------------------------
+// Insert wind datat (speed and direction) every 5 minutes in the database
 
 let insert_interval;
 let wind_data_current = [];
 
 function insert_current_wind() {
-    insert_interval = setInterval(insertFunc, 60000);
+    insert_interval = setInterval(insertFunc, 30000);
 }
 
 function insertFunc() {
@@ -147,11 +145,10 @@ catch(err) {
 		console.log('execution of function insert_current_wind failde!')
 }
 
-// -------------------------------------------------------------------------------------
 
 
-
-
+// -------------------------------------------------------------------------------------------------
+// Server runs innfo
 console.log('server is running on port 3000!')
 
 
