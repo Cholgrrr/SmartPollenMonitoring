@@ -60,10 +60,34 @@ app.get('/treeLoad', function(req, res) {
 		
 });
 
+// -------------------------------------------------------------------------------------------------
+// Select the current wind datat 
+
+app.get('/currentWind', function(req, res) {
+  
+	try {
+		db.result("SELECT speed, direction, in_date from wind_from_service order by wind_from_service.in_date desc limit 1;", false)
+		.then(result => {
+			// rowCount = number of rows affected by the query
+			res.json(result.rows);
+			//res.send('guery was done!')
+			console.log(result.rows); // print how many records were deleted;
+		})
+		.catch(error => {
+			console.log('ERROR:', error);
+		});
+	}
+	catch(err) {
+		console.log('..../test failed!')
+	}
+		
+});
+
 
 
 // -------------------------------------------------------------------------------------------------
 // Select the trees, which were filtered through the multi tree selection
+
 
 
 app.post('/postTreeType', function (req, res) {
@@ -89,6 +113,7 @@ app.post('/postTreeType', function (req, res) {
 			db.result(query_string)
 			.then(result => {
 				res.json(result.rows);
+				//console.log(result.rows)
 			})
 			.catch(error => {
 				console.log('ERROR:', error);
@@ -101,6 +126,11 @@ app.post('/postTreeType', function (req, res) {
     }
 
 });
+
+
+
+
+
 
 
 // -------------------------------------------------------------------------------------------------

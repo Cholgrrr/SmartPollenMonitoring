@@ -11,6 +11,7 @@ $(document).ready(function () {
     });
 });
 // Javascript for the month select
+let treedata = {};
 $(document).ready(function () {
     var orderCount = 0;
     $('#example-order').multiselect({
@@ -141,21 +142,37 @@ $(document).ready(function () {
         }
 
         console.log(treeselection);
+		
+		let currentWind = {};
+		$.get("/currentWind", function(data, status){
+			console.log(data);
+			currentWind = data; 
+		});
+		
 
         $.ajax({
             type: "POST",
             url: '/postTreeType',
-            data: treeselection
-        }).done(function () { console.log('Select Tree was posted'); });
-
-		//layerToRefresh.refresh();
-		//var wwd = new WorldWind.WorldWindow("canvasOne");
-		//layerToRefresh.refresh();
-		//wwd.redraw();
-
-		//drawPollenSpread(10.0, 45.0, 48.779871, 9.173436 - 0.002, 5);
+            data: treeselection,
+        }).done(function (treedata) {ttt(treedata);});	//
+		console.log(treedata);
 		
-		drawPollenSpread(10.0, 45.0, 48.779826, 9.173486 - 0.002, 5);
+		function ttt (dat) {
+			console.log(dat);
+			console.log(currentWind);
+		}
+
+		
+		
+		/*
+		$.get("/postTreeType", function(data, status){
+			
+			console.log(data);
+		});
+		*/
 		
     });  
 });
+
+
+
