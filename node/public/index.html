@@ -70,7 +70,7 @@
                     
                 </ul>
                 <div class="example">
-                    <script type="text/javascript">
+                    <!--<script type="text/javascript">
                             $(document).ready(function() {
                                 var orderCount = 0;
                                 $('#recentold-order').multiselect({
@@ -85,7 +85,7 @@
                                     },
                                     buttonText: function(options) {
                                         if (options.length === 0) {
-                                            return 'None selected';
+                                            return 'Recent Data';
                                         }
                                         else if (options.length > 3) {
                                             return options.length + ' selected';
@@ -112,16 +112,18 @@
 
                           
                             });
-                    </script>
+                    </script>-->
+rs
 
                     <div class="btn-group">
-                        <select id="recentold-order" multiple="multiple">
+                        <select id="recentold-order">
                             <option value="2">Recent Data</option>
                             <option value="1">Historic</option>
                        
                         </select>
                         <!--<button id="recentold-order-button" class="btn btn-success">Recent or Historic Data</button>-->
                     </div>
+
 
                     <script type="text/javascript">
                             $(document).ready(function() {
@@ -206,7 +208,8 @@
                             $(document).ready(function() {
                                 var orderCount = 0;
                                 $('#tree-order').multiselect({
-                                    onChange: function(option, checked) {
+                                    maxHeight: 300,
+                                   onChange: function(option, checked) {
                                         if (checked) {
                                             orderCount++;
                                             $(option).data('order', orderCount);
@@ -214,7 +217,9 @@
                                         else {
                                             $(option).data('order', '');
                                         }
-                                    },
+
+                                   },
+                                   
                                     buttonText: function(options) {
                                         if (options.length === 0) {
                                             return 'None selected';
@@ -240,6 +245,7 @@
                                             return text.substr(0, text.length -2);
                                         }
                                     }
+                                    
                                 });
 
                                 $('#tree-order-button').on('click', function () {
@@ -283,12 +289,55 @@
                     </script>
                     <div class="btn-group">
                         <select id="tree-order" multiple="multiple">
-                            <option value="1">Tree 1</option>
-                            <option value="2">Tree 2</option>
-                            <option value="3">Tree 3</option>
-                            <option value="4">Tree 4</option>
-                            <option value="5">Tree 5</option>
-                            <option value="6">Tree 6</option>
+                            <option value="1">Ulme</option>
+                            <option value="2">Buche</option>
+                            <option value="3">Ahorn</option>
+                            <option value="4">Pflaume</option>
+                            <option value="5">Schnur</option>
+                            <option value="6">Esche</option>
+<<<<<<< HEAD
+							<option value="7">Zeder</option>
+=======
+                            <option value="7">Zeder</option>
+>>>>>>> 00dd87b8ad813555abeeac088e59d1b0c3962606
+                            <option value="8">Zypresse</option>
+                            <option value="9">Schlafbaum</option>
+                            <option value="10">Eibe</option>
+                            <option value="11">other</option>
+                            <option value="12">Kastanie</option>
+<<<<<<< HEAD
+							<option value="13">Linde</option>
+=======
+                            <option value="13">Linde</option>
+>>>>>>> 00dd87b8ad813555abeeac088e59d1b0c3962606
+                            <option value="14">Goetterbaum</option>
+                            <option value="15">Walnuss</option>
+                            <option value="16">Tanne</option>
+                            <option value="17">Buchs</option>
+                            <option value="18">Flieder</option>
+<<<<<<< HEAD
+							<option value="19">Beere</option>
+=======
+                            <option value="19">Beere</option>
+>>>>>>> 00dd87b8ad813555abeeac088e59d1b0c3962606
+                            <option value="20">Hasel</option>
+                            <option value="21">Weide</option>
+                            <option value="22">Robinie</option>
+                            <option value="23">Erle</option>
+                            <option value="24">Birne</option>
+<<<<<<< HEAD
+							<option value="25">Birke</option>
+                            <option value="26">Holunder</option>
+                            <option value="27">Apfel</option>
+							<option value="28">Kiefer</option>
+=======
+                            <option value="25">Birke</option>
+                            <option value="26">Holunder</option>
+                            <option value="27">Apfel</option>
+                            <option value="28">Kiefer</option>
+>>>>>>> 00dd87b8ad813555abeeac088e59d1b0c3962606
+                            <option value="29">Kirsche</option>
+                            <option value="30">Eiche</option>
                         </select>
                         <button id="tree-order-button" class="btn btn-success">Tree selection</button>
                     </div>
