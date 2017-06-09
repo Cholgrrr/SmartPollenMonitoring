@@ -56,7 +56,7 @@ requirejs(['./src/WorldWind',
 		
 
 	
-		$.get("/test", function(data, status){
+		$.get("/treeLoad", function(data, status){
 			//alert("Data: " + data + "\nStatus: " + status);
 			//console.log(data);
 			trees = data
