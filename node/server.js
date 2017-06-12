@@ -127,7 +127,66 @@ app.post('/postTreeType', function (req, res) {
 
 });
 
+//------------------------------------------------------------------------------------------------
+// Getting Month data
+app.post('/postMonth', function (req, res) {
+    console.log('angekommen')
+    try {
+        const data = req.body;
+        console.log(data);
+        console.log('Success');
+        console.log(data[0]);
 
+        if (Object.keys(data).length > 0) {
+
+            // create query string
+            let query_string = "select speed, direction from wind_hist where monthtext =" + "'" + data[0] + "'";
+
+            for (i = 1; i < Object.keys(data).length; i++) {
+                query_string += (" or monthtext = " + "'" + data[i] + "'");
+            }
+            query_string += ";";
+
+
+            // request the data 
+            db.result(query_string)
+			.then(result => {
+			    res.json(result.rows);
+			    console.log(result.rows);
+			    console.log(result.rows[1].speed);
+			    console.log(result.rows[1].direction);
+			    // how to output this Data????????????????????????
+                //####################################################################
+			    let speed;
+			    speed = 0;
+			    //console.log(speed);
+			    //console.log('length: ' + result.rows.length);
+			    let direction;
+			    direction = 0
+                //console.log(direction)
+			    for (i = 0; i < result.rows.length; i++) {
+			        speed += result.rows[i].speed;
+			        console.log('speed' + speed);
+			        direction += result.rows[i].direction
+			        console.log('direction' + direction);
+			        console.log(i);
+			    };
+			    speed = speed / result.rows.length;
+			    direction = direction / result.rows.length;
+			    console.log(speed, direction);
+                //####################################################################
+			})
+			.catch(error => {
+			    console.log('ERROR:', error);
+			});
+
+        }
+    }
+    catch (err) {
+        console.log(err + '..../postMonth failed!')
+    }
+
+});
 
 
 
