@@ -32,8 +32,11 @@ for (var l = 0; l < layers.length; l++) {
 }
 
 // Create a layer manager for controlling layer visibility.
-var layerManger = new LayerManager(wwd);
+//####################################################################
 
+//var layerManger = new LayerManager(wwd);
+
+//####################################################################
 // Now set up to handle highlighting.
 var highlightController = new WorldWind.HighlightController(wwd);
 //var placemark,
@@ -200,4 +203,13 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara) {
 
 		//});
 
-    //};
+//};
+
+
+
+function deleteLayer() {
+    
+    // remove layer
+    wwd.removeLayer(wwd.SE);
+    wwd.redraw();
+};
