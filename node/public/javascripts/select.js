@@ -221,24 +221,3 @@ $(document).ready(function () {
 		
     });  
 });
-
-
-
-
-function addTree() {
-    deleteLayer()
-    //Get position from click
-    //open window for adding tree info
-    //var TreeType = prompt("Please Enter the TreeType", "Buche");
-    //var TreeHeight = prompt("Please Enter the TreeHeight", "15m")
-    //if (TreeType == null || TreeType == "") {
-    //    txt = "User cancelled the prompt.";
-    //} else {
-    //    txt = "Hello " + TreeType + "! How are you today?";
-    //}
-    //Post to Database
-    //Reload Trees
-    alert('Tree add function')
-
-};
-
