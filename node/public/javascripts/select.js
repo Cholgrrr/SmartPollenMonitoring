@@ -28,8 +28,8 @@ $(document).ready(function () {
             if (options.length === 0) {
                 return 'None selected';
             }
-            else if (options.length > 3) {
-                return options.length + ' selected';
+            else if (options.length > 1) {
+                return 'Please only select one!';
             }
             else {
                 var selected = [];
