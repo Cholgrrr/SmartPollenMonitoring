@@ -225,6 +225,7 @@ $(document).ready(function () {
 
 
 
+
 function addTree() {
     deleteLayer()
     //Get position from click
@@ -242,3 +243,5 @@ function addTree() {
 
 };
 
+
+=======
