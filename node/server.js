@@ -88,14 +88,11 @@ app.get('/currentWind', function(req, res) {
 // -------------------------------------------------------------------------------------------------
 // Select the trees, which were filtered through the multi tree selection
 
-
-
 app.post('/postTreeType', function (req, res) {
-    console.log('angekommen')
+
     try {
         const data = req.body;
         console.log(data);
-        console.log('Success');
 		console.log(data[0]);
 		
 		if (Object.keys(data).length > 0) { 
@@ -123,6 +120,41 @@ app.post('/postTreeType', function (req, res) {
     }
     catch (err) {
         console.log(err + '..../postTreeData failed!')
+    }
+
+});
+
+
+
+// -------------------------------------------------------------------------------------------------
+// Select the trees, which were filtered through the multi tree selection
+
+app.post('/insertTree', function (req, res) {
+ 
+    try {
+        const data = req.body;
+        console.log(data);
+		console.log(data);
+		
+	
+			
+		query_string += "INSERT ";
+		
+
+		// request the data 
+		db.result(query_string)
+		.then(result => {
+			res.json(result.rows);
+			//console.log(result.rows)
+		})
+		.catch(error => {
+			console.log('ERROR:', error);
+		});
+				
+		
+    }
+    catch (err) {
+        console.log(err + '  /insertTree failed!')
     }
 
 });
