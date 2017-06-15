@@ -55,9 +55,10 @@ var highlightController = new WorldWind.HighlightController(wwd);
 
 
 //--------------------------------------------------------------
-
+var rend = new WorldWind.RenderableLayer();
 		
 function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara) {
+    rend.removeAllRenderables();
 		// =======================Start joe's Edited part================================
 		// Set Starting point at HFT Stuttgart
 		//wwd.navigator.lookAtLocation.latitude = 48.779871;
@@ -125,7 +126,8 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara) {
 		var el_lo = new WorldWind.Position(EllispeCenterLAT, EllispeCenterLONG,1e5);
 		var SE = new WorldWind.SurfaceEllipse(el_lo, SE_a_axe, SE_b_axe, windDeg, att);
 		SE.displayName = "EllispeBig" // make the ellispe selectable
-		wwd.addLayer(SE); // add Big ellispe to the globe
+        rend.addRenderable(SE)
+		//wwd.addLayer(SE); // add Big ellispe to the globe
 			//SE.altitudeMode = WorldWind.ABSOLUTE;
 			//SE.extrude = true;
 			//att.drawVerticals = polygon.extrude;
@@ -137,7 +139,7 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara) {
 		var el_lom = new WorldWind.Position(EllispeCenterLATm, EllispeCenterLONGm,1e5);
 		var SEm = new WorldWind.SurfaceEllipse(el_lom, SEm_a_axe, SEm_b_axe, windDeg, attm);
 		SE.displayName = "EllispeMedium" // make the ellispe selectable
-		wwd.addLayer(SEm); // add Big ellispe to the globe
+		rend.addRenderable(SEm); // add Big ellispe to the globe
 			//SE.altitudeMode = WorldWind.ABSOLUTE;
 			//SE.extrude = true;
 			//att.drawVerticals = polygon.extrude;
@@ -149,15 +151,17 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara) {
 		var el_los = new WorldWind.Position(EllispeCenterLATs, EllispeCenterLONGs,1e5);
 		var SEs = new WorldWind.SurfaceEllipse(el_los, SEs_a_axe, SEs_b_axe, windDeg, att2);
 		SEs.displayName = "EllispeSmall"
-		wwd.addLayer(SEs);
+		rend.addRenderable(SEs);
 		//------------Draw Circle at Tree Position-------------------
 		var cir = new WorldWind.Position(TreeLat, TreeLong,1e5);
 		var Circle = new WorldWind.SurfaceCircle(cir, 5, attc);
 		Circle.displayName = "Tree-Location";
-		wwd.addLayer(Circle);
+		rend.addRenderable(Circle);
+
+		wwd.addLayer(rend);
 }
 		//-----------Test Drawing some points------------------------
-		
+
 		
 		
 		
