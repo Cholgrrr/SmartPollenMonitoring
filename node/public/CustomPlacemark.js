@@ -56,10 +56,11 @@ var highlightController = new WorldWind.HighlightController(wwd);
 
 //--------------------------------------------------------------
 //var rend = new WorldWind.RenderableLayer();
-var test = 0;
+//var test;
 function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara) {
     //rend.removeAllRenderables();
-    test += 1;
+    //window['SE' + test].enabled = true;
+    //test += 'a';
 		// =======================Start joe's Edited part================================
 		// Set Starting point at HFT Stuttgart
 		//wwd.navigator.lookAtLocation.latitude = 48.779871;
@@ -126,8 +127,10 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara) {
 		var SE_b_axe = SE_a_axe / 2;
 		var el_lo = new WorldWind.Position(EllispeCenterLAT, EllispeCenterLONG,1e5);
 		var SE = new WorldWind.SurfaceEllipse(el_lo, SE_a_axe, SE_b_axe, windDeg, att);
+		//var SE = new WorldWind.SurfaceEllipse(el_lo, SE_a_axe, SE_b_axe, windDeg, att);
 		SE.displayName = "EllispeBig" // make the ellispe selectable
 		//rend.addRenderable(SE);
+
 		wwd.addLayer(SE);
 		//wwd.addLayer(SE); // add Big ellispe to the globe
 			//SE.altitudeMode = WorldWind.ABSOLUTE;
@@ -140,7 +143,7 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara) {
 		var SEm_b_axe = SEm_a_axe / 2;
 		var el_lom = new WorldWind.Position(EllispeCenterLATm, EllispeCenterLONGm,1e5);
 		var SEm = new WorldWind.SurfaceEllipse(el_lom, SEm_a_axe, SEm_b_axe, windDeg, attm);
-		SE.displayName = "EllispeMedium" // make the ellispe selectable
+		SEm.displayName = "EllispeMedium" // make the ellispe selectable
 		//rend.addRenderable(SEm); // add Big ellispe to the globe
 		wwd.addLayer(SEm);
 			//SE.altitudeMode = WorldWind.ABSOLUTE;
@@ -220,6 +223,7 @@ function deleteLayer() {
     
     // remove layer
 
-    wwd.redraw;
+    window['SE' + test].enabled = false;
+    wwd.redraw();
     //wwd.redraw;
 };
