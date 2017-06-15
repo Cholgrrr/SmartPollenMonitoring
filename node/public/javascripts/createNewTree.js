@@ -1,4 +1,3 @@
-
 // Function that is invoked by a mouse click.
 var handleClick = function (recognizer) {
 	// Obtain the event location.
@@ -41,15 +40,15 @@ function openDialog() {
 // Inner elements of the dialog box.
 var dialogHTML = '<table>' +
 	'<tbody>' +
-		'<tr>' +
-			'<td>Author</td>' +
-			'<td><input id="dialogAut" type="text" name="dialogAut"></td>' +
-			'<td>Enter your username</td>' +
-		'</tr>' +
+		//'<tr>' +
+		//	'<td>Author</td>' +
+		//	'<td><input id="dialogAut" type="text" name="dialogAut"></td>' +
+		//	'<td>Enter your username</td>' +
+		//'</tr>' +
 		'<tr>' +
 			'<td>Treetype</td>' +
 			'<td>' +
-				'<select id="dialogTree-order" multiple="multiple">' +
+				'<select id="dialogTree-order ">' +
 					'<option value="1">Ulme</option>' +
 					'<option value="2">Buche</option>' +
 					'<option value="3">Ahorn</option>' +

@@ -1,8 +1,3 @@
-
-let histrec;
-histrec = 0;
-
-
 //Javascript for the select Map Type
 $(document).ready(function () {
     $("#month").hide();
@@ -33,8 +28,8 @@ $(document).ready(function () {
             if (options.length === 0) {
                 return 'None selected';
             }
-            else if (options.length > 3) {
-                return options.length + ' selected';
+            else if (options.length > 1) {
+                return 'Please only select one!';
             }
             else {
                 var selected = [];
@@ -73,38 +68,6 @@ $(document).ready(function () {
         text = text.substring(0, text.length - 2);
 
         alert(text);
-        let monthselection_tmp = $('#example-order option:selected');
-        let monthselection = {};
-
-        for (i = 0; i < monthselection_tmp.length; i++) {
-            monthselection[i] = monthselection_tmp[i].innerText;
-            //treeselection[i] = treeselection_tmp[i].innerText;  
-        }
-
-        console.log(monthselection);
-
-        if (monthselection_temp === undefined || monthselection_tmp.length == 0) {
-            histrec = 1;
-        };
-
-        $.ajax({
-            type: "POST",
-            url: '/postMonth',
-            data: monthselection,
-        }).done(function (monthdata) { callPollenhist(monthdata); });	//
-        console.log(monthdata);
-
-
-
-        //function callPollenhist(treedata) {
-        //    console.log(treedata);
-        //    console.log(currentWind);
-
-        //    for (var i = 0; i <= Object.keys(treedata).length - 1; i++) {
-        //        drawPollenSpread(currentWind[0].speed, currentWind[0].direction, treedata[i].lat, treedata[i].lon, 5)
-        //    }
-        //}
-
     });
 });
 //Javascript function for the tree multiselect
@@ -197,17 +160,10 @@ $(document).ready(function () {
 		function callPollen (treedata) {
 			console.log(treedata);
 			console.log(currentWind);
-			if (histrec = 0) {
 
-			    for (var i = 0; i <= Object.keys(treedata).length - 1; i++) {
-			        drawPollenSpread(currentWind[0].speed, currentWind[0].direction, treedata[i].lat, treedata[i].lon, 5)
-			    }
-			} else {
-			    for (var i = 0; i <= Object.keys(treedata).length - 1; i++) {
-                    // choose the historic wind data......
-			        drawPollenSpread(currentWind[0].speed, currentWind[0].direction, treedata[i].lat, treedata[i].lon, 5)
-			    }
-
+			for (var i = 0; i <= Object.keys(treedata).length - 1; i++) {
+			    drawPollenSpread(currentWind[0].speed, currentWind[0].direction,treedata[i].lat,treedata[i].lon,5)
+			}
 		}
 
 		
@@ -221,7 +177,6 @@ $(document).ready(function () {
 		
     });  
 });
-
 
 
 
@@ -242,7 +197,4 @@ function addTree() {
     alert('Tree add function')
 
 };
-
-
-=======
 
