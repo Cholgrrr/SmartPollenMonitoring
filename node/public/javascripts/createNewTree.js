@@ -35,11 +35,7 @@ function openDialog() {
 				    //for (var i = 0; i < myinputs.length; i++) {
 				    //    alert(myinputs[i].value);
 				    //}
-				    alert('lat:' + myinputs[1].value)
-				    alert('lon:' + myinputs[2].value)
-				     alert('treetype:' + mytype[0].value)
-				     alert('age:' + myinputs[3].value)
-				     alert('diameter: ' + myinputs[0].value)
+				    
 
 				        try {
 
