@@ -28,7 +28,44 @@ function openDialog() {
 			{
 				text: "submit",
 				icon: "ui-icon-heart",
-				click: function() { // Here the callback of the dialog has to happen!
+				click: function () {
+				    var mytable = document.getElementById('myTable');
+				    var myinputs = mytable.getElementsByTagName('input');
+				    var mytype = mytable.getElementsByTagName('select');
+				    //for (var i = 0; i < myinputs.length; i++) {
+				    //    alert(myinputs[i].value);
+				    //}
+				    alert('lat:' + myinputs[1].value)
+				    alert('lon:' + myinputs[2].value)
+				     alert('treetype:' + mytype[0].value)
+				     alert('age:' + myinputs[3].value)
+				     alert('diameter: ' + myinputs[0].value)
+
+				        try {
+
+				            let in_tree = {
+				                lat: myinputs[1].value,
+				                lon: myinputs[2].value,
+				                treetype: mytype[0].value,
+				                age: myinputs[3].value,
+				                diameter: myinputs[0].value
+				            }
+
+				            console.log(in_tree);
+
+				            $.ajax({
+				                type: "POST",
+				                url: '/insertTree',
+				                data: in_tree,
+				            }).done(function () { });
+
+				        }
+				        catch (err) {
+				            console.log('delivering of the inserted tree data to the server failed!');
+				        }
+
+
+				    // Here the callback of the dialog has to happen!
 					alert("Close the dialog and process the data.");
 					$(this).dialog("close");
 				}
@@ -37,8 +74,13 @@ function openDialog() {
 	});
 }
 
+
+
+
+
+
 // Inner elements of the dialog box.
-var dialogHTML = '<table>' +
+var dialogHTML = '<table id="myTable">' +
 	'<tbody>' +
 		//'<tr>' +
 		//	'<td>Author</td>' +
@@ -49,36 +91,36 @@ var dialogHTML = '<table>' +
 			'<td>Treetype</td>' +
 			'<td>' +
 				'<select id="dialogTree-order ">' +
-					'<option value="1">Ulme</option>' +
-					'<option value="2">Buche</option>' +
-					'<option value="3">Ahorn</option>' +
-					'<option value="4">Pflaume</option>' +
-					'<option value="5">Schnur</option>' +
-					'<option value="6">Esche</option>' +
-					'<option value="7">Zeder</option>' +
-					'<option value="8">Zypresse</option>' +
-					'<option value="9">Schlafbaum</option>' +
-					'<option value="10">Eibe</option>' +
-					'<option value="11">other</option>' +
-					'<option value="12">Kastanie</option>' +
-					'<option value="13">Linde</option>' +
-					'<option value="14">Goetterbaum</option>' +
-					'<option value="15">Walnuss</option>' +
-					'<option value="16">Tanne</option>' +
-					'<option value="17">Buchs</option>' +
-					'<option value="18">Flieder</option>' +
-					'<option value="19">Beere</option>' +
-					'<option value="20">Hasel</option>' +
-					'<option value="21">Weide</option>' +
-					'<option value="22">Robinie</option>' +
-					'<option value="23">Erle</option>' +
-					'<option value="24">Birne</option>' +
-					'<option value="25">Birke</option>' +
-					'<option value="26">Holunder</option>' +
-					'<option value="27">Apfel</option>' +
-					'<option value="28">Kiefer</option>' +
-					'<option value="29">Kirsche</option>' +
-					'<option value="30">Eiche</option>' +
+					'<option value="Ulme">Ulme</option>' +
+					'<option value="Buche">Buche</option>' +
+					'<option value="Ahorn">Ahorn</option>' +
+					'<option value="Pflaume">Pflaume</option>' +
+					'<option value="Schnur">Schnur</option>' +
+					'<option value="Esche">Esche</option>' +
+					'<option value="Zeder">Zeder</option>' +
+					'<option value="Zypresse">Zypresse</option>' +
+					'<option value="Schlafbaum">Schlafbaum</option>' +
+					'<option value="Eibe">Eibe</option>' +
+					'<option value="other">other</option>' +
+					'<option value="Kastanie">Kastanie</option>' +
+					'<option value="Linde">Linde</option>' +
+					'<option value="Goetterbaum">Goetterbaum</option>' +
+					'<option value="Walnuss">Walnuss</option>' +
+					'<option value="Tanne">Tanne</option>' +
+					'<option value="Buchs">Buchs</option>' +
+					'<option value="Flieder">Flieder</option>' +
+					'<option value="Beere">Beere</option>' +
+					'<option value="Hasel">Hasel</option>' +
+					'<option value="Weide">Weide</option>' +
+					'<option value="Robinie">Robinie</option>' +
+					'<option value="Erle">Erle</option>' +
+					'<option value="Birne">Birne</option>' +
+					'<option value="Birke">Birke</option>' +
+					'<option value="Holunder">Holunder</option>' +
+					'<option value="Apfel">Apfel</option>' +
+					'<option value="Kiefer">Kiefer</option>' +
+					'<option value="Kirsche">Kirsche</option>' +
+					'<option value="Eiche">Eiche</option>' +
 				'</select>' +
 			'</td>' +
 			'<td>Select the type of tree you want to add</td>' +
@@ -90,13 +132,18 @@ var dialogHTML = '<table>' +
 		'</tr>' +
 		'<tr>' +
 			'<td>Latitude</td>' +
-			'<td><input id="dialogLat" type="text" name="dialogLat" readonly></td>' +
+			'<td><input id="dialogLat" type="text" name="dialogLat"></td>' +
 			'<td>Select the coordinates by clicking on the map</td>' +
 		'</tr>' +
 		'<tr>' +
 			'<td>Longitude</td>' +
-			'<td><input id="dialogLon" type="text" name="dialogLon" readonly></td>' +
+			'<td><input id="dialogLon" type="text" name="dialogLon"></td>' +
 			'<td>Select the coordinates by clicking on the map</td>' +
 		'</tr>' +
+        '<tr>' +
+            '<td>Age</td>' +
+            '<td><input id=dialogAge" type="text" name="dialogAge"></td>' +
+            '<td>Enter the Age of the tree</td>' +
+        '</tr>' +
 	'</tbody>' +
 '</table>';
