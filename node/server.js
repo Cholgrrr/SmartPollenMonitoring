@@ -128,7 +128,37 @@ app.post('/postTreeType', function (req, res) {
 });
 
 
+// -------------------------------------------------------------------------------------------------
+// Select the trees, which were filtered through the multi tree selection
+app.post('/insertTree', function (req, res) {
+ 
+    try {
+        const data = req.body;
+        
+		input_tree = [];
+		input_tree[0] = data.lat;
+		input_tree[1] = data.lon;
+		input_tree[2] = data.treetype;
+		input_tree[3] = data.age;
+		input_tree[4] = data.diameter;
+		console.log(input_tree);
+		
+		// request the data 
+		db.result("INSERT INTO trees_latlon(lat, lon, treetype, age, diameter) VALUES($1, $2, $3, $4, $5)", input_tree)
+		.then(result => {
+			res.json(result.rows);
+			//console.log(result.rows)
+		})
+		.catch(error => {
+			console.log('ERROR:', error);
+		});			
+		
+    }
+    catch (err) {
+        console.log(err + '  /insertTree failed!')
+    }
 
+});
 
 
 

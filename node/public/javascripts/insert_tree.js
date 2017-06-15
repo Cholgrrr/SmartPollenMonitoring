@@ -11,7 +11,7 @@ This function reads the value of the entered tree, combine it in a json object
 and post it to the server/database
 
 ******************************************************************************/
-
+ 
 function insert_tree() {
 
 	try {
