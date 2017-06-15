@@ -157,11 +157,21 @@ $(document).ready(function () {
 
         alert(text);
 
-        let treeselection_tmp = $('#tree-order option:selected');
+        
+		let lat_min = 50.127444;
+		let lat_max = 50.139964;
+		let lon_min = 8.36417;
+		let lon_max = 8.608373;
+		
+		let treeselection_tmp = $('#tree-order option:selected');
         let treeselection = {};
-
-        for (i = 0; i < treeselection_tmp.length; i++) {
-            treeselection[i] = treeselection_tmp[i].innerText;
+		
+		treeselection[0] = lat_min;
+		treeselection[1] = lat_max;
+		treeselection[2] = lon_min;
+		treeselection[3] = lon_max;
+		for (i = 0; i < treeselection_tmp.length; i++) {
+            treeselection[i+4] = treeselection_tmp[i].innerText;
             //treeselection[i] = treeselection_tmp[i].innerText;  
         }
 
@@ -205,6 +215,11 @@ $(document).ready(function () {
 			//for (var i = 0; i <= Object.keys(treedata).length - 1; i++) {
 			//    drawPollenSpread(currentWind[0].speed, currentWind[0].direction,treedata[i].lat,treedata[i].lon,5)
 			//}
+
+			for (var i = 0; i <= Object.keys(treedata).length - 1; i++) {
+			    drawPollenSpread(currentWind[0].speed, currentWind[0].direction,treedata[i].lat,treedata[i].lon,10)
+			}
+
 		}
 
 		
