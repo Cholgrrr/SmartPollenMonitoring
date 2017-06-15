@@ -54,7 +54,7 @@ for (var l = 0; l < layers.length; l++) {
 
         // Listen for taps on mobile devices.
         var tapRecognizer = new WorldWind.TapRecognizer(wwd, handleClick);
-			//---------------------------------------------------------------------
+//---------------------------------------------------------------------
 
 // Create a layer manager for controlling layer visibility.
 //####################################################################
@@ -151,13 +151,11 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara) {
 		var el_lo = new WorldWind.Position(EllispeCenterLAT, EllispeCenterLONG,1e5);
 		var SE = new WorldWind.SurfaceEllipse(el_lo, SE_a_axe, SE_b_axe, windDeg, att);
 		SE.displayName = "EllispeBig" // make the ellispe selectable
-<<<<<<< HEAD
-        //rend.addLayer(SE)
 		wwd.addLayer(SE);
-=======
-		rend.addRenderable(SE);
+
+		//rend.addRenderable(SE);
 		//wwd.addLayer(SE);
->>>>>>> 1a54512fbe66fb9e8dd7be61634606e0189c0408
+
 		//wwd.addLayer(SE); // add Big ellispe to the globe
 			//SE.altitudeMode = WorldWind.ABSOLUTE;
 			//SE.extrude = true;
@@ -169,16 +167,16 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara) {
 		var SEm_b_axe = SEm_a_axe / 2;
 		var el_lom = new WorldWind.Position(EllispeCenterLATm, EllispeCenterLONGm,1e5);
 		var SEm = new WorldWind.SurfaceEllipse(el_lom, SEm_a_axe, SEm_b_axe, windDeg, attm);
-<<<<<<< HEAD
+
 		SE.displayName = "EllispeMedium" // make the ellispe selectable
 		//rend.addRenderable(SEm); // add Big ellispe to the globe
 		wwd.addLayer(SEm);
-=======
+
 		SEm.displayName = "EllispeMedium" // make the ellispe selectable
 		//rend.addRenderable(SEm); // add Big ellispe to the globe
-		rend.addRenderable(SEm);
+		//rend.addRenderable(SEm);
 		//wwd.addLayer(SEm);
->>>>>>> 1a54512fbe66fb9e8dd7be61634606e0189c0408
+
 			//SE.altitudeMode = WorldWind.ABSOLUTE;
 			//SE.extrude = true;
 			//att.drawVerticals = polygon.extrude;
@@ -190,28 +188,28 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara) {
 		var el_los = new WorldWind.Position(EllispeCenterLATs, EllispeCenterLONGs,1e5);
 		var SEs = new WorldWind.SurfaceEllipse(el_los, SEs_a_axe, SEs_b_axe, windDeg, att2);
 		SEs.displayName = "EllispeSmall"
-<<<<<<< HEAD
+
 		//rend.addRenderable(SEs);
 		wwd.addLayer(SEs);
-=======
-		rend.addRenderable(SEs);
+
+		//rend.addRenderable(SEs);
 		//wwd.addLayer(SEs);
->>>>>>> 1a54512fbe66fb9e8dd7be61634606e0189c0408
+
 		//------------Draw Circle at Tree Position-------------------
 		var cir = new WorldWind.Position(TreeLat, TreeLong,1e5);
 		var Circle = new WorldWind.SurfaceCircle(cir, 5, attc);
 		Circle.displayName = "Tree-Location";
-<<<<<<< HEAD
+
 		//rend.addRenderable(Circle);
 
 		wwd.addLayer(Circle);
-=======
-		rend.addRenderable(Circle);
-		rend.opacity = 0.3;
-		wwd.addLayer(rend);
+
+		//rend.addRenderable(Circle);
+		//rend.opacity = 0.3;
+		//wwd.addLayer(rend);
 		//wwd.addLayer(Circle);
 		
->>>>>>> 1a54512fbe66fb9e8dd7be61634606e0189c0408
+
 }
 		//-----------Test Drawing some points------------------------
 
@@ -268,11 +266,11 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara) {
 function deleteLayer() {
     
     // remove layer
-<<<<<<< HEAD
+
     rend.removeAllRenderables();
 	wwd.addLayer(rend);
     wwd.redraw();
-=======
+
 	//rend.enabled = false;
 	//SEs.enabled = false;
 	rend.removeAllRenderables();
@@ -280,5 +278,5 @@ function deleteLayer() {
 	wwd.redraw();
     //wwd.redraw();
 
->>>>>>> 1a54512fbe66fb9e8dd7be61634606e0189c0408
+
 };
