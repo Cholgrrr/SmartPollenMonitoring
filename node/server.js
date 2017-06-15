@@ -162,7 +162,50 @@ app.post('/insertTree', function (req, res) {
 
 
 
+//------------------------------------------------------------------------------------------------
+// Getting Month data
+app.post('/postMonth', function (req, res) {
+         console.log('angekommen')
+         try {
+             const data = req.body;
+             console.log(data);
+             console.log('Success');
+             console.log(data[0]);
+  
+             if (Object.keys(data).length > 0) {
+         
+                     // create query string
+                     let query_string = "select speed, direction from wind_hist where monthtext =" + "'" + data[0] + "'";
+         
+                     for (i = 1; i < Object.keys(data).length; i++) {
+                             query_string += (" or monthtext = " + "'" + data[i] + "'");
+                         }
+                     query_string += ";";
+         
 
+                     // request the data 
+                     db.result(query_string)
+         			.then(result => {
+            			    res.json(result.rows);
+             			    console.log(result.rows);
+             			    console.log(result.rows[1].speed);
+             			    console.log(result.rows[1].direction);
+             			    // how to output this Data????????????????????????
+                             //####################################################################
+             			    
+                             //####################################################################
+             			})
+         			.catch(error => {
+             			    console.log('ERROR:', error);
+             			});
+         
+                 }
+        }
+     catch (err) {
+         console.log(err + '..../postMonth failed!')
+     }
+ 
+ });
 // -------------------------------------------------------------------------------------------------
 // Insert wind datat (speed and direction) every 5 minutes in the database
 
