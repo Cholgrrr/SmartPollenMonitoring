@@ -96,21 +96,40 @@ app.post('/postTreeType', function (req, res) {
         const data = req.body;
         console.log(data);
         console.log('Success');
-		console.log(data[0]);
+		//console.log(data[0]);
 		
 		if (Object.keys(data).length > 0) { 
 			
 			// create query string
+			/*
 			let query_string = "select lat, lon from trees_latlon where treetype = " + "'" + data[0] + "'";
 			
 			for (i = 1; i < Object.keys(data).length; i++) {
 				query_string += (" or treetype = " + "'" + data[i] + "'");
 			}	
+			query_string += ' and lat > 50.1000 and lat < 50.1070 and lon > 8.35 and lon < 8.85'
 			query_string += ";";
+			*/
 			
+			let lat_min = 50.127444;
+			let lat_max = 50.139964;
+			let lon_min = 8.36417;
+			let lon_max = 8.608373;
+			let query_string = "select lat, lon from trees_latlon where ";
+			query_string += ("lat>" + data[0] + " and lat<" + data[1] + " and lon>" + data[2] + " and lon< " + data[3]);
+			query_string += " and (";
+			query_string += ("treetype=" + "'" + data[0] + "'");
+			for (i = 4; i < Object.keys(data).length; i++) {
+				query_string += (" or treetype=" + "'" + data[i] + "'");
+			}
+			query_string += ");"; 
+			//query_string += ";";
+			
+			console.log(query_string);
 
 			// request the data 
 			db.result(query_string)
+			//db.result("select * from trees_latlon where gid <= 5", false)
 			.then(result => {
 				res.json(result.rows);
 				//console.log(result.rows)
