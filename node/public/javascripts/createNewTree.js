@@ -139,7 +139,7 @@ var dialogHTML = '<table id="myTable">' +
         '<tr>' +
             '<td>Age</td>' +
             '<td><input id=dialogAge" type="text" name="dialogAge"></td>' +
-            '<td>Enter the Age of the tree</td>' +
+            '<td>Enter the Year the tree was planted in</td>' +
         '</tr>' +
 	'</tbody>' +
 '</table>';
