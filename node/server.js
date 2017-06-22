@@ -111,10 +111,10 @@ app.post('/postTreeType', function (req, res) {
 			query_string += ";";
 			*/
 			
-			let lat_min = 50.127444;
-			let lat_max = 50.139964;
-			let lon_min = 8.36417;
-			let lon_max = 8.608373;
+			//let lat_min = 50.127444;
+			//let lat_max = 50.139964;
+			//let lon_min = 8.36417;
+			//let lon_max = 8.608373;
 			let query_string = "select lat, lon from trees_latlon where ";
 			query_string += ("lat>" + data[0] + " and lat<" + data[1] + " and lon>" + data[2] + " and lon< " + data[3]);
 			query_string += " and (";
