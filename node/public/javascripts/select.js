@@ -1,5 +1,3 @@
-let treeselection = {};
-
 let histrec;
 histrec = 0;
 //Javascript for the select Map Type
@@ -17,12 +15,7 @@ $(document).ready(function () {
 });
 // Javascript for the month select
 
-<<<<<<< HEAD
-
-
-=======
 let histwind = {};
->>>>>>> 5800bd1273002a1efecf3e100283f5cf87c0f0fd
 let treedata = {};
 $(document).ready(function () {
     var orderCount = 0;
@@ -109,7 +102,6 @@ $(document).ready(function () {
 });
 //Javascript function for the tree multiselect
 
-
 $(document).ready(function () {
     var orderCount = 0;
     $('#tree-order').multiselect({
@@ -178,7 +170,7 @@ $(document).ready(function () {
 		let lon_max = 8.608373;
 		
 		let treeselection_tmp = $('#tree-order option:selected');
-        //let treeselection = {};
+        let treeselection = {};
 		
 		treeselection[0] = lat_min;
 		treeselection[1] = lat_max;
@@ -191,16 +183,13 @@ $(document).ready(function () {
 
         console.log(treeselection);
 		
-		// request the current wind data (get request)
 		let currentWind = {};
 		$.get("/currentWind", function(data, status){
 			console.log(data);
 			currentWind = data; 
 		});
 		
-		// request the selected trees
-		// in the rectangle defined by view + a buffer zoen around it
-		// Post: rectangle coordinates (), tree selection
+
         $.ajax({
             type: "POST",
             url: '/postTreeType',
@@ -241,6 +230,7 @@ $(document).ready(function () {
 		}
 
 		
+		
 		/*
 		$.get("/postTreeType", function(data, status){
 			
@@ -254,8 +244,6 @@ $(document).ready(function () {
 
 
 
-<<<<<<< HEAD
-=======
 function addTree() {
     alert(histwind[0].speed + ' Test ' + histwind[0].direction)
     //Get position from click
@@ -270,26 +258,6 @@ function addTree() {
     //Post to Database
     //Reload Trees
     alert('Tree add function')
->>>>>>> 5800bd1273002a1efecf3e100283f5cf87c0f0fd
 
-
-console.log(treeselection);
-function getTreeRecCurrent(latmin, latmax, lonmin, lonmax) {
-	
-	treeselection[0] = latmin;
-	treeselection[1] = latmax;
-	treeselection[2] = lonmin;
-	treeselection[3] = lonmax;
-	console.log(treeselection);
-	
-	
-	$.ajax({
-		type: "POST",
-		url: '/postTreeType',
-		data: treeselection,
-	}).done(function (treedata) {console.log(treedata);});	//
-	console.log(treedata);
-	
-	
-}
+};
 
