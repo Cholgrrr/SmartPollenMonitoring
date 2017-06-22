@@ -198,11 +198,11 @@ $(document).ready(function () {
 		    if (histrec === 0) {
 		        
 		        for (var i = 0; i <= Object.keys(treedata).length - 1; i++) {
-                    alert('Shit')
+     
 		            			        drawPollenSpread(currentWind[0].speed, currentWind[0].direction, treedata[i].lat, treedata[i].lon, 5)
 		            			    }
 		    } else {
-                alert('shit2')
+     
 		        			    for (var i = 0; i <= Object.keys(treedata).length - 1; i++) {
 		                                // choose the historic wind data......
 		            			        drawPollenSpread(currentWind[0].speed, currentWind[0].direction, treedata[i].lat, treedata[i].lon, 5)
