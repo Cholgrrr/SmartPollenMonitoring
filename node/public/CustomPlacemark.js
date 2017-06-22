@@ -36,6 +36,13 @@ for (var l = 0; l < layers.length; l++) {
             // Obtain the event location.
             var x = recognizer.clientX,
                 y = recognizer.clientY;
+				
+				
+				let latmin = 50.127444;
+				let latmax = 50.139964;
+				let lonmin = 8.36417;
+				let lonmax = 8.608373;
+				getTreeRecCurrent(latmin, latmax, lonmin, lonmax);
 
             // Perform the pick. Must first convert from window coordinates to canvas coordinates, which are
             // relative to the upper left corner of the canvas rather than the upper left corner of the page.
