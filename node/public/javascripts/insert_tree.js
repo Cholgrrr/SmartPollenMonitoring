@@ -1,14 +1,14 @@
 /******************************************************************************
 
-Input: no parameter is required
-Output: json object with the following info of the new inserted point:
-		- koordinates latlon
-		- treetype
-		- tree age
-		- tree diameter
+* Input: no parameter is required
+* Output: json object with the following info of the new inserted point:
+* 		- koordinates latlon
+* 		- treetype
+* 		- tree age
+* 		- tree diameter
 
-This function reads the value of the entered tree, combine it in a json object 
-and post it to the server/database
+* This function reads the value of the entered tree, combine it in a json object 
+* and post it to the server/database
 
 ******************************************************************************/
  
