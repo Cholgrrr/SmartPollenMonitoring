@@ -34,7 +34,8 @@ for (var l = 0; l < layers.length; l++) {
         // The common gesture-handling function.
         var handleClick = function (recognizer) {
             // Obtain the event location.
-            var x = recognizer.clientX,
+          
+			var x = recognizer.clientX,
                 y = recognizer.clientY,
 				pickList = wwd.pick(wwd.canvasCoordinates(x, y)),
 			    position = pickList.objects[0].position,
@@ -42,8 +43,12 @@ for (var l = 0; l < layers.length; l++) {
 				maxLong = position.longitude + 0.00882,
 				minLat = position.latitude - 0.00295,
 				minLong = position.longitude - 0.00882;
+			
+				//getTreeRecCurrent(1,1,1,1);
 			wwd.goTo(new WorldWind.Position(position.latitude, position.longitude,1000));
 			deleteLayer();
+			getTreeRecCurrent(minLat, maxLat, minLong, maxLong);
+			//getTreeRecCurrent(1,1,1,1);
         };
 
         // Listen for mouse clicks.

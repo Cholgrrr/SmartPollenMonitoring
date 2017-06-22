@@ -1,3 +1,5 @@
+let treeselection = {};
+
 let histrec;
 histrec = 0;
 //Javascript for the select Map Type
@@ -170,7 +172,7 @@ $(document).ready(function () {
 		let lon_max = 8.608373;
 		
 		let treeselection_tmp = $('#tree-order option:selected');
-        let treeselection = {};
+        //let treeselection = {};
 		
 		treeselection[0] = lat_min;
 		treeselection[1] = lat_max;
@@ -243,21 +245,23 @@ $(document).ready(function () {
 
 
 
-
-function addTree() {
-    alert(histwind[0].speed + ' Test ' + histwind[0].direction)
-    //Get position from click
-    //open window for adding tree info
-    //var TreeType = prompt("Please Enter the TreeType", "Buche");
-    //var TreeHeight = prompt("Please Enter the TreeHeight", "15m")
-    //if (TreeType == null || TreeType == "") {
-    //    txt = "User cancelled the prompt.";
-    //} else {
-    //    txt = "Hello " + TreeType + "! How are you today?";
-    //}
-    //Post to Database
-    //Reload Trees
-    alert('Tree add function')
-
-};
+console.log(treeselection);
+function getTreeRecCurrent(latmin, latmax, lonmin, lonmax) {
+	
+	treeselection[0] = latmin;
+	treeselection[1] = latmax;
+	treeselection[2] = lonmin;
+	treeselection[3] = lonmax;
+	console.log(treeselection);
+	
+	
+	$.ajax({
+		type: "POST",
+		url: '/postTreeType',
+		data: treeselection,
+	}).done(function (treedata) {console.log(treedata);});	//
+	console.log(treedata);
+	
+	
+}
 
