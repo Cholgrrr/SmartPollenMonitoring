@@ -35,6 +35,8 @@ for (var l = 0; l < layers.length; l++) {
         var handleClick = function (recognizer) {
             // Obtain the event location.
           
+			deleteLayer();
+		  
 			var x = recognizer.clientX,
                 y = recognizer.clientY,
 				pickList = wwd.pick(wwd.canvasCoordinates(x, y)),
@@ -44,11 +46,40 @@ for (var l = 0; l < layers.length; l++) {
 				minLat = position.latitude - 0.00295,
 				minLong = position.longitude - 0.00882;
 			
-				//getTreeRecCurrent(1,1,1,1);
 			wwd.goTo(new WorldWind.Position(position.latitude, position.longitude,1000));
 			deleteLayer();
-			getTreeRecCurrent(minLat, maxLat, minLong, maxLong);
-			//getTreeRecCurrent(1,1,1,1);
+			
+			let currentWind = {};
+			$.get("/currentWind", function(data, status){
+				console.log(data);
+				currentWind = data; 
+			});
+			console.log('wind');
+			console.log(currentWind); 
+				
+			viewTrees = getTreeRecCurrent(minLat, maxLat, minLong, maxLong);
+			
+			
+			//console.log(position); 
+			console.log('latmin: ' + minLat);
+			console.log('latmax: ' + maxLat);
+			console.log('lonmin: ' + minLong);
+			console.log('lonmax: ' + maxLong);
+			console.log(viewTrees.length);
+			console.log(viewTrees);
+			console.log(viewTrees[0].lat);
+			
+			
+			var rend = new WorldWind.RenderableLayer();
+			if (viewTrees.length > 5) {
+				for(i=0; i<5; i++) { 
+					drawPollenSpread(5, 45, viewTrees[i].lat, viewTrees[i].lon, 5)
+					console.log('lat: ' + viewTrees[i].lat);
+					console.log('lon: ' + viewTrees[i].lon);
+				}
+			}
+			
+			
         };
 
         // Listen for mouse clicks.

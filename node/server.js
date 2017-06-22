@@ -118,8 +118,8 @@ app.post('/postTreeType', function (req, res) {
 			let query_string = "select lat, lon from trees_latlon where ";
 			query_string += ("lat>" + data[0] + " and lat<" + data[1] + " and lon>" + data[2] + " and lon< " + data[3]);
 			query_string += " and (";
-			query_string += ("treetype=" + "'" + data[0] + "'");
-			for (i = 4; i < Object.keys(data).length; i++) {
+			query_string += ("treetype=" + "'" + data[4] + "'");
+			for (i = 5; i < Object.keys(data).length; i++) {
 				query_string += (" or treetype=" + "'" + data[i] + "'");
 			}
 			query_string += ");"; 

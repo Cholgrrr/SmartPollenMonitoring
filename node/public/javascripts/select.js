@@ -196,9 +196,10 @@ $(document).ready(function () {
             type: "POST",
             url: '/postTreeType',
             data: treeselection,
-        }).done(function (treedata) {callPollen(treedata);});	//
+        }).done(function (treedata) {/*callPollen(treedata);*/});	//
 		console.log('TESTEST' + treedata);
 		
+		/*
 		function callPollen (treedata) {
 		    console.log(treedata);
 		    console.log(currentWind);
@@ -226,10 +227,11 @@ $(document).ready(function () {
 			//}
 
 			for (var i = 0; i <= Object.keys(treedata).length - 1; i++) {
-			    drawPollenSpread(currentWind[0].speed, currentWind[0].direction,treedata[i].lat,treedata[i].lon,10)
+			    drawPollenSpread1(currentWind[0].speed, currentWind[0].direction,treedata[i].lat,treedata[i].lon,10)
 			}
 
 		}
+		*/
 
 		
 		
@@ -244,7 +246,7 @@ $(document).ready(function () {
 });
 
 
-
+let viewTrees;
 console.log(treeselection);
 function getTreeRecCurrent(latmin, latmax, lonmin, lonmax) {
 	
@@ -254,14 +256,21 @@ function getTreeRecCurrent(latmin, latmax, lonmin, lonmax) {
 	treeselection[3] = lonmax;
 	console.log(treeselection);
 	
+	//let treees = {};
 	
 	$.ajax({
 		type: "POST",
 		url: '/postTreeType',
 		data: treeselection,
-	}).done(function (treedata) {console.log(treedata);});	//
-	console.log(treedata);
+	}).done(function (treedata) {convertdata(treedata);});	//
 	
+	
+	function convertdata(treedata) {
+		viewTrees = treedata;	 
+	}
+	//console.log(viewTrees);
+	
+	return viewTrees; 
 	
 }
 
