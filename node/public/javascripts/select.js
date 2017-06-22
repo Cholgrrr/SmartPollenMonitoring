@@ -15,7 +15,7 @@ $(document).ready(function () {
 });
 // Javascript for the month select
 
-
+let histwind = {};
 let treedata = {};
 $(document).ready(function () {
     var orderCount = 0;
@@ -90,8 +90,14 @@ $(document).ready(function () {
                                 type: "POST",
                                 url: '/postMonth',
                                 data: monthselection,
-                            }).done(function (monthdata) { (console.log(monthdata)); });	//
-            console.log(monthdata);
+                        }).done(function (monthdata) { Test(monthdata); });
+                        function Test(monthdata) {
+                            histwind = monthdata;
+                            console.log('Test' + histwind[0].speed + histwind[0].direction)
+                        };
+                       
+                            //.done(function (monthdata) { (console.log(monthdata), histwind = monthdata); });	//
+            //console.log(monthdata);
     });
 });
 //Javascript function for the tree multiselect
@@ -189,7 +195,7 @@ $(document).ready(function () {
             url: '/postTreeType',
             data: treeselection,
         }).done(function (treedata) {callPollen(treedata);});	//
-		console.log(treedata);
+		console.log('TESTEST' + treedata);
 		
 		function callPollen (treedata) {
 		    console.log(treedata);
@@ -204,8 +210,9 @@ $(document).ready(function () {
 		    } else {
      
 		        			    for (var i = 0; i <= Object.keys(treedata).length - 1; i++) {
-		                                // choose the historic wind data......
-		            			        drawPollenSpread(currentWind[0].speed, currentWind[0].direction, treedata[i].lat, treedata[i].lon, 5)
+		        			        // choose the historic wind data......
+		        			        //alert('historic');
+		            			        drawPollenSpread(histwind[0].speed, histwind[0].direction, treedata[i].lat, treedata[i].lon, 5)
 		            			    }
 		                }
 
@@ -238,7 +245,7 @@ $(document).ready(function () {
 
 
 function addTree() {
-    deleteLayer()
+    alert(histwind[0].speed + ' Test ' + histwind[0].direction)
     //Get position from click
     //open window for adding tree info
     //var TreeType = prompt("Please Enter the TreeType", "Buche");
