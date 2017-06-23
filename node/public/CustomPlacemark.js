@@ -58,27 +58,19 @@ for (var l = 0; l < layers.length; l++) {
 			console.log(currentWind); 
 				
 			viewTrees = getTreeRecCurrent(minLat, maxLat, minLong, maxLong);
+			setTimeout(function(){callDrawPollen()}, 200);
 			
-			
-			//console.log(position); 
-			console.log('latmin: ' + minLat);
-			console.log('latmax: ' + maxLat);
-			console.log('lonmin: ' + minLong);
-			console.log('lonmax: ' + maxLong);
-			console.log(viewTrees.length);
-			console.log(viewTrees);
-			console.log(viewTrees[0].lat);
-			
-			
-			var rend = new WorldWind.RenderableLayer();
-			if (viewTrees.length > 5) {
-				for(i=0; i<5; i++) { 
-					drawPollenSpread(5, 45, viewTrees[i].lat, viewTrees[i].lon, 5)
-					console.log('lat: ' + viewTrees[i].lat);
-					console.log('lon: ' + viewTrees[i].lon);
+			function callDrawPollen() {
+				var rend = new WorldWind.RenderableLayer();
+				if (viewTrees.length > 5) {
+					for(i=0; i<5; i++) { 
+						console.log('call function');
+						console.log('lat: ' + viewTrees[i].lat);
+						console.log('lon: ' + viewTrees[i].lon);
+						drawPollenSpread(5, 45, viewTrees[i].lat, viewTrees[i].lon, 5);
+					}
 				}
 			}
-			
 			
         };
 
@@ -122,7 +114,11 @@ var highlightController = new WorldWind.HighlightController(wwd);
 //var rend = new WorldWind.RenderableLayer();
 		
 function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara) {
-    
+		console.log('coordinates in drawPollenSpread')
+		console.log('lat: ' + TreeLat);
+		console.log('lon: ' + TreeLong);
+	
+		
 		// =======================Start joe's Edited part================================
 		// Set Starting point at HFT Stuttgart
 		//wwd.navigator.lookAtLocation.latitude = 48.779871;
