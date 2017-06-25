@@ -34,7 +34,19 @@ for (var l = 0; l < layers.length; l++) {
         // The common gesture-handling function.
         var handleClick = function (recognizer) {
             // Obtain the event location.
-          
+			
+			// Add the coordinates on the cursor to the dialog
+			var x = recognizer.clientX,
+				y = recognizer.clientY;
+		
+			var pickList = wwd.pick(wwd.canvasCoordinates(x, y));
+			
+			if (pickList.objects.length == 1 && pickList.objects[0].isTerrain) {
+				var position = pickList.objects[0].position;
+				$("#dialogLat").val(position.latitude.toFixed(6));
+				$("#dialogLon").val(position.longitude.toFixed(6));
+			}
+			
 			deleteLayer();
 		  
 			var x = recognizer.clientX,
