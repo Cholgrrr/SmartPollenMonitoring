@@ -62,14 +62,14 @@ for (var l = 0; l < layers.length; l++) {
 			
 			function callDrawPollen() {
 				var rend = new WorldWind.RenderableLayer();
-				if (viewTrees.length > 5) {
+				//if (viewTrees.length > 5) {
 					for(i=0; i<5; i++) { 
 						console.log('call function');
 						console.log('lat: ' + viewTrees[i].lat);
 						console.log('lon: ' + viewTrees[i].lon);
 						drawPollenSpread(5, 45, viewTrees[i].lat, viewTrees[i].lon, 5);
 					}
-				}
+				//}
 			}
 			
         };
