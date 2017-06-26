@@ -63,25 +63,31 @@ for (var l = 0; l < layers.length; l++) {
 			
 			let currentWind = {};
 			$.get("/currentWind", function(data, status){
-				console.log(data);
+				//console.log('wind:');
+				//console.log(data);
+				//console.log('speed: ' + data[0].speed);
 				currentWind = data; 
 			});
-			console.log('wind');
-			console.log(currentWind); 
+			//console.log('wind:');
+			//console.log(currentWind); 
 				
 			viewTrees = getTreeRecCurrent(minLat, maxLat, minLong, maxLong);
 			setTimeout(function(){callDrawPollen()}, 200);
 			
+			
 			function callDrawPollen() {
 				var rend = new WorldWind.RenderableLayer();
-				//if (viewTrees.length > 5) {
-					for(i=0; i<5; i++) { 
-						console.log('call function');
-						console.log('lat: ' + viewTrees[i].lat);
-						console.log('lon: ' + viewTrees[i].lon);
-						drawPollenSpread(5, 45, viewTrees[i].lat, viewTrees[i].lon, 5);
+				console.log('viewTrees');
+				console.log(viewTrees);
+				if (viewTrees.length > 15) {
+					for(i=0; i<15; i++) { 
+						//console.log('call function');
+						//console.log('lat: ' + viewTrees[i].lat);
+						//console.log('lon: ' + viewTrees[i].lon);
+						drawPollenSpread(currentWind[0].speed, currentWind[0].direction, viewTrees[i].lat, viewTrees[i].lon, 5);
+						
 					}
-				//}
+				}
 			}
 			
         };

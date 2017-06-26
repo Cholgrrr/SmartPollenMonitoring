@@ -14,8 +14,6 @@ app.use(express.static('public'));
 app.listen(3000);
 
 
-
-
 // -------------------------------------------------------------------------------------------------
 // Generation data base connection to postgres
 
@@ -34,11 +32,11 @@ const connection = {
 }
 
 const db = pgp(connection);
-
+console.log('successful connected to DB: NASAWIND!')
 
 
 // -------------------------------------------------------------------------------------------------
-// Request tree data through url call (http://localhost:3000/test)
+// Request tree data (simple / single)
 	
 app.get('/treeLoad', function(req, res) {
   
@@ -53,12 +51,14 @@ app.get('/treeLoad', function(req, res) {
 		.catch(error => {
 			console.log('ERROR:', error);
 		});
+		console.log('.../treeLoad successful!')
 	}
 	catch(err) {
-		console.log('..../test failed!')
+		console.log('.../treeLoad failed!')
 	}
 		
 });
+
 
 // -------------------------------------------------------------------------------------------------
 // Select the current wind datat 
@@ -76,45 +76,26 @@ app.get('/currentWind', function(req, res) {
 		.catch(error => {
 			console.log('ERROR:', error);
 		});
+		console.log('.../current Wind successful!');
 	}
 	catch(err) {
-		console.log('..../test failed!')
+		console.log('.../current Wind failed!')
 	}
 		
 });
 
 
-
 // -------------------------------------------------------------------------------------------------
-// Select the trees, which were filtered through the multi tree selection
-
-
+// Select the trees, which were filtered through the multi tree selection in the current view
 
 app.post('/postTreeType', function (req, res) {
     console.log('angekommen')
     try {
-        const data = req.body;
-        console.log(data);
-        console.log('Success');
-		//console.log(data[0]);
 		
+        const data = req.body;
 		if (Object.keys(data).length > 0) { 
 			
-			// create query string
-			/*
-			let query_string = "select lat, lon from trees_latlon where treetype = " + "'" + data[0] + "'";
-			
-			for (i = 1; i < Object.keys(data).length; i++) {
-				query_string += (" or treetype = " + "'" + data[i] + "'");
-			}	
-			query_string += ' and lat > 50.1000 and lat < 50.1070 and lon > 8.35 and lon < 8.85'
-			query_string += ";";
-			*/
-			
-			let lat_min = 50.127444;
-			let lat_max = 50.139964;
-			let lon_min = 8.36417;
-			let lon_max = 8.608373;
+			//generate the query string
 			let query_string = "select lat, lon from trees_latlon where ";
 			query_string += ("lat>" + data[0] + " and lat<" + data[1] + " and lon>" + data[2] + " and lon< " + data[3]);
 			query_string += " and (";
@@ -123,25 +104,20 @@ app.post('/postTreeType', function (req, res) {
 				query_string += (" or treetype=" + "'" + data[i] + "'");
 			}
 			query_string += ");"; 
-			//query_string += ";";
-			
-			console.log(query_string);
 
-			// request the data 
 			db.result(query_string)
-			//db.result("select * from trees_latlon where gid <= 5", false)
 			.then(result => {
 				res.json(result.rows);
-				//console.log(result.rows)
 			})
 			.catch(error => {
 				console.log('ERROR:', error);
 			});
 				
 		}
-    }
+    
+	}
     catch (err) {
-        console.log(err + '..../postTreeData failed!')
+        console.log(err + 'postTreeData failed!')
     }
 
 });
