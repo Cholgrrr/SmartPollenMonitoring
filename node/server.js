@@ -69,10 +69,7 @@ app.get('/currentWind', function(req, res) {
 		
 		db.result("SELECT speed, direction, in_date from wind_from_service order by wind_from_service.in_date desc limit 1;", false)
 		.then(result => {
-			// rowCount = number of rows affected by the query
 			res.json(result.rows);
-			//res.send('guery was done!')
-			console.log(result.rows); // print how many records were deleted;
 		})
 		.catch(error => {
 			console.log('ERROR:', error);
@@ -91,7 +88,7 @@ app.get('/currentWind', function(req, res) {
 // Select the trees, which were filtered through the multi tree selection in the current view
 
 app.post('/postTreeType', function (req, res) {
-    console.log('angekommen')
+
     try {
 		
         const data = req.body;
@@ -127,6 +124,7 @@ app.post('/postTreeType', function (req, res) {
 
 // ----------------------------------------------------------------------
 // Select the trees, which were filtered through the multi tree selection
+
 app.post('/insertTree', function (req, res) {
  
     try {
@@ -182,7 +180,7 @@ function insertFunc() {
 
 			db.none('INSERT INTO wind_from_service(speed, direction, city) VALUES($1, $2, $3)', wind_data_current)
 				.then(() => {
-					console.log('wind data were inserted!');
+					console.log('->  wind data were inserted!');
 				})
 				.catch(error => {
 					// error;
@@ -194,18 +192,16 @@ function insertFunc() {
 
 try {
 	insert_current_wind();
-	console.log('Update of wind data successful!');
 }
 catch(err) {
-		console.log('Update of wind data successful!\n' + err);
+	console.log('->  Update of wind data successful!\n' + err);
 }
-
 
 
 // -----------------
 // Server runs info
-console.log('server is running on port 3000!');
 
+console.log('server is running on port 3000!');
 
 
 
