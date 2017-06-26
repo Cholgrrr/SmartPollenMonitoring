@@ -1,7 +1,9 @@
 
+// This function opens a jquery dialog window.
 function openDialog() {
 	$("#dialog_addTree").dialog({
 		open: function() {
+			// Following steps are necessary to customize the dialog.
 			$("#dialog_addTree").html(dialogHTML);
 			$("div[class='ui-dialog-titlebar ui-corner-all ui-widget-header ui-helper-clearfix ui-draggable-handle']").css('background', '#333333');
 			$("span[id='ui-id-1']").css('color', '#9d9d9d');
@@ -22,14 +24,11 @@ function openDialog() {
 			{
 				text: "Submit",
 				icon: "ui-icon-heart",
+				// This function is invoked by submitting the dialog.
 				click: function () {
 				    var mytable = document.getElementById('myTable');
 				    var myinputs = mytable.getElementsByTagName('input');
 				    var mytype = mytable.getElementsByTagName('select');
-				    //for (var i = 0; i < myinputs.length; i++) {
-				    //    alert(myinputs[i].value);
-				    //}
-				    
 
 				        try {
 
@@ -54,7 +53,6 @@ function openDialog() {
 				            console.log('delivering of the inserted tree data to the server failed!');
 				        }
 
-
 				    // Here the callback of the dialog has to happen!
 					alert("Close the dialog and process the data.");
 					$(this).dialog("close");
@@ -67,9 +65,6 @@ function openDialog() {
 // Inner elements of the dialog box.
 var dialogHTML = '<table id="myTable">' +
 	'<tbody>' +
-		/*
-		multiselect btn-default input dropdown-toggle btn
-		*/
 		'<tr>' +
 			'<form class="form-inline">' +
 				'<div class="form-group">' +
