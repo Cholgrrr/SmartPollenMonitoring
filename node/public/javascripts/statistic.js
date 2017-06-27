@@ -1,6 +1,5 @@
 function TreeStat() {
    
-    
     var svg = d3.select("svg"),
         margin = { top: 20, right: 20, bottom: 30, left: 40 },
         width = +svg.attr("width") - margin.left - margin.right,
@@ -27,47 +26,14 @@ function TreeStat() {
         //return d;
     }, function (error, data) {
         //if (error) throw error;
-
-
-
-        //console.log(data);
-        //// ´*100 for procent
-        //var jan = { Month: "January", Buche: 0, Birke: 1, other: 2 };
-        //var feb = { Month: "February", Buche: 0, Birke: 1, other: 2 };
-        //var mar = { Month: "March", Buche: 0.3, Birke: 1, other: 2 };
-        //var apr = { Month: "April", Buche: 0.6, Birke: 1, other: 2 };
-        //var mai = { Month: "Mai", Buche: 1, Birke: 1, other: 2 };
-        //var jun = { Month: "June", Buche: 1, Birke: 1, other: 2 };
-        //var jul = { Month: "July", Buche: 1, Birke: 1, other: 2 };
-        //var aug = { Month: "August", Buche: 1, Birke: 1, other: 2 };
-        //var sep = { Month: "September", Buche: 0.6, Birke: 1, other: 2 };
-        //var oct = { Month: "October", Buche: 0.3, Birke: 1, other: 2 };
-        //var nov = { Month: "November", Buche: 0, Birke: 1, other: 2 };
-        //var dec = { Month: "December", Buche: 0, Birke: 0, other: 0 };
-
        
         var columns = ["Month"];
-        //data[0] = (jan);
-        //data[1] = (feb);
-        //data[2] = (mar);
-        //data[3] = (apr);
-        //data[4] = (mai);
-        //data[5] = (jun);
-        //data[6] = (jul);
-        //data[7] = (aug);
-        //data[8] = (sep);
-        //data[9] = (oct);
-        //data[10] = (nov);
-        //data[11] = (dec);
-        //data["columns"] = columns;
-        //console.log(data);
-
 
         //##############################################################
         let mdata;
         mdata = getTreeBloomingAll();
 
-        console.log(mdata);
+        //console.log(mdata);
         var jan = { Month: "January" };
         var feb = { Month: "February" };
         var mar = { Month: "March" };
@@ -133,32 +99,9 @@ function TreeStat() {
         data[10] = (nov);
         data[11] = (dez);
         data["columns"] = columns;
-        console.log(data);
-
-        //var jan = { Month: "January", Buche: 0, Birke: 1, other: 2 };
-        //var feb = { Month: "February", Buche: 0, Birke: 1, other: 2 };
-        //var mar = { Month: "March", Buche: 0.3, Birke: 1, other: 2 };
-        //var apr = { Month: "April", Buche: 0.6, Birke: 1, other: 2 };
-        //var mai = { Month: "Mai", Buche: 1, Birke: 1, other: 2 };
-        //var jun = { Month: "June", Buche: 1, Birke: 1, other: 2 };
-        //var jul = { Month: "July", Buche: 1, Birke: 1, other: 2 };
-        //var aug = { Month: "August", Buche: 1, Birke: 1, other: 2 };
-        //var sep = { Month: "September", Buche: 0.6, Birke: 1, other: 2 };
-        //var oct = { Month: "October", Buche: 0.3, Birke: 1, other: 2 };
-        //var nov = { Month: "November", Buche: 0, Birke: 1, other: 2 };
-        //var dec = { Month: "December", Buche: 0, Birke: 0, other: 0 };
-       
+        //console.log(data);
 
         //#############################################################
-
-
-
-
-
-
-
-
-
 
         var keys = data.columns.slice(1);
 
@@ -217,7 +160,6 @@ function TreeStat() {
             .attr("y", 9.5)
             .attr("dy", "0.32em")
             .text(function (d) { return d; });
-
 
     }
     )};
