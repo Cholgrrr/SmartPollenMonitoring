@@ -1,3 +1,4 @@
+
 // ---------------------------
 // needed variables
 let treeselection = {};
@@ -180,7 +181,7 @@ try {
 			let lon_min = 8.36417;
 			let lon_max = 8.608373;
 			
-			let treeselection_tmp = $('#tree-order option:selected');
+			treeselection_tmp = $('#tree-order option:selected');
 			//let treeselection = {};
 			
 			treeselection[0] = lat_min;
@@ -218,26 +219,33 @@ catch(err) {
 // object with all the trees in the view
 let viewTrees;
 
+// This function delivers the coordinates of the current view and the selected trees
 // INPUT:  coordinates of the rectangle corners (left bottom and right top)
 // OUTPUT: viewTrees -> object with all the trees in the view 
+
 function getTreeRecCurrent(latmin, latmax, lonmin, lonmax) {
+	let treeselection = {};
 	try {
 		treeselection[0] = latmin;
 		treeselection[1] = latmax;
 		treeselection[2] = lonmin;
 		treeselection[3] = lonmax;
 		
+		for (i = 4; i < treeselection_tmp.length + 4; i++) {
+			treeselection[i] = treeselection_tmp[i-4].innerText;
+		} 
+
 		$.ajax({
 			type: "POST",
 			url: '/postTreeType',
 			data: treeselection,
-		}).done(function (treedata) {convertdata(treedata);});	//
-		
+		}).done(function (treedata) {convertdata(treedata);});
 		
 		function convertdata(treedata) {
 			viewTrees = treedata;	 
 		}
 		
+		console.log(viewTrees);
 		return viewTrees; 
 	}
 	catch(err) {
@@ -245,4 +253,106 @@ function getTreeRecCurrent(latmin, latmax, lonmin, lonmax) {
 	}
 	
 }
+
+// -----------------------------------------------------------
+// Get the current trees and the corresponding blooming values
+// INPUT:  the month
+// OUTPUT: an object with the selected tree types 
+//         and the corresponding blooming data for the current month
+
+let resBlooming;
+
+function getTreeBlooming(monthdata) {
+	
+	try {
+		
+		// object with the view coordinates,
+		// the selected trees
+		// and the current month
+		let treeBlooming = {};
+		// temporary count
+		let tmp_cnt = 0; 
+		
+		for (i = 0; i < treeselection_tmp.length; i++) {
+			treeBlooming[i] = treeselection_tmp[i].innerText;
+			tmp_cnt = tmp_cnt + 1; 
+		} 
+		treeBlooming[tmp_cnt] = monthdata;
+			
+		$.ajax({
+			async: false,
+			type: "POST",
+			url: '/getBlooming',
+			data: treeBlooming,
+		}).done(function (dataBlooming) { 
+			convertdata(dataBlooming);
+		});
+		
+		function convertdata(bloomingdata) {
+			resBlooming = bloomingdata;	 
+		}
+
+		return resBlooming;
+}
+	catch(err) {
+		console.log('->  function getTreeBlooming() failed!\n' + err);
+	}
+	
+}
+
+
+// ---------------------------------------------------------------------
+// Get the all trees and the corresponding blooming values for all month
+// INPUT:  void
+// OUTPUT: an object with the selected tree types and the corresponding blooming data 
+
+let allBlooming;
+
+function getTreeBloomingAll() {
+	
+	try {
+		
+		// an object with the selected trees for all month
+		let treeBlooming = {};
+		
+		for (i = 0; i < treeselection_tmp.length; i++) {
+			treeBlooming[i] = treeselection_tmp[i].innerText;
+		} 
+
+		$.ajax({
+			async: false,
+			type: "POST",
+			url: '/getBloomingAll',
+			data: treeBlooming,
+		}).done(function (dataBlooming) { 
+			convertdata(dataBlooming);
+		});
+		
+		function convertdata(bloomingdata) {
+			allBlooming = bloomingdata;	 
+		}
+		
+		return allBlooming;
+}
+	catch(err) {
+		console.log('->  function getTreeBlooming() failed!\n' + err);
+	}
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

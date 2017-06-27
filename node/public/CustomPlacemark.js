@@ -79,12 +79,16 @@ var handleClick = function (recognizer) {
 	// the function which draws the ellipses, will be called
 	// after a delay to wait for the required ajax requests ()
 	setTimeout(function(){callDrawPollen()}, 200);
-	
+
 	function callDrawPollen() {
 		var rend = new WorldWind.RenderableLayer();
-		console.log('wind:');
-		console.log(currentWind); 
-		console.log(currentWind[0].in_date); 
+	
+		// get the month number (mm) from the current date
+		var month = currentWind[0].in_date.slice(5, 7);
+		// get the blooming values
+		var blooming = getTreeBlooming(month);
+		// pull the month out of the daters
+		var month = (currentWind[0].in_date.slice(5, 7));
 		if (viewTrees.length > 15) {
 			for(i=0; i<15; i++) { 
 				drawPollenSpread(currentWind[0].speed, currentWind[0].direction, viewTrees[i].lat, viewTrees[i].lon, 5);
@@ -99,7 +103,7 @@ var clickRecognizer = new WorldWind.ClickRecognizer(wwd, handleClick);
 
 // Listen for taps on mobile devices.
 var tapRecognizer = new WorldWind.TapRecognizer(wwd, handleClick);
-
+ 
 		
 //---------------------------------------------------------------------
 // Generation of a surface elipses according to the wind and tree data	
