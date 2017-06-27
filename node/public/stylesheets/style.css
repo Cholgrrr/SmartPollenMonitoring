@@ -123,10 +123,14 @@ position: absolute;
 }
 #tree-order-button,#example-order-button{
     width:200px;
+    position:relative;
+    float:left;
 
 }
 #tree-order,#example-order{
     width:200px;
+    position:relative;
+    float:left;
 }
 #month{
     margin-left: 20px;
@@ -264,3 +268,7 @@ position: absolute;
 /*.axis .domain {
   display: none;
 }*/
+
+
+/*TOoltip------------------------------------------------------------------------*/
+/* Tooltip container */
