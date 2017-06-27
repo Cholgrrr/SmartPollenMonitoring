@@ -1,25 +1,34 @@
 
+// This function opens a jquery dialog window.
 function openDialog() {
 	$("#dialog_addTree").dialog({
 		open: function() {
+			// Following steps are necessary to customize the dialog.
 			$("#dialog_addTree").html(dialogHTML);
+			$("div[class='ui-dialog-titlebar ui-corner-all ui-widget-header ui-helper-clearfix ui-draggable-handle']").css('background', '#333333');
+			$("span[id='ui-id-1']").css('color', '#9d9d9d');
+			
+			var btnCancel = $("button[class='ui-dialog-titlebar-close']");
+			btnCancel.addClass("btn btn-default");
+			btnCancel.append("<img src='images/abort.png' title='Cancel' alt='...' height='25px' width='25px'/>");			
+			btnCancel.css({'position':'relative','width':'25px','height':'25px','border-radius':'50%','margin':'0px','border':'0px','padding':'0px'});
+			
+			var btnSubmit = $("div[class='ui-dialog-buttonset'] > button");
+			btnSubmit.addClass("btn btn-default");
+			btnSubmit.css('position', 'relative');
+			
 		},
-		//height: 500,
 		width: 630,
 		resizable: false,
-		closeText: "cancel",
 		buttons: [
 			{
-				text: "submit",
+				text: "Submit",
 				icon: "ui-icon-heart",
+				// This function is invoked by submitting the dialog.
 				click: function () {
 				    var mytable = document.getElementById('myTable');
 				    var myinputs = mytable.getElementsByTagName('input');
 				    var mytype = mytable.getElementsByTagName('select');
-				    //for (var i = 0; i < myinputs.length; i++) {
-				    //    alert(myinputs[i].value);
-				    //}
-				    
 
 				        try {
 
@@ -44,7 +53,6 @@ function openDialog() {
 				            console.log('delivering of the inserted tree data to the server failed!');
 				        }
 
-
 				    // Here the callback of the dialog has to happen!
 					alert("Close the dialog and process the data.");
 					$(this).dialog("close");
@@ -57,14 +65,11 @@ function openDialog() {
 // Inner elements of the dialog box.
 var dialogHTML = '<table id="myTable">' +
 	'<tbody>' +
-		/*
-		multiselect
-		*/
 		'<tr>' +
 			'<form class="form-inline">' +
 				'<div class="form-group">' +
-					'<label>Treetype</label>' +
-					'<select id="dialogTree-order dropdown-toggle btn btn-default" class="input">' +
+					'<label style="width: 76px">Treetype</label>' +
+					'<select style="width: 150px" id="dialogTree-order" class="">' +
 						'<option value="Ulme">Ulme</option>' +
 						'<option value="Buche">Buche</option>' +
 						'<option value="Ahorn">Ahorn</option>' +
@@ -96,43 +101,43 @@ var dialogHTML = '<table id="myTable">' +
 						'<option value="Kirsche">Kirsche</option>' +
 						'<option value="Eiche">Eiche</option>' +
 					'</select>' +
-					'<label>Select the type of tree you want to add</label>' +
+					'<label style="margin-left: 5px">Select the type of tree you want to add</label>' +
 				'</div>' +
 			'</form>' +			
 		'</tr>' +
 		'<tr>' +
 			'<form class="form-inline">' +
 				'<div class="form-group">' +
-					'<label>Diameter</label>' +
+					'<label style="width: 76px">Diameter</label>' +
 					'<input id="dialogDia" class="input" type="text" name="dialogDia">' +
-					'<label>Enter the diameter of the tree crown</label>' +
+					'<label style="margin-left: 5px">Enter the diameter of the tree crown</label>' +
 				'</div>' +
 			'</form>' +	
 		'</tr>' +
 		'<tr>' +
 			'<form class="form-inline">' +
 				'<div class="form-group">' +
-					'<label>Latitude</label>' +
+					'<label style="width: 76px">Latitude</label>' +
 					'<input id="dialogLat" class="input" type="text" name="dialogLat">' +
-					'<label>Select the coordinates by clicking on the map</label>' +
+					'<label style="margin-left: 5px">Select the coordinates by clicking on the map</label>' +
 				'</div>' +
 			'</form>' +	
 		'</tr>' +
 		'<tr>' +
 			'<form class="form-inline">' +
 				'<div class="form-group">' +
-					'<label>Longitude</label>' +
+					'<label style="width: 76px">Longitude</label>' +
 					'<input id="dialogLon" class="input" type="text" name="dialogLon">' +
-					'<label>Select the coordinates by clicking on the map</label>' +
+					'<label style="margin-left: 5px">Select the coordinates by clicking on the map</label>' +
 				'</div>' +
 			'</form>' +	
 		'</tr>' +
         '<tr>' +
 			'<form class="form-inline">' +
 				'<div class="form-group">' +
-					'<label>Age</label>' +
+					'<label style="width: 76px">Age</label>' +
 					'<input id=dialogAge" class="input" type="text" name="dialogAge">' +
-					'<label>Enter the Year the tree was planted in</label>' +
+					'<label style="margin-left: 5px">Enter the Year the tree was planted in</label>' +
 				'</div>' +
 			'</form>' +	
         '</tr>' +

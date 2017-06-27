@@ -121,7 +121,6 @@ position: absolute;
 .navbar-collapse{
     width:100%;
 }
-
 #tree-order-button,#example-order-button{
     width:200px;
 
@@ -145,6 +144,7 @@ position: absolute;
 #dialogTree-order{
     width:100%;
 }
+
 
 /*################################################*/
 .modal {
