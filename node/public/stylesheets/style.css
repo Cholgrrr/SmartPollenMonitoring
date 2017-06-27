@@ -1,58 +1,4 @@
-/*body {
- 
-  font: 10px "Lucida Grande", Helvetica, Arial, sans-serif;
-  color: red;
-}*/
 
-/*a {
-  color: #00B7FF;
-}
-.dropdown {
-    color: palevioletred
-}*/
-/*.navbar-nav > li > .dropdown-menu { background-color: red; }*/
-/*.btn-block {
-    color: red;
-}
-#projectionDropdown {
-    color:red;
-}
-.btn-info{
-    border-color:red;
-}
-.dropCss{
-    border-color: red;
-    color: red;
-
-}
-a {
-  color: #00B7FF;
-}*/
-/*.dropdown {
-    color: palevioletred
-}
-.navbar-nav > li > .dropdown-menu { background-color: red; }
-.btn-block {
-    color: red;
-}
-#projectionDropdown {
-    color:red;
-}
-.btn-info{
-    border-color:red;
-}*/
-/*.dropCss{
-    border-color: darkseagreen;
-    background-color: darkseagreen;
-}*/
-/*.overhead{
-    font: 20px;
-}*/
-/*#h1{
-    font-size: 30px;
-    padding: 10px;
-    margin-top:10px;
-}*/
 #canvasOne{
 position: absolute;
     top: 0;
@@ -123,10 +69,14 @@ position: absolute;
 }
 #tree-order-button,#example-order-button{
     width:200px;
+    position:relative;
+    float:left;
 
 }
 #tree-order,#example-order{
     width:200px;
+    position:relative;
+    float:left;
 }
 #month{
     margin-left: 20px;
@@ -226,41 +176,3 @@ position: absolute;
     to {opacity: 1}
 }
 /*#################################################*/
-/*.chart rect {
-  fill: steelblue;
-}
-
-.chart .legend {
-  fill: black;
-  font: 14px sans-serif;
-  text-anchor: start;
-  font-size: 12px;
-}
-
-.chart text {
-  fill: white;
-  font: 10px sans-serif;
-  text-anchor: end;
-}
-
-.chart .label {
-  fill: black;
-  font: 14px sans-serif;
-  text-anchor: end;
-}
-
-.bar:hover {
-  fill: brown;
-}
-
-.axis path,
-.axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
-}
-
-/*############################################################*/
-/*.axis .domain {
-  display: none;
-}*/

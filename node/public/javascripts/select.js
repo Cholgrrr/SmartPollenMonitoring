@@ -257,6 +257,17 @@ function getTreeRecCurrent(latmin, latmax, lonmin, lonmax) {
 	
 }
 
+//###################################################################################
+$(document).ready(function () {
+    $('.tooltipstuff').tooltipster(
+        {
+            theme: 'tooltipster-borderless',
+            distance: 10,
+            animation:'grow'
+        }
+        );
+});
+
 
 // -----------------------------------------------------------
 // Get the current trees and the corresponding blooming values
@@ -343,4 +354,3 @@ function getTreeBloomingAll() {
 	}
 	
 }
-
