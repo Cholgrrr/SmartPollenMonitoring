@@ -79,7 +79,7 @@ var handleClick = function (recognizer) {
 	// the function which draws the ellipses, will be called
 	// after a delay to wait for the required ajax requests ()
 	setTimeout(function(){callDrawPollen()}, 200);
-
+	
 	function callDrawPollen() {
 		var rend = new WorldWind.RenderableLayer();
 	
@@ -106,7 +106,21 @@ var handleClick = function (recognizer) {
 		}
 	}
 	
+	
+	/*
+	function callPollenHistory () {
+		
+		var histdata = getTreeBloomingHist();
+		console.log('hist data'); 
+		console.log(histdata);
+		
+	}
+	*/
+	
+	
 };
+
+
 
 // Listen for mouse clicks.
 var clickRecognizer = new WorldWind.ClickRecognizer(wwd, handleClick);

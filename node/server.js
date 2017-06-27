@@ -161,6 +161,7 @@ app.post('/insertTree', function (req, res) {
 // Get blooming data according to the month and the tree type
 // delivers an object with the selected treetypes 
 // and their corresponding blooming value for the current month
+// month in format integer mm
 
 app.post('/getBlooming', function (req, res) {
  
@@ -168,8 +169,8 @@ app.post('/getBlooming', function (req, res) {
 		
         const data = req.body;
 		
+		// set the month
 		let month;
-		// set the month    //(data[Object.keys(data).length-1]);
 		if (data[Object.keys(data).length-1] === '01') {
 			month = 'jan';
 		}
@@ -209,9 +210,7 @@ app.post('/getBlooming', function (req, res) {
 		else {
 			month = 'aug';
 		}
-		console.log('month: ' + month);
  
-		
 		let query_string = "select tree_type, " + month + ' as month'; 
 		query_string += " from tree_blooming where (tree_type='" + data[0] + "'";
 		for (i = 1; i < Object.keys(data).length-1; i++) {
@@ -237,6 +236,48 @@ app.post('/getBlooming', function (req, res) {
     }
 
 });
+
+
+// ----------------------------------------------------------
+// Get blooming data according to the month and the tree type
+// delivers an object with the selected treetypes 
+// and their corresponding blooming value for the current month
+// month in format string sss
+
+app.post('/getBloomingHist', function (req, res) {
+ 
+    try {
+		
+        const data = req.body;
+		
+		// set the month
+		let month = data[Object.keys(data).length-1];
+ 
+		let query_string = "select tree_type, " + month + ' as month'; 
+		query_string += " from tree_blooming where (tree_type='" + data[0] + "'";
+		for (i = 1; i < Object.keys(data).length-1; i++) {
+			query_string += (" or tree_type=" + "'" + data[i] + "'");
+		}
+		query_string += ");"; 
+		console.log(query_string); 
+		
+		// request the data 
+		db.result(query_string)
+		.then(result => {
+			res.json(result.rows);
+			console.log(result.rows);
+		})
+		.catch(error => {
+			console.log('ERROR:', error);
+		});			
+		console.log('.../getBloomingStr successful!');
+    }
+	
+    catch (err) {
+        console.log('.../getBloomingStr failed!\n' + err);
+    }
+
+}); 
 
 
 // -----------------------------------------------------------
@@ -271,7 +312,6 @@ app.post('/getBloomingAll', function (req, res) {
     }
 
 });
-
 
 
 // ------------------------------------------------------------------------
