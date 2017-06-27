@@ -36,13 +36,13 @@ try {
 		var orderCount = 0;
 		$('#example-order').multiselect({
 			onChange: function (option, checked) {
-				if (checked) {
-					orderCount++;
+				//if (checked) {
+				//	orderCount++;
 					$(option).data('order', orderCount);
-				}
-				else {
-					$(option).data('order', '');
-				}
+				//}
+				//else {
+				//	$(option).data('order', '');
+				//}
 			},
 			buttonText: function (options) {
 				if (options.length === 0) {
@@ -248,7 +248,6 @@ function getTreeRecCurrent(latmin, latmax, lonmin, lonmax) {
 			viewTrees = treedata;	 
 		}
 		
-		console.log(viewTrees);
 		return viewTrees; 
 	}
 	catch(err) {
@@ -348,6 +347,56 @@ function getTreeBloomingAll() {
 		}
 		
 		return allBlooming;
+}
+	catch(err) {
+		console.log('->  function getTreeBlooming() failed!\n' + err);
+	}
+	
+}
+
+
+// ---------------------------------------------------------------------
+// Get the all trees and the corresponding blooming values for all month
+// INPUT:  void
+// OUTPUT: an object with the selected tree types and the corresponding blooming data 
+
+let histBlooming;
+
+function getTreeBloomingHist() {
+	
+	try {
+		
+		// object with the view coordinates,
+		// the selected trees
+		// and the current month
+		let treeBlooming = {};
+		// temporary count
+		// ###########
+		// ATENTION: monthdata HAS TO BE REPLACED THROUGH MONTH OF SELECTION SINGLE LIST
+		// ###########
+		let monthdata = 'may';
+		let tmp_cnt = 0; 
+		
+		for (i = 0; i < treeselection_tmp.length; i++) {
+			treeBlooming[i] = treeselection_tmp[i].innerText;
+			tmp_cnt = tmp_cnt + 1; 
+		} 
+		treeBlooming[tmp_cnt] = monthdata;
+
+		$.ajax({
+			async: false,
+			type: "POST",
+			url: '/getBloomingHist',
+			data: treeBlooming,
+		}).done(function (dataBlooming) { 
+			convertdata(dataBlooming);
+		});
+		
+		function convertdata(bloomingdata) {
+			histBlooming = bloomingdata;	 
+		}
+		
+		return histBlooming;
 }
 	catch(err) {
 		console.log('->  function getTreeBlooming() failed!\n' + err);
