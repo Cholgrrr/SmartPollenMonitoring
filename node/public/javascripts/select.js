@@ -173,6 +173,9 @@ try {
 			text = text.substring(0, text.length - 2);
 
 			alert(text);
+		    //##############################################
+            // call button modul
+			$("#myBtn").click();
 
 			
 			let lat_min = 50.127444;
