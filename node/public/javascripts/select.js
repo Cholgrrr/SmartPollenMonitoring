@@ -36,13 +36,13 @@ try {
 		var orderCount = 0;
 		$('#example-order').multiselect({
 			onChange: function (option, checked) {
-				if (checked) {
-					orderCount++;
+				//if (checked) {
+				//	orderCount++;
 					$(option).data('order', orderCount);
-				}
-				else {
-					$(option).data('order', '');
-				}
+				//}
+				//else {
+				//	$(option).data('order', '');
+				//}
 			},
 			buttonText: function (options) {
 				if (options.length === 0) {
