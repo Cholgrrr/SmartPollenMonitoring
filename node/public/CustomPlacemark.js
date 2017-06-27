@@ -91,8 +91,8 @@ var handleClick = function (recognizer) {
 		var month = (currentWind[0].in_date.slice(5, 7));
 		console.log(viewTrees);
 		console.log(blooming);
-		if (viewTrees.length > 15) {
-			for(i=0; i<15; i++) { 
+		if (viewTrees.length > 1) {
+			for(i=0; i<50; i++) { 
 				drawPollenSpread(currentWind[0].speed, currentWind[0].direction, viewTrees[i].lat, viewTrees[i].lon, 5);
 			}
 		}
@@ -213,7 +213,7 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara) {
 
 		rend.addRenderable(Circle);	
 		//rend.opacity = 0.3;
-		wwd.addLayer(rend);
+		
 		//wwd.addLayer(Circle);
 	
 	}
@@ -223,7 +223,7 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara) {
 		
 }
 
-
+wwd.addLayer(rend);
 // ------------------------------------
 // call this function to remove a layer
 function deleteLayer() {
@@ -231,7 +231,7 @@ function deleteLayer() {
 	try {
 		// remove layer
 		rend.removeAllRenderables();
-		wwd.addLayer(rend);
+		
 		wwd.redraw();
 
 		rend.removeAllRenderables();
