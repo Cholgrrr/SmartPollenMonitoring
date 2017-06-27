@@ -82,7 +82,7 @@ var handleClick = function (recognizer) {
 
 	function callDrawPollen() {
 		var rend = new WorldWind.RenderableLayer();
-	
+		
 		// get the month number (mm) from the current date
 		var month = currentWind[0].in_date.slice(5, 7);
 		// get the blooming valuesl
@@ -93,7 +93,7 @@ var handleClick = function (recognizer) {
 		var bloomFactor;
 		
 		if (viewTrees.length > 0) {
-			for(i=0; i<50; i++) { 
+			for(i=0; i<10; i++) { 
 				
 				for (var k=0; k < blooming.length; k++) {
 					if (blooming[k].tree_type == viewTrees[i].treetype) {
@@ -119,6 +119,8 @@ var tapRecognizer = new WorldWind.TapRecognizer(wwd, handleClick);
 // Generation of a surface elipses according to the wind and tree data	
 
 var rend = new WorldWind.RenderableLayer();
+var rend3D = new WorldWind.RenderableLayer();
+
 // Now set up to handle highlighting.
 var highlightController = new WorldWind.HighlightController(wwd);
 
@@ -202,7 +204,6 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara) {
 		var SEm_b_axe = SEm_a_axe / 2;
 		var el_lom = new WorldWind.Position(EllispeCenterLATm, EllispeCenterLONGm,1e5);
 		var SEm = new WorldWind.SurfaceEllipse(el_lom, SEm_a_axe, SEm_b_axe, windDeg, attm);
-		//rend.addRenderable(SEm); // add Big ellispe to the globe
 		SEm.displayName = "EllispeMedium" // make the ellispe selectable
 		rend.addRenderable(SEm); // add Big ellispe to the globe
 
@@ -220,28 +221,70 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara) {
 		Circle.displayName = "Tree-Location";
 
 		rend.addRenderable(Circle);	
-		//rend.opacity = 0.3;
+		//rend.opacity = 0.3;	
 		
-		//wwd.addLayer(Circle);
-	
+		
 	}
 	catch(err) {
 		console.log('->  generate elipse failed!\n' + err);
 	}
 		
 }
-
 wwd.addLayer(rend);
-// ------------------------------------
+	
+	/* =============3D under developing========================
+	draw3DE(50.1405, 8.665, 0.001 );
+	function draw3DE(latpo, lonpo, shift ) {
+        var canvas = document.createElement("canvas"),
+            ctx2d = canvas.getContext("2d"),
+            size = 64, c = size / 2  - 0.5, innerRadius = 5, outerRadius = 20;
+        canvas.width = size;
+        canvas.height = size;
+        var gradient = ctx2d.createRadialGradient(c, c, innerRadius, c, c, outerRadius);
+        gradient.addColorStop(0, 'rgb(255, 0, 0)');
+		gradient.addColorStop(0.9, 'rgb(0, 255, 0)');
+		gradient.addColorStop(1, 'rgb(0, 0, 0)');
+		var ang = 90*Math.PI /180;
+        ctx2d.fillStyle = gradient;
+        ctx2d.arc(c, c, outerRadius, 0, 2 * Math.PI, false);
+        ctx2d.fill();
+        // Create the mesh's positions.
+		//var latpo = 50.090142
+		//var lonpo = 8.617049
+		//var shift = 0.001
+        var meshPositions = [];
+        for (var lat1 = latpo-shift; lat1 <= latpo+shift; lat1 += 0.0001) {
+            var row = [];
+            for (var lon = lonpo-shift; lon <= lonpo+shift; lon += 0.0001) {
+				var elevationScale =
+					Math.sqrt(Math.pow(lat1-latpo,2) + Math.pow(lon-lonpo,2));
+                row.push(new WorldWind.Position(lat1, lon,170- elevationScale*10000)) //130 is the elevation
+            }
+            meshPositions.push(row);
+        }
+        // Create the mesh.
+        var mesh = new WorldWind.GeographicMesh(meshPositions, null);
+        // Create and assign the mesh's attributes.
+        var meshAttributes = new WorldWind.ShapeAttributes(null);
+        meshAttributes.outlineColor = new WorldWind.Color(1, 1, 1, 0);
+        meshAttributes.interiorColor = new WorldWind.Color(1, 1, 1, 0.7);
+        meshAttributes.imageSource = new WorldWind.ImageSource(canvas);
+        meshAttributes.applyLighting = false;
+        mesh.attributes = meshAttributes;
+        // Create and assign the mesh's highlight attributes.
+        var highlightAttributes = new WorldWind.ShapeAttributes(meshAttributes);
+        highlightAttributes.outlineColor = WorldWind.Color.WHITE;
+        mesh.highlightAttributes = highlightAttributes;
+        // Add the shape to the layer.
+		rend3D.addRenderable(mesh);
+}
+wwd.addLayer(rend3D);
+// ------------------------------------*/
 // call this function to remove a layer
 function deleteLayer() {
     
 	try {
 		// remove layer
-		rend.removeAllRenderables();
-		
-		wwd.redraw();
-
 		rend.removeAllRenderables();
 		rend.refresh();
 		wwd.redraw();
