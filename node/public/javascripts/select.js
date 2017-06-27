@@ -175,6 +175,9 @@ try {
 
 			alert(text);
 
+            // call button modul
+			$("#myBtn").click();
+
 			
 			let lat_min = 50.127444;
 			let lat_max = 50.139964;
@@ -253,6 +256,7 @@ function getTreeRecCurrent(latmin, latmax, lonmin, lonmax) {
 	}
 	
 }
+
 
 // -----------------------------------------------------------
 // Get the current trees and the corresponding blooming values
@@ -339,20 +343,4 @@ function getTreeBloomingAll() {
 	}
 	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
