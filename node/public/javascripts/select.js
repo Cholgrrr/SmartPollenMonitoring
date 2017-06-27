@@ -273,4 +273,4 @@ function getTreeRecCurrent(latmin, latmax, lonmin, lonmax) {
 	return viewTrees; 
 	
 }
-
+//###################################################################################

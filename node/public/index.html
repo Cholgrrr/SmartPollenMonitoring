@@ -17,7 +17,9 @@
     <!--<script data-main="CustomPlacemark" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.17/require.min.js"></script>-->
 	<script src="javascripts/post_wind.js"></script>
 	<script src="javascripts/spreadout.js"></script>
+    <!--Data display-->
     
+    <script src="https://d3js.org/d3.v4.min.js"></script>
     <script type="text/javascript" src="javascripts/prettify.js"></script>
     <link rel="stylesheet" href="stylesheets/prettify.css" type="text/css">
     <script src="javascripts/select.js"></script>
@@ -52,14 +54,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" onclick="addTree()">Smart Pollen Map (aka SmartyPlants)</a>
+                <a class="navbar-brand" onclick="TreeStat()">Smart Pollen Map (aka SmartyPlants)</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
 
                 <div class="example">
-
+                    <button id="myBtn">Open Modal</button>
                     <div class="btn-group test">
                         <img id="plus" onclick="openDialog()" href="#" src="images/plus.png" />
                     </div>
@@ -99,6 +101,7 @@
 
 
                     <div class="btn-group">
+                        
                         <select id="tree-order" multiple="multiple">
                             <optgroup label="high alergenic">
                                 <option value="25">Birke</option>
@@ -136,10 +139,10 @@
                             <optgroup label="other">
                                 <option value="11">other</option>
                             </optgroup>
-                                
-                        </select>
 
+                        </select>
                         <button id="tree-order-button" class="btn btn-success">Tree selection</button>
+                        
                     </div>
 
                     
@@ -156,6 +159,34 @@
                 Your browser does not support HTML5 Canvas.
             </canvas>
         </div>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>Tree Statistic</h2>
+            </div>
+            <div class="modal-body">
+                <svg width="1260" height="500"></svg>
+                <script>
+                    
+
+                </script>
+                <!--<p>Some text in the Modal Body</p>
+                <p>Some other text...</p>-->
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+
+    </script>
+
         <!--</div>-->
         
         <!--<div>
@@ -166,6 +197,7 @@
         
     <script src="CustomPlacemark.js"></script>
 	<script src="javascripts/createNewTree.js"></script>
+    <script src="javascripts/statistic.js"></script>
 </body>
 
 </html>
