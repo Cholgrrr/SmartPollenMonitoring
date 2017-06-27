@@ -137,7 +137,6 @@ app.post('/insertTree', function (req, res) {
 		input_tree[2] = data.treetype;
 		input_tree[3] = data.age;
 		input_tree[4] = data.diameter;
-		console.log(input_tree);
 		
 		// request the data 
 		db.result("INSERT INTO trees_latlon(lat, lon, treetype, age, diameter) VALUES($1, $2, $3, $4, $5)", input_tree)
@@ -156,6 +155,81 @@ app.post('/insertTree', function (req, res) {
     }
 
 });
+
+
+// ----------------------------------------------------------
+// Get blooming data according to the month and the tree type
+
+app.post('/getBlooming', function (req, res) {
+ 
+    try {
+		
+        const data = req.body;
+		// #### make it dynamicly ####
+		let month = "jun";
+		
+		let query_string = "select tree_type, " + month; 
+		query_string += " from tree_blooming where (tree_type='" + data[0] + "'";
+		for (i = 1; i < Object.keys(data).length-1; i++) {
+			query_string += (" or tree_type=" + "'" + data[i] + "'");
+		}
+		query_string += ");"; 
+		
+		// request the data 
+		db.result(query_string)
+		.then(result => {
+			res.json(result.rows);
+			console.log(result.rows);
+			//console.log(result.rows)
+		})
+		.catch(error => {
+			console.log('ERROR:', error);
+		});			
+		console.log('.../getBlooming successful!');
+    }
+	
+    catch (err) {
+        console.log('.../getBlooming failed!\n' + err);
+    }
+
+});
+
+
+// -----------------------------------------------------------
+// Get blooming data for the selected tree types for all month
+
+app.post('/getBloomingAll', function (req, res) {
+ 
+    try {
+		
+        const data = req.body;
+		console.log(data);
+		
+		let query_string = "select * from tree_blooming where (tree_type='" + data[0] + "'"; 
+		for (i = 1; i < Object.keys(data).length; i++) {
+			query_string += (" or tree_type=" + "'" + data[i] + "'");
+		}
+		query_string += ");"; 
+		console.log(query_string);
+		// request the data 
+		db.result(query_string)
+		.then(result => {
+			res.json(result.rows);
+			console.log(result.rows);
+			//console.log(result.rows)
+		})
+		.catch(error => {
+			console.log('ERROR:', error);
+		});			
+		console.log('.../getBloomingAll successful!');
+    }
+	
+    catch (err) {
+        console.log('.../getBloomingAll failed!\n' + err);
+    }
+
+});
+
 
 
 // ------------------------------------------------------------------------
