@@ -85,18 +85,18 @@ var handleClick = function (recognizer) {
 		console.log('wind:');
 		console.log(currentWind); 
 		console.log(currentWind[0].in_date); 
-		if (viewTrees.length > 15) {
-			for(i=0; i<15; i++) { 
+		if (viewTrees.length > 1) {
+			for(i=0; i<viewTrees.length; i++) { 
 				drawPollenSpread(currentWind[0].speed, currentWind[0].direction, viewTrees[i].lat, viewTrees[i].lon, 5);
 			}
 		}
 	}
 	
 };
-
+//wwd.addLayer(rend);
+//wwd.addLayer(mesh3D);
 // Listen for mouse clicks.
 var clickRecognizer = new WorldWind.ClickRecognizer(wwd, handleClick);
-
 // Listen for taps on mobile devices.
 var tapRecognizer = new WorldWind.TapRecognizer(wwd, handleClick);
 
@@ -105,6 +105,8 @@ var tapRecognizer = new WorldWind.TapRecognizer(wwd, handleClick);
 // Generation of a surface elipses according to the wind and tree data	
 
 var rend = new WorldWind.RenderableLayer();
+var mesh3D = new WorldWind.RenderableLayer();
+	mesh3D.displayName = "3D-Mesh";
 // Now set up to handle highlighting.
 var highlightController = new WorldWind.HighlightController(wwd);
 
@@ -113,16 +115,15 @@ var highlightController = new WorldWind.HighlightController(wwd);
 //		  - wind direction
 //		  - latitude and longitude of the tree
 //		  - strenght parameter (polen blooming value)
+
 function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara) {
 		
 	try {
-		
 		// input Wind attribute and Tree location
 		var windDegR = windDeg * Math.PI / 180.0;
 		var R_earth = 6371000.0; // Earth's Radius in Meters
 		var TreeLatR = TreeLat * Math.PI / 180.0;
 		var TreeLongR = TreeLong * Math.PI / 180.0;
-		
 		// var StrenghtPara = 100.0;	 // Default Is 5.0
 		// computeNewCenter of the Big Ellipse
 		var St = StrenghtPara * windStr;
@@ -131,7 +132,6 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara) {
 		var EllispeCenterLONGR = TreeLongR + Math.atan2(Math.sin(windDegR)*Math.sin(St/R_earth)*Math.cos(TreeLatR),Math.cos(St/R_earth)-Math.sin(TreeLatR)*Math.sin(EllispeCenterLATR));
 		var EllispeCenterLAT = EllispeCenterLATR * 180 / Math.PI;
 		var EllispeCenterLONG = EllispeCenterLONGR * 180 / Math.PI;
-		
 		// computeNewCenter of the Small Ellipse
 		var StrenghtParas = StrenghtPara*0.3;	//
 		var St = StrenghtParas * windStr;
@@ -139,7 +139,6 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara) {
 		var EllispeCenterLONGRs = TreeLongR + Math.atan2(Math.sin(windDegR)*Math.sin(St/R_earth)*Math.cos(TreeLatR),Math.cos(St/R_earth)-Math.sin(TreeLatR)*Math.sin(EllispeCenterLATR));
 		var EllispeCenterLATs = EllispeCenterLATRs* 180 / Math.PI;
 		var EllispeCenterLONGs = EllispeCenterLONGRs * 180 / Math.PI;
-		
 		// computeNewCenter of the Medium Ellipse
 		var StrenghtParaM = StrenghtPara*0.5;	//
 		var St = StrenghtParaM * windStr;
@@ -147,13 +146,12 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara) {
 		var EllispeCenterLONGRm = TreeLongR + Math.atan2(Math.sin(windDegR)*Math.sin(St/R_earth)*Math.cos(TreeLatR),Math.cos(St/R_earth)-Math.sin(TreeLatR)*Math.sin(EllispeCenterLATR));
 		var EllispeCenterLATm = EllispeCenterLATRm* 180 / Math.PI;
 		var EllispeCenterLONGm = EllispeCenterLONGRm * 180 / Math.PI;
-		
 		// make the ShapeAttributes for Big Ellispe
 		var att = new WorldWind.ShapeAttributes(null);
 		att.drawInterior = true;
 		att.drawOutline = true;
 		att.outlineColor = WorldWind.Color.GREEN;
-		att.interiorColor = new WorldWind.Color(0, 1, 0, 0.5);
+		att.interiorColor = new WorldWind.Color(0, 0.8, 0, 0.5);
 		
 		// make the ShapeAttributes for small Ellispe
 		var att2 = new WorldWind.ShapeAttributes(null);
@@ -174,7 +172,6 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara) {
 		attc.drawOutline = true;
 		attc.outlineColor = WorldWind.Color.RED;
 		attc.interiorColor = new WorldWind.Color(1, 1, 1, 1);
-		
 		//------------Draw Big Ellipse----------------
 		var SE_a_axe = windStr * StrenghtPara * 2;
 		var SE_b_axe = SE_a_axe / 2;
@@ -206,34 +203,73 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara) {
 		Circle.displayName = "Tree-Location";
 
 		rend.addRenderable(Circle);	
-		//rend.opacity = 0.3;
-		wwd.addLayer(rend);
+		rend.opacity = 0.6;
+		//wwd.addLayer(rend);
 		//wwd.addLayer(Circle);
-	
-	}
+		}
 	catch(err) {
 		console.log('->  generate elipse failed!\n' + err);
 	}
 		
 }
-
+		/*//Draw 3D 
+		var canvas = document.createElement("canvas"),
+            ctx2d = canvas.getContext("2d"),
+            size = 64, c = size / 2, innerRadius = 5, outerRadius =40;
+        canvas.width = size;
+        canvas.height = size;
+        var gradient = ctx2d.createRadialGradient(c, c, innerRadius, c, c, outerRadius);
+        gradient.addColorStop(0, 'rgb(255, 0, 0)');
+		gradient.addColorStop(0.9, 'rgb(0, 255, 0)');
+		gradient.addColorStop(1, 'rgb(0, 0, 0)');
+		var ang = 90*Math.PI /180;
+        ctx2d.fillStyle = gradient;
+        ctx2d.arc(c+c*Math.sin(ang), c-c*Math.cos(ang), outerRadius, 0, 2 * Math.PI, false);
+        ctx2d.fill();
+        // Create the mesh's positions.
+        
+		var meshPositions = [];
+		var shift = 0.001;
+        for (var lat = TreeLat-shift; lat <= TreeLat+shift; lat += 0.00005) {
+            var row = [];
+            for (var lon = TreeLong-shift; lon <= TreeLong+shift; lon += 0.00005) {
+				var elevationScale =
+					Math.sqrt(Math.pow(lat-TreeLat,2) + Math.pow(lon-TreeLong,2));
+                row.push(new WorldWind.Position(lat, lon,130- elevationScale*10000)) //130 is the elevation
+            }
+            meshPositions.push(row);
+        }
+        // Create the mesh.
+        var mesh = new WorldWind.GeographicMesh(meshPositions, null);
+        // Create and assign the mesh's attributes.
+        var meshAttributes = new WorldWind.ShapeAttributes(null);
+        meshAttributes.outlineColor = new WorldWind.Color(1, 1, 1, 0);
+        meshAttributes.interiorColor = new WorldWind.Color(1, 1, 1, 0.7);
+        meshAttributes.imageSource = new WorldWind.ImageSource(canvas);
+        meshAttributes.applyLighting = false;
+        mesh.attributes = meshAttributes;
+        // Create and assign the mesh's highlight attributes.
+        var highlightAttributes = new WorldWind.ShapeAttributes(meshAttributes);
+        highlightAttributes.outlineColor = WorldWind.Color.WHITE;
+        mesh.highlightAttributes = highlightAttributes;
+        // Add the shape to the layer.
+		mesh3D.addRenderable(mesh);
+	*/
+wwd.addLayer(rend);
+//wwd.addLayer(mesh3D);
 
 // ------------------------------------
 // call this function to remove a layer
 function deleteLayer() {
-    
 	try {
 		// remove layer
 		rend.removeAllRenderables();
-		wwd.addLayer(rend);
-		wwd.redraw();
-
-		rend.removeAllRenderables();
+		mesh3D.removeAllRenderables();
 		rend.refresh();
+		mesh3D.refresh();
 		wwd.redraw();
 	}
 	catch(err) {
 		console.log('->  delete layer failed!\n' + err);
 	}
-
 };
