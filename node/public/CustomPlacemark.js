@@ -85,12 +85,36 @@ var handleClick = function (recognizer) {
 	
 		// get the month number (mm) from the current date
 		var month = currentWind[0].in_date.slice(5, 7);
-		// get the blooming values
+		// get the blooming valuesl
 		var blooming = getTreeBlooming(month);
 		// pull the month out of the daters
 		var month = (currentWind[0].in_date.slice(5, 7));
+		console.log(viewTrees);
+		console.log(blooming);
+		console.log('-------------');
+		console.log('viewTree[0].type:');
+		console.log(viewTrees[0].treetype);
+		console.log('blooming[0]:');
+		console.log(blooming[0].month);
+		console.log(blooming[0].tree_type); 
+		var bloomFactor;
 		if (viewTrees.length > 15) {
 			for(i=0; i<15; i++) { 
+				
+				for (var k=0; k < blooming.length; k++) {
+					//console.log('treeview: ' + viewTrees[i].treetype);
+					//console.log('blooming: ' + blooming[k].tree_type);
+					
+					if (blooming[k].tree_type == viewTrees[i].treetype) {
+						console.log('=================');
+						console.log(k);
+						console.log(blooming[k]);
+						console.log(blooming[k].tree_type);
+						console.log(blooming[k].month);
+					}
+					
+				}
+			
 				drawPollenSpread(currentWind[0].speed, currentWind[0].direction, viewTrees[i].lat, viewTrees[i].lon, 5);
 			}
 		}
