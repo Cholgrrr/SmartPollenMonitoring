@@ -159,6 +159,7 @@ function TreeStat() {
             .attr("x", width - 24)
             .attr("y", 9.5)
             .attr("dy", "0.32em")
+            .style('fill', 'white')
             .text(function (d) { return d; });
 
     }
