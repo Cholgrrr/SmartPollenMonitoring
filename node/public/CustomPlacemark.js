@@ -78,44 +78,84 @@ var handleClick = function (recognizer) {
 	
 	// the function which draws the ellipses, will be called
 	// after a delay to wait for the required ajax requests ()
-	setTimeout(function(){callDrawPollen()}, 200);
+	
+	//setTimeout(function(){callDrawPollen()}, 200);
+	setTimeout(function(){callPollenHistory()}, 200);
 	
 	function callDrawPollen() {
+		// initialize a renerable layer
 		var rend = new WorldWind.RenderableLayer();
-		
 		// get the month number (mm) from the current date
 		var month = currentWind[0].in_date.slice(5, 7);
 		// get the blooming valuesl
 		var blooming = getTreeBlooming(month);
-		// pull the month out of the daters
-		var month = (currentWind[0].in_date.slice(5, 7));
 		// defines the blooming value of the tree
 		var bloomFactor;
+		// ellipse color factor 
+		var color = 1;
 		
 		if (viewTrees.length > 0) {
-			for(i=0; i<10; i++) { 
+			for(i=0; i<viewTrees.length; i++) { 
 				
 				for (var k=0; k < blooming.length; k++) {
 					if (blooming[k].tree_type == viewTrees[i].treetype) {
-						bloomFactor = blooming[k].month;
+						if (blooming[k].month == 0) {
+							bloomFactor = 0.1;
+						}
+						else if (blooming[k].month == 1) {
+							bloomFactor = 0.8;
+						}
+						else {
+							bloomFactor = blooming[k].month;
+						}
 					}			
 				}
-			
-				drawPollenSpread(currentWind[0].speed, currentWind[0].direction, viewTrees[i].lat, viewTrees[i].lon, 5);
+				drawPollenSpread(currentWind[0].speed, currentWind[0].direction, viewTrees[i].lat, viewTrees[i].lon, 5, bloomFactor, color);
 			}
 		}
 	}
 	
 	
-	/*
-	function callPollenHistory () {
+	function callPollenHistory() {
 		
-		var histdata = getTreeBloomingHist();
-		console.log('hist data'); 
-		console.log(histdata);
+		var blooming = getTreeBloomingHist();
+		//console.log('hist data'); 
+		//console.log(histdata);
+		
+		
+				// initialize a renerable layer
+		var rend = new WorldWind.RenderableLayer();
+		// get the blooming valuesl
+		var blooming = getTreeBloomingHist();
+		// defines the blooming value of the tree
+		var bloomFactor;
+		// ellipse color factor 
+		var color = 3;
+		
+		if (viewTrees.length > 0) {
+			for(i=0; i<viewTrees.length; i++) { 
+				
+				for (var k=0; k < blooming.length; k++) {
+					if (blooming[k].tree_type == viewTrees[i].treetype) {
+						if (blooming[k].month == 0) {
+							bloomFactor = 0.1;
+						}
+						else if (blooming[k].month == 1) {
+							bloomFactor = 0.8;
+						}
+						else {
+							bloomFactor = blooming[k].month;
+						}
+					}			
+				}
+				drawPollenSpread(currentWind[0].speed, currentWind[0].direction, viewTrees[i].lat, viewTrees[i].lon, 5, bloomFactor, color);
+			}
+		}
+		
+		
 		
 	}
-	*/
+	
 	
 	
 };
@@ -143,9 +183,70 @@ var highlightController = new WorldWind.HighlightController(wwd);
 //		  - wind direction
 //		  - latitude and longitude of the tree
 //		  - strenght parameter (polen blooming value)
-function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara) {
+function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, trans, p_color) {
 		
 	try {
+		
+		trans = trans * 0.7;
+		// define color
+		// new WorldWind.Color(1, 1, 1, trans);
+		var boundary_big;
+		var boundary_inner;
+		var color_start, color_low, color_mid, color_out
+		if (p_color == 1) {
+			// mix
+			color_start = new WorldWind.Color(0, 1, 0, trans);
+			color_low = new WorldWind.Color(1, 0, 0, trans);
+			color_mid = new WorldWind.Color(1, 1, 0, trans);
+			color_out = new WorldWind.Color(1, 1, 1, trans);
+			boundary_inner = WorldWind.Color.RED;
+			boundary_big = WorldWind.Color.GREEN;
+		}
+		else if (p_color == 2) {
+			// purple
+			color_start = new WorldWind.Color(0.75, 0, 0.75, trans);
+			color_low = new WorldWind.Color(0.75, 0, 0.75, trans);
+			color_mid = new WorldWind.Color(0.75, 0, 0.75, trans);
+			color_out = new WorldWind.Color(0.75, 0, 0.75, trans);
+			boundary_inner = WorldWind.Color.RED;
+			boundary_big = WorldWind.Color.BLUE;
+		}
+		else if (p_color == 3) {
+			// orange
+			color_start = new WorldWind.Color(1, 0.7, 0, trans);
+			color_low = new WorldWind.Color(1, 0.7, 0, trans);
+			color_mid = new WorldWind.Color(1, 0.7, 0, trans);
+			color_out = new WorldWind.Color(1, 0.7, 0, trans);
+			boundary_inner = WorldWind.Color.RED;
+			boundary_big = WorldWind.Color.YELLOW;
+		}
+		else if (p_color == 4) {
+			// yellow
+			color_start = new WorldWind.Color(1, 1, 0.2, trans);
+			color_low = new WorldWind.Color(1, 1, 0.2, trans);
+			color_mid = new WorldWind.Color(1, 1, 0.2, trans);
+			color_out = new WorldWind.Color(1, 1, 0.2, trans);
+			boundary_inner = WorldWind.Color.RED;
+			boundary_big = WorldWind.Color.YELLOW;
+		}
+		else if (p_color == 5) {
+			// blue
+			color_start = new WorldWind.Color(0.15, 0.3, 1, trans);
+			color_low = new WorldWind.Color(0.15, 0.3, 1, trans);
+			color_mid = new WorldWind.Color(0.15, 0.3, 1, trans);
+			color_out = new WorldWind.Color(0.15, 0.3, 1, trans);
+			boundary_inner = WorldWind.Color.RED;
+			boundary_big = WorldWind.Color.BLUE;
+		}
+		else {
+			color_start = new WorldWind.Color(0, 1, 0, trans);
+			color_low = new WorldWind.Color(1, 0, 0, trans);
+			color_mid = new WorldWind.Color(1, 1, 0, trans);
+			color_out = new WorldWind.Color(1, 1, 1, trans);
+			boundary_inner = WorldWind.Color.RED;
+			boundary_big = WorldWind.Color.GREEN;
+		}
+		
 		
 		// input Wind attribute and Tree location
 		var windDegR = windDeg * Math.PI / 180.0;
@@ -182,28 +283,29 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara) {
 		var att = new WorldWind.ShapeAttributes(null);
 		att.drawInterior = true;
 		att.drawOutline = true;
-		att.outlineColor = WorldWind.Color.GREEN;
-		att.interiorColor = new WorldWind.Color(0, 1, 0, 0.5);
+		att.outlineColor = boundary_big;
+		att.interiorColor = color_start;
 		
 		// make the ShapeAttributes for small Ellispe
 		var att2 = new WorldWind.ShapeAttributes(null);
 		att2.drawInterior = true;
 		att2.drawOutline = true;
 		att2.outlineColor = WorldWind.Color.RED;
-		att2.interiorColor = new WorldWind.Color(1, 0, 0, 0.5);
+		att2.interiorColor = color_low;
+		
 		// make the ShapeAttributes for medium Ellispe
 		var attm = new WorldWind.ShapeAttributes(null);
 		attm.drawInterior = true;
 		attm.drawOutline = true;
 		attm.outlineColor = WorldWind.Color.RED;
-		attm.interiorColor = new WorldWind.Color(1, 1, 0, 0.5);
+		attm.interiorColor = color_mid;
 		
 		// make the ShapeAttributes for the circle
 		var attc = new WorldWind.ShapeAttributes(null);
 		attc.drawInterior = true;
 		attc.drawOutline = true;
-		attc.outlineColor = WorldWind.Color.RED;
-		attc.interiorColor = new WorldWind.Color(1, 1, 1, 1);
+		attc.outlineColor = boundary_inner;
+		attc.interiorColor = color_out;
 		
 		//------------Draw Big Ellipse----------------
 		var SE_a_axe = windStr * StrenghtPara * 2;
