@@ -81,9 +81,10 @@ var handleClick = function (recognizer) {
 	
 	if (histrec == 0) {
 	    setTimeout(function () { callDrawPollen() }, 200);
-	} else {
+	} else if(histrec == 1) {
 	    setTimeout(function () { callPollenHistory() }, 200);
-	};
+	}
+	;
 
 	//
 	
@@ -116,6 +117,7 @@ var handleClick = function (recognizer) {
 						}
 					}			
 				}
+	
 				drawPollenSpread(currentWind[0].speed, currentWind[0].direction, viewTrees[i].lat, viewTrees[i].lon, 5, bloomFactor, color);
 			}
 		}
@@ -252,10 +254,10 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, tra
 		}
 		else if (p_color == 5) {
 			// blue
-			color_start = new WorldWind.Color(0.15, 0.3, 1, trans);
-			color_low = new WorldWind.Color(0.15, 0.3, 1, trans);
-			color_mid = new WorldWind.Color(0.15, 0.3, 1, trans);
-			color_out = new WorldWind.Color(0.15, 0.3, 1, trans);
+			color_start = new WorldWind.Color(0.15, 0.3, 1, 0.2);
+			color_low = new WorldWind.Color(0.15, 0.3, 1, 0.2);
+			color_mid = new WorldWind.Color(0.15, 0.3, 1, 0.2);
+			color_out = new WorldWind.Color(0.15, 0.3, 1, 0.2);
 			boundary_inner = WorldWind.Color.RED;
 			boundary_big = WorldWind.Color.BLUE;
 		}
