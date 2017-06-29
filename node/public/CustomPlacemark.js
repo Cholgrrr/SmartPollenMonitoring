@@ -130,13 +130,14 @@ var handleClick = function (recognizer) {
 		// defines the blooming value of the tree
 		var bloomFactor;
 		// ellipse color factor 
-		var color = 3;
+		var color;
 		
 		if (viewTrees.length > 0) {
 			for(i=0; i<viewTrees.length; i++) { 
 				
 				for (var k=0; k < blooming.length; k++) {
 					if (blooming[k].tree_type == viewTrees[i].treetype) {
+						// set the blooming
 						if (blooming[k].month == 0) {
 							bloomFactor = 0.1;
 						}
@@ -146,6 +147,20 @@ var handleClick = function (recognizer) {
 						else {
 							bloomFactor = blooming[k].month;
 						}
+						// set the color
+						if (viewTrees[i].treetype == 'Birke') {
+							color = 2; 
+						}
+						else if (viewTrees[i].treetype == 'Erle') {
+							color = 3;
+						}
+						else if (viewTrees[i].treetype == 'Hasel') {
+							color = 4;
+						}
+						else {
+							color = 5; 
+						}
+						
 					}			
 				}
 				drawPollenSpread(currentWind[0].speed, currentWind[0].direction, viewTrees[i].lat, viewTrees[i].lon, 5, bloomFactor, color);
@@ -209,7 +224,7 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, tra
 			color_mid = new WorldWind.Color(0.75, 0, 0.75, trans);
 			color_out = new WorldWind.Color(0.75, 0, 0.75, trans);
 			boundary_inner = WorldWind.Color.RED;
-			boundary_big = WorldWind.Color.BLUE;
+			boundary_big = WorldWind.Color.BLACK;
 		}
 		else if (p_color == 3) {
 			// orange
@@ -290,14 +305,14 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, tra
 		var att2 = new WorldWind.ShapeAttributes(null);
 		att2.drawInterior = true;
 		att2.drawOutline = true;
-		att2.outlineColor = WorldWind.Color.RED;
+		att2.outlineColor = boundary_big;
 		att2.interiorColor = color_low;
 		
 		// make the ShapeAttributes for medium Ellispe
 		var attm = new WorldWind.ShapeAttributes(null);
 		attm.drawInterior = true;
 		attm.drawOutline = true;
-		attm.outlineColor = WorldWind.Color.RED;
+		attm.outlineColor = boundary_big;
 		attm.interiorColor = color_mid;
 		
 		// make the ShapeAttributes for the circle
