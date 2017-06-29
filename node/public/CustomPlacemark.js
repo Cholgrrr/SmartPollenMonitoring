@@ -79,8 +79,14 @@ var handleClick = function (recognizer) {
 	// the function which draws the ellipses, will be called
 	// after a delay to wait for the required ajax requests ()
 	
-	//setTimeout(function(){callDrawPollen()}, 200);
-	setTimeout(function(){callPollenHistory()}, 200);
+	if (histrec == 0) {
+	    setTimeout(function () { callDrawPollen() }, 200);
+	} else {
+	    setTimeout(function () { callPollenHistory() }, 200);
+	};
+
+	//
+	
 	
 	function callDrawPollen() {
 		// initialize a renerable layer

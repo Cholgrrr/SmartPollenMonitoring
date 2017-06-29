@@ -3,6 +3,7 @@
 // needed variables
 let treeselection = {};
 let histrec;
+let histwind;
 histrec = 0;
 
 // ----------------------------------
@@ -30,7 +31,7 @@ try {
 	// ----------------------------------
 	// Generation of the month selection
 
-	let histwind = {};
+
 	let treedata = {};
 	$(document).ready(function () {
 		var orderCount = 0;
@@ -98,15 +99,16 @@ try {
 			//if (monthselection_tmp === undefined || monthselection_tmp.length == 0) {
 				histrec = 1;
 			//};
-			
-			$.ajax({
-					type: "POST",
-					url: '/postMonth',
-					data: monthselection,
-			}).done(function (monthdata) { Test(monthdata); });
-			function Test(monthdata) {
-				histwind = monthdata;
-			};
+				histwind = monthselection[0]
+				console.log(histwind);
+			//$.ajax({
+			//		type: "POST",
+			//		url: '/postMonth',
+			//		data: monthselection,
+			//}).done(function (monthdata) { Test(monthdata); });
+			//function Test(monthdata) {
+			//	histwind = monthdata;
+			//};
 						   
 		});
 	});
@@ -373,8 +375,9 @@ function getTreeBloomingHist() {
 		// temporary count
 		// ###########
 		// ATENTION: monthdata HAS TO BE REPLACED THROUGH MONTH OF SELECTION SINGLE LIST
-		// ###########
-		let monthdata = 'may';
+	    // ###########
+		console.log(histwind);
+		let monthdata = histwind;
 		let tmp_cnt = 0; 
 		
 		for (i = 0; i < treeselection_tmp.length; i++) {
