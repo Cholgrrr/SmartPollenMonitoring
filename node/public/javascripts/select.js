@@ -11,7 +11,7 @@ histrec = 0;
 try {
 
 	// --------------------------------------------
-	// Generation of the selection for th Map Type
+	// Generation of the selection for the Map Type
 
 	$(document).ready(function () {
 		$("#month").hide();
