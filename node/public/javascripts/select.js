@@ -98,8 +98,9 @@ try {
 
 			//if (monthselection_tmp === undefined || monthselection_tmp.length == 0) {
 				histrec = 1;
-			//};
-				histwind = monthselection[0]
+		    //};
+				histwind = "";
+				histwind = monthselection[0];
 				console.log(histwind);
 			//$.ajax({
 			//		type: "POST",
