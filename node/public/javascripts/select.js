@@ -216,8 +216,21 @@ try {
 			}
 			text = text.substring(0, text.length - 2);
 
-			alert(text);
+			//alert(text);
+            
+			if (histrec == 2) {
+			    let valuehis = $("#recentold-order").val();
+			    //alert ('balue' + valuehis);
+			    if (valuehis == '1') {
+			        histrec = 1;
+			    } else {
+			        histrec = 0;
+			    };
+			    
+			    
 
+			};
+			//alert(histrec);
             // call button modul
 			$("#myBtn").click();
 
@@ -357,7 +370,13 @@ function getTreeBlooming(monthdata) {
 	
 }
 
+function Clearall() {
 
+    deleteLayer();
+    histrec = 2;
+
+
+};
 // ---------------------------------------------------------------------
 // Get the all trees and the corresponding blooming values for all month
 // INPUT:  void

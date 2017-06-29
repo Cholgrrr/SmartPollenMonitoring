@@ -54,7 +54,7 @@ position: absolute;
 .test{
     width:10%;
 }
-.btn-success{
+.btn-success, .btn-danger{
     margin-top:4px;
 }
 

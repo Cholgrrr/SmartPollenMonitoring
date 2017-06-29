@@ -108,9 +108,9 @@
                         
                         <select id="tree-order" multiple="multiple">
                             <optgroup label="high alergenic">
-                                <option value="25">Birke</option>
-                                <option value="23">Erle</option>
-                                <option value="20">Hasel</option>
+                                <option style="color: rgb(75,0,75)" value="25">Birke</option>
+                                <option style="color: rgb(100,75,0)"value="23">Erle</option>
+                                <option style="color: rgb(100,100,20)"value="20">Hasel</option>
                             </optgroup>
                             <optgroup label="low alergenic">
                                 <option value="3">Ahorn</option>
@@ -148,9 +148,10 @@
                         <button id="tree-order-button" class="btn btn-success">Tree selection</button>
                         
                     </div>
-
-                    
-                </div>
+                    <div class="btn-group tooltipstuff" style="width: 40px;float: right;" title="With a click here you can clear your tree selection">
+                        <button id="clear-button" style="float: right;" onclick="Clearall()" class="btn btn-danger">Clear Map</button>
+                    </div>
+                    </div>
             </div>
 
         </div>
