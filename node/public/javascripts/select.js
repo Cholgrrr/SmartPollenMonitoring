@@ -47,7 +47,7 @@ try {
 			},
 			buttonText: function (options) {
 				if (options.length === 0) {
-					return 'None selected';
+					return 'Select month';
 				}
 				else if (options.length > 1) {
 					return 'Please only select one!';
@@ -174,7 +174,7 @@ try {
 
 			buttonText: function (options) {
 				if (options.length === 0) {
-					return 'None selected';
+					return 'Select Trees';
 				}
 				else if (options.length > 3) {
 					return options.length + ' selected';
