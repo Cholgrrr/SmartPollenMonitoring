@@ -26,18 +26,27 @@ function openDialog() {
 				icon: "ui-icon-heart",
 				// This function is invoked by submitting the dialog.
 				click: function () {
-				    var mytable = document.getElementById('myTable');
-				    var myinputs = mytable.getElementsByTagName('input');
-				    var mytype = mytable.getElementsByTagName('select');
-
+					
+					var inTyp = $("#dialogTree-order").val();
+					var inLat = $("#dialogLat").val();
+					var inLon = $("#dialogLon").val();
+					var inDia = $("#dialogDia").val();
+					var inAge = $("#dialogAge").val();
+					
+					// If input isn't valid, then break up and return to the dialog.
+					if (checkInput(inLat, inLon, inAge) != true) {
+						return;
+					};
+					
+					// If input is valid, then go on with sending the data to the server.
 				        try {
 
 				            let in_tree = {
-				                lat: myinputs[1].value,
-				                lon: myinputs[2].value,
-				                treetype: mytype[0].value,
-				                age: myinputs[3].value,
-				                diameter: myinputs[0].value
+				                lat: inLat,
+				                lon: inLon,
+				                treetype: inTyp,
+				                age: inAge,
+				                diameter: inDia
 				            }
 
 				            console.log(in_tree);
@@ -53,13 +62,68 @@ function openDialog() {
 				            console.log('delivering of the inserted tree data to the server failed!');
 				        }
 
-				    // Here the callback of the dialog has to happen!
-					alert("Close the dialog and process the data.");
 					$(this).dialog("close");
 				}
 			}
 		]
 	});
+}
+
+// Function for counting up the diameter of a tree crown.
+function diamCountUp() {
+	var i = Number($("#dialogDia").val());
+	if (i <= 29) {
+		i += 1;
+		$("#dialogDia").val(i);
+	}
+}
+
+// Function for counting down the diameter of a tree crown.
+function diamCountDown() {
+	var i = Number($("#dialogDia").val());
+	if (i >= 2) {
+		i -= 1;
+		$("#dialogDia").val(i);
+	}
+}
+
+// Function for varifying the input.
+// INPUT: - latitude [Number]
+//		  - longitude [Number]
+//		  - age [Number]
+//RETURN: - [Boolean]
+function checkInput(lat, lon, age) {
+	if (lat > 90) {
+		$("#lblLat").text("Enter a value between -90 and 90!");
+		$("#lblLat").css("color", "red");
+		return;
+	} else if (lat < -90) {
+		$("#lblLat").text("Enter a value between -90 and 90!");
+		$("#lblLat").css("color", "red");
+		return;
+	}
+	
+	if (lon > 180) {
+		$("#lblLon").text("Enter a value between -180 and 180!");
+		$("#lblLon").css("color", "red");
+		return;
+	} else if (lon < -180) {
+		$("#lblLon").text("Enter a value between -180 and 180!");
+		$("#lblLon").css("color", "red");
+		return;
+	}
+	
+	if (age > 999) {
+		$("#lblAge").text("Enter a value between 1 and 999!");
+		$("#lblAge").css("color", "red");
+		return;
+	} else if (age < 1) {
+		$("#lblAge").text("Enter a value between 1 and 999!");
+		$("#lblAge").css("color", "red");
+		return;
+	}
+	
+	return true;
 }
 
 // Inner elements of the dialog box.
@@ -109,8 +173,14 @@ var dialogHTML = '<table id="myTable">' +
 			'<form class="form-inline">' +
 				'<div class="form-group">' +
 					'<label style="width: 76px">Diameter</label>' +
-					'<input id="dialogDia" class="input" type="text" name="dialogDia">' +
-					'<label style="margin-left: 5px">Enter the diameter of the tree crown</label>' +
+					'<input id="dialogDia" class="input" type="text" style="width:90px;" name="dialogDia" readonly>' +
+					'<button id="dialogDiaUp" class="input" style="position:relative;width:25px;height:25px;border-radius:50%;margin-left:5px;border:0px;padding:0px;" name="dialogDiaUp" onclick="diamCountUp()">' +
+						'<img src="images/up.png" title="Cancel" alt="..." height="25px" width="25px"/>' +
+					'</button>' +
+					'<button id="dialogDiaDown" class="input" style="position:relative;width:25px;height:25px;border-radius:50%;margin-left:5px;border:0px;padding:0px;" name="dialogDiaDown" onclick="diamCountDown()">' +
+						'<img src="images/down.png" title="Cancel" alt="..." height="25px" width="25px"/>' +
+					'</button>' +
+					'<label id="lblDia" style="margin-left: 5px">Enter the diameter of the tree crown</label>' +
 				'</div>' +
 			'</form>' +	
 		'</tr>' +
@@ -119,7 +189,7 @@ var dialogHTML = '<table id="myTable">' +
 				'<div class="form-group">' +
 					'<label style="width: 76px">Latitude</label>' +
 					'<input id="dialogLat" class="input" type="text" name="dialogLat">' +
-					'<label style="margin-left: 5px">Select the coordinates by clicking on the map</label>' +
+					'<label id="lblLat" style="margin-left: 5px">Select the coordinates by clicking on the map</label>' +
 				'</div>' +
 			'</form>' +	
 		'</tr>' +
@@ -128,7 +198,7 @@ var dialogHTML = '<table id="myTable">' +
 				'<div class="form-group">' +
 					'<label style="width: 76px">Longitude</label>' +
 					'<input id="dialogLon" class="input" type="text" name="dialogLon">' +
-					'<label style="margin-left: 5px">Select the coordinates by clicking on the map</label>' +
+					'<label id="lblLon" style="margin-left: 5px">Select the coordinates by clicking on the map</label>' +
 				'</div>' +
 			'</form>' +	
 		'</tr>' +
@@ -136,8 +206,8 @@ var dialogHTML = '<table id="myTable">' +
 			'<form class="form-inline">' +
 				'<div class="form-group">' +
 					'<label style="width: 76px">Age</label>' +
-					'<input id=dialogAge" class="input" type="text" name="dialogAge">' +
-					'<label style="margin-left: 5px">Enter the Year the tree was planted in</label>' +
+					'<input id="dialogAge" class="input" type="text" name="dialogAg">' +
+					'<label id="lblAge" style="margin-left: 5px">Enter the Year the tree was planted in</label>' +
 				'</div>' +
 			'</form>' +	
         '</tr>' +
