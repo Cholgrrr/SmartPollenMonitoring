@@ -227,8 +227,63 @@ try {
 			let lon_min = 8.36417;
 			let lon_max = 8.608373;
 			
+			// tree translation
+			var treetrans = [];
 			treeselection_tmp = $('#tree-order option:selected');
+			
+			//console.log('treeselection_tmp[0].innerText: ');
+			//console.log(treeselection_tmp[0].innerText);
 			//let treeselection = {};
+			
+			// translate treeselection
+			for (i = 0; i < treeselection_tmp.length; i++) {
+				if (treeselection_tmp[i].innerText == 'Birch') {
+					treetrans[i] = 'Birke';
+				} else if (treeselection_tmp[i].innerText == 'Alder') {
+					treetrans[i] = 'Erle';
+				} else if (treeselection_tmp[i].innerText == 'Hazel') {
+					treetrans[i] = 'Hasel';
+				} else if (treeselection_tmp[i].innerText == 'Maple') {
+					treetrans[i] = 'Ahorn';
+				} else if (treeselection_tmp[i].innerText == 'Apple') {
+					treetrans[i] = 'Apfel';
+				} else if (treeselection_tmp[i].innerText == 'Pear') {
+					treetrans[i] = 'Birne';
+				} else if (treeselection_tmp[i].innerText == 'Beech') {
+					treetrans[i] = 'Buche';
+				} else if (treeselection_tmp[i].innerText == 'Buchs') {
+					treetrans[i] = 'Buchs';
+				} else if (treeselection_tmp[i].innerText == 'Yew') {
+					treetrans[i] = 'Eibe';
+				} else if (treeselection_tmp[i].innerText == 'Oak') {
+					treetrans[i] = 'Eiche';
+				} else if (treeselection_tmp[i].innerText == 'Ash') {
+					treetrans[i] = 'Esche';
+				} else if (treeselection_tmp[i].innerText == 'Lilac') {
+					treetrans[i] = 'Flieder';
+				} else if (treeselection_tmp[i].innerText == 'Ailanthus') {
+					treetrans[i] = 'Goetterbaum';
+				} else if (treeselection_tmp[i].innerText == 'Elder') {
+					treetrans[i] = 'Holunder';
+				} else if (treeselection_tmp[i].innerText == 'Chestnut') {
+					treetrans[i] = 'Eibe';
+				} else if (treeselection_tmp[i].innerText == 'Pine') {
+					treetrans[i] = 'Kiefer';
+				} else if (treeselection_tmp[i].innerText == 'Cherry') {
+					treetrans[i] = 'Kirsche';
+				} else if (treeselection_tmp[i].innerText == 'Lime') {
+					treetrans[i] = 'Linde';
+				} 
+				
+				
+				else {
+					treetrans[i] = 'Buche';
+				}
+				
+				
+			}
+			console.log(treetrans);
+			
 			
 			treeselection[0] = lat_min;
 			treeselection[1] = lat_max;
@@ -299,7 +354,10 @@ function getTreeRecCurrent(latmin, latmax, lonmin, lonmax) {
 	
 }
 
-//###################################################################################
+
+// -------
+// tooltip
+
 $(document).ready(function () {
     $('.tooltipstuff').tooltipster(
         {
@@ -413,12 +471,11 @@ function getTreeBloomingHist() {
 		// the selected trees
 		// and the current month
 		let treeBlooming = {};
-		// temporary count
-		// ###########
-		// ATENTION: monthdata HAS TO BE REPLACED THROUGH MONTH OF SELECTION SINGLE LIST
-	    // ###########
-		console.log(histwind);
+
+		// selected wind data
 		let monthdata = histwind;
+		
+		// temporary count variable
 		let tmp_cnt = 0; 
 		
 		for (i = 0; i < treeselection_tmp.length; i++) {
