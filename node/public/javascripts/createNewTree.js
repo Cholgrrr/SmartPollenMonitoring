@@ -12,11 +12,11 @@ function openDialog() {
 			$("#dialog_addTree").css('background', 'none');
 			$("div[class='ui-dialog ui-corner-all ui-widget ui-widget-content ui-front ui-dialog-buttons ui-draggable']").css('background', 'transparent')
 			//$("div[class='ui-dialog ui-corner-all ui-widget ui-widget-content ui-front ui-dialog-buttons ui-draggable']").css('opacity', '0.8')
-			$("#dialog_addTree").css('background', '#B2B2B2');
+			$("#dialog_addTree").css('background', 'rgba(178,178,178,0.8)');
 		    $("#dialog_addTree").css('color', '#000000');
-			$("#dialog_addTree").css('opacity', '0.9');
-			$("div[class='ui-dialog-buttonpane ui-widget-content ui-helper-clearfix']").css('background', '#B2B2B2')
-			$("div[class='ui-dialog-buttonpane ui-widget-content ui-helper-clearfix']").css('opacity', '0.9')
+			//$("#dialog_addTree").css('opacity', '0.9');
+			$("div[class='ui-dialog-buttonpane ui-widget-content ui-helper-clearfix']").css('background', 'rgba(178,178,178,0.8)')
+			//$("div[class='ui-dialog-buttonpane ui-widget-content ui-helper-clearfix']").css('opacity', '0.9')
 			$("select[dialogTree-order]").css('width','400px')
 
 			var btnCancel = $("button[class='ui-dialog-titlebar-close']");
