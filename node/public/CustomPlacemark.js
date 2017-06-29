@@ -89,6 +89,7 @@ var handleClick = function (recognizer) {
 	//
 	
 	
+	// *** call the current pollen ellipses ***
 	function callDrawPollen() {
 		// initialize a renerable layer
 		var rend = new WorldWind.RenderableLayer();
@@ -123,8 +124,8 @@ var handleClick = function (recognizer) {
 		}
 	}
 	
-	
-	function callPollenHistory() {
+	// *** draw historical pollen ellipses ***
+ 	function callPollenHistory() {
 		
 		var blooming = getTreeBloomingHist();
 		//console.log('hist data'); 
@@ -177,9 +178,7 @@ var handleClick = function (recognizer) {
 		
 		
 		
-	}
-	
-	
+	}	
 	
 };
 
@@ -218,6 +217,7 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, tra
 		var color_start, color_low, color_mid, color_out
 		if (p_color == 1) {
 			// mix
+			// real time
 			color_start = new WorldWind.Color(0, 1, 0, trans);
 			color_low = new WorldWind.Color(1, 0, 0, trans);
 			color_mid = new WorldWind.Color(1, 1, 0, trans);
@@ -227,6 +227,7 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, tra
 		}
 		else if (p_color == 2) {
 			// purple
+			// Birke
 			color_start = new WorldWind.Color(0.75, 0, 0.75, trans);
 			color_low = new WorldWind.Color(0.75, 0, 0.75, trans);
 			color_mid = new WorldWind.Color(0.75, 0, 0.75, trans);
@@ -236,6 +237,7 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, tra
 		}
 		else if (p_color == 3) {
 			// orange
+			// Erle
 			color_start = new WorldWind.Color(1, 0.7, 0, trans);
 			color_low = new WorldWind.Color(1, 0.7, 0, trans);
 			color_mid = new WorldWind.Color(1, 0.7, 0, trans);
@@ -245,6 +247,7 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, tra
 		}
 		else if (p_color == 4) {
 			// yellow
+			// Hasel
 			color_start = new WorldWind.Color(1, 1, 0.2, trans);
 			color_low = new WorldWind.Color(1, 1, 0.2, trans);
 			color_mid = new WorldWind.Color(1, 1, 0.2, trans);
@@ -254,6 +257,7 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, tra
 		}
 		else if (p_color == 5) {
 			// blue
+			// others
 			color_start = new WorldWind.Color(0.15, 0.3, 1, 0.2);
 			color_low = new WorldWind.Color(0.15, 0.3, 1, 0.2);
 			color_mid = new WorldWind.Color(0.15, 0.3, 1, 0.2);
