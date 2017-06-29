@@ -10,11 +10,16 @@
     <script src="LayerManager.js"></script>
     <script src="http://worldwindserver.net/webworldwind/worldwindlib.js" type="text/javascript"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="stylesheets/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/tooltipster-sideTip-borderless.min.css" />
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript" src="javascripts/tooltipster.bundle.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <!--<script data-main="CustomPlacemark" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.17/require.min.js"></script>-->
 	<script src="javascripts/spreadout.js"></script>
+    <!--Data display-->
     
+    <script src="https://d3js.org/d3.v4.min.js"></script>
     <script type="text/javascript" src="javascripts/prettify.js"></script>
     <link rel="stylesheet" href="stylesheets/prettify.css" type="text/css">
     <script src="javascripts/select.js"></script>
@@ -48,35 +53,40 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" onclick="addTree()">Smart Pollen Map (aka SmartyPlants)</a>
+                <a class="navbar-brand" onclick="TreeStat()">Smart Pollen Map (aka SmartyPlants)</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
 
                 <div class="example">
-
+                    
                     <div class="btn-group test">
-                        <img id="plus" onclick="openDialog()" href="#" src="images/plus.png" />
+                        
+                        <img id="plus" class="tooltipstuff" onclick="openDialog()" href="#" src="images/plus.png" title="With this Button you can add your own Trees to our Database and help others."/>
+                        
+                            
+                       
                     </div>
-
+                    <button style="display: none;" id="myBtn">Open Modal</button>
 					<!--div id="dialog_addTree" title="Add custom tree">
 					</div-->
 
-                    <div class="btn-group test">
+                    <div class="btn-group test tooltipstuff" titel="Here you can select if you want to see Historic Wind Data or recent Wind Data">
                         <select id="recentold-order">
                             <option value="2">Recent Data</option>
                             <option value="1">Historic</option>
 
                         </select>
+                        
                         <!--<button id="recentold-order-button" class="btn btn-success">Recent or Historic Data</button>-->
                     </div>
 
 
 
 
-                    <div class="btn-group" id="month">
-                        <select id="example-order" multiple="multiple">
+                    <div class="btn-group tooltipstuff" id="month" title="Here you can select which month interests you.">
+                        <select id="example-order" > <!-- multiple="multiple" -->
                             <option value="1">January</option>
                             <option value="2">February</option>
                             <option value="3">March</option>
@@ -90,21 +100,21 @@
                             <option value="11">November</option>
                             <option value="12">December</option>
                         </select>
-                        <button id="example-order-button" class="btn btn-success">Month selection</button>
+                        <button id="example-order-button" class="btn btn-success">Apply Month</button>
                     </div>
 
 
-                    <div class="btn-group">
+                    <div class="btn-group tooltipstuff" title="Here you can select which types of Trees interest you.">
+                        
                         <select id="tree-order" multiple="multiple">
                             <optgroup label="high alergenic">
-                                <option value="25">Birke</option>
-                                <option value="23">Erle</option>
-                                <option value="20">Hasel</option>
+                                <option style="color: rgb(75,0,75)" value="25">Birke</option>
+                                <option style="color: rgb(100,75,0)"value="23">Erle</option>
+                                <option style="color: rgb(100,100,20)"value="20">Hasel</option>
                             </optgroup>
                             <optgroup label="low alergenic">
                                 <option value="3">Ahorn</option>
                                 <option value="27">Apfel</option>
-                                <option value="19">Beere</option>
                                 <option value="24">Birne</option>
                                 <option value="2">Buche</option>
                                 <option value="17">Buchs</option>
@@ -132,14 +142,15 @@
                             <optgroup label="other">
                                 <option value="11">other</option>
                             </optgroup>
-                                
+
                         </select>
-
-                        <button id="tree-order-button" class="btn btn-success">Tree selection</button>
+                        <button id="tree-order-button" class="btn btn-success">Apply Tree(s)</button>
+                        
                     </div>
-
-                    
-                </div>
+                    <div class="btn-group tooltipstuff" style="width: 40px;float: right;" title="With a click here you can clear your tree selection">
+                        <button id="clear-button" style="float: right;" onclick="Clearall()" class="btn btn-danger">Clear Map</button>
+                    </div>
+                    </div>
             </div>
 
         </div>
@@ -152,6 +163,35 @@
                 Your browser does not support HTML5 Canvas.
             </canvas>
         </div>
+    <!-- The Modal -->
+    <div id="myModal" class="modal"  style="background-color:rgba(51,51,51,0.7);">
+
+        <!-- Modal content -->
+        <div class="modal-content" style="background-color:rgba(51,51,51,0.7);">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>Tree Statistic</h2>
+            </div>
+            <div class="modal-body" background="transparent">
+                <svg width="1260" height="500"></svg>
+                <script>
+                    
+
+                </script>
+                <!--<p>Some text in the Modal Body</p>
+                <p>Some other text...</p>-->
+            </div>
+            <div class="modal-footer">
+                <h4>This Statistic shows you how likely your selected Trees distribute Pollen in certain Months!  </h4>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+
+    </script>
+
         <!--</div>-->
         
         <!--<div>
@@ -162,6 +202,7 @@
         
     <script src="CustomPlacemark.js"></script>
 	<script src="javascripts/createNewTree.js"></script>
+    <script src="javascripts/statistic.js"></script>
 </body>
 
 </html>

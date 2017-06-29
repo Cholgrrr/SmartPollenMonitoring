@@ -1,58 +1,4 @@
-/*body {
- 
-  font: 10px "Lucida Grande", Helvetica, Arial, sans-serif;
-  color: red;
-}*/
 
-/*a {
-  color: #00B7FF;
-}
-.dropdown {
-    color: palevioletred
-}*/
-/*.navbar-nav > li > .dropdown-menu { background-color: red; }*/
-/*.btn-block {
-    color: red;
-}
-#projectionDropdown {
-    color:red;
-}
-.btn-info{
-    border-color:red;
-}
-.dropCss{
-    border-color: red;
-    color: red;
-
-}
-a {
-  color: #00B7FF;
-}*/
-/*.dropdown {
-    color: palevioletred
-}
-.navbar-nav > li > .dropdown-menu { background-color: red; }
-.btn-block {
-    color: red;
-}
-#projectionDropdown {
-    color:red;
-}
-.btn-info{
-    border-color:red;
-}*/
-/*.dropCss{
-    border-color: darkseagreen;
-    background-color: darkseagreen;
-}*/
-/*.overhead{
-    font: 20px;
-}*/
-/*#h1{
-    font-size: 30px;
-    padding: 10px;
-    margin-top:10px;
-}*/
 #canvasOne{
 position: absolute;
     top: 0;
@@ -108,7 +54,7 @@ position: absolute;
 .test{
     width:10%;
 }
-.btn-success{
+.btn-success, .btn-danger{
     margin-top:4px;
 }
 
@@ -123,10 +69,14 @@ position: absolute;
 }
 #tree-order-button,#example-order-button{
     width:200px;
+    position:relative;
+    float:left;
 
 }
 #tree-order,#example-order{
     width:200px;
+    position:relative;
+    float:left;
 }
 #month{
     margin-left: 20px;
@@ -144,3 +94,96 @@ position: absolute;
 #dialogTree-order{
     width:100%;
 }
+
+
+/*################################################*/
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    -webkit-animation-name: fadeIn; /* Fade in the background */
+    -webkit-animation-duration: 0.4s;
+    animation-name: fadeIn;
+    animation-duration: 0.4s
+}
+
+/* Modal Content */
+.modal-content {
+    position: fixed;
+    bottom: 0;
+    background-color: #fefefe;
+    width: 100%;
+    -webkit-animation-name: slideIn;
+    -webkit-animation-duration: 0.4s;
+    animation-name: slideIn;
+    animation-duration: 0.4s
+}
+
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
+
+.modal-body {padding: 2px 16px;}
+
+.modal-footer {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
+
+/* Add Animation */
+@-webkit-keyframes slideIn {
+    from {bottom: -300px; opacity: 0} 
+    to {bottom: 0; opacity: 1}
+}
+
+@keyframes slideIn {
+    from {bottom: -300px; opacity: 0}
+    to {bottom: 0; opacity: 1}
+}
+
+@-webkit-keyframes fadeIn {
+    from {opacity: 0} 
+    to {opacity: 1}
+}
+
+@keyframes fadeIn {
+    from {opacity: 0} 
+    to {opacity: 1}
+}
+/*#################################################*/
+.axis line{
+  stroke: white;
+}
+
+.axis path{
+  stroke: white;
+}
+
+.axis text{
+  fill: white;
+}  

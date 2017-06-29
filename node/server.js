@@ -95,7 +95,7 @@ app.post('/postTreeType', function (req, res) {
 		if (Object.keys(data).length > 0) { 
 			
 			//generate the query string
-			let query_string = "select lat, lon from trees_latlon where ";
+			let query_string = "select lat, lon, treetype from trees_latlon where ";
 			query_string += ("lat>" + data[0] + " and lat<" + data[1] + " and lon>" + data[2] + " and lon< " + data[3]);
 			query_string += " and (";
 			query_string += ("treetype=" + "'" + data[4] + "'");
@@ -137,7 +137,6 @@ app.post('/insertTree', function (req, res) {
 		input_tree[2] = data.treetype;
 		input_tree[3] = data.age;
 		input_tree[4] = data.diameter;
-		console.log(input_tree);
 		
 		// request the data 
 		db.result("INSERT INTO trees_latlon(lat, lon, treetype, age, diameter) VALUES($1, $2, $3, $4, $5)", input_tree)
@@ -153,6 +152,163 @@ app.post('/insertTree', function (req, res) {
 	
     catch (err) {
         console.log('.../insertTree failed!\n' + err);
+    }
+
+});
+
+
+// ----------------------------------------------------------
+// Get blooming data according to the month and the tree type
+// delivers an object with the selected treetypes 
+// and their corresponding blooming value for the current month
+// month in format integer mm
+
+app.post('/getBlooming', function (req, res) {
+ 
+    try {
+		
+        const data = req.body;
+		
+		// set the month
+		let month;
+		if (data[Object.keys(data).length-1] === '01') {
+			month = 'jan';
+		}
+		else if (data[Object.keys(data).length-1] === '02') {
+			month = 'feb';
+		}
+		else if (data[Object.keys(data).length-1] === '03') {
+			month = 'mar';
+		}
+		else if (data[Object.keys(data).length-1] === '04') {
+			month = 'apr';
+		}
+		else if (data[Object.keys(data).length-1] === '05') {
+			month = 'may';
+		}
+		else if (data[Object.keys(data).length-1] === '06') {
+			month = 'jun';
+		}
+		else if (data[Object.keys(data).length-1] === '07') {
+			month = 'jul';
+		}
+		else if (data[Object.keys(data).length-1] === '08') {
+			month = 'aug';
+		}
+		else if (data[Object.keys(data).length-1] === '09') {
+			month = 'sep';
+		}
+		else if (data[Object.keys(data).length-1] === '10') {
+			month = 'okt';
+		}
+		else if (data[Object.keys(data).length-1] === '11') {
+			month = 'nov';
+		}
+		else if (data[Object.keys(data).length-1] === '12') {
+			month = 'dec';
+		}
+		else {
+			month = 'aug';
+		}
+ 
+		let query_string = "select tree_type, " + month + ' as month'; 
+		query_string += " from tree_blooming where (tree_type='" + data[0] + "'";
+		for (i = 1; i < Object.keys(data).length-1; i++) {
+			query_string += (" or tree_type=" + "'" + data[i] + "'");
+		}
+		query_string += ");"; 
+		console.log(query_string); 
+		
+		// request the data 
+		db.result(query_string)
+		.then(result => {
+			res.json(result.rows);
+			console.log(result.rows);
+		})
+		.catch(error => {
+			console.log('ERROR:', error);
+		});			
+		console.log('.../getBlooming successful!');
+    }
+	
+    catch (err) {
+        console.log('.../getBlooming failed!\n' + err);
+    }
+
+});
+
+
+// ----------------------------------------------------------
+// Get blooming data according to the month and the tree type
+// delivers an object with the selected treetypes 
+// and their corresponding blooming value for the current month
+// month in format string sss
+
+app.post('/getBloomingHist', function (req, res) {
+ 
+    try {
+		
+        const data = req.body;
+		
+		// set the month
+		let month = data[Object.keys(data).length-1];
+ 
+		let query_string = "select tree_type, " + month + ' as month'; 
+		query_string += " from tree_blooming where (tree_type='" + data[0] + "'";
+		for (i = 1; i < Object.keys(data).length-1; i++) {
+			query_string += (" or tree_type=" + "'" + data[i] + "'");
+		}
+		query_string += ");"; 
+		console.log(query_string); 
+		
+		// request the data 
+		db.result(query_string)
+		.then(result => {
+			res.json(result.rows);
+			console.log(result.rows);
+		})
+		.catch(error => {
+			console.log('ERROR:', error);
+		});			
+		console.log('.../getBloomingStr successful!');
+    }
+	
+    catch (err) {
+        console.log('.../getBloomingStr failed!\n' + err);
+    }
+
+}); 
+
+
+// -----------------------------------------------------------
+// Get blooming data for the selected tree types for all month
+
+app.post('/getBloomingAll', function (req, res) {
+ 
+    try {
+		
+        const data = req.body;
+		console.log(data);
+		
+		let query_string = "select * from tree_blooming where (tree_type='" + data[0] + "'"; 
+		for (i = 1; i < Object.keys(data).length; i++) {
+			query_string += (" or tree_type=" + "'" + data[i] + "'");
+		}
+		query_string += ");"; 
+		console.log(query_string);
+		// request the data 
+		db.result(query_string)
+		.then(result => {
+			res.json(result.rows);
+		})
+		.catch(error => {
+			console.log('ERROR:', error);
+		});			
+		console.log('.../getBloomingAll successful!');
+    }
+	
+    catch (err) {
+        console.log('.../getBloomingAll failed!\n' + err);
     }
 
 });
