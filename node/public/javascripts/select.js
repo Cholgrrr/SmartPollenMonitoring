@@ -101,6 +101,46 @@ try {
 		    //};
 				histwind = "";
 				histwind = monthselection[0];
+				if (histwind == 'January') {
+				    histwind = 'jan';
+				}
+				else if (histwind == 'February') {
+				    histwind = 'feb';
+				}
+				else if (histwind == 'March') {
+				    histwind = 'mar';
+				}
+				else if (histwind == 'April') {
+				    histwind = 'apr';
+				}
+				else if (histwind == 'May') {
+				    histwind = 'may';
+				}
+				else if (histwind == 'June') {
+				    histwind = 'jun';
+				}
+				else if (histwind == 'July') {
+				    histwind = 'jul';
+				}
+				else if (histwind == 'August') {
+				    histwind = 'aug';
+				}
+				else if (histwind == 'September') {
+				    histwind = 'sep';
+				}
+				else if (histwind == 'October') {
+				    histwind = 'okt';
+				}
+				else if (histwind == 'November') {
+				    histwind = 'nov';
+				}
+				else if (histwind == 'December') {
+				    histwind = 'dec';
+				}
+				else {
+				    histwind = 'aug';
+				}
+				
 				console.log(histwind);
 			//$.ajax({
 			//		type: "POST",
