@@ -364,6 +364,7 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, tra
 		att.drawOutline = true;
 		att.outlineColor = boundary_big;
 		att.interiorColor = color_start;
+		att.outerWidth = 0.1;
 		
 		// make the ShapeAttributes for small Ellispe
 		var att2 = new WorldWind.ShapeAttributes(null);

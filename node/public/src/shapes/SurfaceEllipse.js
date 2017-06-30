@@ -201,13 +201,14 @@ define([
          * The minimum number of intervals the ellipse generates.
          * @type {Number}
          */
-        SurfaceEllipse.MIN_NUM_INTERVALS = 24;
-
+        //SurfaceEllipse.MIN_NUM_INTERVALS = 24; 
+		SurfaceEllipse.MIN_NUM_INTERVALS = 8; 
         /**
          * The default number of intervals the ellipse generates.
          * @type {Number}
          */
-        SurfaceEllipse.DEFAULT_NUM_INTERVALS = 128;
+        //SurfaceEllipse.DEFAULT_NUM_INTERVALS = 128;
+		SurfaceEllipse.DEFAULT_NUM_INTERVALS = 64;
 
         return SurfaceEllipse;
     });
