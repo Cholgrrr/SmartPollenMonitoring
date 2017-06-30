@@ -508,7 +508,7 @@ function getTreeBloomingHist() {
 		}
 		
 		return histBlooming;
-}
+	}	
 	catch(err) {
 		console.log('->  function getTreeBlooming() failed!\n' + err);
 	}

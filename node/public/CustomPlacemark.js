@@ -91,126 +91,136 @@ var handleClick = function (recognizer) {
 	
 	// *** call the current pollen ellipses ***
 	function callDrawPollen() {
-		// initialize a renerable layer
-		var rend = new WorldWind.RenderableLayer();
-		// get the month number (mm) from the current date
-		var month = currentWind[0].in_date.slice(5, 7);
-		// get the blooming valuesl
-		var blooming = getTreeBlooming(month);
-		// defines the blooming value of the tree
-		var bloomFactor;
-		// ellipse color factor 
-		var color = 1;
-		var bloomFactorText;
 		
-		if (viewTrees.length > 0) {
-			for(i=0; i<viewTrees.length; i++) { 
-				
-				for (var k=0; k < blooming.length; k++) {
-					if (blooming[k].tree_type == viewTrees[i].treetype) {
-						if (blooming[k].month == 0) {
-							bloomFactor = 0.01;
-							bloomFactorText = "no pollen";
-						}
-						else if (blooming[k].month == 1) {
-							bloomFactor = 1;
-							bloomFactorText = "Highest";
-						}
-						else if (blooming[k].month == 0.66) {
-							bloomFactor = 0.66;
-							bloomFactorText = "Medium";
-						}
-						else if (blooming[k].month == 0.33) {
-							bloomFactor = 0.33;
-							bloomFactorText = "Low";
-						}
-						else {
-							bloomFactor = blooming[k].month;
-						}
-						// set the color
-						if (viewTrees[i].treetype == 'Birke') {
-							color = 21; 
-						}
-						else if (viewTrees[i].treetype == 'Erle') {
-							color = 31;
-						}
-						else if (viewTrees[i].treetype == 'Hasel') {
-							color = 41;
-						}
-						else {
-							color = 51; 
-						}
-					}			
+		try {
+			// initialize a renerable layer
+			var rend = new WorldWind.RenderableLayer();
+			// get the month number (mm) from the current date
+			var month = currentWind[0].in_date.slice(5, 7);
+			// get the blooming valuesl
+			var blooming = getTreeBlooming(month);
+			// defines the blooming value of the tree
+			var bloomFactor;
+			// ellipse color factor 
+			var color = 1;
+			var bloomFactorText;
+			
+			if (viewTrees.length > 0) {
+				for(i=0; i<viewTrees.length; i++) { 
+					
+					for (var k=0; k < blooming.length; k++) {
+						if (blooming[k].tree_type == viewTrees[i].treetype) {
+							if (blooming[k].month == 0) {
+								bloomFactor = 0.01;
+								bloomFactorText = "no pollen";
+							}
+							else if (blooming[k].month == 1) {
+								bloomFactor = 1;
+								bloomFactorText = "Highest";
+							}
+							else if (blooming[k].month == 0.66) {
+								bloomFactor = 0.66;
+								bloomFactorText = "Medium";
+							}
+							else if (blooming[k].month == 0.33) {
+								bloomFactor = 0.33;
+								bloomFactorText = "Low";
+							}
+							else {
+								bloomFactor = blooming[k].month;
+							}
+							// set the color
+							if (viewTrees[i].treetype == 'Birke') {
+								color = 21; 
+							}
+							else if (viewTrees[i].treetype == 'Erle') {
+								color = 31;
+							}
+							else if (viewTrees[i].treetype == 'Hasel') {
+								color = 41;
+							}
+							else {
+								color = 51; 
+							}
+						}			
+					}
+		
+					drawPollenSpread(currentWind[0].speed, currentWind[0].direction, viewTrees[i].lat, viewTrees[i].lon, 250, bloomFactor, color,viewTrees[i].treetype,bloomFactorText);
 				}
-	
-				drawPollenSpread(currentWind[0].speed, currentWind[0].direction, viewTrees[i].lat, viewTrees[i].lon, 250, bloomFactor, color,viewTrees[i].treetype,bloomFactorText);
 			}
+			
+		}	
+		catch(err) {
+			console.log('->  function callDrawPollen() failed!\n' + err);
 		}
+		
 	}
 	
 	// *** draw historical pollen ellipses ***
  	function callPollenHistory() {
 		
-		var blooming = getTreeBloomingHist();
-		//console.log('hist data'); 
-		//console.log(histdata);
-		
-		
-				// initialize a renerable layer
-		var rend = new WorldWind.RenderableLayer();
-		// get the blooming valuesl
-		var blooming = getTreeBloomingHist();
-		// defines the blooming value of the tree
-		var bloomFactor;
-		// ellipse color factor 
-		var color = 1;
-		var bloomFactorText;
-		if (viewTrees.length > 0) {
-			for(i=0; i<viewTrees.length; i++) { 
-				
-				for (var k=0; k < blooming.length; k++) {
-					if (blooming[k].tree_type == viewTrees[i].treetype) {
-						// set the blooming
-						if (blooming[k].month == 0) {
-							bloomFactor = 0.01;
-							bloomFactorText = "no pollen";
-						}
-						else if (blooming[k].month == 1) {
-							bloomFactor = 1;
-							bloomFactorText = "Highest";
-						}
-						else if (blooming[k].month == 0.66) {
-							bloomFactor = 0.66;
-							bloomFactorText = "Medium";
-						}
-						else if (blooming[k].month == 0.33) {
-							bloomFactor = 0.33;
-							bloomFactorText = "Low";
-						}
-						else {
-							bloomFactor = blooming[k].month;
-						}
-						// set the color
-						if (viewTrees[i].treetype == 'Birke') {
-							color = 22; 
-						}
-						else if (viewTrees[i].treetype == 'Erle') {
-							color = 32;
-						}
-						else if (viewTrees[i].treetype == 'Hasel') {
-							color = 42;
-						}
-						else {
-							color = 52; 
-						}
-						
-					}			
+		try {
+			
+			// history blooming
+			var blooming = getTreeBloomingHist();
+			// initialize a renerable layer
+			var rend = new WorldWind.RenderableLayer();
+			// get the blooming valuesl
+			var blooming = getTreeBloomingHist();
+			// defines the blooming value of the tree
+			var bloomFactor;
+			// ellipse color factor 
+			var color = 1;
+			var bloomFactorText;
+			if (viewTrees.length > 0) {
+				for(i=0; i<viewTrees.length; i++) { 
+					
+					for (var k=0; k < blooming.length; k++) {
+						if (blooming[k].tree_type == viewTrees[i].treetype) {
+							// set the blooming
+							if (blooming[k].month == 0) {
+								bloomFactor = 0.01;
+								bloomFactorText = "no pollen";
+							}
+							else if (blooming[k].month == 1) {
+								bloomFactor = 1;
+								bloomFactorText = "Highest";
+							}
+							else if (blooming[k].month == 0.66) {
+								bloomFactor = 0.66;
+								bloomFactorText = "Medium";
+							}
+							else if (blooming[k].month == 0.33) {
+								bloomFactor = 0.33;
+								bloomFactorText = "Low";
+							}
+							else {
+								bloomFactor = blooming[k].month;
+							}
+							// set the color
+							if (viewTrees[i].treetype == 'Birke') {
+								color = 22; 
+							}
+							else if (viewTrees[i].treetype == 'Erle') {
+								color = 32;
+							}
+							else if (viewTrees[i].treetype == 'Hasel') {
+								color = 42;
+							}
+							else {
+								color = 52; 
+							}
+							
+						}			
+					}
+					drawPollenSpread(currentWind[0].speed, currentWind[0].direction, viewTrees[i].lat, viewTrees[i].lon, 250, bloomFactor, color,viewTrees[i].treetype,bloomFactorText);
 				}
-				drawPollenSpread(currentWind[0].speed, currentWind[0].direction, viewTrees[i].lat, viewTrees[i].lon, 250, bloomFactor, color,viewTrees[i].treetype,bloomFactorText);
 			}
+		
+		}	
+		catch(err) {
+			console.log('->  function callPollenHistory() failed!\n' + err);
 		}
-		
-		
 		
 	}	
 	
