@@ -101,6 +101,7 @@ var handleClick = function (recognizer) {
 		var bloomFactor;
 		// ellipse color factor 
 		var color = 1;
+		var bloomFactorText;
 		
 		if (viewTrees.length > 0) {
 			for(i=0; i<viewTrees.length; i++) { 
@@ -108,10 +109,20 @@ var handleClick = function (recognizer) {
 				for (var k=0; k < blooming.length; k++) {
 					if (blooming[k].tree_type == viewTrees[i].treetype) {
 						if (blooming[k].month == 0) {
-							bloomFactor = 0.1;
+							bloomFactor = 0.01;
+							bloomFactorText = "no pollen";
 						}
 						else if (blooming[k].month == 1) {
-							bloomFactor = 0.8;
+							bloomFactor = 1;
+							bloomFactorText = "Highest";
+						}
+						else if (blooming[k].month == 0.66) {
+							bloomFactor = 0.66;
+							bloomFactorText = "Medium";
+						}
+						else if (blooming[k].month == 0.33) {
+							bloomFactor = 0.33;
+							bloomFactorText = "Low";
 						}
 						else {
 							bloomFactor = blooming[k].month;
@@ -132,7 +143,7 @@ var handleClick = function (recognizer) {
 					}			
 				}
 	
-				drawPollenSpread(currentWind[0].speed, currentWind[0].direction, viewTrees[i].lat, viewTrees[i].lon, 5, bloomFactor, color,viewTrees[i].treetype);
+				drawPollenSpread(currentWind[0].speed, currentWind[0].direction, viewTrees[i].lat, viewTrees[i].lon, 250, bloomFactor, color,viewTrees[i].treetype,bloomFactorText);
 			}
 		}
 	}
@@ -153,7 +164,7 @@ var handleClick = function (recognizer) {
 		var bloomFactor;
 		// ellipse color factor 
 		var color = 1;
-		
+		var bloomFactorText;
 		if (viewTrees.length > 0) {
 			for(i=0; i<viewTrees.length; i++) { 
 				
@@ -161,10 +172,20 @@ var handleClick = function (recognizer) {
 					if (blooming[k].tree_type == viewTrees[i].treetype) {
 						// set the blooming
 						if (blooming[k].month == 0) {
-							bloomFactor = 0.1;
+							bloomFactor = 0.01;
+							bloomFactorText = "no pollen";
 						}
 						else if (blooming[k].month == 1) {
-							bloomFactor = 0.8;
+							bloomFactor = 1;
+							bloomFactorText = "Highest";
+						}
+						else if (blooming[k].month == 0.66) {
+							bloomFactor = 0.66;
+							bloomFactorText = "Medium";
+						}
+						else if (blooming[k].month == 0.33) {
+							bloomFactor = 0.33;
+							bloomFactorText = "Low";
 						}
 						else {
 							bloomFactor = blooming[k].month;
@@ -185,7 +206,7 @@ var handleClick = function (recognizer) {
 						
 					}			
 				}
-				drawPollenSpread(currentWind[0].speed, currentWind[0].direction, viewTrees[i].lat, viewTrees[i].lon, 5, bloomFactor, color,viewTrees[i].treetype);
+				drawPollenSpread(currentWind[0].speed, currentWind[0].direction, viewTrees[i].lat, viewTrees[i].lon, 250, bloomFactor, color,viewTrees[i].treetype,bloomFactorText);
 			}
 		}
 		
@@ -217,11 +238,11 @@ var highlightController = new WorldWind.HighlightController(wwd);
 //		  - wind direction
 //		  - latitude and longitude of the tree
 //		  - strenght parameter (polen blooming value)
-function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, trans, p_color, TreeType) {
+function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, bloomingF, p_color, TreeType, bloomingT) {
 		
 	try {
 		
-		trans = trans * 0.7;
+		var trans = 0.2;
 		// define color
 		// new WorldWind.Color(1, 1, 1, trans);
 		var boundary_big;
@@ -335,7 +356,7 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, tra
 		
 		// var StrenghtPara = 100.0;	 // Default Is 5.0
 		// computeNewCenter of the Big Ellipse
-		var St = StrenghtPara * windStr;
+		var St = StrenghtPara *bloomingF;// * windStr
 		windDeg = windDeg + 90.0;
 		var EllispeCenterLATR = Math.asin( Math.sin(TreeLatR)*Math.cos(St/R_earth) + Math.cos(TreeLatR)*Math.sin(St/R_earth)*Math.cos(windDegR) );
 		var EllispeCenterLONGR = TreeLongR + Math.atan2(Math.sin(windDegR)*Math.sin(St/R_earth)*Math.cos(TreeLatR),Math.cos(St/R_earth)-Math.sin(TreeLatR)*Math.sin(EllispeCenterLATR));
@@ -344,7 +365,7 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, tra
 		
 		// computeNewCenter of the Small Ellipse
 		var StrenghtParas = StrenghtPara*0.3;	//
-		var St = StrenghtParas * windStr;
+		var St = StrenghtParas *bloomingF;// * windStr
 		var EllispeCenterLATRs = Math.asin( Math.sin(TreeLatR)*Math.cos(St/R_earth) + Math.cos(TreeLatR)*Math.sin(St/R_earth)*Math.cos(windDegR) );
 		var EllispeCenterLONGRs = TreeLongR + Math.atan2(Math.sin(windDegR)*Math.sin(St/R_earth)*Math.cos(TreeLatR),Math.cos(St/R_earth)-Math.sin(TreeLatR)*Math.sin(EllispeCenterLATR));
 		var EllispeCenterLATs = EllispeCenterLATRs* 180 / Math.PI;
@@ -352,7 +373,7 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, tra
 		
 		// computeNewCenter of the Medium Ellipse
 		var StrenghtParaM = StrenghtPara*0.5;	//
-		var St = StrenghtParaM * windStr;
+		var St = StrenghtParaM *bloomingF;// * windStr
 		var EllispeCenterLATRm = Math.asin( Math.sin(TreeLatR)*Math.cos(St/R_earth) + Math.cos(TreeLatR)*Math.sin(St/R_earth)*Math.cos(windDegR) );
 		var EllispeCenterLONGRm = TreeLongR + Math.atan2(Math.sin(windDegR)*Math.sin(St/R_earth)*Math.cos(TreeLatR),Math.cos(St/R_earth)-Math.sin(TreeLatR)*Math.sin(EllispeCenterLATR));
 		var EllispeCenterLATm = EllispeCenterLATRm* 180 / Math.PI;
@@ -388,7 +409,7 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, tra
 		attc.interiorColor = color_out;
 		
 		//------------Draw Big Ellipse----------------
-		var SE_a_axe = windStr * StrenghtPara * 2;
+		var SE_a_axe =  StrenghtPara * 2 *bloomingF; //*windStr
 		var SE_b_axe = SE_a_axe / 2;
 		var el_lo = new WorldWind.Position(EllispeCenterLAT, EllispeCenterLONG,1e5);
 		var SE = new WorldWind.SurfaceEllipse(el_lo, SE_a_axe, SE_b_axe, windDeg, att);
@@ -396,7 +417,7 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, tra
 		rend.addRenderable(SE);
 
 		//------------Draw Medium Ellipse----------------
-		var SEm_a_axe = windStr * StrenghtPara * 1.2;
+		var SEm_a_axe =  StrenghtPara * 1.2*bloomingF; //*windStr
 		var SEm_b_axe = SEm_a_axe / 2;
 		var el_lom = new WorldWind.Position(EllispeCenterLATm, EllispeCenterLONGm,1e5);
 		var SEm = new WorldWind.SurfaceEllipse(el_lom, SEm_a_axe, SEm_b_axe, windDeg, attm);
@@ -404,7 +425,7 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, tra
 		rend.addRenderable(SEm); // add Big ellispe to the globe
 
 		//------------Draw Small Ellipse----------------
-		var SEs_a_axe = windStr * StrenghtPara * 0.8;
+		var SEs_a_axe = StrenghtPara * 0.8*bloomingF; //*windStr
 		var SEs_b_axe = SEs_a_axe / 2 ;
 		var el_los = new WorldWind.Position(EllispeCenterLATs, EllispeCenterLONGs,1e5);
 		var SEs = new WorldWind.SurfaceEllipse(el_los, SEs_a_axe, SEs_b_axe, windDeg, att2);
@@ -429,12 +450,12 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, tra
 		if ((p_color == 21) || (p_color == 31) || (p_color == 41) || (p_color == 22) || (p_color == 32) || (p_color == 42)) {
 			//set text for High risk trees
 			textAttributes.color = WorldWind.Color.YELLOW;
-			var text = new WorldWind.GeographicText(textPosition,"\u2663 " + TreeType + "\n" + "Wind Direction: " + windDeg + "\xB0 \n" + "Wind Speed: " + windStr + "m/s\n" + "Type: High allergenic");
+			var text = new WorldWind.GeographicText(textPosition,"\u2663 " + TreeType + "\n" + "Wind Info: Deg " + windDeg + "\xB0 " + "Speed: " + windStr + "m/s\n" + "Type: High allergenic\n" + "Season Effect: " + bloomingT);
 		}
 		else {
 			//set text for Low risk & other trees
 			textAttributes.color = WorldWind.Color.CYAN;
-			var text = new WorldWind.GeographicText(textPosition,"\u2663 " + TreeType + "\n" + "Wind Direction: " + windDeg + "\xB0 \n" + "Wind Speed: " + windStr + "m/s \n" + "Type: Low allergenic");
+			var text = new WorldWind.GeographicText(textPosition,"\u2663 " + TreeType + "\n" + "Wind Info: Deg " + windDeg + "\xB0 " + "Speed: " + windStr + "m/s \n" + "Type: Low allergenic\n" + "Season Effect: " + bloomingT);
 		}
 		text.attributes = textAttributes;
 		rend.addRenderable(text);
