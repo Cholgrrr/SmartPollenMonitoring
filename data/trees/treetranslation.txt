@@ -27,3 +27,34 @@ Walnuss         = Walnut
 Weide           = Pasture
 Zeder           = Cedar
 Zypresse        = Cypress
+
+
+
+
+
+
+Goetterbaum     = Ailanthus
+Apfel           = Apple
+Esche           = Ash
+Buche           = Beech
+Buchs           = Buchs
+Kirsche         = Cherry
+Kastanie        = Chestnut
+Zeder           = Cedar
+Zypresse        = Cypress
+Holunder        = Elder
+Ulme            = Elm
+Tanne           = Fir
+Eibe            = Yew
+Flieder         = Lilac
+Linde           = Lime
+Ahorn           = Maple
+Eiche           = Oak
+Weide           = Pasture
+Birne           = Pear
+Kiefer          = Pine
+Pflaume         = Plum
+Robinie         = Robinie
+Schnur          = Schnur
+Schlafbaum      = Sleeping-Tree
+Walnuss         = Walnut

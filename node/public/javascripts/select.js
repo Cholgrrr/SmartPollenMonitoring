@@ -2,8 +2,12 @@
 // ---------------------------
 // needed variables
 let treeselection = {};
+// rectangle view for historical data
 let histrec;
+// historical wind data
 let histwind;
+// tree translation
+var treetrans = [];
 histrec = 0;
 
 // ----------------------------------
@@ -140,19 +144,10 @@ try {
 				else {
 				    histwind = 'aug';
 				}
-				
-				console.log(histwind);
-			//$.ajax({
-			//		type: "POST",
-			//		url: '/postMonth',
-			//		data: monthselection,
-			//}).done(function (monthdata) { Test(monthdata); });
-			//function Test(monthdata) {
-			//	histwind = monthdata;
-			//};
 						   
 		});
 	});
+	
 
 	// --------------------------------------
 	// Generation of the tree multiselection
@@ -232,25 +227,15 @@ try {
 			    
 
 			};
-			//alert(histrec);
+
             // call button modul
 			$("#myBtn").click();
 
 			
-			let lat_min = 50.127444;
-			let lat_max = 50.139964;
-			let lon_min = 8.36417;
-			let lon_max = 8.608373;
+			// ---- translate the treeselection for the database queries ----
 			
-			// tree translation
-			var treetrans = [];
 			treeselection_tmp = $('#tree-order option:selected');
 			
-			//console.log('treeselection_tmp[0].innerText: ');
-			//console.log(treeselection_tmp[0].innerText);
-			//let treeselection = {};
-			
-			// translate treeselection
 			for (i = 0; i < treeselection_tmp.length; i++) {
 				if (treeselection_tmp[i].innerText == 'Birch') {
 					treetrans[i] = 'Birke';
@@ -288,37 +273,39 @@ try {
 					treetrans[i] = 'Kirsche';
 				} else if (treeselection_tmp[i].innerText == 'Lime') {
 					treetrans[i] = 'Linde';
-				} 
-				
-				
-				else {
+				} else if (treeselection_tmp[i].innerText == 'Plum') {
+					treetrans[i] = 'Pflaume';
+				} else if (treeselection_tmp[i].innerText == 'Robinie') {
+					treetrans[i] = 'Robinie';
+				} else if (treeselection_tmp[i].innerText == 'Sleeping-Tree') {
+					treetrans[i] = 'Schlafbaum';
+				} else if (treeselection_tmp[i].innerText == 'Schnur') {
+					treetrans[i] = 'Schnur';
+				} else if (treeselection_tmp[i].innerText == 'Fir') {
+					treetrans[i] = 'Tanne';
+				} else if (treeselection_tmp[i].innerText == 'Elm') {
+					treetrans[i] = 'Ulme';
+				} else if (treeselection_tmp[i].innerText == 'Walnut') {
+					treetrans[i] = 'Walnuss';
+				} else if (treeselection_tmp[i].innerText == 'Pasture') {
+					treetrans[i] = 'Weide';
+				} else if (treeselection_tmp[i].innerText == 'Cedar') {
+					treetrans[i] = 'Zeder';
+				} else if (treeselection_tmp[i].innerText == 'Cypress') {
+					treetrans[i] = 'Zypresse';
+				} else if (treeselection_tmp[i].innerText == 'other') {
+					treetrans[i] = 'other';
+				} else {
 					treetrans[i] = 'Buche';
-				}
-				
-				
-			}
-			console.log(treetrans);
-			
-			
-			treeselection[0] = lat_min;
-			treeselection[1] = lat_max;
-			treeselection[2] = lon_min;
-			treeselection[3] = lon_max;
-			for (i = 0; i < treeselection_tmp.length; i++) {
-				treeselection[i+4] = treeselection_tmp[i].innerText;
-				//treeselection[i] = treeselection_tmp[i].innerText;  
+				}	
 			}
 			
-			let currentWind = {};
-			$.get("/currentWind", function(data, status){
-				currentWind = data; 
-			});
-			
-			$.ajax({
-				type: "POST",
-				url: '/postTreeType',
-				data: treeselection,
-			}).done(function (treedata) {/*callPollen(treedata);*/});	//
+			/*
+			for (i=0; i < treetrans.length; i++) {
+					console.log(treetrans[i]); 
+			}
+			// ---- translation end ----
+			*/
 			
 		});  
 	});
@@ -348,7 +335,7 @@ function getTreeRecCurrent(latmin, latmax, lonmin, lonmax) {
 		treeselection[3] = lonmax;
 		
 		for (i = 4; i < treeselection_tmp.length + 4; i++) {
-			treeselection[i] = treeselection_tmp[i-4].innerText;
+			treeselection[i] = treetrans[i-4];
 		} 
 
 		$.ajax({
@@ -404,7 +391,7 @@ function getTreeBlooming(monthdata) {
 		let tmp_cnt = 0; 
 		
 		for (i = 0; i < treeselection_tmp.length; i++) {
-			treeBlooming[i] = treeselection_tmp[i].innerText;
+			treeBlooming[i] = treetrans[i];
 			tmp_cnt = tmp_cnt + 1; 
 		} 
 		treeBlooming[tmp_cnt] = monthdata;
@@ -452,7 +439,7 @@ function getTreeBloomingAll() {
 		let treeBlooming = {};
 		
 		for (i = 0; i < treeselection_tmp.length; i++) {
-			treeBlooming[i] = treeselection_tmp[i].innerText;
+			treeBlooming[i] = treetrans[i];
 		} 
 
 		$.ajax({
@@ -468,6 +455,8 @@ function getTreeBloomingAll() {
 			allBlooming = bloomingdata;	 
 		}
 		
+		console.log('All bloomings');
+		console.log(allBlooming);
 		return allBlooming;
 }
 	catch(err) {
@@ -500,7 +489,7 @@ function getTreeBloomingHist() {
 		let tmp_cnt = 0; 
 		
 		for (i = 0; i < treeselection_tmp.length; i++) {
-			treeBlooming[i] = treeselection_tmp[i].innerText;
+			treeBlooming[i] = treetrans[i];
 			tmp_cnt = tmp_cnt + 1; 
 		} 
 		treeBlooming[tmp_cnt] = monthdata;

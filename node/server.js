@@ -14,6 +14,8 @@ app.use(express.static('public'));
 app.listen(3000);
 
 
+
+
 // --------------------------------------------
 // Generation data base connection to postgres
 
@@ -33,6 +35,8 @@ const connection = {
 
 const db = pgp(connection);
 console.log('successful connected to DB: NASAWIND!')
+
+
 
 
 // -----------------------------------
@@ -60,6 +64,8 @@ app.get('/treeLoad', function(req, res) {
 });
 
 
+
+
 // -----------------------------
 // Select the current wind datat 
 
@@ -82,6 +88,8 @@ app.get('/currentWind', function(req, res) {
 	}
 		
 });
+
+
 
 
 // -------------------------------------------------------------------------------------------
@@ -122,6 +130,8 @@ app.post('/postTreeType', function (req, res) {
 });
 
 
+
+
 // ----------------------------------------------------------------------
 // Select the trees, which were filtered through the multi tree selection
 
@@ -155,6 +165,8 @@ app.post('/insertTree', function (req, res) {
     }
 
 });
+
+
 
 
 // ----------------------------------------------------------
@@ -238,6 +250,8 @@ app.post('/getBlooming', function (req, res) {
 });
 
 
+
+
 // ----------------------------------------------------------
 // Get blooming data according to the month and the tree type
 // delivers an object with the selected treetypes 
@@ -280,6 +294,8 @@ app.post('/getBloomingHist', function (req, res) {
 }); 
 
 
+
+
 // -----------------------------------------------------------
 // Get blooming data for the selected tree types for all month
 
@@ -312,6 +328,8 @@ app.post('/getBloomingAll', function (req, res) {
     }
 
 });
+
+
 
 
 // ------------------------------------------------------------------------
@@ -352,6 +370,8 @@ try {
 catch(err) {
 	console.log('->  Update of wind data successful!\n' + err);
 }
+
+
 
 
 // -----------------

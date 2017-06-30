@@ -33,6 +33,83 @@ function TreeStat() {
         let mdata;
         mdata = getTreeBloomingAll();
 
+	
+		// ---- translate the tree_types -----
+		
+		for (i = 0; i < mdata.length; i++) {
+			if (mdata[i].tree_type == 'Birke') {
+				mdata[i].tree_type = 'Birch';
+			} else if (mdata[i].tree_type == 'Erle') {
+				mdata[i].tree_type = 'Alder';
+			} else if (mdata[i].tree_type == 'Hasel') {
+				mdata[i].tree_type = 'Hazel';
+			} else if (mdata[i].tree_type == 'Ahorn') {
+				mdata[i].tree_type = 'Maple';
+			} else if (mdata[i].tree_type == 'Apfel') {
+				mdata[i].tree_type = 'Apple';
+			} else if (mdata[i].tree_type == 'Birne') {
+				mdata[i].tree_type = 'Pear';
+			} else if (mdata[i].tree_type == 'Buche') {
+				mdata[i].tree_type = 'Beech';
+			} else if (mdata[i].tree_type == 'Buchs') {
+				mdata[i].tree_type = 'Buchs';
+			} else if (mdata[i].tree_type == 'Eibe') {
+				mdata[i].tree_type = 'Yew';
+			} else if (mdata[i].tree_type == 'Eiche') {
+				mdata[i].tree_type = 'Oak';
+			} else if (mdata[i].tree_type == 'Esche') {
+				mdata[i].tree_type = 'Ash';
+			} else if (mdata[i].tree_type == 'Flieder') {
+				mdata[i].tree_type = 'Lilac';
+			} else if (mdata[i].tree_type == 'Goetterbaum') {
+				mdata[i].tree_type = 'Ailanthus';
+			} else if (mdata[i].tree_type == 'Holunder') {
+				mdata[i].tree_type = 'Elder';
+			} else if (mdata[i].tree_type == 'Eibe') {
+				mdata[i].tree_type = 'Chestnut';
+			} else if (mdata[i].tree_type == 'Kiefer') {
+				mdata[i].tree_type = 'Pine';
+			} else if (mdata[i].tree_type == 'Kirsche') {
+				mdata[i].tree_type = 'Cherry';
+			} else if (mdata[i].tree_type == 'Linde') {
+				mdata[i].tree_type = 'Lime';
+			} else if (mdata[i].tree_type == 'Pflaume') {
+				mdata[i].tree_type = 'Plum';
+			} else if (mdata[i].tree_type == 'Robinie') {
+				mdata[i].tree_type = 'Robinie';
+			} else if (mdata[i].tree_type == 'Schlafbaum') {
+				mdata[i].tree_type = 'Sleeping-Tree';
+			} else if (mdata[i].tree_type == 'Schnur') {
+				mdata[i].tree_type = 'Schnur';
+			} else if (mdata[i].tree_type == 'Tanne') {
+				mdata[i].tree_type = 'Fir';
+			} else if (mdata[i].tree_type == 'Ulme') {
+				mdata[i].tree_type = 'Elm';
+			} else if (mdata[i].tree_type == 'Walnuss') {
+				mdata[i].tree_type = 'Walnut';
+			} else if (mdata[i].tree_type == 'Weide') {
+				mdata[i].tree_type = 'Pasture';
+			} else if (mdata[i].tree_type == 'Zeder') {
+				mdata[i].tree_type = 'Cedar';
+			} else if (mdata[i].tree_type == 'Zypresse') {
+				mdata[i].tree_type = 'Cypress';
+			} else if (mdata[i].tree_type == 'other') {
+				mdata[i].tree_type = 'other';
+			} else {
+				mdata[i].tree_type = mdata[i].tree_type;
+			}	
+		}
+
+		// ---- end of translation -----
+		
+		
+		
+		
+		
+		
+		
+		
+		
         //console.log(mdata);
         var jan = { Month: "January" };
         var feb = { Month: "February" };
