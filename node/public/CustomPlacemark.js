@@ -450,12 +450,12 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, blo
 		if ((p_color == 21) || (p_color == 31) || (p_color == 41) || (p_color == 22) || (p_color == 32) || (p_color == 42)) {
 			//set text for High risk trees
 			textAttributes.color = WorldWind.Color.YELLOW;
-			var text = new WorldWind.GeographicText(textPosition,"\u2663 " + TreeType + "\n" + "Wind Info: Deg " + windDeg + "\xB0 " + "Speed: " + windStr + "m/s\n" + "Type: High allergenic\n" + "Season Effect: " + bloomingT);
+			var text = new WorldWind.GeographicText(textPosition,"\u2663 " + TreeType + "\n" + "Wind Info: Deg " + windDeg + "\xB0 " + "Speed: " + windStr + "m/s\n" + "Type: High allergenic\n" + "Season Effect: " + bloomingT + "(" +bloomingF+ "%)");
 		}
 		else {
 			//set text for Low risk & other trees
 			textAttributes.color = WorldWind.Color.CYAN;
-			var text = new WorldWind.GeographicText(textPosition,"\u2663 " + TreeType + "\n" + "Wind Info: Deg " + windDeg + "\xB0 " + "Speed: " + windStr + "m/s \n" + "Type: Low allergenic\n" + "Season Effect: " + bloomingT);
+			var text = new WorldWind.GeographicText(textPosition,"\u2663 " + TreeType + "\n" + "Wind Info: Deg " + windDeg + "\xB0 " + "Speed: " + windStr + "m/s \n" + "Type: Low allergenic\n" + "Season Effect: " + bloomingT+ "(" +bloomingF+ "%)");
 		}
 		text.attributes = textAttributes;
 		rend.addRenderable(text);
