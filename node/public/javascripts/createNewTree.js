@@ -186,7 +186,6 @@ var dialogHTML = '<table id="myTable">' +
 			'<form class="form-inline">' +
 				'<div class="form-group">' +
 					'<label style="width: 76px">Diameter</label>' +
-<<<<<<< HEAD
 					'<input id="dialogDia" class="input" type="text" style="width:90px;" name="dialogDia" readonly>' +
 					'<button id="dialogDiaUp" class="input" style="position:relative;width:25px;height:25px;border-radius:50%;margin-left:5px;border:0px;padding:0px;" name="dialogDiaUp" onclick="diamCountUp()">' +
 						'<img src="images/up.png" title="Cancel" alt="..." height="25px" width="25px"/>' +
@@ -195,10 +194,8 @@ var dialogHTML = '<table id="myTable">' +
 						'<img src="images/down.png" title="Cancel" alt="..." height="25px" width="25px"/>' +
 					'</button>' +
 					'<label id="lblDia" style="margin-left: 5px">Enter the diameter of the tree crown</label>' +
-=======
-					'<input id="dialogDia" style="width: 180px; height: 26px" class="input" type="text" name="dialogDia">' +
-					'<label style="margin-left: 5px">Enter the diameter of the tree crown</label>' +
->>>>>>> 575462588c54fc55253acc95d28cf35e9916e49f
+					/* '<input id="dialogDia" style="width: 180px; height: 26px" class="input" type="text" name="dialogDia">' +
+					'<label style="margin-left: 5px">Enter the diameter of the tree crown</label>' + */
 				'</div>' +
 			'</form>' +	
 		'</tr>' +
@@ -206,13 +203,10 @@ var dialogHTML = '<table id="myTable">' +
 			'<form class="form-inline">' +
 				'<div class="form-group">' +
 					'<label style="width: 76px">Latitude</label>' +
-<<<<<<< HEAD
 					'<input id="dialogLat" class="input" type="text" name="dialogLat">' +
 					'<label id="lblLat" style="margin-left: 5px">Select the coordinates by clicking on the map</label>' +
-=======
-					'<input id="dialogLat" style="width: 180px; height: 26px" class="input" type="text" name="dialogLat">' +
-					'<label style="margin-left: 5px">Select the coordinates by clicking on the map</label>' +
->>>>>>> 575462588c54fc55253acc95d28cf35e9916e49f
+					/* '<input id="dialogLat" style="width: 180px; height: 26px" class="input" type="text" name="dialogLat">' +
+					'<label style="margin-left: 5px">Select the coordinates by clicking on the map</label>' + */
 				'</div>' +
 			'</form>' +	
 		'</tr>' +
@@ -220,13 +214,10 @@ var dialogHTML = '<table id="myTable">' +
 			'<form class="form-inline">' +
 				'<div class="form-group">' +
 					'<label style="width: 76px">Longitude</label>' +
-<<<<<<< HEAD
 					'<input id="dialogLon" class="input" type="text" name="dialogLon">' +
 					'<label id="lblLon" style="margin-left: 5px">Select the coordinates by clicking on the map</label>' +
-=======
-					'<input id="dialogLon" style="width: 180px; height: 26px" class="input" type="text" name="dialogLon">' +
-					'<label style="margin-left: 5px">Select the coordinates by clicking on the map</label>' +
->>>>>>> 575462588c54fc55253acc95d28cf35e9916e49f
+					/* '<input id="dialogLon" style="width: 180px; height: 26px" class="input" type="text" name="dialogLon">' +
+					'<label style="margin-left: 5px">Select the coordinates by clicking on the map</label>' + */
 				'</div>' +
 			'</form>' +	
 		'</tr>' +
@@ -234,13 +225,10 @@ var dialogHTML = '<table id="myTable">' +
 			'<form class="form-inline">' +
 				'<div class="form-group">' +
 					'<label style="width: 76px">Age</label>' +
-<<<<<<< HEAD
-					'<input id="dialogAge" class="input" type="text" name="dialogAg">' +
+					'<input id="dialogAge" class="input" type="text" name="dialogAge">' +
 					'<label id="lblAge" style="margin-left: 5px">Enter the Year the tree was planted in</label>' +
-=======
-					'<input id=dialogAge" style="width: 180px; height: 26px" class="input" type="text" name="dialogAge">' +
-					'<label style="margin-left: 5px">Enter the Year the tree was planted in</label>' +
->>>>>>> 575462588c54fc55253acc95d28cf35e9916e49f
+					/* '<input id=dialogAge" style="width: 180px; height: 26px" class="input" type="text" name="dialogAge">' +
+					'<label style="margin-left: 5px">Enter the Year the tree was planted in</label>' + */
 				'</div>' +
 			'</form>' +	
         '</tr>' +
