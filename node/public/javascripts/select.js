@@ -165,6 +165,8 @@ try {
 				if (checked) {
 					orderCount++;
 					$(option).data('order', orderCount);
+
+					//alert($('select#tree-order').val());
 				}
 				else {
 					$(option).data('order', '');

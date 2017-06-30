@@ -119,7 +119,7 @@ var handleClick = function (recognizer) {
 					}			
 				}
 	
-				drawPollenSpread(currentWind[0].speed, currentWind[0].direction, viewTrees[i].lat, viewTrees[i].lon, 5, bloomFactor, color);
+				drawPollenSpread(currentWind[0].speed, currentWind[0].direction, viewTrees[i].lat, viewTrees[i].lon, 5, bloomFactor, color,viewTrees[i].treetype);
 			}
 		}
 	}
@@ -172,7 +172,7 @@ var handleClick = function (recognizer) {
 						
 					}			
 				}
-				drawPollenSpread(currentWind[0].speed, currentWind[0].direction, viewTrees[i].lat, viewTrees[i].lon, 5, bloomFactor, color);
+				drawPollenSpread(currentWind[0].speed, currentWind[0].direction, viewTrees[i].lat, viewTrees[i].lon, 5, bloomFactor, color,viewTrees[i].treetype);
 			}
 		}
 		
@@ -196,6 +196,7 @@ var tapRecognizer = new WorldWind.TapRecognizer(wwd, handleClick);
 
 var rend = new WorldWind.RenderableLayer();
 var rend3D = new WorldWind.RenderableLayer();
+var textLayer = new WorldWind.RenderableLayer();
 
 // Now set up to handle highlighting.
 var highlightController = new WorldWind.HighlightController(wwd);
@@ -205,7 +206,7 @@ var highlightController = new WorldWind.HighlightController(wwd);
 //		  - wind direction
 //		  - latitude and longitude of the tree
 //		  - strenght parameter (polen blooming value)
-function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, trans, p_color) {
+function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, trans, p_color, TreeType) {
 		
 	try {
 		
@@ -366,7 +367,14 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, tra
 		rend.addRenderable(Circle);	
 		//rend.opacity = 0.3;	
 		
-		
+		//-----------Draw Text Attribute at the tree location --------
+		var textAttributes = new WorldWind.TextAttributes(null);
+		textAttributes.color = WorldWind.Color.CYAN;
+		textAttributes.depthTest = false;
+		var textPosition = new WorldWind.Position(TreeLat, TreeLong, 100);
+		var text = new WorldWind.GeographicText(textPosition, TreeType + "\n" + "Wind Direction: " + windDeg);
+		text.attributes = textAttributes;
+		rend.addRenderable(text);
 	}
 	catch(err) {
 		console.log('->  generate elipse failed!\n' + err);
@@ -374,6 +382,7 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, tra
 		
 }
 wwd.addLayer(rend);
+
 	
 	/* =============3D under developing========================
 	draw3DE(50.1405, 8.665, 0.001 );

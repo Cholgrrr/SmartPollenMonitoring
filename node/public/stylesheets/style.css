@@ -1,3 +1,20 @@
+.Birke {
+    /*font-weight: bold !important;*/
+    color: white !important;
+    background: #bf00bf !important;
+    /*text-transform: uppercase;*/
+}
+.Erle {
+    /*font-weight: bold !important;*/
+    color: #fff !important;
+    background: #ffbf00 !important;
+    /*text-transform: uppercase;*/
+}
+.Hasel{
+    color: #fff !important;
+    background: #ffff33 !important;
+}
+
 
 #canvasOne{
 position: absolute;
