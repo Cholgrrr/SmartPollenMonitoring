@@ -420,12 +420,22 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, tra
 		//rend.opacity = 0.3;	
 		
 		//-----------Draw Text Attribute at the tree location --------
+		//Compute back the Wind direction to meteorological axis
 		windDeg = windDeg - 90;
+		
 		var textAttributes = new WorldWind.TextAttributes(null);
-		textAttributes.color = WorldWind.Color.CYAN;
 		textAttributes.depthTest = false;
 		var textPosition = new WorldWind.Position(TreeLat, TreeLong, 100);
-		var text = new WorldWind.GeographicText(textPosition,"\u2663 " + TreeType + "\n" + "Wind Direction: " + windDeg + "\xB0 \n" + "Wind Speed: " + windStr + "m/s");
+		if ((p_color == 21) || (p_color == 31) || (p_color == 41) || (p_color == 22) || (p_color == 32) || (p_color == 42)) {
+			//set text for High risk trees
+			textAttributes.color = WorldWind.Color.YELLOW;
+			var text = new WorldWind.GeographicText(textPosition,"\u2663 " + TreeType + "\n" + "Wind Direction: " + windDeg + "\xB0 \n" + "Wind Speed: " + windStr + "m/s\n" + "Type: High allergenic");
+		}
+		else {
+			//set text for Low risk & other trees
+			textAttributes.color = WorldWind.Color.CYAN;
+			var text = new WorldWind.GeographicText(textPosition,"\u2663 " + TreeType + "\n" + "Wind Direction: " + windDeg + "\xB0 \n" + "Wind Speed: " + windStr + "m/s \n" + "Type: Low allergenic");
+		}
 		text.attributes = textAttributes;
 		rend.addRenderable(text);
 	}
