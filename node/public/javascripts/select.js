@@ -300,13 +300,6 @@ try {
 				}	
 			}
 			
-			/*
-			for (i=0; i < treetrans.length; i++) {
-					console.log(treetrans[i]); 
-			}
-			// ---- translation end ----
-			*/
-			
 		});  
 	});
 
@@ -455,8 +448,6 @@ function getTreeBloomingAll() {
 			allBlooming = bloomingdata;	 
 		}
 		
-		console.log('All bloomings');
-		console.log(allBlooming);
 		return allBlooming;
 }
 	catch(err) {

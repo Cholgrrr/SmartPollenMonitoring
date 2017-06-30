@@ -99,17 +99,10 @@ function TreeStat() {
 				mdata[i].tree_type = mdata[i].tree_type;
 			}	
 		}
-
 		// ---- end of translation -----
 		
 		
-		
-		
-		
-		
-		
-		
-		
+
         //console.log(mdata);
         var jan = { Month: "January" };
         var feb = { Month: "February" };

@@ -64,9 +64,6 @@ var handleClick = function (recognizer) {
 	// query current wind data (speed, direction, date)
 	var currentWind = {};
 	$.get("/currentWind", function(data, status){
-		//console.log('wind:');
-		//console.log(data);
-		//console.log('speed: ' + data[0].speed);
 		currentWind = data; 
 	});
 

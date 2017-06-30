@@ -50,7 +50,7 @@ app.get('/treeLoad', function(req, res) {
 			// rowCount = number of rows affected by the query
 			res.json(result.rows);
 			//res.send('guery was done!')
-			console.log(result.rows[0]); // print how many records were deleted;
+
 		})
 		.catch(error => {
 			console.log('ERROR:', error);
@@ -152,7 +152,7 @@ app.post('/insertTree', function (req, res) {
 		db.result("INSERT INTO trees_latlon(lat, lon, treetype, age, diameter) VALUES($1, $2, $3, $4, $5)", input_tree)
 		.then(result => {
 			res.json(result.rows);
-			//console.log(result.rows)
+
 		})
 		.catch(error => {
 			console.log('ERROR:', error);
@@ -235,7 +235,7 @@ app.post('/getBlooming', function (req, res) {
 		db.result(query_string)
 		.then(result => {
 			res.json(result.rows);
-			console.log(result.rows);
+
 		})
 		.catch(error => {
 			console.log('ERROR:', error);
@@ -272,14 +272,12 @@ app.post('/getBloomingHist', function (req, res) {
 		for (i = 1; i < Object.keys(data).length-1; i++) {
 			query_string += (" or tree_type=" + "'" + data[i] + "'");
 		}
-		query_string += ");"; 
-		console.log(query_string); 
+		query_string += ");";  
 		
 		// request the data 
 		db.result(query_string)
 		.then(result => {
 			res.json(result.rows);
-			console.log(result.rows);
 		})
 		.catch(error => {
 			console.log('ERROR:', error);
@@ -311,7 +309,7 @@ app.post('/getBloomingAll', function (req, res) {
 			query_string += (" or tree_type=" + "'" + data[i] + "'");
 		}
 		query_string += ");"; 
-		console.log(query_string);
+		
 		// request the data 
 		db.result(query_string)
 		.then(result => {
