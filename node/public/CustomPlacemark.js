@@ -116,6 +116,19 @@ var handleClick = function (recognizer) {
 						else {
 							bloomFactor = blooming[k].month;
 						}
+						// set the color
+						if (viewTrees[i].treetype == 'Birke') {
+							color = 21; 
+						}
+						else if (viewTrees[i].treetype == 'Erle') {
+							color = 31;
+						}
+						else if (viewTrees[i].treetype == 'Hasel') {
+							color = 41;
+						}
+						else {
+							color = 51; 
+						}
 					}			
 				}
 	
@@ -139,7 +152,7 @@ var handleClick = function (recognizer) {
 		// defines the blooming value of the tree
 		var bloomFactor;
 		// ellipse color factor 
-		var color;
+		var color = 1;
 		
 		if (viewTrees.length > 0) {
 			for(i=0; i<viewTrees.length; i++) { 
@@ -158,16 +171,16 @@ var handleClick = function (recognizer) {
 						}
 						// set the color
 						if (viewTrees[i].treetype == 'Birke') {
-							color = 2; 
+							color = 22; 
 						}
 						else if (viewTrees[i].treetype == 'Erle') {
-							color = 3;
+							color = 32;
 						}
 						else if (viewTrees[i].treetype == 'Hasel') {
-							color = 4;
+							color = 42;
 						}
 						else {
-							color = 5; 
+							color = 52; 
 						}
 						
 					}			
@@ -195,8 +208,6 @@ var tapRecognizer = new WorldWind.TapRecognizer(wwd, handleClick);
 // Generation of a surface elipses according to the wind and tree data	
 
 var rend = new WorldWind.RenderableLayer();
-var rend3D = new WorldWind.RenderableLayer();
-var textLayer = new WorldWind.RenderableLayer();
 
 // Now set up to handle highlighting.
 var highlightController = new WorldWind.HighlightController(wwd);
@@ -217,62 +228,102 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, tra
 		var boundary_inner;
 		var color_start, color_low, color_mid, color_out
 		if (p_color == 1) {
-			// mix
+			// other (not low and high risk)
 			// real time
+			color_start = new WorldWind.Color(1,1,1, 0.1);
+			color_low = new WorldWind.Color(1,1,1, 0.1);
+			color_mid = new WorldWind.Color(1,1,1, 0.1);
+			color_out = new WorldWind.Color(1,1,1, 0.1);
+			boundary_inner = WorldWind.Color.BLUE;
+			boundary_big = WorldWind.Color.WHITE;
+		}
+		else if (p_color == 21) {
+			// purple 85 % with Trans value
+			// High effect : Birke
+			color_start = new WorldWind.Color(0.85, 0, 0.85, trans);
+			color_low = new WorldWind.Color(0.85, 0, 0.85, trans);
+			color_mid = new WorldWind.Color(0.85, 0, 0.85, trans);
+			color_out = new WorldWind.Color(0.85, 0, 0.85, trans);
+			boundary_inner = WorldWind.Color.BLUE;
+			boundary_big = WorldWind.Color.RED;
+		}
+		else if (p_color == 31) {
+			// Red 100 % with Trans value
+			// High effect : Erle
+			color_start = new WorldWind.Color(0.85, 0, 0, trans);
+			color_low = new WorldWind.Color(0.85, 0, 0, trans);
+			color_mid = new WorldWind.Color(0.85, 0, 0, trans);
+			color_out = new WorldWind.Color(0.85, 0, 0, trans);
+			boundary_inner = WorldWind.Color.BLUE;
+			boundary_big = WorldWind.Color.RED;
+		}
+		else if (p_color == 41) {
+			//  Blue 100 % with Trans value
+			// High effect : Hasel
+			color_start = new WorldWind.Color(0,0, 1, trans);
+			color_low = new WorldWind.Color(0,0,1, trans);
+			color_mid = new WorldWind.Color(0,0,1, trans);
+			color_out = new WorldWind.Color(0,0,1, trans);
+			boundary_inner = WorldWind.Color.BLUE;
+			boundary_big = WorldWind.Color.RED;
+		}
+		else if (p_color == 51) {
+			// Green
+			// Low effect : others types
 			color_start = new WorldWind.Color(0, 1, 0, trans);
-			color_low = new WorldWind.Color(1, 0, 0, trans);
-			color_mid = new WorldWind.Color(1, 1, 0, trans);
-			color_out = new WorldWind.Color(1, 1, 1, trans);
-			boundary_inner = WorldWind.Color.RED;
-			boundary_big = WorldWind.Color.GREEN;
-		}
-		else if (p_color == 2) {
-			// purple
-			// Birke
-			color_start = new WorldWind.Color(0.75, 0, 0.75, trans);
-			color_low = new WorldWind.Color(0.75, 0, 0.75, trans);
-			color_mid = new WorldWind.Color(0.75, 0, 0.75, trans);
-			color_out = new WorldWind.Color(0.75, 0, 0.75, trans);
-			boundary_inner = WorldWind.Color.RED;
-			boundary_big = WorldWind.Color.BLACK;
-		}
-		else if (p_color == 3) {
-			// orange
-			// Erle
-			color_start = new WorldWind.Color(1, 0.7, 0, trans);
-			color_low = new WorldWind.Color(1, 0.7, 0, trans);
-			color_mid = new WorldWind.Color(1, 0.7, 0, trans);
-			color_out = new WorldWind.Color(1, 0.7, 0, trans);
-			boundary_inner = WorldWind.Color.RED;
+			color_low = new WorldWind.Color(0, 1, 0, trans);
+			color_mid = new WorldWind.Color(0, 1, 0, trans);
+			color_out = new WorldWind.Color(0, 1, 0, trans);
+			boundary_inner = WorldWind.Color.BLUE;
 			boundary_big = WorldWind.Color.YELLOW;
 		}
-		else if (p_color == 4) {
-			// yellow
-			// Hasel
-			color_start = new WorldWind.Color(1, 1, 0.2, trans);
-			color_low = new WorldWind.Color(1, 1, 0.2, trans);
-			color_mid = new WorldWind.Color(1, 1, 0.2, trans);
-			color_out = new WorldWind.Color(1, 1, 0.2, trans);
-			boundary_inner = WorldWind.Color.RED;
+		else if (p_color == 22) {
+			// purple 85 % with Trans value 
+			// High effect : Birke **Past Data**
+			color_start = new WorldWind.Color(0.85, 0, 0.85, trans);
+			color_low = new WorldWind.Color(0.85, 0, 0.85, trans);
+			color_mid = new WorldWind.Color(0.85, 0, 0.85, trans);
+			color_out = new WorldWind.Color(0.85, 0, 0.85, trans);
+			boundary_inner = WorldWind.Color.BLUE;
 			boundary_big = WorldWind.Color.YELLOW;
 		}
-		else if (p_color == 5) {
-			// blue
-			// others
-			color_start = new WorldWind.Color(0.15, 0.3, 1, 0.2);
-			color_low = new WorldWind.Color(0.15, 0.3, 1, 0.2);
-			color_mid = new WorldWind.Color(0.15, 0.3, 1, 0.2);
-			color_out = new WorldWind.Color(0.15, 0.3, 1, 0.2);
-			boundary_inner = WorldWind.Color.RED;
-			boundary_big = WorldWind.Color.BLUE;
+		else if (p_color == 32) {
+			// Orange (0.3G + 1B) with Trans value
+			// High effect : Erle **Past Data**
+			color_start = new WorldWind.Color(0, 0.3, 1, trans);
+			color_low = new WorldWind.Color(0, 0.3, 1, trans);
+			color_mid = new WorldWind.Color(0, 0.3, 1, trans);
+			color_out = new WorldWind.Color(0, 0.3, 1, trans);
+			boundary_inner = WorldWind.Color.BLUE;
+			boundary_big = WorldWind.Color.YELLOW;
+		}
+		else if (p_color == 42) {
+			//  Blue 100 % with Trans value
+			// High effect : Hasel **Past Data**
+			color_start = new WorldWind.Color(0,0, 1, trans);
+			color_low = new WorldWind.Color(0,0,1, trans);
+			color_mid = new WorldWind.Color(0,0,1, trans);
+			color_out = new WorldWind.Color(0,0,1, trans);
+			boundary_inner = WorldWind.Color.BLUE;
+			boundary_big = WorldWind.Color.YELLOW;
+		}
+		else if (p_color == 52) {
+			// Green
+			// Low effect : others types **Past Data**
+			color_start = new WorldWind.Color(0, 1, 0, trans);
+			color_low = new WorldWind.Color(0, 1, 0, trans);
+			color_mid = new WorldWind.Color(0, 1, 0, trans);
+			color_out = new WorldWind.Color(0, 1, 0, trans);
+			boundary_inner = WorldWind.Color.BLUE;
+			boundary_big = WorldWind.Color.YELLOW;
 		}
 		else {
-			color_start = new WorldWind.Color(0, 1, 0, trans);
-			color_low = new WorldWind.Color(1, 0, 0, trans);
-			color_mid = new WorldWind.Color(1, 1, 0, trans);
-			color_out = new WorldWind.Color(1, 1, 1, trans);
-			boundary_inner = WorldWind.Color.RED;
-			boundary_big = WorldWind.Color.GREEN;
+			color_start = new WorldWind.Color(1,1,1, 0.1);
+			color_low = new WorldWind.Color(1,1,1, 0.1);
+			color_mid = new WorldWind.Color(1,1,1, 0.1);
+			color_out = new WorldWind.Color(1,1,1, 0.1);
+			boundary_inner = WorldWind.Color.BLUE;
+			boundary_big = WorldWind.Color.WHITE;
 		}
 		
 		
@@ -368,11 +419,12 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, tra
 		//rend.opacity = 0.3;	
 		
 		//-----------Draw Text Attribute at the tree location --------
+		windDeg = windDeg - 90;
 		var textAttributes = new WorldWind.TextAttributes(null);
 		textAttributes.color = WorldWind.Color.CYAN;
 		textAttributes.depthTest = false;
 		var textPosition = new WorldWind.Position(TreeLat, TreeLong, 100);
-		var text = new WorldWind.GeographicText(textPosition, TreeType + "\n" + "Wind Direction: " + windDeg);
+		var text = new WorldWind.GeographicText(textPosition,"\u2663 " + TreeType + "\n" + "Wind Direction: " + windDeg + "\xB0 \n" + "Wind Speed: " + windStr + "m/s");
 		text.attributes = textAttributes;
 		rend.addRenderable(text);
 	}
