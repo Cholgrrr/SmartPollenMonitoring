@@ -91,8 +91,6 @@ var handleClick = function (recognizer) {
 	function callDrawPollen() {
 		
 		try {
-			// initialize a renerable layer
-			var rend = new WorldWind.RenderableLayer();
 			// get the month number (mm) from the current date
 			var month = currentWind[0].in_date.slice(5, 7);
 			// get the blooming valuesl
@@ -161,8 +159,6 @@ var handleClick = function (recognizer) {
 			
 			// history blooming
 			var blooming = getTreeBloomingHist();
-			// initialize a renerable layer
-			var rend = new WorldWind.RenderableLayer();
 			// get the blooming valuesl
 			var blooming = getTreeBloomingHist();
 			// defines the blooming value of the tree
