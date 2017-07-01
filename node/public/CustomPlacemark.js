@@ -233,6 +233,9 @@ var tapRecognizer = new WorldWind.TapRecognizer(wwd, handleClick);
 // Generation of a surface elipses according to the wind and tree data	
 
 var rend = new WorldWind.RenderableLayer();
+var rendme = new WorldWind.RenderableLayer();  //Layer for medium ellispe
+var rendse = new WorldWind.RenderableLayer();  //Layer for small ellispe
+var rendtop = new WorldWind.RenderableLayer(); //Tree Point will always be on top
 
 // Now set up to handle highlighting.
 var highlightController = new WorldWind.HighlightController(wwd);
@@ -424,19 +427,19 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, blo
 		var SEm_b_axe = SEm_a_axe / 2;
 		var el_lom = new WorldWind.Position(EllispeCenterLATm, EllispeCenterLONGm,1e5);
 		var SEm = new WorldWind.SurfaceEllipse(el_lom, SEm_a_axe, SEm_b_axe, windDeg, attm);
-		rend.addRenderable(SEm); // add Big ellispe to the globe
+		rendme.addRenderable(SEm); // add Big ellispe to the globe
 
 		//------------Draw Small Ellipse----------------
 		var SEs_a_axe = StrenghtPara * 0.8*bloomingF; //*windStr
 		var SEs_b_axe = SEs_a_axe / 2 ;
 		var el_los = new WorldWind.Position(EllispeCenterLATs, EllispeCenterLONGs,1e5);
 		var SEs = new WorldWind.SurfaceEllipse(el_los, SEs_a_axe, SEs_b_axe, windDeg, att2);
-		rend.addRenderable(SEs);
+		rendse.addRenderable(SEs);
 
 		//------------Draw Circle at Tree Position-------------------
 		var cir = new WorldWind.Position(TreeLat, TreeLong,1e5);
 		var Circle = new WorldWind.SurfaceCircle(cir, 5, attc);
-		rend.addRenderable(Circle);	
+		rendtop.addRenderable(Circle);	
 		//rend.opacity = 0.3;	
 		
 		//-----------Draw Text Attribute at the tree location --------
@@ -464,14 +467,23 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, blo
 	}
 		
 }
-wwd.addLayer(rend);
+wwd.addLayer(rend);    //draw big ellipse (Lowest)
+wwd.addLayer(rendme);  //draw medium ellipse
+wwd.addLayer(rendse);  //draw small ellipse
+wwd.addLayer(rendtop); //draw circle points of tree last (top)
 
 function deleteLayer() {
     
 	try {
 		// remove layer
 		rend.removeAllRenderables();
+		rendme.removeAllRenderables();
+		rendse.removeAllRenderables();
+		rendtop.removeAllRenderables();
 		rend.refresh();
+		rendme.refresh();
+		rendse.refresh();
+		rendtop.refresh();
 		wwd.redraw();
 	}
 	catch(err) {
