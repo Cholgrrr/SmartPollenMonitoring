@@ -71,7 +71,7 @@ position: absolute;
 .test{
     width:10%;
 }
-.btn-success, .btn-danger{
+.btn-success, .btn-danger, .btn-warning {
     margin-top:4px;
 }
 
