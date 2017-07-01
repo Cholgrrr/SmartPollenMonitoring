@@ -188,10 +188,10 @@ var dialogHTML = '<table id="myTable">' +
 					'<label style="width: 76px">Diameter</label>' +
 					'<input id="dialogDia" class="input" type="text" style="width:90px;" name="dialogDia" readonly>' +
 					'<button id="dialogDiaUp" class="input" style="position:relative;width:25px;height:25px;border-radius:50%;margin-left:5px;border:0px;padding:0px;" name="dialogDiaUp" onclick="diamCountUp()">' +
-						'<img src="images/up.png" title="Cancel" alt="..." height="25px" width="25px"/>' +
+						'<img src="images/up.png" title="Increase" alt="..." height="25px" width="25px"/>' +
 					'</button>' +
 					'<button id="dialogDiaDown" class="input" style="position:relative;width:25px;height:25px;border-radius:50%;margin-left:5px;border:0px;padding:0px;" name="dialogDiaDown" onclick="diamCountDown()">' +
-						'<img src="images/down.png" title="Cancel" alt="..." height="25px" width="25px"/>' +
+						'<img src="images/down.png" title="Decrease" alt="..." height="25px" width="25px"/>' +
 					'</button>' +
 					'<label id="lblDia" style="margin-left: 5px">Enter the diameter of the tree crown</label>' +
 					/* '<input id="dialogDia" style="width: 180px; height: 26px" class="input" type="text" name="dialogDia">' +
