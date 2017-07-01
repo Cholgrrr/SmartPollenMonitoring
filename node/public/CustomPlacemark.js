@@ -7,9 +7,9 @@ WorldWind.Logger.setLoggingLevel(WorldWind.Logger.LEVEL_WARNING);
 // Create the World Window.
 var wwd = new WorldWind.WorldWindow("canvasOne");
 // World Window.
-wwd.navigator.lookAtLocation.latitude = 50.090142; //50.11;  
-wwd.navigator.lookAtLocation.longitude = 8.617049; //8.68;
-wwd.navigator.range = 10e3; // 2 million meters above the ellipsoid
+wwd.navigator.lookAtLocation.latitude = 50.090142; 
+wwd.navigator.lookAtLocation.longitude = 8.617049; 
+wwd.navigator.range = 10e3;
 wwd.navigator.tilt = 45;
 // Add imagery layers.
 var layers = [
