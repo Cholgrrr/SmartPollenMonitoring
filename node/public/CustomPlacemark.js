@@ -52,10 +52,10 @@ var handleClick = function (recognizer) {
 		y = recognizer.clientY,
 		pickList = wwd.pick(wwd.canvasCoordinates(x, y)),
 		position = pickList.objects[0].position,
-		maxLat = position.latitude + 0.00295,
-		maxLong = position.longitude + 0.00882,
-		minLat = position.latitude - 0.00295,
-		minLong = position.longitude - 0.00882;
+		maxLat = position.latitude + 0.004,
+		maxLong = position.longitude + 0.009,
+		minLat = position.latitude - 0.004,
+		minLong = position.longitude - 0.009;
 	
 	// recenter the view 
 	wwd.goTo(new WorldWind.Position(position.latitude, position.longitude,1000));
@@ -420,7 +420,6 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, blo
 		var SE_b_axe = SE_a_axe / 2;
 		var el_lo = new WorldWind.Position(EllispeCenterLAT, EllispeCenterLONG,1e5);
 		var SE = new WorldWind.SurfaceEllipse(el_lo, SE_a_axe, SE_b_axe, windDeg, att);
-		SE.displayName = "EllispeBig" // make the ellispe selectable
 		rend.addRenderable(SE);
 
 		//------------Draw Medium Ellipse----------------
@@ -428,7 +427,6 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, blo
 		var SEm_b_axe = SEm_a_axe / 2;
 		var el_lom = new WorldWind.Position(EllispeCenterLATm, EllispeCenterLONGm,1e5);
 		var SEm = new WorldWind.SurfaceEllipse(el_lom, SEm_a_axe, SEm_b_axe, windDeg, attm);
-		SEm.displayName = "EllispeMedium" // make the ellispe selectable
 		rend.addRenderable(SEm); // add Big ellispe to the globe
 
 		//------------Draw Small Ellipse----------------
@@ -436,14 +434,11 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, blo
 		var SEs_b_axe = SEs_a_axe / 2 ;
 		var el_los = new WorldWind.Position(EllispeCenterLATs, EllispeCenterLONGs,1e5);
 		var SEs = new WorldWind.SurfaceEllipse(el_los, SEs_a_axe, SEs_b_axe, windDeg, att2);
-		SEs.displayName = "EllispeSmall"
 		rend.addRenderable(SEs);
 
 		//------------Draw Circle at Tree Position-------------------
 		var cir = new WorldWind.Position(TreeLat, TreeLong,1e5);
 		var Circle = new WorldWind.SurfaceCircle(cir, 5, attc);
-		Circle.displayName = "Tree-Location";
-
 		rend.addRenderable(Circle);	
 		//rend.opacity = 0.3;	
 		
@@ -474,56 +469,6 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, blo
 }
 wwd.addLayer(rend);
 
-	
-	/* =============3D under developing========================
-	draw3DE(50.1405, 8.665, 0.001 );
-	function draw3DE(latpo, lonpo, shift ) {
-        var canvas = document.createElement("canvas"),
-            ctx2d = canvas.getContext("2d"),
-            size = 64, c = size / 2  - 0.5, innerRadius = 5, outerRadius = 20;
-        canvas.width = size;
-        canvas.height = size;
-        var gradient = ctx2d.createRadialGradient(c, c, innerRadius, c, c, outerRadius);
-        gradient.addColorStop(0, 'rgb(255, 0, 0)');
-		gradient.addColorStop(0.9, 'rgb(0, 255, 0)');
-		gradient.addColorStop(1, 'rgb(0, 0, 0)');
-		var ang = 90*Math.PI /180;
-        ctx2d.fillStyle = gradient;
-        ctx2d.arc(c, c, outerRadius, 0, 2 * Math.PI, false);
-        ctx2d.fill();
-        // Create the mesh's positions.
-		//var latpo = 50.090142
-		//var lonpo = 8.617049
-		//var shift = 0.001
-        var meshPositions = [];
-        for (var lat1 = latpo-shift; lat1 <= latpo+shift; lat1 += 0.0001) {
-            var row = [];
-            for (var lon = lonpo-shift; lon <= lonpo+shift; lon += 0.0001) {
-				var elevationScale =
-					Math.sqrt(Math.pow(lat1-latpo,2) + Math.pow(lon-lonpo,2));
-                row.push(new WorldWind.Position(lat1, lon,170- elevationScale*10000)) //130 is the elevation
-            }
-            meshPositions.push(row);
-        }
-        // Create the mesh.
-        var mesh = new WorldWind.GeographicMesh(meshPositions, null);
-        // Create and assign the mesh's attributes.
-        var meshAttributes = new WorldWind.ShapeAttributes(null);
-        meshAttributes.outlineColor = new WorldWind.Color(1, 1, 1, 0);
-        meshAttributes.interiorColor = new WorldWind.Color(1, 1, 1, 0.7);
-        meshAttributes.imageSource = new WorldWind.ImageSource(canvas);
-        meshAttributes.applyLighting = false;
-        mesh.attributes = meshAttributes;
-        // Create and assign the mesh's highlight attributes.
-        var highlightAttributes = new WorldWind.ShapeAttributes(meshAttributes);
-        highlightAttributes.outlineColor = WorldWind.Color.WHITE;
-        mesh.highlightAttributes = highlightAttributes;
-        // Add the shape to the layer.
-		rend3D.addRenderable(mesh);
-}
-wwd.addLayer(rend3D);
-// ------------------------------------*/
-// call this function to remove a layer
 function deleteLayer() {
     
 	try {
