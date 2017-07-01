@@ -229,7 +229,6 @@ app.post('/getBlooming', function (req, res) {
 			query_string += (" or tree_type=" + "'" + data[i] + "'");
 		}
 		query_string += ");"; 
-		console.log(query_string); 
 		
 		// request the data 
 		db.result(query_string)
@@ -302,7 +301,6 @@ app.post('/getBloomingAll', function (req, res) {
     try {
 		
         const data = req.body;
-		console.log(data);
 		
 		let query_string = "select * from tree_blooming where (tree_type='" + data[0] + "'"; 
 		for (i = 1; i < Object.keys(data).length; i++) {
