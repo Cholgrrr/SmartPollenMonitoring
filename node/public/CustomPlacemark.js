@@ -277,7 +277,7 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, blo
 			boundary_big = WorldWind.Color.RED;
 		}
 		else if (p_color == 31) {
-			// Red 100 % with Trans value
+			// Red 85 % with Trans value
 			// High effect : Erle
 			color_start = new WorldWind.Color(0.85, 0, 0, trans);
 			color_low = new WorldWind.Color(0.85, 0, 0, trans);
@@ -319,10 +319,10 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, blo
 		else if (p_color == 32) {
 			// Orange (0.3G + 1B) with Trans value
 			// High effect : Erle **Past Data**
-			color_start = new WorldWind.Color(0, 0.3, 1, trans);
-			color_low = new WorldWind.Color(0, 0.3, 1, trans);
-			color_mid = new WorldWind.Color(0, 0.3, 1, trans);
-			color_out = new WorldWind.Color(0, 0.3, 1, trans);
+			color_start = new WorldWind.Color(0.85, 0, 0, trans);
+			color_low = new WorldWind.Color(0.85, 0, 0, trans);
+			color_mid = new WorldWind.Color(0.85, 0, 0, trans);
+			color_out = new WorldWind.Color(0.85, 0, 0, trans);
 			boundary_inner = WorldWind.Color.BLUE;
 			boundary_big = WorldWind.Color.YELLOW;
 		}

@@ -92,7 +92,7 @@ try {
 			}
 			text = text.substring(0, text.length - 2);
 
-			alert(text);
+			//alert(text);
 			let monthselection_tmp = $('#example-order option:selected');
 			let monthselection = {};
 
