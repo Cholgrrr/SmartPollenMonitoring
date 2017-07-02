@@ -267,7 +267,7 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, blo
 		}
 		else if (p_color == 21) {
 			// purple 85 % with Trans value
-			// High effect : Birke
+			// High effect : Birke **real-time**
 			color_start = new WorldWind.Color(0.85, 0, 0.85, trans);
 			color_low = new WorldWind.Color(0.85, 0, 0.85, trans);
 			color_mid = new WorldWind.Color(0.85, 0, 0.85, trans);
@@ -277,7 +277,7 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, blo
 		}
 		else if (p_color == 31) {
 			// Red 85 % with Trans value
-			// High effect : Erle
+			// High effect : Erle **real-time**
 			color_start = new WorldWind.Color(0.85, 0, 0, trans);
 			color_low = new WorldWind.Color(0.85, 0, 0, trans);
 			color_mid = new WorldWind.Color(0.85, 0, 0, trans);
@@ -286,8 +286,8 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, blo
 			boundary_big = WorldWind.Color.RED;
 		}
 		else if (p_color == 41) {
-			//  Blue 100 % with Trans value
-			// High effect : Hasel
+			//  Blue 100 % with Trans value 
+			// High effect : Hasel **real-time**
 			color_start = new WorldWind.Color(0,0, 1, trans);
 			color_low = new WorldWind.Color(0,0,1, trans);
 			color_mid = new WorldWind.Color(0,0,1, trans);
@@ -297,7 +297,7 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, blo
 		}
 		else if (p_color == 51) {
 			// Green
-			// Low effect : others types
+			// Low effect : others types **real-time**
 			color_start = new WorldWind.Color(0, 1, 0, trans);
 			color_low = new WorldWind.Color(0, 1, 0, trans);
 			color_mid = new WorldWind.Color(0, 1, 0, trans);
@@ -346,6 +346,8 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, blo
 			boundary_big = WorldWind.Color.YELLOW;
 		}
 		else {
+			// other (not low and high risk)
+			// historical data
 			color_start = new WorldWind.Color(1,1,1, 0.1);
 			color_low = new WorldWind.Color(1,1,1, 0.1);
 			color_mid = new WorldWind.Color(1,1,1, 0.1);
