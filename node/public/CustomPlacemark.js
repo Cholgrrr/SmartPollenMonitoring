@@ -66,6 +66,7 @@ var handleClick = function (recognizer) {
 	var currentWind = {};
 	$.get("/currentWind", function(data, status){
 		currentWind = data; 
+		async: false;
 	});
 
 	
@@ -78,9 +79,9 @@ var handleClick = function (recognizer) {
 	// after a delay to wait for the required ajax requests ()
 	
 	if (histrec == 0) {
-	    setTimeout(function () { callDrawPollen() }, 200);
+	    setTimeout(function () { callDrawPollen() }, 500);
 	} else if(histrec == 1) {
-	    setTimeout(function () { callPollenHistory() }, 200);
+	    setTimeout(function () { callPollenHistory() }, 500);
 	}
 	;
 
