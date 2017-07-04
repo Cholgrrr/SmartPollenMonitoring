@@ -109,6 +109,11 @@ position: absolute;
     width:15%;
     height:15%;
 }
+#info{
+    width:15%;
+    height:15%;
+    margin-left: 1em;
+}
 #dialogTree-order{
     width:100%;
 }
