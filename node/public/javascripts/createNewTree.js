@@ -3,35 +3,49 @@
 function openDialog() {
 	$("#dialog_addTree").dialog({
 		open: function() {
+			
 		    // Following steps are necessary to customize the dialog.
-		    
 			$("#dialog_addTree").html(dialogHTML);
 			$("div[class='ui-dialog-titlebar ui-corner-all ui-widget-header ui-helper-clearfix ui-draggable-handle']").css('background', '#333333');
 			$("span[id='ui-id-1']").css('color', '#9d9d9d');
 			$("#dialog_addTree").css('background', '#333333');
 			$("#dialog_addTree").css('background', 'none');
-			$("div[class='ui-dialog ui-corner-all ui-widget ui-widget-content ui-front ui-dialog-buttons ui-draggable']").css('background', 'transparent')
-			//$("div[class='ui-dialog ui-corner-all ui-widget ui-widget-content ui-front ui-dialog-buttons ui-draggable']").css('opacity', '0.8')
+			$("div[class='ui-dialog ui-corner-all ui-widget ui-widget-content ui-front ui-dialog-buttons ui-draggable']").css('background', 'transparent');
 			$("#dialog_addTree").css('background', 'rgba(178,178,178,0.8)');
 		    $("#dialog_addTree").css('color', '#000000');
-			//$("#dialog_addTree").css('opacity', '0.9');
-			$("div[class='ui-dialog-buttonpane ui-widget-content ui-helper-clearfix']").css('background', 'rgba(178,178,178,0.8)')
-			//$("div[class='ui-dialog-buttonpane ui-widget-content ui-helper-clearfix']").css('opacity', '0.9')
-			$("select[dialogTree-order]").css('width','400px')
-
-			var btnCancel = $("button[class='ui-dialog-titlebar-close']");
-			btnCancel.addClass("btn btn-default");
-			btnCancel.append("<img src='images/abort.png' title='Cancel' alt='...' height='25px' width='25px'/>");			
-			btnCancel.css({'position':'relative','width':'25px','height':'25px','border-radius':'50%','margin':'0px','border':'0px','padding':'0px'});
+			$("div[class='ui-dialog-buttonpane ui-widget-content ui-helper-clearfix']").css('background', 'rgba(178,178,178,0.8)');
+			$("select[dialogTree-order]").css('width','400px');
 			
+			// Add a cancel button
+			var btnCancel = $("button[class='ui-dialog-titlebar-close']");
+			btnCancel.attr("title", "Cancel");
+			btnCancel.addClass("btn btn-default tooltipstuff");
+			btnCancel.append("<img src='images/abort.png' style='float:right;' title='Cancel' alt='...' height='25px' width='25px'/>");			
+			btnCancel.css({'position':'relative','float':'right','width':'25px','height':'25px','border-radius':'50%','margin':'0px','border':'0px','padding':'0px'});
+			
+			// Add a submit button
 			var btnSubmit = $("div[class='ui-dialog-buttonset'] > button");
 			btnSubmit.addClass("btn btn-default");
 			btnSubmit.css('position', 'relative');
-			btnSubmit.css('background-color', '#449d44')
-			btnSubmit.css('border-color', '#4cae4c')
-            btnSubmit.css('color','white')
+			btnSubmit.css('background-color', '#449d44');
+			btnSubmit.css('border-color', '#4cae4c');
+            btnSubmit.css('color','white');
+			
+			// Add an info button style='float:right;'
+			$("#ui-id-1").css('width', '172');
+			if ($('#imgInfoDialog').length) {
+			} else {
+				$("#ui-id-1").after("<img id='imgInfoDialog' src='images/info.png' title='info' class='tooltipstuff' style='cursor:pointer;' alt='...' onclick='openInfo()' height='25px' width='25px'/>");
+			}
+			
+			// Format all tooltips of the dialog
+			$('.tooltipstuff').tooltipster({
+				theme: 'tooltipster-borderless',
+				distance: 10,
+				animation:'grow'}
+			);
 		},
-		width: 630,
+		width: 265,
 		resizable: false,
 		buttons: [
 			{
@@ -80,6 +94,10 @@ function openDialog() {
 			}
 		]
 	});
+}
+
+function openInfo() {
+	console.log("Now, an info window should open up.");
 }
 
 // Function for counting up the diameter of a tree crown.
@@ -144,47 +162,45 @@ var dialogHTML = '<table id="myTable">' +
 	'<tbody>' +
 		'<tr>' +
 			'<form class="form-inline">' +
-				'<div class="form-group">' +
+				'<div class="form-group tooltipstuff" title="Select the type of tree you want to add.">' +
 					'<label style="width: 76px">Treetype</label>' +
-					'<select style="width: 180px; height: 26px" id="dialogTree-order" class="">' +
-						'<option value="Ulme">Ulme</option>' +
-						'<option value="Buche">Buche</option>' +
-						'<option value="Ahorn">Ahorn</option>' +
-						'<option value="Pflaume">Pflaume</option>' +
-						'<option value="Schnur">Schnur</option>' +
-						'<option value="Esche">Esche</option>' +
-						'<option value="Zeder">Zeder</option>' +
-						'<option value="Zypresse">Zypresse</option>' +
-						'<option value="Schlafbaum">Schlafbaum</option>' +
-						'<option value="Eibe">Eibe</option>' +
-						'<option value="other">other</option>' +
-						'<option value="Kastanie">Kastanie</option>' +
-						'<option value="Linde">Linde</option>' +
-						'<option value="Goetterbaum">Goetterbaum</option>' +
-						'<option value="Walnuss">Walnuss</option>' +
-						'<option value="Tanne">Tanne</option>' +
+					'<select style="width: 150px; height: 26px" id="dialogTree-order" class="">' +
+						'<option value="Ailanthus">Ailanthus</option>' +
+						'<option value="Alder">Alder</option>' +
+						'<option value="Apple">Apple</option>' +
+						'<option value="Ash">Ash</option>' +
+						'<option value="Beech">Beech</option>' +
+						'<option value="Birch">Birch</option>' +
 						'<option value="Buchs">Buchs</option>' +
-						'<option value="Flieder">Flieder</option>' +
-						'<option value="Beere">Beere</option>' +
-						'<option value="Hasel">Hasel</option>' +
-						'<option value="Weide">Weide</option>' +
+						'<option value="Cedar">Cedar</option>' +
+						'<option value="Cherry">Cherry</option>' +
+						'<option value="Chestnut">Chestnut</option>' +
+						'<option value="Cypress">Cypress</option>' +
+						'<option value="Elder">Elder</option>' +
+						'<option value="Elm">Elm</option>' +
+						'<option value="Fir">Fir</option>' +
+						'<option value="Hazel">Hazel</option>' +
+						'<option value="Lilac">Lilac</option>' +
+						'<option value="Lime">Lime</option>' +
+						'<option value="Maple">Maple</option>' +
+						'<option value="Oak">Oak</option>' +
+						'<option value="Pasture">Pasture</option>' +
+						'<option value="Pear">Pear</option>' +
+						'<option value="Pine">Pine</option>' +
+						'<option value="Plum">Plum</option>' +
 						'<option value="Robinie">Robinie</option>' +
-						'<option value="Erle">Erle</option>' +
-						'<option value="Birne">Birne</option>' +
-						'<option value="Birke">Birke</option>' +
-						'<option value="Holunder">Holunder</option>' +
-						'<option value="Apfel">Apfel</option>' +
-						'<option value="Kiefer">Kiefer</option>' +
-						'<option value="Kirsche">Kirsche</option>' +
-						'<option value="Eiche">Eiche</option>' +
+						'<option value="Schnur">Schnur</option>' +
+						'<option value="Sleeping-Tree">Sleeping-Tree</option>' +
+						'<option value="Walnut">Walnut</option>' +
+						'<option value="Yew">Yew</option>' +
+						'<option value="other">other</option>' +
 					'</select>' +
-					'<label style="margin-left: 5px">Select the type of tree you want to add</label>' +
 				'</div>' +
 			'</form>' +			
 		'</tr>' +
 		'<tr>' +
 			'<form class="form-inline">' +
-				'<div class="form-group">' +
+				'<div class="form-group tooltipstuff" title="Enter the diameter of the tree crown.">' +
 					'<label style="width: 76px">Diameter</label>' +
 					'<input id="dialogDia" class="input" type="text" style="width:90px;" name="dialogDia" readonly>' +
 					'<button id="dialogDiaUp" class="input" style="position:relative;width:25px;height:25px;border-radius:50%;margin-left:5px;border:0px;padding:0px;" name="dialogDiaUp" onclick="diamCountUp()">' +
@@ -193,42 +209,30 @@ var dialogHTML = '<table id="myTable">' +
 					'<button id="dialogDiaDown" class="input" style="position:relative;width:25px;height:25px;border-radius:50%;margin-left:5px;border:0px;padding:0px;" name="dialogDiaDown" onclick="diamCountDown()">' +
 						'<img src="images/down.png" title="Decrease" alt="..." height="25px" width="25px"/>' +
 					'</button>' +
-					'<label id="lblDia" style="margin-left: 5px">Enter the diameter of the tree crown</label>' +
-					/* '<input id="dialogDia" style="width: 180px; height: 26px" class="input" type="text" name="dialogDia">' +
-					'<label style="margin-left: 5px">Enter the diameter of the tree crown</label>' + */
 				'</div>' +
 			'</form>' +	
 		'</tr>' +
 		'<tr>' +
 			'<form class="form-inline">' +
-				'<div class="form-group">' +
+				'<div class="form-group tooltipstuff" title="Select the coordinates by clicking on the map.">' +
 					'<label style="width: 76px">Latitude</label>' +
 					'<input id="dialogLat" class="input" type="text" name="dialogLat">' +
-					'<label id="lblLat" style="margin-left: 5px">Select the coordinates by clicking on the map</label>' +
-					/* '<input id="dialogLat" style="width: 180px; height: 26px" class="input" type="text" name="dialogLat">' +
-					'<label style="margin-left: 5px">Select the coordinates by clicking on the map</label>' + */
 				'</div>' +
 			'</form>' +	
 		'</tr>' +
 		'<tr>' +
 			'<form class="form-inline">' +
-				'<div class="form-group">' +
+				'<div class="form-group tooltipstuff" title="Select the coordinates by clicking on the map.">' +
 					'<label style="width: 76px">Longitude</label>' +
 					'<input id="dialogLon" class="input" type="text" name="dialogLon">' +
-					'<label id="lblLon" style="margin-left: 5px">Select the coordinates by clicking on the map</label>' +
-					/* '<input id="dialogLon" style="width: 180px; height: 26px" class="input" type="text" name="dialogLon">' +
-					'<label style="margin-left: 5px">Select the coordinates by clicking on the map</label>' + */
 				'</div>' +
 			'</form>' +	
 		'</tr>' +
         '<tr>' +
 			'<form class="form-inline">' +
-				'<div class="form-group">' +
+				'<div class="form-group tooltipstuff" title="Enter the age of the tree.">' +
 					'<label style="width: 76px">Age</label>' +
 					'<input id="dialogAge" class="input" type="text" name="dialogAge">' +
-					'<label id="lblAge" style="margin-left: 5px">Enter the Year the tree was planted in</label>' +
-					/* '<input id=dialogAge" style="width: 180px; height: 26px" class="input" type="text" name="dialogAge">' +
-					'<label style="margin-left: 5px">Enter the Year the tree was planted in</label>' + */
 				'</div>' +
 			'</form>' +	
         '</tr>' +
