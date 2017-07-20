@@ -74,7 +74,6 @@ var handleClick = function (recognizer) {
 	// getTreeRecCurrent form select js will be called.
 	// -> in this function the trees will be requested and the multiselect list is readed out
 	viewTrees = getTreeRecCurrent(minLat, maxLat, minLong, maxLong);
-	console.log('lat: ' + viewTrees[0].lat + '    lon: ' + viewTrees[0].lon);
 	
 	// the function which draws the ellipses, will be called
 	// after a delay to wait for the required ajax requests ()
@@ -454,6 +453,7 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, blo
 		textAttributes.depthTest = false;
 		var textPosition = new WorldWind.Position(TreeLat, TreeLong, 100);
 		var Tree_Type = translate_treeype_de_en(TreeType)
+		
 		if ((p_color == 21) || (p_color == 31) || (p_color == 41) || (p_color == 22) || (p_color == 32) || (p_color == 42)) {
 			//set text for High risk trees
 			textAttributes.color = WorldWind.Color.YELLOW;

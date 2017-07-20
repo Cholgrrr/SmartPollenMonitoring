@@ -320,6 +320,8 @@ let viewTrees;
 // OUTPUT: viewTrees -> object with all the trees in the view 
 
 function getTreeRecCurrent(latmin, latmax, lonmin, lonmax) {
+	console.log('in getTreeRecCurrent');
+	console.log(treeselection_tmp);
 	let treeselection = {};
 	try {
 		treeselection[0] = latmin;
