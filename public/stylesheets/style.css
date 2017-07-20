@@ -210,3 +210,18 @@ position: absolute;
 .axis text{
   fill: white;
 }  
+.ui-widget-header{
+    background: rgba(51,51,51,1);
+    color: rgba(157, 157, 157,1);
+}
+#Info{
+    background:rgba(178,178,178,0.9) ;
+    color: rgba(0,0,0,1);
+    width: 500px;
+}
+.ui-widget-content{
+    background: none;
+}
+div[aria-describedby="Info"]{
+    width: 30em;
+}

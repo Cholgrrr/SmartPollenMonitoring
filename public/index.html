@@ -64,13 +64,13 @@
                     <div class="btn-group test">
                         
                         <img id="plus" class="tooltipstuff" onclick="openDialog()" href="#" src="images/plus.png" title="With this Button you can add your own Trees to our Database and help others."/>
-                        <img id="info" class="tooltipstuff" onclick="openDialog()" href="#" src="images/info.png" title="With this Button you can look at some tips how you may use this site best." />
+                        <img id="info" class="tooltipstuff" onclick="Info()" href="#" src="images/info.png" title="With this Button you can look at some tips how you may use this site best." />
                             
                        
                     </div>
 
                     <button style="display: none;" id="myBtn">Open Modal</button>
-					<!--div id="dialog_addTree" title="Add custom tree">
+					<!--div id="" title="Add custom tree">
 					</div-->
 
                     <div class="btn-group test tooltipstuff" titel="Here you can select if you want to see Historic Wind Data or recent Wind Data">
@@ -161,7 +161,24 @@
 
     </nav>
 		<div id="dialog_addTree" title="Add custom tree">
-					</div>
+		</div>
+        <div id="Info" title="Info">
+            <h4><b>Basic Info</b></h4>
+            <p>The element <img src="images/help1.png" alt="help1" style="width:100px;height:20px;"> or <img src="images/help2.png" alt="help2" style="width:100px;height:20px;"> you find on the top bar allows you to switch between the selection of <b>recent</b> or <b>historic </b>wind data. <br />
+            Depending on what you choose either only the Option of selecting the trees is available or, if Historic data is selected, two options.<br />
+            These options are a combination of a button and a select list.<img src="images/help3.png" alt="help3" style="width:140px;height:20px;"> <br />
+            On the right is the list where the options can be selected, on the left the apply button that confirms your selection <br />
+            To display the trees click in the map an you will automatically focus on a smaller area. This will also display a <b>statistic</b>. <br />
+            </p>
+            <h4><b>Add Tree</b></h4>
+            <p>You can help expand our Database by adding you own trees. To do this click on the <img src="images/plus.png" alt="help4" style="width:20px;height:20px;"> button on the top bar.<br/>
+            A field will pop up that you can populate with values. To get the coordinates you can just click at the specific point in the map.</p>
+            <h4><b>Clear Map</b></h4>
+            <p>A click on <img src="images/help6.png" alt="help6" style="width:46px;height:20px;"> will clear the map and your previous slection. You have to apply the trees again if you want to display it.</p>
+            <h4><b>Statistic</b></h4> 
+            <p>The Statistic will automatically display after the tree selection, or when you click this <img src="images/help5.png" alt="help5" style="width:59px;height:20px;"> button. 
+            The Statistic shows you in which month your selected Trees are blooming.</p>       
+        </div>
         <div class="col-sm-9" id="globe">
             <canvas id="canvasOne">
                 Your browser does not support HTML5 Canvas.
@@ -206,7 +223,9 @@
         
     <script src="CustomPlacemark.js"></script>
 	<script src="javascripts/createNewTree.js"></script>
+    <script src="javascripts/info.js"></script>
     <script src="javascripts/statistic.js"></script>
+    
 </body>
 
 </html>
