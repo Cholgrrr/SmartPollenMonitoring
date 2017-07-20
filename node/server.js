@@ -28,7 +28,7 @@ const connection = {
   user: 'postgres', 				// name of the user account
   database: 'NASAWIND', 			// name of the database
   password: 'postgres', 			// env var: PGPASSWORD 
-  host: 'localhost', 			// Server hosting the postgres database (host: '35.187.21.114')
+  host: 'localhost', 				// Server hosting the postgres database (host: '35.187.21.114')
   port: 5432, 						// env var: PGPORT 
   max: 40, 							// max number of clients in the pool
   idleTimeoutMillis: 30000 			// how long a client is allowed to remain idle before being closed

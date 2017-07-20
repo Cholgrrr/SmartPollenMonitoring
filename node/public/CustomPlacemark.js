@@ -74,6 +74,7 @@ var handleClick = function (recognizer) {
 	// getTreeRecCurrent form select js will be called.
 	// -> in this function the trees will be requested and the multiselect list is readed out
 	viewTrees = getTreeRecCurrent(minLat, maxLat, minLong, maxLong);
+	console.log('lat: ' + viewTrees[0].lat + '    lon: ' + viewTrees[0].lon);
 	
 	// the function which draws the ellipses, will be called
 	// after a delay to wait for the required ajax requests ()
@@ -452,15 +453,16 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, blo
 		var textAttributes = new WorldWind.TextAttributes(null);
 		textAttributes.depthTest = false;
 		var textPosition = new WorldWind.Position(TreeLat, TreeLong, 100);
+		var Tree_Type = translate_treeype_de_en(TreeType)
 		if ((p_color == 21) || (p_color == 31) || (p_color == 41) || (p_color == 22) || (p_color == 32) || (p_color == 42)) {
 			//set text for High risk trees
 			textAttributes.color = WorldWind.Color.YELLOW;
-			var text = new WorldWind.GeographicText(textPosition,"\u2663 " + TreeType + "\n" + "Wind Info: Deg " + windDeg + "\xB0 " + "Speed: " + windStr + "m/s\n" + "Type: High allergenic\n" + "Season Effect: " + bloomingT + "(" +bloomingF+ "%)");
+			var text = new WorldWind.GeographicText(textPosition,"\u2663 " + Tree_Type + "\n" + "Wind Info: Deg " + windDeg + "\xB0 " + "Speed: " + windStr + "m/s\n" + "Type: High allergenic\n" + "Season Effect: " + bloomingT + "(" +bloomingF+ "%)");
 		}
 		else {
 			//set text for Low risk & other trees
 			textAttributes.color = WorldWind.Color.CYAN;
-			var text = new WorldWind.GeographicText(textPosition,"\u2663 " + TreeType + "\n" + "Wind Info: Deg " + windDeg + "\xB0 " + "Speed: " + windStr + "m/s \n" + "Type: Low allergenic\n" + "Season Effect: " + bloomingT+ "(" +bloomingF+ "%)");
+			var text = new WorldWind.GeographicText(textPosition,"\u2663 " + Tree_Type + "\n" + "Wind Info: Deg " + windDeg + "\xB0 " + "Speed: " + windStr + "m/s \n" + "Type: Low allergenic\n" + "Season Effect: " + bloomingT+ "(" +bloomingF+ "%)");
 		}
 		text.attributes = textAttributes;
 		rend.addRenderable(text);
@@ -475,6 +477,7 @@ wwd.addLayer(rendme);  //draw medium ellipse
 wwd.addLayer(rendse);  //draw small ellipse
 wwd.addLayer(rendtop); //draw circle points of tree last (top)
 
+// delete layer function
 function deleteLayer() {
     
 	try {
@@ -494,3 +497,80 @@ function deleteLayer() {
 	}
 
 };
+
+
+
+
+
+function translate_treeype_de_en(tree_type) {
+	
+	var ttype = ''
+	if (tree_type == 'Birke') {
+		ttype = 'Birch';
+	} else if (tree_type == 'Erle') {
+		ttype = 'Alder';
+	} else if (tree_type == 'Hasel') {
+		ttype = 'Hazel';
+	} else if (tree_type == 'Ahorn') {
+		ttype = 'Maple';
+	} else if (tree_type == 'Apfel') {
+		ttype = 'Apple';
+	} else if (tree_type == 'Birne') {
+		ttype = 'Pear';
+	} else if (tree_type == 'Buche') {
+		ttype = 'Beech';
+	} else if (tree_type == 'Buchs') {
+		ttype = 'Buchs';
+	} else if (tree_type == 'Eibe') {
+		ttype = 'Yew';
+	} else if (tree_type == 'Eiche') {
+		ttype = 'Oak';
+	} else if (tree_type == 'Esche') {
+		ttype = 'Ash';
+	} else if (tree_type == 'Flieder') {
+		ttype = 'Lilac';
+	} else if (tree_type == 'Goetterbaum') {
+		ttype = 'Ailanthus';
+	} else if (tree_type == 'Holunder') {
+		ttype = 'Elder';
+	} else if (tree_type == 'Eibe') {
+		ttype = 'Chestnut';
+	} else if (tree_type == 'Kiefer') {
+		ttype = 'Pine';
+	} else if (tree_type == 'Kirsche') {
+		ttype = 'Cherry';
+	} else if (tree_type == 'Linde') {
+		ttype = 'Lime';
+	} else if (tree_type == 'Pflaume') {
+		ttype = 'Plum';
+	} else if (tree_type == 'Robinie') {
+		ttype = 'Robinie';
+	} else if (tree_type == 'Schlafbaum') {
+		ttype = 'Sleeping-Tree';
+	} else if (tree_type == 'Schnur') {
+		ttype = 'Schnur';
+	} else if (tree_type == 'Tanne') {
+		ttype = 'Fir';
+	} else if (tree_type == 'Ulme') {
+		ttype = 'Elm';
+	} else if (tree_type == 'Walnuss') {
+		ttype = 'Walnut';
+	} else if (tree_type == 'Weide') {
+		ttype = 'Pasture';
+	} else if (tree_type == 'Zeder') {
+		ttype = 'Cedar';
+	} else if (tree_type == 'Zypresse') {
+		ttype = 'Cypress';
+	} else if (tree_type == 'other') {
+		ttype = 'other';
+	} else {
+		ttype = tree_type;
+	}	
+	
+	return ttype; 
+}
+
+
+
+
+

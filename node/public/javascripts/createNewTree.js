@@ -1,6 +1,7 @@
 
 // This function opens a jquery dialog window.
 function openDialog() {
+	try {
 	$("#dialog_addTree").dialog({
 		open: function() {
 			
@@ -94,10 +95,15 @@ function openDialog() {
 			}
 		]
 	});
+	
+	}
+	catch (err) {
+		console.log('open dialag tree input failed!');
+	}
 }
 
 function openInfo() {
-	console.log("Now, an info window should open up.");
+	console.log("Info.");
 }
 
 // Function for counting up the diameter of a tree crown.
@@ -124,36 +130,40 @@ function diamCountDown() {
 //		  - age [Number]
 //RETURN: - [Boolean]
 function checkInput(lat, lon, age) {
-	if (lat > 90) {
-		$("#lblLat").text("Enter a value between -90 and 90!");
-		$("#lblLat").css("color", "red");
-		return;
-	} else if (lat < -90) {
-		$("#lblLat").text("Enter a value between -90 and 90!");
-		$("#lblLat").css("color", "red");
-		return;
+	try {
+		if (lat > 90) {
+			$("#lblLat").text("Enter a value between -90 and 90!");
+			$("#lblLat").css("color", "red");
+			return;
+		} else if (lat < -90) {
+			$("#lblLat").text("Enter a value between -90 and 90!");
+			$("#lblLat").css("color", "red");
+			return;
+		}
+		
+		if (lon > 180) {
+			$("#lblLon").text("Enter a value between -180 and 180!");
+			$("#lblLon").css("color", "red");
+			return;
+		} else if (lon < -180) {
+			$("#lblLon").text("Enter a value between -180 and 180!");
+			$("#lblLon").css("color", "red");
+			return;
+		}
+		
+		if (age > 999) {
+			$("#lblAge").text("Enter a value between 1 and 999!");
+			$("#lblAge").css("color", "red");
+			return;
+		} else if (age < 1) {
+			$("#lblAge").text("Enter a value between 1 and 999!");
+			$("#lblAge").css("color", "red");
+			return;
+		}
 	}
-	
-	if (lon > 180) {
-		$("#lblLon").text("Enter a value between -180 and 180!");
-		$("#lblLon").css("color", "red");
-		return;
-	} else if (lon < -180) {
-		$("#lblLon").text("Enter a value between -180 and 180!");
-		$("#lblLon").css("color", "red");
-		return;
+	catch (err) {
+		console.log('checkInput failed!');
 	}
-	
-	if (age > 999) {
-		$("#lblAge").text("Enter a value between 1 and 999!");
-		$("#lblAge").css("color", "red");
-		return;
-	} else if (age < 1) {
-		$("#lblAge").text("Enter a value between 1 and 999!");
-		$("#lblAge").css("color", "red");
-		return;
-	}
-	
 	return true;
 }
 
