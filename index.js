@@ -11,7 +11,7 @@ app.use(bodyParser.json())
 const request = require('ajax-request');
 
 app.use(express.static('public'));
-app.listen(process.env.PORT || 8080);
+app.listen(8080);
 
 
 
