@@ -64,10 +64,14 @@ position: absolute;
 }
 .bootstrap-select.btn-group:not(.input-group-btn), .bootstrap-select.btn-group[class*="span"] {
     margin: 0 !important;
+    width:10%;
+    height:10%;
+
 }
 .btn-group{
     margin-top:4px;
     width:20%;
+    display:inline-block;
 }
 .test{
     width:10%;
@@ -85,14 +89,24 @@ position: absolute;
 .navbar-collapse{
     width:100%;
 }
+
 #tree-order-button,#example-order-button{
-    width:200px;
+    width:50%;
     position:relative;
     float:left;
 
 }
+@-moz-document url-prefix() {
+    #tree-order-button, #example-order-button {
+        width: 50%;
+        position: relative;
+        float: left;
+        margin-top: -13%;
+        margin-left: 46%;
+    }
+}
 #tree-order,#example-order{
-    width:200px;
+    width:25%;
     position:relative;
     float:left;
 }
