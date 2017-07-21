@@ -1,7 +1,13 @@
 
 // This function opens a jquery dialog window.
 function openDialog() {
-	try {
+    if ($("#Info").hasClass('ui-dialog-content')) {
+        // do whatever
+        $("#Info").dialog("destroy");
+    } else {
+        // it is not initialized yet
+    }
+    
 	$("#dialog_addTree").dialog({
 		open: function() {
 			
@@ -33,11 +39,11 @@ function openDialog() {
             btnSubmit.css('color','white');
 			
 			// Add an info button style='float:right;'
-			$("#ui-id-1").css('width', '172');
-			if ($('#imgInfoDialog').length) {
-			} else {
-				$("#ui-id-1").after("<img id='imgInfoDialog' src='images/info.png' title='info' class='tooltipstuff' style='cursor:pointer;' alt='...' onclick='openInfo()' height='25px' width='25px'/>");
-			}
+			//$("#ui-id-1").css('width', '172');
+			//if ($('#imgInfoDialog').length) {
+			//} else {
+			//	$("#ui-id-1").after("<img id='imgInfoDialog' src='images/info.png' title='info' class='tooltipstuff' style='cursor:pointer;' alt='...' onclick='openInfo()' height='25px' width='25px'/>");
+			//}
 			
 			// Format all tooltips of the dialog
 			$('.tooltipstuff').tooltipster({
@@ -46,7 +52,7 @@ function openDialog() {
 				animation:'grow'}
 			);
 		},
-		width: 265,
+		width: 290,
 		resizable: false,
 		buttons: [
 			{
@@ -89,22 +95,18 @@ function openDialog() {
 				        catch (err) {
 				            console.log('delivering of the inserted tree data to the server failed!');
 				        }
-
+				        //$(this).dialog("destroy");
 					$(this).dialog("close");
 				}
 			}
 		]
 	});
-	
-	}
-	catch (err) {
-		console.log('open dialag tree input failed!');
-	}
+	//$("#dialog_addTree").dialog("open");
 }
 
-function openInfo() {
-	console.log("Info.");
-}
+//function openInfo() {
+//	console.log("Now, an info window should open up.");
+//}
 
 // Function for counting up the diameter of a tree crown.
 function diamCountUp() {
@@ -130,40 +132,36 @@ function diamCountDown() {
 //		  - age [Number]
 //RETURN: - [Boolean]
 function checkInput(lat, lon, age) {
-	try {
-		if (lat > 90) {
-			$("#lblLat").text("Enter a value between -90 and 90!");
-			$("#lblLat").css("color", "red");
-			return;
-		} else if (lat < -90) {
-			$("#lblLat").text("Enter a value between -90 and 90!");
-			$("#lblLat").css("color", "red");
-			return;
-		}
-		
-		if (lon > 180) {
-			$("#lblLon").text("Enter a value between -180 and 180!");
-			$("#lblLon").css("color", "red");
-			return;
-		} else if (lon < -180) {
-			$("#lblLon").text("Enter a value between -180 and 180!");
-			$("#lblLon").css("color", "red");
-			return;
-		}
-		
-		if (age > 999) {
-			$("#lblAge").text("Enter a value between 1 and 999!");
-			$("#lblAge").css("color", "red");
-			return;
-		} else if (age < 1) {
-			$("#lblAge").text("Enter a value between 1 and 999!");
-			$("#lblAge").css("color", "red");
-			return;
-		}
+	if (lat > 90) {
+		$("#lblLat").text("Enter a value between -90 and 90!");
+		$("#lblLat").css("color", "red");
+		return;
+	} else if (lat < -90) {
+		$("#lblLat").text("Enter a value between -90 and 90!");
+		$("#lblLat").css("color", "red");
+		return;
 	}
-	catch (err) {
-		console.log('checkInput failed!');
+	
+	if (lon > 180) {
+		$("#lblLon").text("Enter a value between -180 and 180!");
+		$("#lblLon").css("color", "red");
+		return;
+	} else if (lon < -180) {
+		$("#lblLon").text("Enter a value between -180 and 180!");
+		$("#lblLon").css("color", "red");
+		return;
 	}
+	
+	if (age > 999) {
+		$("#lblAge").text("Enter a value between 1 and 999!");
+		$("#lblAge").css("color", "red");
+		return;
+	} else if (age < 1) {
+		$("#lblAge").text("Enter a value between 1 and 999!");
+		$("#lblAge").css("color", "red");
+		return;
+	}
+	
 	return true;
 }
 

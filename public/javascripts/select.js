@@ -19,7 +19,8 @@ try {
 	// Generation of the selection for the Map Type
 
 	$(document).ready(function () {
-		$("#month").hide();
+	    $("#month").hide();
+	    $("#Info").hide();
 		$('#recentold-order').on('change', function () {
 			if (this.value == '1') {
 				$("#month").show();
@@ -320,8 +321,6 @@ let viewTrees;
 // OUTPUT: viewTrees -> object with all the trees in the view 
 
 function getTreeRecCurrent(latmin, latmax, lonmin, lonmax) {
-	console.log('in getTreeRecCurrent');
-	console.log(treeselection_tmp);
 	let treeselection = {};
 	try {
 		treeselection[0] = latmin;
