@@ -32,7 +32,6 @@ for (var l = 0; l < layers.length; l++) {
 // The common gesture-handling function.
 var handleClick = function (recognizer) {
 	// Obtain the event location.
-	console.log('click');
 	// Add the coordinates on the cursor to the dialog
 	var x = recognizer.clientX,
 		y = recognizer.clientY;
