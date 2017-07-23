@@ -118,7 +118,7 @@ position: absolute;
         float: right;
   
     }
-
+    
     /*#example-order{
         padding-left:30px;
         float: right;
@@ -129,6 +129,13 @@ position: absolute;
 
 
 }
+.navbar-brand {
+   pointer-events: none;
+   cursor: default;
+}
+img, #recentold-order {
+        cursor: pointer;
+    }
 #tree-order,#example-order{
     width:25%;
     position:relative;
