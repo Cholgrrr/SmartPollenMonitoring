@@ -25,10 +25,10 @@ const pgp = require('pg-promise')({
 
 const connection = {
 
-  user: 'nasaeurope', 																		// name of the user account
+  user: 'postgres', 																		// name of the user account
   database: 'NASAWIND', 																	// name of the database
-  password: 'cvdfer34', 																	// env var: PGPASSWORD 
-  host: 'nasaeuropeanwindchallange.cuefszt0dp4m.us-east-2.rds.amazonaws.com', 				// Server hosting the postgres database (host: '35.187.21.114')
+  password: 'postgres', 																	// env var: PGPASSWORD 
+  host: 'localhost', 				// Server hosting the postgres database (host: '35.187.21.114')
   port: 5432, 																				// env var: PGPORT 
   max: 10, 																					// max number of clients in the pool
   idleTimeoutMillis: 30000 																	// how long a client is allowed to remain idle before being closed
@@ -375,7 +375,7 @@ catch(err) {
 // -----------------
 // Server runs info
 
-console.log('server is running on port 3000!');
+console.log('server is running on port 8080!');
 
 
 
