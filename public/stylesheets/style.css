@@ -105,6 +105,37 @@ position: absolute;
         margin-left: 46%;
     }
 }
+@media only screen and (max-device-width:480px) {
+    #recentold-order, #treeres, #month{
+        display: block;
+    }
+    #tree-order-button, #example-order-button{
+        margin-left: -10px;
+        width:60px;
+    }
+    #tree-order, example-order{
+        margin-left:30px;
+        float: right;
+  
+    }
+    
+    /*#example-order{
+        padding-left:30px;
+        float: right;
+    }*/
+    /*.btn-group>.btn:first-child{
+        margin-left: 20px;
+    }*/
+
+
+}
+.navbar-brand {
+   pointer-events: none;
+   cursor: default;
+}
+img, #recentold-order {
+        cursor: pointer;
+    }
 #tree-order,#example-order{
     width:25%;
     position:relative;

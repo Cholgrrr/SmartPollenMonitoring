@@ -52,13 +52,13 @@ var handleClick = function (recognizer) {
 		y = recognizer.clientY,
 		pickList = wwd.pick(wwd.canvasCoordinates(x, y)),
 		position = pickList.objects[0].position,
-		maxLat = position.latitude + 0.004,
-		maxLong = position.longitude + 0.009,
-		minLat = position.latitude - 0.004,
-		minLong = position.longitude - 0.009;
+		maxLat = position.latitude + 0.007,
+		maxLong = position.longitude + 0.015,
+		minLat = position.latitude - 0.007,
+		minLong = position.longitude - 0.015;
 	
 	// recenter the view 
-	wwd.goTo(new WorldWind.Position(position.latitude, position.longitude,1000));
+	wwd.goTo(new WorldWind.Position(position.latitude, position.longitude,2500));
 	deleteLayer();
 	
 	// query current wind data (speed, direction, date)
