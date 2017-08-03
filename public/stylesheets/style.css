@@ -133,7 +133,7 @@ position: absolute;
    pointer-events: none;
    cursor: default;
 }
-img, #recentold-order {
+#resdat, #histric, #plus, #info, #recentold-order {
         cursor: pointer;
     }
 #tree-order,#example-order{
