@@ -7,9 +7,9 @@ WorldWind.Logger.setLoggingLevel(WorldWind.Logger.LEVEL_WARNING);
 // Create the World Window.
 var wwd = new WorldWind.WorldWindow("canvasOne");
 // World Window.
-wwd.navigator.lookAtLocation.latitude = 50.090142; 
-wwd.navigator.lookAtLocation.longitude = 8.617049; 
-wwd.navigator.range = 10e3;
+wwd.navigator.lookAtLocation.latitude = 40.690142; 
+wwd.navigator.lookAtLocation.longitude = -73.917049; 
+wwd.navigator.range = 30e3;
 wwd.navigator.tilt = 45;
 // Add imagery layers.
 var layers = [
@@ -391,7 +391,7 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, blo
 		// make the ShapeAttributes for Big Ellispe
 		var att = new WorldWind.ShapeAttributes(null);
 		att.drawInterior = true;
-		att.drawOutline = true;
+		att.drawOutline = false;
 		att.outlineColor = boundary_big;
 		att.interiorColor = color_start;
 		att.outerWidth = 0.1;
@@ -440,7 +440,7 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, blo
 
 		//------------Draw Circle at Tree Position-------------------
 		var cir = new WorldWind.Position(TreeLat, TreeLong,1e5);
-		var Circle = new WorldWind.SurfaceCircle(cir, 5, attc);
+		var Circle = new WorldWind.SurfaceCircle(cir, 2, attc);
 		rendtop.addRenderable(Circle);	
 		//rend.opacity = 0.3;	
 		
@@ -450,7 +450,7 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, blo
 		
 		var textAttributes = new WorldWind.TextAttributes(null);
 		textAttributes.depthTest = false;
-		var textPosition = new WorldWind.Position(TreeLat, TreeLong, 100);
+		var textPosition = new WorldWind.Position(TreeLat, TreeLong, 1000);
 		var Tree_Type = translate_treeype_de_en(TreeType)
 		
 		if ((p_color == 21) || (p_color == 31) || (p_color == 41) || (p_color == 22) || (p_color == 32) || (p_color == 42)) {
@@ -464,7 +464,7 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, blo
 			var text = new WorldWind.GeographicText(textPosition,"\u2663 " + Tree_Type + "\n" + "Wind Info: Deg " + windDeg + "\xB0 " + "Speed: " + windStr + "m/s \n" + "Type: Low allergenic\n" + "Season Effect: " + bloomingT+ "(" +bloomingF+ "%)");
 		}
 		text.attributes = textAttributes;
-		rend.addRenderable(text);
+		//rend.addRenderable(text);
 	}
 	catch(err) {
 		console.log('->  generate elipse failed!\n' + err);
@@ -472,8 +472,8 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, blo
 		
 }
 wwd.addLayer(rend);    //draw big ellipse (Lowest)
-wwd.addLayer(rendme);  //draw medium ellipse
-wwd.addLayer(rendse);  //draw small ellipse
+//wwd.addLayer(rendme);  //draw medium ellipse
+//wwd.addLayer(rendse);  //draw small ellipse
 wwd.addLayer(rendtop); //draw circle points of tree last (top)
 
 // delete layer function
@@ -532,14 +532,14 @@ function translate_treeype_de_en(tree_type) {
 		ttype = 'Ailanthus';
 	} else if (tree_type == 'Holunder') {
 		ttype = 'Elder';
-	} else if (tree_type == 'Eibe') {
+	} else if (tree_type == 'Kastanie') {
 		ttype = 'Chestnut';
 	} else if (tree_type == 'Kiefer') {
 		ttype = 'Pine';
 	} else if (tree_type == 'Kirsche') {
 		ttype = 'Cherry';
 	} else if (tree_type == 'Linde') {
-		ttype = 'Lime';
+		ttype = 'Linden';
 	} else if (tree_type == 'Pflaume') {
 		ttype = 'Plum';
 	} else if (tree_type == 'Robinie') {

@@ -65,14 +65,14 @@ function TreeStat() {
 				mdata[i].tree_type = 'Ailanthus';
 			} else if (mdata[i].tree_type == 'Holunder') {
 				mdata[i].tree_type = 'Elder';
-			} else if (mdata[i].tree_type == 'Eibe') {
+			} else if (mdata[i].tree_type == 'Kastanie') {
 				mdata[i].tree_type = 'Chestnut';
 			} else if (mdata[i].tree_type == 'Kiefer') {
 				mdata[i].tree_type = 'Pine';
 			} else if (mdata[i].tree_type == 'Kirsche') {
 				mdata[i].tree_type = 'Cherry';
 			} else if (mdata[i].tree_type == 'Linde') {
-				mdata[i].tree_type = 'Lime';
+				mdata[i].tree_type = 'Linden';
 			} else if (mdata[i].tree_type == 'Pflaume') {
 				mdata[i].tree_type = 'Plum';
 			} else if (mdata[i].tree_type == 'Robinie') {

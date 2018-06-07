@@ -267,12 +267,12 @@ try {
 				} else if (treeselection_tmp[i].innerText == 'Elder') {
 					treetrans[i] = 'Holunder';
 				} else if (treeselection_tmp[i].innerText == 'Chestnut') {
-					treetrans[i] = 'Eibe';
+					treetrans[i] = 'Kastanie';
 				} else if (treeselection_tmp[i].innerText == 'Pine') {
 					treetrans[i] = 'Kiefer';
 				} else if (treeselection_tmp[i].innerText == 'Cherry') {
 					treetrans[i] = 'Kirsche';
-				} else if (treeselection_tmp[i].innerText == 'Lime') {
+				} else if (treeselection_tmp[i].innerText == 'Linden') {
 					treetrans[i] = 'Linde';
 				} else if (treeselection_tmp[i].innerText == 'Plum') {
 					treetrans[i] = 'Pflaume';
