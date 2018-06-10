@@ -6,16 +6,19 @@ var trees;
 WorldWind.Logger.setLoggingLevel(WorldWind.Logger.LEVEL_WARNING);
 // Create the World Window.
 var wwd = new WorldWind.WorldWindow("canvasOne");
-// World Window Frankfurt Area
-// wwd.navigator.lookAtLocation.latitude = 50.090142; 
-// wwd.navigator.lookAtLocation.longitude = 8.617049; 
-// wwd.navigator.range = 10e3;
-// wwd.navigator.tilt = 45;
-// World Window New york Area
-wwd.navigator.lookAtLocation.latitude = 40.690142; 
-wwd.navigator.lookAtLocation.longitude = -73.917049; 
+
+//Define Location on each City
+var Location_Germany_Frankfurt_Lat = 50.090142;
+var Location_Germany_Frankfurt_Long = 8.617049;
+var Location_USA_NewYork_Lat = 40.690142;
+var Location_USA_NewYork_Long = -73.917049;
+// Navigate to the starting location
+wwd.navigator.lookAtLocation.latitude = Location_USA_NewYork_Lat; 
+wwd.navigator.lookAtLocation.longitude = Location_USA_NewYork_Long; 
 wwd.navigator.range = 30e3;
 wwd.navigator.tilt = 45;
+
+
 // Add imagery layers.
 var layers = [
 
