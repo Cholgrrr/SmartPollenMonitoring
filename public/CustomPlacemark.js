@@ -6,7 +6,12 @@ var trees;
 WorldWind.Logger.setLoggingLevel(WorldWind.Logger.LEVEL_WARNING);
 // Create the World Window.
 var wwd = new WorldWind.WorldWindow("canvasOne");
-// World Window.
+// World Window Frankfurt Area
+// wwd.navigator.lookAtLocation.latitude = 50.090142; 
+// wwd.navigator.lookAtLocation.longitude = 8.617049; 
+// wwd.navigator.range = 10e3;
+// wwd.navigator.tilt = 45;
+// World Window New york Area
 wwd.navigator.lookAtLocation.latitude = 40.690142; 
 wwd.navigator.lookAtLocation.longitude = -73.917049; 
 wwd.navigator.range = 30e3;
