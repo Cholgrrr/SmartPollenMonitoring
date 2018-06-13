@@ -29,7 +29,7 @@
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script type="text/javascript" src="javascripts/prettify.js"></script>
     <link rel="stylesheet" href="stylesheets/prettify.css" type="text/css">
-    <script src="javascripts/select.js"></script>
+    <script src="javascripts/select_joe.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             window.prettyPrint() && prettyPrint();
@@ -185,7 +185,7 @@
         <h2>
             <span style="color:azure">Pollen</span>
             <span style="color:crimson">Simulation</span>
-        </h2><br>
+        </h2>
         <h4>Select Month</h4>
         <select class="selectpicker" id="month" data-width="100px" data-show-tick="true">
             <option value="1">January</option>
@@ -203,7 +203,7 @@
         </select>
         
         <!-- <button id="example-order-button1" class="btn btn-success" >Apply Month</button> -->
-        <br>
+        
         <h4>Select Tree-type</h4>
         <select id="tree-order" class="selectpicker" multiple data-live-search="true" data-width="100%" multiple title="Choose types of tree/ Type for search" data-dropup-auto="false">
             <optgroup label="High allergenic">
@@ -244,7 +244,7 @@
             
         </select>
 <br><br>
-        <button id="tree-order-button1" class="myButtonGreen" type="button">Confirm Selection</button><br>
+        <button id="tree-order-button" class="myButtonGreen" type="button">Confirm Selection</button><br>
         <button class="myButtonRed" type="button" onclick="pollenClick()">close</button>
     </div>
 
