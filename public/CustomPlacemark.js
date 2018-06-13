@@ -244,6 +244,8 @@ var rend = new WorldWind.RenderableLayer();
 var rendme = new WorldWind.RenderableLayer();  //Layer for medium ellispe
 var rendse = new WorldWind.RenderableLayer();  //Layer for small ellispe
 var rendtop = new WorldWind.RenderableLayer(); //Tree Point will always be on top
+var rendtext = new WorldWind.RenderableLayer(); //Tree Point will always be on top
+var text;
 
 // Now set up to handle highlighting.
 var highlightController = new WorldWind.HighlightController(wwd);
@@ -458,21 +460,21 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, blo
 		
 		var textAttributes = new WorldWind.TextAttributes(null);
 		textAttributes.depthTest = false;
-		var textPosition = new WorldWind.Position(TreeLat, TreeLong, 1000);
+		var textPosition = new WorldWind.Position(TreeLat, TreeLong, 100);
 		var Tree_Type = translate_treeype_de_en(TreeType)
 		
 		if ((p_color == 21) || (p_color == 31) || (p_color == 41) || (p_color == 22) || (p_color == 32) || (p_color == 42)) {
 			//set text for High risk trees
 			textAttributes.color = WorldWind.Color.YELLOW;
-			var text = new WorldWind.GeographicText(textPosition,"\u2663 " + Tree_Type + "\n" + "Wind Info: Deg " + windDeg + "\xB0 " + "Speed: " + windStr + "m/s\n" + "Type: High allergenic\n" + "Season Effect: " + bloomingT + "(" +bloomingF+ "%)");
+			text = new WorldWind.GeographicText(textPosition,"\u2663 " + Tree_Type + "\n" + "Wind Info: Deg " + windDeg + "\xB0 " + "Speed: " + windStr + "m/s\n" + "Type: High allergenic\n" + "Season Effect: " + bloomingT + "(" +bloomingF+ "%)");
 		}
 		else {
 			//set text for Low risk & other trees
 			textAttributes.color = WorldWind.Color.CYAN;
-			var text = new WorldWind.GeographicText(textPosition,"\u2663 " + Tree_Type + "\n" + "Wind Info: Deg " + windDeg + "\xB0 " + "Speed: " + windStr + "m/s \n" + "Type: Low allergenic\n" + "Season Effect: " + bloomingT+ "(" +bloomingF+ "%)");
+			text = new WorldWind.GeographicText(textPosition,"\u2663 " + Tree_Type + "\n" + "Wind Info: Deg " + windDeg + "\xB0 " + "Speed: " + windStr + "m/s \n" + "Type: Low allergenic\n" + "Season Effect: " + bloomingT+ "(" +bloomingF+ "%)");
 		}
 		text.attributes = textAttributes;
-		//rend.addRenderable(text);
+		rendtext.addRenderable(text);
 	}
 	catch(err) {
 		console.log('->  generate elipse failed!\n' + err);
@@ -483,7 +485,17 @@ wwd.addLayer(rend);    //draw big ellipse (Lowest)
 //wwd.addLayer(rendme);  //draw medium ellipse
 //wwd.addLayer(rendse);  //draw small ellipse
 wwd.addLayer(rendtop); //draw circle points of tree last (top)
-
+var showLabel = function(){
+	rendtext.refresh();
+		
+	wwd.addLayer(rendtext);
+	wwd.redraw();
+};
+var hideLabel = function(){
+	rendtext.removeAllRenderables();
+	rendtext.refresh();
+		wwd.redraw();
+};
 // delete layer function
 function deleteLayer() {
     
@@ -493,10 +505,12 @@ function deleteLayer() {
 		rendme.removeAllRenderables();
 		rendse.removeAllRenderables();
 		rendtop.removeAllRenderables();
+		rendtext.removeAllRenderables();
 		rend.refresh();
 		rendme.refresh();
 		rendse.refresh();
 		rendtop.refresh();
+		rendtext.refresh();
 		wwd.redraw();
 	}
 	catch(err) {
