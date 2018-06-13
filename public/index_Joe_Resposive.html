@@ -6,6 +6,7 @@
     <!--NOTE: Most Web World Wind examples use jquery, Bootstrap and requirejs but those technologies are NOT-->
     <!--required by Web World Wind. See SimplestExample.html for an example of using Web World Wind without them.-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Smart Pollen Monitoring II</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <script src="https://files.worldwind.arc.nasa.gov/artifactory/web/0.9.0/worldwind.min.js" type="text/javascript">
     </script>
@@ -21,11 +22,11 @@
     <!--<script data-main="CustomPlacemark" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.17/require.min.js"></script>-->
     <script src="javascripts/spreadout.js"></script>
     <!--Data display-->
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
 
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script type="text/javascript" src="javascripts/prettify.js"></script>
     <link rel="stylesheet" href="stylesheets/prettify.css" type="text/css">
@@ -72,13 +73,6 @@
                     </select>
 
                 </div> -->
-
-
-
-
-
-
-
                 <!-- <div class="btn-group tooltipstuff" id="month" title="Here you can select which month interests you.">
                     <select id="example-order">
                         <option value="1">January</option>
@@ -152,10 +146,13 @@
                             <span class="glyphicon glyphicon-question-sign"></span> Tutorial
                         </a>
                     </li>
-                    <li id="clear-button" onclick="openDialog()" title="Add tree to database">
-                        <a href="#">
-                            <span class="glyphicon glyphicon-plus"></span> Add Tree </a>
-                    </li>
+                    <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-plus" class="caret"></span> Add Tree</a>
+                            <ul class="dropdown-menu">
+                              <li onclick="openDialog()"><a href="#">Singel Tree</a></li>
+                              <li onclick="csvUpload()"><a href="#">Multiple Trees (CSV upload)</a></li>
+                            </ul>
+                          </li>
 
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -171,8 +168,6 @@
                         <a href="#">
                             <span class="glyphicon glyphicon-remove"></span> Clear Map </a>
                     </li>
-
-
                 </ul>
             </div>
 
@@ -201,11 +196,12 @@
             <option value="11">November</option>
             <option value="12">December</option>
         </select>
-        
+
         <!-- <button id="example-order-button1" class="btn btn-success" >Apply Month</button> -->
-        
+
         <h4>Select Tree-type</h4>
-        <select id="tree-order" class="selectpicker" multiple data-live-search="true" data-width="100%" multiple title="Choose types of tree/ Type for search" data-dropup-auto="false">
+        <select id="tree-order" class="selectpicker" multiple data-live-search="true" data-width="100%" multiple title="Choose types of tree/ Type for search"
+            data-dropup-auto="false">
             <optgroup label="High allergenic">
                 <option class="Birke" value="25">Alder</option>
                 <option class="Erle" value="23">Birch</option>
@@ -241,10 +237,11 @@
             <optgroup label="other">
                 <option value="11">other</option>
             </optgroup>
-            
+
         </select>
-<br><br>
-        <button id="tree-order-button" class="myButtonGreen" type="button">Confirm Selection</button><br>
+        <br>
+
+        <button id="tree-order-button" class="myButtonGreen" type="button">Confirm Selection</button>
         <button class="myButtonRed" type="button" onclick="pollenClick()">close</button>
     </div>
 
@@ -320,7 +317,7 @@
                 <h2>Tree Statistic</h2>
             </div>
             <div class="modal-body" background="transparent">
-                <svg width="500"></svg>
+                <svg width="300" height="100"></svg>
                 <script>
                 </script>
                 <!--<p>Some text in the Modal Body</p>
@@ -346,11 +343,14 @@
             if (pollenMenu.style.display === 'none') {
                 pollenMenu.style.display = "block";
             }
-            else{
+            else {
                 pollenMenu.style.display = "none";
             }
-            
+
         };
+        var csvUpload = function (){
+            alert("Coming Soon, Dude!");
+        }
     </script>
 
     <!--</div>-->
