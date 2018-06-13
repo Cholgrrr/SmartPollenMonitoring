@@ -162,7 +162,29 @@ position: absolute;
 #dialogTree-order{
     width:100%;
 }
-
+/*Styling for Drop Down Sub-menu*/
+.dropdown-submenu {
+    position: relative;
+  }
+  .dropdown-submenu > .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -6px;
+    margin-left: -1px;
+  }
+  .dropdown-submenu:hover > .dropdown-menu {
+    display: block;
+  }
+  .dropdown-submenu:hover > a:after {
+    border-left-color: #fff;
+  }
+  .dropdown-submenu.pull-left {
+    float: none;
+  }
+  .dropdown-submenu.pull-left > .dropdown-menu {
+    left: -100%;
+    margin-left: 10px;
+  }
 
 /*################################################*/
 .modal {
@@ -269,4 +291,100 @@ position: absolute;
 }
 div[aria-describedby="Info"]{
     width: 30em;
+}
+
+.backdrop {
+    display: inline-block;
+    background: rgba(42, 42, 42, 0.9);
+    border-radius: 5px;
+    border: 1px solid #444;
+    padding: 5px 10px;
+    color: #fff;
+	font: 1em "Fira Sans", sans-serif;
+}
+.backdrop a:link, .backdrop a:visited, .backdrop a:hover {
+    color: #fff
+}
+#pollenMenu {
+    position: absolute;
+    right: 30px;
+    top:100px;
+    width: 300px;
+    height: 70%;
+}
+
+.myButtonRed {
+	-moz-box-shadow:inset 0px 1px 0px 0px #f5978e;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #f5978e;
+	box-shadow:inset 0px 1px 0px 0px #f5978e;
+	background-color:#f24537;
+	-moz-border-radius:3px;
+	-webkit-border-radius:2px;
+	border-radius:2px;
+	border:1px solid #d02718;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Trebuchet MS;
+	font-size:12px;
+	padding:2px 2px;
+	text-decoration:none;
+}
+.myButtonRed:hover {
+	background-color:#c62d1f;
+}
+.myButtonRed:active {
+	position:relative;
+	top:1px;
+}
+
+.myButtonGreen {
+	-moz-box-shadow:inset 0px 1px 0px 0px #caefab;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #caefab;
+	box-shadow:inset 0px 1px 0px 0px #caefab;
+	background-color:#77d42a;
+	-moz-border-radius:3px;
+	-webkit-border-radius:2px;
+	border-radius:2px;
+	border:1px solid #268a16;
+	display:inline-block;
+	cursor:pointer;
+	color:#0a0a0a;
+	font-family:Trebuchet MS;
+	font-size:12px;
+	padding:2px 2px;
+	text-decoration:none;
+}
+.myButtonGreen:hover {
+	background-color:#5cb811;
+}
+.myButtonGreen:active {
+	position:relative;
+	top:1px;
+}
+
+.myButtonBlue {
+	-moz-box-shadow:inset 0px 1px 0px 0px #97c4fe;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #97c4fe;
+	box-shadow:inset 0px 1px 0px 0px #97c4fe;
+	background-color:#3d94f6;
+	-moz-border-radius:3px;
+	-webkit-border-radius:2px;
+	border-radius:2px;
+	border:1px solid #337fed;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Trebuchet MS;
+	font-size:12px;
+	padding:2px 2px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #1570cd;
+}
+.myButtonBlue:hover {
+	background-color:#1e62d0;
+}
+.myButtonBlue:active {
+	position:relative;
+	top:1px;
 }
