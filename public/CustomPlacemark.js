@@ -460,7 +460,7 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, blo
 		
 		var textAttributes = new WorldWind.TextAttributes(null);
 		textAttributes.depthTest = false;
-		var textPosition = new WorldWind.Position(TreeLat, TreeLong, 100);
+		var textPosition = new WorldWind.Position(TreeLat, TreeLong, 30);
 		var Tree_Type = translate_treeype_de_en(TreeType)
 		
 		if ((p_color == 21) || (p_color == 31) || (p_color == 41) || (p_color == 22) || (p_color == 32) || (p_color == 42)) {
