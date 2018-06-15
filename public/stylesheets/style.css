@@ -399,7 +399,30 @@ div[aria-describedby="Info"]{
   }
 
 
-#bikeButton{
 
-  background-image: url("/images/bike.png")
-}
+  /* Styling the brand part*/
+  .navbar-brand {
+    padding: 0px;
+  }
+  .navbar-brand>img {
+    height: 100%;
+    padding: 15px;
+    width: auto;
+  }
+  
+.brand-centered {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+  }
+  .brand-centered .navbar-brand {
+    display: flex;
+    align-items: center;
+  }
+  .navbar-toggle {
+      z-index: 1;
+  }
+
