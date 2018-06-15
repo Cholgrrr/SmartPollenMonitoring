@@ -59,22 +59,35 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
+                    <!-- New Branding Left-->
+
                 </button>
                 <!-- <a class="navbar-brand" onclick="TreeStat()"></a> -->
                 <!-- Branding Old -->
                 <!-- <a class="navbar-brand" >
                     <strong>Smart Pollen Monitoring</strong>
                 </a> -->
+                <!-- <a class="navbar-brand">
+                    <img src="images/SPMBrand/logonew.png" alt="SmartPollenMonitoring">
+                </a> -->
             </div>
-            <!-- New Branding in the middle (optional1) -->
-            <div class="brand-centered">
-                    <a class="navbar-brand"><img style="margin-right: 10px; padding: 0;" src="images/SPM_icon.JPG">Smart Pollen Monitoring
-                    </a>
+            <!-- New Branding on the left (optional1) -->
+            <div class="brand-left">
+                <a class="navbar-brand">
+                    <img style="margin-right: 10px; padding: 0;" src="images/SPMBrand/logonew_Short2.png">
+                </a>
             </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
-                <!-- <div class="btn-group test tooltipstuff" titel="Here you can select if you want to see Historic Wind Data or recent Wind Data">
+            <!-- New Branding in the middle (optional2) -->
+            <!-- <div class="brand-centered">
+                <a class="navbar-brand"><img style="margin-right: 10px; padding: 0;" src="images/SPMBrand/logonew_Short.png">
+                </a> </div>-->
+
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+            <!-- <div class="btn-group test tooltipstuff" titel="Here you can select if you want to see Historic Wind Data or recent Wind Data">
                     <select id="recentold-order">
                         <option value="2">Recent Data</option>
                         <option value="1">Historic Data</option>
@@ -82,7 +95,7 @@
                     </select>
 
                 </div> -->
-                <!-- <div class="btn-group tooltipstuff" id="month" title="Here you can select which month interests you.">
+            <!-- <div class="btn-group tooltipstuff" id="month" title="Here you can select which month interests you.">
                     <select id="example-order">
                         <option value="1">January</option>
                         <option value="2">February</option>
@@ -102,7 +115,7 @@
 
 
 
-                <!-- <div class="btn-group tooltipstuff" id="treeres" title="Here you can select which types of Trees interest you.">
+            <!-- <div class="btn-group tooltipstuff" id="treeres" title="Here you can select which types of Trees interest you.">
                     <span class="input-group-btn">
                         <select id="tree-order" multiple="multiple">
                             <optgroup label="High allergenic">
@@ -148,43 +161,77 @@
 
                     </span>
                 </div> -->
-                <ul class="nav navbar-nav">
+            <!-- <ul class="nav navbar-nav">
 
-                    <li onclick="Info()" title="help">
-                        <a href="#">
-                            <span class="glyphicon glyphicon-question-sign"></span> Tutorial
-                        </a>
-                    </li>
-                    <li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-plus" class="caret"></span> Add Tree</a>
-                            <ul class="dropdown-menu">
-                              <li onclick="openDialog()"><a href="#">Singel Tree</a></li>
-                              <li onclick="csvUpload()"><a href="#">Multiple Trees (CSV upload)</a></li>
-                            </ul>
-                          </li>
+                    left Menu
 
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li id="pollenSim" onclick="pollenClick()" title="Add tree to database">
-                        <a href="#">
-                            <span class="glyphicon glyphicon-tree-deciduous"></span> Pollen Simulation </a>
-                    </li>
-                    <li id="showStat" title="With a click here you can open the statistic again">
-                        <a href="#">
-                            <span class="glyphicon glyphicon-stats"></span> Show Statistic </a>
-                    </li>
-                    <li id="clear-button" onclick="Clearall()" title="With a click here you can clear your tree selection">
-                        <a href="#">
-                            <span class="glyphicon glyphicon-remove"></span> Clear Map </a>
-                    </li>
-                </ul>
-            </div>
+                </ul> -->
+            <ul class="nav navbar-nav navbar-right">
+                <li onclick="Info()" title="help">
+                    <a href="#">
+                        <span class="glyphicon glyphicon-question-sign"></span> Tutorial
+                    </a>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <span class="glyphicon glyphicon-plus" class="caret"></span> Add Tree</a>
+                    <ul class="dropdown-menu">
+                        <li onclick="openDialog()">
+                            <a href="#">Singel Tree</a>
+                        </li>
+                        <li onclick="csvUpload()">
+                            <a href="#">Multiple Trees (CSV upload)</a>
+                        </li>
+                    </ul>
+                </li>
+                <li id="pollenSim" onclick="pollenClick()" title="Add tree to database">
+                    <a href="#">
+                        <span class="glyphicon glyphicon-tree-deciduous"></span> Pollen Simulation </a>
+                </li>
+                <!-- Prepared for Navigation menu to be added -->
+                <li id="pollenSim" onclick="navClick()" title="Show navigation menu">
+                    <a href="#">
+                        <span class="glyphicon glyphicon-map-marker"></span> Navigation </a>
+                </li>
+                <li id="showStat" title="With a click here you can open the statistic again">
+                    <a href="#">
+                        <span class="glyphicon glyphicon-stats"></span> Show Statistic </a>
+                </li>
+                <li id="clear-button" onclick="Clearall()" title="With a click here you can clear your tree selection">
+                    <a href="#">
+                        <span class="glyphicon glyphicon-remove"></span> Clear Map </a>
+                </li>
+            </ul>
+        </div>
 
 
 
         </div>
 
     </nav>
+    <div class="backdrop" id="navMenu" style="display: none;">
+        <h2>
+            <span style="color:azure">Navigation</span>
+            <span style="color:crimson">Menu</span>
+        </h2>
+        <button class="myButtonRed" type="button" onclick="navClick()">close</button>
+        <h4>Path</h4>
+        <button class="myButtonBlue" type="button" onclick="toggleText()" id="bike">bike</button>
+        <div class="input-group" id="searchBox1">
+            <input type="text" class="form-control" placeholder="Start Navigation" id="searchTextStart" />
+
+
+        </div>
+
+        <div class="input-group" id="searchBox2">
+            <input type="text" class="form-control" placeholder="End Navigation" id="searchTextEnd" />
+            <span class="input-group-btn">
+                <button id="searchButton" onclick="StartNav()" class="btn btn-primary" type="button">
+                    <span class="glyphicon glyphicon-search"></span>
+                </button>
+            </span>
+        </div>
+    </div>
     <div class="backdrop" id="pollenMenu" style="display: none;">
         <h2>
             <span style="color:azure">Pollen</span>
@@ -249,33 +296,19 @@
             </optgroup>
 
         </select>
-        
+
         <br>
 
         <button id="tree-order-button" class="myButtonGreen" type="button">Confirm Selection</button>
-        <button class="myButtonRed" type="button" onclick="pollenClick()">close</button><br>
+        <button class="myButtonRed" type="button" onclick="pollenClick()">close</button>
+        <br>
         <h4>Lable Options:</h4>
         <button class="myButtonBlue" type="button" onclick="showLabel()">show label</button>
         <button class="myButtonRed" type="button" onclick="hideLabel()">hide label</button>
-    
+
         <br>
-            <h4>Path</h4>
-            <button class="myButtonBlue" type="button" onclick="toggleText()" id="bike">bike</button>
-            <div class="input-group" id="searchBox1">
-                <input type="text" class="form-control" placeholder="Start Navigation" id="searchTextStart"/>
-                
-                
-            </div>
-            
-            <div class="input-group" id="searchBox2">
-                <input type="text" class="form-control" placeholder="End Navigation" id="searchTextEnd"/>
-                <span class="input-group-btn">
-                    <button id="searchButton" onclick="StartNav()" class="btn btn-primary" type="button">
-                        <span class="glyphicon glyphicon-search"></span>
-                    </button>
-                </span>
-            </div>
-    
+        
+
     </div>
 
     <div id="dialog_addTree" title="Add custom tree">
@@ -350,7 +383,7 @@
                 <h2>Tree Statistic</h2>
             </div>
             <div class="modal-body" background="transparent">
-                    <svg width="1260" height="500"></svg>
+                <svg width="1260" height="500"></svg>
                 <script>
                 </script>
                 <!--<p>Some text in the Modal Body</p>
@@ -381,7 +414,16 @@
             }
 
         };
-        var csvUpload = function (){
+        var navClick = function () {
+            if (navMenu.style.display === 'none') {
+                navMenu.style.display = "block";
+            }
+            else {
+                navMenu.style.display = "none";
+            }
+
+        };
+        var csvUpload = function () {
             alert("Coming Soon, Dude!");
         }
     </script>

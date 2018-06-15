@@ -129,10 +129,6 @@ position: absolute;
 
 
 }
-.navbar-brand {
-   pointer-events: none;
-   cursor: default;
-}
 #resdat, #histric, #plus, #info, #recentold-order {
         cursor: pointer;
     }
@@ -312,6 +308,14 @@ div[aria-describedby="Info"]{
     width: 300px;
     height: 70%;
 }
+#navMenu {
+    position: absolute;
+    right: 30px;
+    top:100px;
+    width: 300px;
+    height: 70%;
+}
+
 
 .myButtonRed {
 	-moz-box-shadow:inset 0px 1px 0px 0px #f5978e;
@@ -418,7 +422,16 @@ div[aria-describedby="Info"]{
     left: 0;
     top: 0;
   }
-  .brand-centered .navbar-brand {
+  .brand-left {
+    display: flex;
+    justify-content: left;
+    position: absolute;
+    width: 100%;
+    left: 50;
+    top: 0;
+  }
+  .b
+  .brand-centered .brand-left .navbar-brand {
     display: flex;
     align-items: center;
   }
