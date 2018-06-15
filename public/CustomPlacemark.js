@@ -506,11 +506,13 @@ function deleteLayer() {
 		rendse.removeAllRenderables();
 		rendtop.removeAllRenderables();
 		rendtext.removeAllRenderables();
+		
 		rend.refresh();
 		rendme.refresh();
 		rendse.refresh();
 		rendtop.refresh();
 		rendtext.refresh();
+		
 		wwd.redraw();
 	}
 	catch(err) {

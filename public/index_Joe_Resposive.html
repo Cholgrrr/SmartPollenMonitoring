@@ -44,7 +44,8 @@
     <!--
     <link rel="stylesheet" type="text/css" href="stylesheets/default.css" />
     <link rel="stylesheet" type="text/css" href="stylesheets/component.css" />
-    -->
+    TESTTESTTESTTEST-->
+    <script type="text/javascript" src="javascripts/navigation.js"></script>
 </head>
 
 <body>
@@ -239,6 +240,7 @@
             </optgroup>
 
         </select>
+        
         <br>
 
         <button id="tree-order-button" class="myButtonGreen" type="button">Confirm Selection</button>
@@ -246,6 +248,25 @@
         <h4>Lable Options:</h4>
         <button class="myButtonBlue" type="button" onclick="showLabel()">show label</button>
         <button class="myButtonRed" type="button" onclick="hideLabel()">hide label</button>
+    
+        <br>
+            <h4>Path</h4>
+            <button class="myButtonBlue" type="button" onclick="toggleText()" id="bike">bike</button>
+            <div class="input-group" id="searchBox1">
+                <input type="text" class="form-control" placeholder="Start Navigation" id="searchTextStart"/>
+                
+                
+            </div>
+            
+            <div class="input-group" id="searchBox2">
+                <input type="text" class="form-control" placeholder="End Navigation" id="searchTextEnd"/>
+                <span class="input-group-btn">
+                    <button id="searchButton" onclick="StartNav()" class="btn btn-primary" type="button">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                </span>
+            </div>
+    
     </div>
 
     <div id="dialog_addTree" title="Add custom tree">

@@ -397,3 +397,9 @@ div[aria-describedby="Info"]{
       right: 0px;
 	}
   }
+
+
+#bikeButton{
+
+  background-image: url("/images/bike.png")
+}

@@ -412,7 +412,8 @@ function getTreeBlooming(monthdata) {
 }
 
 function Clearall() {
-
+	shapesLayer.removeAllRenderables();
+	shapesLayer.refresh();
     deleteLayer();
     histrec = 2;
 
