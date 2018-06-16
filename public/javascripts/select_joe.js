@@ -9,7 +9,7 @@ let histwind;
 // tree translation
 var treetrans = [];
 histrec = 0;
-
+let monthselection = {};
 // ----------------------------------
 // Generation of the select structure
 
@@ -19,17 +19,24 @@ try {
 	// Generation of the selection for the Map Type
 
 	$(document).ready(function () {
-	    $("#month").hide();
+	    // $("#month").hide();
 	    $("#Info").hide();
 		$('#recentold-order').on('change', function () {
-			if (this.value == '1') {
-				$("#month").show();
+			// if (this.value == '1') {
+			// 	$("#month").show();
+			// }
+			// else {
+			// 	$("#month").hide();
+			// 	histrec = 0;
+			// }
+			if (document.getElementById("recentold-order").value == "1"){
+				monthSelector.style.display = "block";
+			} else{
+				monthSelector.style.display = "none";
 			}
-			else {
-				$("#month").hide();
-				histrec = 0;
-			}
+			
 		});
+
 	});
 
 
@@ -77,9 +84,9 @@ try {
 			}
 		});
 
-		$('#example-order-button').on('click', function () {
+		$('#tree-order-button').on('click', function () {
 			var selected = [];
-			$('#example-order option:selected').each(function () {
+			$('#month option:selected').each(function () {
 				selected.push([$(this).val(), $(this).data('order')]);
 			});
 
@@ -94,8 +101,8 @@ try {
 			text = text.substring(0, text.length - 2);
 
 			//alert(text);
-			let monthselection_tmp = $('#example-order option:selected');
-			let monthselection = {};
+			let monthselection_tmp = $('#month option:selected');
+			
 
 			for (i = 0; i < monthselection_tmp.length; i++) {
 				monthselection[i] = monthselection_tmp[i].innerText;
