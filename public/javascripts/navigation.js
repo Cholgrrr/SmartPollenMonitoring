@@ -2,6 +2,8 @@ let dataset;
 let routes;
 let i;
 var shapesLayer = new WorldWind.RenderableLayer("line");
+var placemarkLayer = new WorldWind.RenderableLayer("Start");
+var placemarkLayerend = new WorldWind.RenderableLayer("Finish");
 
 function bike() {
     if (document.getElementById("bike").text == "bike") {
@@ -16,10 +18,15 @@ function toggleText()  {
  }
 
 function StartNav() {
-alert(document.getElementById("searchTextStart").value)
-alert(document.getElementById("searchTextEnd").value)
-//loadKML("https://cors.io/?https://maps.googleapis.com/maps/api/directions/xml?origin=Toronto&destination=Montreal&avoid=highways&mode=walking&key=AIzaSyAHKsTWBLNuyJ4-3zlG8GDkPQzVWtmvbtI");
-//https://cors.io/?
+//alert(document.getElementById("searchTextStart").value)
+//alert(document.getElementById("searchTextEnd").value)
+//shapesLayer.removeAllRenderables();
+//shapesLayer.refresh();
+//placemarkLayer.removeAllRenderables();
+//placemarkLayerend.removeAllRenderables();
+//placemarkLayer.refresh();
+//placemarkLayerend.refresh();
+
 if (document.getElementById("bike").firstChild.data == "walk"){
     LoadJson("https://cors.io/?https://maps.googleapis.com/maps/api/directions/json?origin=" + document.getElementById("searchTextStart").value + "&destination=" + document.getElementById("searchTextEnd").value + "&avoid=highways&mode=walking&key=AIzaSyAHKsTWBLNuyJ4-3zlG8GDkPQzVWtmvbtI");
 }else if (document.getElementById("bike").firstChild.data == "bike") {
@@ -31,15 +38,7 @@ if (document.getElementById("bike").firstChild.data == "walk"){
 };
 
 function LoadJson(resourcesUrl){
-    //$.ajax({ 
-    //    url: resourcesUrl,
-    //    data: data,
-    //    type: 'post',
-    //    success: function(response) {
-    //        var s = $.parseJSON(response.responseText);
-    //        data = s;// prints the value of name
-    //    }
-    //});
+
 
     $.getJSON(resourcesUrl, function(result){
             $.each(result, function(i, field){
@@ -52,18 +51,34 @@ function LoadJson(resourcesUrl){
                     console.log(routes[0].legs[0].steps[0].start_location.lat)
 
 
-                    //var placemarkAttributes = new WorldWind.PlacemarkAttributes(null);
+                    var placemarkAttributes = new WorldWind.PlacemarkAttributes(null);
                     // Wrap the canvas created above in an ImageSource object to specify it as the placemarkAttributes image source.
                     //placemarkAttributes.imageSource = new WorldWind.ImageSource(canvas);
                     // Define the pivot point for the placemark at the center of its image source.
-                    //placemarkAttributes.imageOffset = new WorldWind.Offset(WorldWind.OFFSET_FRACTION, 0.5, WorldWind.OFFSET_FRACTION, 0.5);
-                    //placemarkAttributes.imageScale = 1;
-                    //placemarkAttributes.imageColor = WorldWind.Color.WHITE;
+                    placemarkAttributes.imageOffset = new WorldWind.Offset(WorldWind.OFFSET_FRACTION, 0.5, WorldWind.OFFSET_FRACTION, 0.5);
+                    placemarkAttributes.imageScale = 7;
+                    placemarkAttributes.imageColor = WorldWind.Color.RED;
 
 
-                    //var placemarkPosition = new WorldWind.Position(routes[0].legs[0].steps[0].start_location.lat, routes[0].legs[0].steps[0].start_location.lng, 0);
-                    //var placemark = new WorldWind.Placemark(placemarkPosition, false, placemarkAttributes);
-                    
+
+                    var placemarkAttributesend = new WorldWind.PlacemarkAttributes(null);
+                    // Wrap the canvas created above in an ImageSource object to specify it as the placemarkAttributes image source.
+                    //placemarkAttributes.imageSource = new WorldWind.ImageSource(canvas);
+                    // Define the pivot point for the placemark at the center of its image source.
+                    placemarkAttributesend.imageOffset = new WorldWind.Offset(WorldWind.OFFSET_FRACTION, 0.5, WorldWind.OFFSET_FRACTION, 0.5);
+                    placemarkAttributesend.imageScale = 7;
+                    placemarkAttributesend.imageColor = WorldWind.Color.GREEN;
+
+
+
+
+                    var lengthofit = routes[0].legs[0].steps.length
+                    lengthofit = lengthofit - 1;
+
+                    var placemarkPosition = new WorldWind.Position(routes[0].legs[0].steps[0].start_location.lat, routes[0].legs[0].steps[0].start_location.lng, 0);
+                    var placemarkPositionend = new WorldWind.Position(routes[0].legs[0].steps[lengthofit].end_location.lat, routes[0].legs[0].steps[lengthofit].end_location.lng, 0);
+                    var placemark = new WorldWind.Placemark(placemarkPosition, false, placemarkAttributes);
+                    var placemarkend = new WorldWind.Placemark(placemarkPositionend, false, placemarkAttributesend)
                     boundary = [];
                     var j = 0
                     while (j < routes[0].legs[0].steps.length) {
@@ -95,19 +110,28 @@ function LoadJson(resourcesUrl){
 
                    
 
-                    //placemark.label = "Placemark " + i.toString() + "\n"
-                    //+ "Lat " + routes[0].legs[0].steps[0].start_location.lat.toPrecision(4).toString() + "\n"
-                    //+ "Lon " + routes[0].legs[0].steps[0].start_location.lng.toPrecision(5).toString();
-                    //placemark.altitudeMode = WorldWind.RELATIVE_TO_GROUND;
+                    placemark.label = "Start - " + routes[0].legs[0].start_address + "\n"
+                    + "Lat " + routes[0].legs[0].steps[0].start_location.lat.toPrecision(4).toString() + "\n"
+                    + "Lon " + routes[0].legs[0].steps[0].start_location.lng.toPrecision(5).toString();
+                    placemark.altitudeMode = WorldWind.RELATIVE_TO_GROUND;
+                    placemark.label.Color = WorldWind.Color.RED;
+
+                    placemarkend.label = "Finish - " + routes[0].legs[0].end_address + "\n"
+                    + "Lat " + routes[0].legs[0].steps[0].start_location.lat.toPrecision(4).toString() + "\n"
+                    + "Lon " + routes[0].legs[0].steps[0].start_location.lng.toPrecision(5).toString();
+                    placemarkend.altitudeMode = WorldWind.RELATIVE_TO_GROUND;
+                    placemarkend.label.Color = WorldWind.Color.GREEN;
 
                     // Create the renderable layer for placemarks.
-                    //var placemarkLayer = new WorldWind.RenderableLayer("Custom Placemark");
+                    
 
                     // Add the placemark to the layer.
-                    //placemarkLayer.addRenderable(placemark);
+                    placemarkLayer.addRenderable(placemark);
+                    placemarkLayerend.addRenderable(placemarkend);
 
                     // Add the placemarks layer to the WorldWindow's layer list.
-                    //wwd.addLayer(placemarkLayer);
+                    wwd.addLayer(placemarkLayer);
+                    wwd.addLayer(placemarkLayerend);
 
                 };
                 
