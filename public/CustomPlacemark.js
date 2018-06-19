@@ -475,6 +475,7 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, blo
 		}
 		text.attributes = textAttributes;
 		rendtext.addRenderable(text);
+		rendtext.enabled = false;
 	}
 	catch(err) {
 		console.log('->  generate elipse failed!\n' + err);
@@ -484,16 +485,18 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, blo
 wwd.addLayer(rend);    //draw big ellipse (Lowest)
 //wwd.addLayer(rendme);  //draw medium ellipse
 //wwd.addLayer(rendse);  //draw small ellipse
+wwd.addLayer(rendtext);
 wwd.addLayer(rendtop); //draw circle points of tree last (top)
 var showLabel = function(){
-	rendtext.refresh();
-		
-	wwd.addLayer(rendtext);
+	//rendtext.refresh();
+	rendtext.enabled = true;
+	//wwd.addLayer(rendtext);
 	wwd.redraw();
 };
 var hideLabel = function(){
-	rendtext.removeAllRenderables();
-	rendtext.refresh();
+	rendtext.enabled = false;
+	// rendtext.removeAllRenderables();
+	//rendtext.refresh();
 		wwd.redraw();
 };
 // delete layer function
