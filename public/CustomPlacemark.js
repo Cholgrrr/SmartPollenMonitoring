@@ -475,7 +475,7 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, blo
 		}
 		text.attributes = textAttributes;
 		rendtext.addRenderable(text);
-		rendtext.enabled = false;
+		//rendtext.enabled = false;
 	}
 	catch(err) {
 		console.log('->  generate elipse failed!\n' + err);
