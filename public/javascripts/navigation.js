@@ -4,9 +4,10 @@ let i;
 var shapesLayer = new WorldWind.RenderableLayer("line");
 var placemarkLayer = new WorldWind.RenderableLayer("Start");
 var placemarkLayerend = new WorldWind.RenderableLayer("Finish");
+
 var navResultLat,
     navResultLong;
-var placemark, placemarkend, shape;
+var placemark, placemarkend, shape, placemarktxt;
 
 function bike() {
     if (document.getElementById("bike").text == "bike") {
@@ -31,13 +32,15 @@ function StartNav() {
     //placemarkLayerend.refresh();
 
 //Text Renderable layer to be add instead
-
+var placemarklabel = new WorldWind.RenderableLayer();
     shapesLayer.removeAllRenderables();
     placemarkLayer.removeAllRenderables();
     placemarkLayerend.removeAllRenderables();
+    placemarklabel.removeAllRenderables();
     shapesLayer.refresh();
     placemarkLayer.refresh();
     placemarkLayerend.refresh();
+    placemarklabel.refresh();
     wwd.redraw();
     setTimeout(function () { 
     if (document.getElementById("bike").firstChild.data == "walk") {
@@ -45,19 +48,21 @@ function StartNav() {
     } else if (document.getElementById("bike").firstChild.data == "bike") {
         LoadJson("https://cors.io/?https://maps.googleapis.com/maps/api/directions/json?origin=" + document.getElementById("searchTextStart").value + "&destination=" + document.getElementById("searchTextEnd").value + "&avoid=highways&mode=bicycling&key=AIzaSyAHKsTWBLNuyJ4-3zlG8GDkPQzVWtmvbtI");
     };
-    }, 1500);
+    }, 500);
     setTimeout(function () { 
         wwd.goTo(new WorldWind.Position(navResultLat, navResultLong, 2500));
                 // Add the placemark to the layer.
                 shapesLayer.addRenderable(shape);
                 placemarkLayer.addRenderable(placemark);
                 placemarkLayerend.addRenderable(placemarkend);
+                placemarklabel.addRenderable(placemarktxt);
                 // Add the placemarks layer to the WorldWindow's layer list.
                 wwd.addLayer(placemarkLayer);
                 wwd.addLayer(placemarkLayerend);
                 wwd.addLayer(shapesLayer);
+                wwd.addLayer(placemarklabel);
                 wwd.redraw();
-    }, 3000);
+    }, 2000);
 
     //console.log(dataset[0].legs.steps[0].start_location.lat)
 };
@@ -132,18 +137,20 @@ function LoadJson(resourcesUrl) {
 
             
                 //Label
+                var textAttributes = new WorldWind.TextAttributes(null);
+                textAttributes.depthTest = false;
+                var textPosition = new WorldWind.Position(routes[0].legs[0].steps[0].start_location.lat, routes[0].legs[0].steps[0].start_location.lng, 30);
+                placemarktxt = new WorldWind.GeographicText(textPosition,"Start - " + routes[0].legs[0].start_address + "\n"
+                + "Lat " + routes[0].legs[0].steps[0].start_location.lat.toPrecision(4).toString() + "\n"
+                + "Lon " + routes[0].legs[0].steps[0].start_location.lng.toPrecision(5).toString());
+                textAttributes.color = WorldWind.Color.RED;
+                placemarktxt.attributes = textAttributes;
 
-                placemark.label = "Start - " + routes[0].legs[0].start_address + "\n"
-                    + "Lat " + routes[0].legs[0].steps[0].start_location.lat.toPrecision(4).toString() + "\n"
-                    + "Lon " + routes[0].legs[0].steps[0].start_location.lng.toPrecision(5).toString();
-                placemark.altitudeMode = WorldWind.RELATIVE_TO_GROUND;
-                placemark.label.Color = WorldWind.Color.RED;
-
-                placemarkend.label = "Finish - " + routes[0].legs[0].end_address + "\n"
-                    + "Lat " + routes[0].legs[0].steps[0].start_location.lat.toPrecision(4).toString() + "\n"
-                    + "Lon " + routes[0].legs[0].steps[0].start_location.lng.toPrecision(5).toString();
-                placemarkend.altitudeMode = WorldWind.RELATIVE_TO_GROUND;
-                placemarkend.label.Color = WorldWind.Color.GREEN;
+                // placemarkend.label = "Finish - " + routes[0].legs[0].end_address + "\n"
+                //     + "Lat " + routes[0].legs[0].steps[0].start_location.lat.toPrecision(4).toString() + "\n"
+                //     + "Lon " + routes[0].legs[0].steps[0].start_location.lng.toPrecision(5).toString();
+                // placemarkend.altitudeMode = WorldWind.RELATIVE_TO_GROUND;
+                // placemarkend.label.Color = WorldWind.Color.GREEN;
 
                 navResultLat = routes[0].legs[0].steps[0].start_location.lat;
                 navResultLong = routes[0].legs[0].steps[0].start_location.lng;
