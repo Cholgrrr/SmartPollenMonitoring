@@ -6,6 +6,7 @@ let i;
 var shapesLayer = new WorldWind.RenderableLayer("line");
 var placemarkLayer = new WorldWind.RenderableLayer("Start");
 var placemarkLayerend = new WorldWind.RenderableLayer("Finish");
+//var placemarklabel = new WorldWind.RenderableLayer();
 
 var navResultLat,
     navResultLong;
@@ -22,7 +23,17 @@ function toggleText() {
     var text = document.getElementById("bike").firstChild;
     text.data = text.data == "bike" ? "walk" : "bike";
 }
-
+function removeNav() {
+    shapesLayer.removeAllRenderables();
+    placemarkLayer.removeAllRenderables();
+    placemarkLayerend.removeAllRenderables();
+    placemarklabel.removeAllRenderables();
+    shapesLayer.refresh();
+    placemarkLayer.refresh();
+    placemarkLayerend.refresh();
+    placemarklabel.refresh();
+    wwd.redraw();
+};
 function StartNav() {
     //alert(document.getElementById("searchTextStart").value)
     //alert(document.getElementById("searchTextEnd").value)
@@ -33,37 +44,37 @@ function StartNav() {
     //placemarkLayer.refresh();
     //placemarkLayerend.refresh();
 
-//Text Renderable layer to be add instead
-var placemarklabel = new WorldWind.RenderableLayer();
+    //Text Renderable layer to be add instead
+    var placemarklabel = new WorldWind.RenderableLayer();
     shapesLayer.removeAllRenderables();
     placemarkLayer.removeAllRenderables();
     placemarkLayerend.removeAllRenderables();
-    placemarklabel.removeAllRenderables();
+    //placemarklabel.removeAllRenderables();
     shapesLayer.refresh();
     placemarkLayer.refresh();
     placemarkLayerend.refresh();
-    placemarklabel.refresh();
+    //placemarklabel.refresh();
     wwd.redraw();
-    setTimeout(function () { 
-    if (document.getElementById("bike").firstChild.data == "walk") {
-        LoadJson("https://cors.io/?https://maps.googleapis.com/maps/api/directions/json?origin=" + document.getElementById("searchTextStart").value + "&destination=" + document.getElementById("searchTextEnd").value + "&avoid=highways&mode=walking&key=AIzaSyAHKsTWBLNuyJ4-3zlG8GDkPQzVWtmvbtI");
-    } else if (document.getElementById("bike").firstChild.data == "bike") {
-        LoadJson("https://cors.io/?https://maps.googleapis.com/maps/api/directions/json?origin=" + document.getElementById("searchTextStart").value + "&destination=" + document.getElementById("searchTextEnd").value + "&avoid=highways&mode=bicycling&key=AIzaSyAHKsTWBLNuyJ4-3zlG8GDkPQzVWtmvbtI");
-    };
+    setTimeout(function () {
+        if (document.getElementById("bike").firstChild.data == "walk") {
+            LoadJson("https://cors.io/?https://maps.googleapis.com/maps/api/directions/json?origin=" + document.getElementById("searchTextStart").value + "&destination=" + document.getElementById("searchTextEnd").value + "&avoid=highways&mode=walking&key=AIzaSyAHKsTWBLNuyJ4-3zlG8GDkPQzVWtmvbtI");
+        } else if (document.getElementById("bike").firstChild.data == "bike") {
+            LoadJson("https://cors.io/?https://maps.googleapis.com/maps/api/directions/json?origin=" + document.getElementById("searchTextStart").value + "&destination=" + document.getElementById("searchTextEnd").value + "&avoid=highways&mode=bicycling&key=AIzaSyAHKsTWBLNuyJ4-3zlG8GDkPQzVWtmvbtI");
+        };
     }, 500);
-    setTimeout(function () { 
+    setTimeout(function () {
         wwd.goTo(new WorldWind.Position(navResultLat, navResultLong, 2500));
-                // Add the placemark to the layer.
-                shapesLayer.addRenderable(shape);
-                placemarkLayer.addRenderable(placemark);
-                placemarkLayerend.addRenderable(placemarkend);
-                placemarklabel.addRenderable(placemarktxt);
-                // Add the placemarks layer to the WorldWindow's layer list.
-                wwd.addLayer(placemarkLayer);
-                wwd.addLayer(placemarkLayerend);
-                wwd.addLayer(shapesLayer);
-                wwd.addLayer(placemarklabel);
-                wwd.redraw();
+        // Add the placemark to the layer.
+        shapesLayer.addRenderable(shape);
+        placemarkLayer.addRenderable(placemark);
+        placemarkLayerend.addRenderable(placemarkend);
+        placemarklabel.addRenderable(placemarktxt);
+        // Add the placemarks layer to the WorldWindow's layer list.
+        wwd.addLayer(placemarkLayer);
+        wwd.addLayer(placemarkLayerend);
+        wwd.addLayer(shapesLayer);
+        wwd.addLayer(placemarklabel);
+        wwd.redraw();
     }, 2000);
 
     //console.log(dataset[0].legs.steps[0].start_location.lat)
@@ -74,10 +85,12 @@ var hideNav = function () {
     placemarkLayerend.enabled = false;
     wwd.redraw();
 };
+var result_temporary;
 function LoadJson(resourcesUrl) {
 
 
     $.getJSON(resourcesUrl, function (result) {
+        result_temporary = result;
         $.each(result, function (i, field) {
             dataset = field;
             console.log(dataset)
@@ -137,14 +150,14 @@ function LoadJson(resourcesUrl) {
                 shape = new WorldWind.SurfacePolyline(boundary, attributes);
                 shape.highlightAttributes = highlightAttributes;
 
-            
+
                 //Label
                 var textAttributes = new WorldWind.TextAttributes(null);
-                textAttributes.depthTest = false;
+                textAttributes.depthTest = true;
                 var textPosition = new WorldWind.Position(routes[0].legs[0].steps[0].start_location.lat, routes[0].legs[0].steps[0].start_location.lng, 30);
-                placemarktxt = new WorldWind.GeographicText(textPosition,"Start - " + routes[0].legs[0].start_address + "\n"
-                + "Lat " + routes[0].legs[0].steps[0].start_location.lat.toPrecision(4).toString() + "\n"
-                + "Lon " + routes[0].legs[0].steps[0].start_location.lng.toPrecision(5).toString());
+                placemarktxt = new WorldWind.GeographicText(textPosition, "Start - " + routes[0].legs[0].start_address + "\n"
+                    + "Lat " + routes[0].legs[0].steps[0].start_location.lat.toPrecision(4).toString() + "\n"
+                    + "Lon " + routes[0].legs[0].steps[0].start_location.lng.toPrecision(5).toString());
                 textAttributes.color = WorldWind.Color.RED;
                 placemarktxt.attributes = textAttributes;
 
