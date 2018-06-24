@@ -7,6 +7,7 @@ var shapesLayer = new WorldWind.RenderableLayer("line");
 var placemarkLayer = new WorldWind.RenderableLayer("Start");
 var placemarkLayerend = new WorldWind.RenderableLayer("Finish");
 //var placemarklabel = new WorldWind.RenderableLayer();
+var placemarklabel;
 
 var navResultLat,
     navResultLong;
@@ -27,11 +28,11 @@ function removeNav() {
     shapesLayer.removeAllRenderables();
     placemarkLayer.removeAllRenderables();
     placemarkLayerend.removeAllRenderables();
-    placemarklabel.removeAllRenderables();
+    //placemarklabel.removeAllRenderables();
     shapesLayer.refresh();
     placemarkLayer.refresh();
     placemarkLayerend.refresh();
-    placemarklabel.refresh();
+    //placemarklabel.refresh();
     wwd.redraw();
 };
 function StartNav() {
@@ -68,12 +69,13 @@ function StartNav() {
         shapesLayer.addRenderable(shape);
         placemarkLayer.addRenderable(placemark);
         placemarkLayerend.addRenderable(placemarkend);
-        placemarklabel.addRenderable(placemarktxt);
+        placemarkLayerend.addRenderable(placemarktxt);
+        //placemarklabel.addRenderable(placemarktxt);
         // Add the placemarks layer to the WorldWindow's layer list.
         wwd.addLayer(placemarkLayer);
         wwd.addLayer(placemarkLayerend);
         wwd.addLayer(shapesLayer);
-        wwd.addLayer(placemarklabel);
+        //wwd.addLayer(placemarklabel);
         wwd.redraw();
     }, 2000);
 
