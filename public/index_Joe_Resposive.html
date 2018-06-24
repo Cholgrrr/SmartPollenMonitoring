@@ -40,7 +40,7 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="stylesheets/bootstrap-multiselect.css" type="text/css">
     <script type="text/javascript" src="javascripts/bootstrap-multiselect.js"></script>
-
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAr2UC0yoJCAAMXXxcvuFpEnzJZt_Ubsn4&libraries=places&callback=initAutocomplete" async defer></script>
     <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
     <!--
     <link rel="stylesheet" type="text/css" href="stylesheets/default.css" />
@@ -214,8 +214,9 @@
             <span style="color:azure">Navigation</span>
             <span style="color:crimson">Menu</span>
         </h2>
-        <button class="myButtonRed" type="button" onclick="navClick()">close</button>
+        
         <h4>Path</h4>
+        select mode :
         <button class="myButtonBlue" type="button" onclick="toggleText()" id="bike">bike</button>
         <div class="input-group" id="searchBox1">
             <input type="text" class="form-control" placeholder="Starting Point" id="searchTextStart" />
@@ -228,7 +229,12 @@
                 </button>
             </span>
         </div>
-        <button class="myButtonRed" type="button" onclick="removeNav()">remove navigation layer</button>
+        <div class="input-group" id="searchBox3">
+            <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+            <div id="map" style="display: none;"></div>
+        </div>
+        <button class="myButtonRed" type="button" onclick="removeNav()">remove navigation layer</button><br>
+        <button class="myButtonRed" type="button" onclick="navClick()">close window</button>
     </div>
     <div class="backdrop" id="pollenMenu" style="display: none;">
         <h4>
@@ -443,6 +449,7 @@
             <button onclick="test()">post wind</button>
             <button onclick="getTrees()">get trees</button>
         </div>-->
+        <script src="javascripts/GoogleAutoPlaceComplete.js"></script>
 
     <script src="CustomPlacemark.js"></script>
     <script src="javascripts/createNewTree.js"></script>

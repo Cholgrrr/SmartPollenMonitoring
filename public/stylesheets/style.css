@@ -439,3 +439,18 @@ div[aria-describedby="Info"]{
       z-index: 1;
   }
 
+  #pac-input {
+    background-color: rgb(24, 3, 3);
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+    margin-left: 12px;
+    padding: 0 11px 0 13px;
+    text-overflow: ellipsis;
+    width: 250px;
+  }
+  
+  #pac-input:focus {
+    border-color: #4d90fe;
+  }
+
