@@ -36,15 +36,16 @@ function removeNav() {
     wwd.redraw();
 };
 function StartNav() {
-    //alert(document.getElementById("searchTextStart").value)
-    //alert(document.getElementById("searchTextEnd").value)
     //shapesLayer.removeAllRenderables();
     //shapesLayer.refresh();
     //placemarkLayer.removeAllRenderables();
     //placemarkLayerend.removeAllRenderables();
     //placemarkLayer.refresh();
     //placemarkLayerend.refresh();
-
+//var text_startingPoint = document.getElementById("searchTextStart").value;
+//var text_endingPoint = document.getElementById("searchTextEnd").value;
+var text_startingPoint = document.getElementById("pac-input").value;
+var text_endingPoint = document.getElementById("pac-input2").value;
     //Text Renderable layer to be add instead
     var placemarklabel = new WorldWind.RenderableLayer();
     shapesLayer.removeAllRenderables();
@@ -58,18 +59,21 @@ function StartNav() {
     wwd.redraw();
     setTimeout(function () {
         if (document.getElementById("bike").firstChild.data == "walk") {
-            LoadJson("https://cors.io/?https://maps.googleapis.com/maps/api/directions/json?origin=" + document.getElementById("searchTextStart").value + "&destination=" + document.getElementById("searchTextEnd").value + "&avoid=highways&mode=walking&key=AIzaSyAHKsTWBLNuyJ4-3zlG8GDkPQzVWtmvbtI");
+            LoadJson("https://cors.io/?https://maps.googleapis.com/maps/api/directions/json?origin=" + text_startingPoint + "&destination=" + text_endingPoint + "&avoid=highways&mode=walking&key=AIzaSyAHKsTWBLNuyJ4-3zlG8GDkPQzVWtmvbtI");
         } else if (document.getElementById("bike").firstChild.data == "bike") {
-            LoadJson("https://cors.io/?https://maps.googleapis.com/maps/api/directions/json?origin=" + document.getElementById("searchTextStart").value + "&destination=" + document.getElementById("searchTextEnd").value + "&avoid=highways&mode=bicycling&key=AIzaSyAHKsTWBLNuyJ4-3zlG8GDkPQzVWtmvbtI");
+            LoadJson("https://cors.io/?https://maps.googleapis.com/maps/api/directions/json?origin=" + text_startingPoint + "&destination=" + text_endingPoint + "&avoid=highways&mode=bicycling&key=AIzaSyAHKsTWBLNuyJ4-3zlG8GDkPQzVWtmvbtI");
         };
     }, 500);
     setTimeout(function () {
         wwd.goTo(new WorldWind.Position(navResultLat, navResultLong, 2500));
         // Add the placemark to the layer.
+        placemarkLayerend.addRenderable(placemarktxt);
+        placemarkLayerend.addRenderable(placemarktxt1);
         shapesLayer.addRenderable(shape);
         placemarkLayer.addRenderable(placemark);
         placemarkLayerend.addRenderable(placemarkend);
-        placemarkLayerend.addRenderable(placemarktxt);
+
+        
         //placemarklabel.addRenderable(placemarktxt);
         // Add the placemarks layer to the WorldWindow's layer list.
         wwd.addLayer(placemarkLayer);
@@ -162,6 +166,15 @@ function LoadJson(resourcesUrl) {
                     + "Lon " + routes[0].legs[0].steps[0].start_location.lng.toPrecision(5).toString());
                 textAttributes.color = WorldWind.Color.RED;
                 placemarktxt.attributes = textAttributes;
+
+                var textAttributes1 = new WorldWind.TextAttributes(null);
+                textAttributes1.depthTest = true;
+                var textPosition1 = new WorldWind.Position(routes[0].legs[0].steps[lengthofit].end_location.lat, routes[0].legs[0].steps[lengthofit].end_location.lng, 30);
+                placemarktxt1 = new WorldWind.GeographicText(textPosition1, "Finish - " + routes[0].legs[0].end_address + "\n"
+                    + "Lat " + routes[0].legs[0].steps[0].end_location.lat.toPrecision(4).toString() + "\n"
+                    + "Lon " + routes[0].legs[0].steps[0].end_location.lng.toPrecision(5).toString());
+                textAttributes1.color = WorldWind.Color.GREEN;
+                placemarktxt1.attributes = textAttributes1;
 
                 // placemarkend.label = "Finish - " + routes[0].legs[0].end_address + "\n"
                 //     + "Lat " + routes[0].legs[0].steps[0].start_location.lat.toPrecision(4).toString() + "\n"

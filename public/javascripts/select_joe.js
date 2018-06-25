@@ -19,8 +19,18 @@ try {
 	// Generation of the selection for the Map Type
 
 	$(document).ready(function () {
-	    // $("#month").hide();
-	    $("#Info").hide();
+		// $("#month").hide();
+		$("#Info").hide();
+		$('#recentold-order1, #recentold-order2').on('change', function () {
+			if ($("#recentold-order1").prop( "checked" ) == true) {
+				monthSelector.style.display = "none";
+				histrec = 0;
+				console.log("real-time mode activated");
+			} else if ($("#recentold-order2").prop( "checked" ) == true) {
+				monthSelector.style.display = "block";
+				console.log("historical mode activated");
+			}
+		});
 		$('#recentold-order').on('change', function () {
 			// if (this.value == '1') {
 			// 	$("#month").show();
@@ -29,13 +39,15 @@ try {
 			// 	$("#month").hide();
 			// 	histrec = 0;
 			// }
-			if (document.getElementById("recentold-order").value == "1"){
-				monthSelector.style.display = "block";
-			} else{
-				monthSelector.style.display = "none";
-			}
-			
+			// if (document.getElementById("recentold-order").value == "1"){
+			// 	monthSelector.style.display = "block";
+			// } else{
+			// 	monthSelector.style.display = "none";
+			// }
+
 		});
+
+
 
 	});
 
@@ -51,7 +63,7 @@ try {
 			onChange: function (option, checked) {
 				//if (checked) {
 				//	orderCount++;
-					$(option).data('order', orderCount);
+				$(option).data('order', orderCount);
 				//}
 				//else {
 				//	$(option).data('order', '');
@@ -102,60 +114,60 @@ try {
 
 			//alert(text);
 			let monthselection_tmp = $('#month option:selected');
-			
+
 
 			for (i = 0; i < monthselection_tmp.length; i++) {
 				monthselection[i] = monthselection_tmp[i].innerText;
 			}
 
 			//if (monthselection_tmp === undefined || monthselection_tmp.length == 0) {
-				histrec = 1;
-		    //};
-				histwind = "";
-				histwind = monthselection[0];
-				if (histwind == 'January') {
-				    histwind = 'jan';
-				}
-				else if (histwind == 'February') {
-				    histwind = 'feb';
-				}
-				else if (histwind == 'March') {
-				    histwind = 'mar';
-				}
-				else if (histwind == 'April') {
-				    histwind = 'apr';
-				}
-				else if (histwind == 'May') {
-				    histwind = 'may';
-				}
-				else if (histwind == 'June') {
-				    histwind = 'jun';
-				}
-				else if (histwind == 'July') {
-				    histwind = 'jul';
-				}
-				else if (histwind == 'August') {
-				    histwind = 'aug';
-				}
-				else if (histwind == 'September') {
-				    histwind = 'sep';
-				}
-				else if (histwind == 'October') {
-				    histwind = 'okt';
-				}
-				else if (histwind == 'November') {
-				    histwind = 'nov';
-				}
-				else if (histwind == 'December') {
-				    histwind = 'dec';
-				}
-				else {
-				    histwind = 'aug';
-				}
-						   
+			histrec = 1;
+			//};
+			histwind = "";
+			histwind = monthselection[0];
+			if (histwind == 'January') {
+				histwind = 'jan';
+			}
+			else if (histwind == 'February') {
+				histwind = 'feb';
+			}
+			else if (histwind == 'March') {
+				histwind = 'mar';
+			}
+			else if (histwind == 'April') {
+				histwind = 'apr';
+			}
+			else if (histwind == 'May') {
+				histwind = 'may';
+			}
+			else if (histwind == 'June') {
+				histwind = 'jun';
+			}
+			else if (histwind == 'July') {
+				histwind = 'jul';
+			}
+			else if (histwind == 'August') {
+				histwind = 'aug';
+			}
+			else if (histwind == 'September') {
+				histwind = 'sep';
+			}
+			else if (histwind == 'October') {
+				histwind = 'okt';
+			}
+			else if (histwind == 'November') {
+				histwind = 'nov';
+			}
+			else if (histwind == 'December') {
+				histwind = 'dec';
+			}
+			else {
+				histwind = 'aug';
+			}
+
 		});
 	});
-	
+
 
 	// --------------------------------------
 	// Generation of the tree multiselection
@@ -204,7 +216,7 @@ try {
 		// 	}
 
 		// });
-	var selected;
+		var selected;
 		$('#tree-order-button').on('click', function () {
 			selected = [];
 			$('#tree-order option:selected').each(function () {
@@ -222,28 +234,33 @@ try {
 			text = text.substring(0, text.length - 2);
 
 			//alert(text);
-            
+
 			if (histrec == 2) {
-			    let valuehis = $("#recentold-order").val();
-			    //alert ('balue' + valuehis);
-			    if (valuehis == '1') {
-			        histrec = 1;
-			    } else {
-			        histrec = 0;
-			    };
-			    
-			    
+				//let valuehis = $("#recentold-order").val();
+				//alert ('balue' + valuehis);
+				// if (valuehis == '1') {
+				// 	histrec = 1;
+				// } else {
+				// 	histrec = 0;
+				// };
+				if ($("#recentold-order2").prop( "checked" ) == true) {
+					histrec = 1;
+				} else {
+					histrec = 0;
+				}
+
+
 
 			};
 
-            // call button modul
+			// call button modul
 			$("#myBtn").click();
 
-			
+
 			// ---- translate the treeselection for the database queries ----
-			
+
 			treeselection_tmp = $('#tree-order option:selected');
-			
+
 			for (i = 0; i < treeselection_tmp.length; i++) {
 				if (treeselection_tmp[i].innerText == 'Birch') {
 					treetrans[i] = 'Birke';
@@ -305,14 +322,14 @@ try {
 					treetrans[i] = 'other';
 				} else {
 					treetrans[i] = 'Buche';
-				}	
+				}
 			}
-			
-		});  
+
+		});
 	});
 
 }
-catch(err) {
+catch (err) {
 	console.log('->  Generation of the selection lists failed!\n' + err);
 }
 
@@ -334,27 +351,27 @@ function getTreeRecCurrent(latmin, latmax, lonmin, lonmax) {
 		treeselection[1] = latmax;
 		treeselection[2] = lonmin;
 		treeselection[3] = lonmax;
-		
+
 		for (i = 4; i < treeselection_tmp.length + 4; i++) {
-			treeselection[i] = treetrans[i-4];
-		} 
+			treeselection[i] = treetrans[i - 4];
+		}
 
 		$.ajax({
 			type: "POST",
 			url: '/postTreeType',
 			data: treeselection,
-		}).done(function (treedata) {convertdata(treedata);});
-		
+		}).done(function (treedata) { convertdata(treedata); });
+
 		function convertdata(treedata) {
-			viewTrees = treedata;	 
+			viewTrees = treedata;
 		}
-		
-		return viewTrees; 
+
+		return viewTrees;
 	}
-	catch(err) {
+	catch (err) {
 		console.log('->  function getTreeRecCurrent() failed!\n' + err);
 	}
-	
+
 }
 
 
@@ -362,13 +379,13 @@ function getTreeRecCurrent(latmin, latmax, lonmin, lonmax) {
 // tooltip
 
 $(document).ready(function () {
-    $('.tooltipstuff').tooltipster(
-        {
-            theme: 'tooltipster-borderless',
-            distance: 10,
-            animation:'grow'
-        }
-        );
+	$('.tooltipstuff').tooltipster(
+		{
+			theme: 'tooltipster-borderless',
+			distance: 10,
+			animation: 'grow'
+		}
+	);
 });
 
 
@@ -381,52 +398,55 @@ $(document).ready(function () {
 let resBlooming;
 
 function getTreeBlooming(monthdata) {
-	
+
 	try {
-		
+
 		// object with the view coordinates,
 		// the selected trees
 		// and the current month
 		let treeBlooming = {};
 		// temporary count
-		let tmp_cnt = 0; 
-		
+		let tmp_cnt = 0;
+
 		for (i = 0; i < treeselection_tmp.length; i++) {
 			treeBlooming[i] = treetrans[i];
-			tmp_cnt = tmp_cnt + 1; 
-		} 
+			tmp_cnt = tmp_cnt + 1;
+		}
 		treeBlooming[tmp_cnt] = monthdata;
-			
+
 		$.ajax({
 			async: false,
 			type: "POST",
 			url: '/getBlooming',
 			data: treeBlooming,
-		}).done(function (dataBlooming) { 
+		}).done(function (dataBlooming) {
 			convertdata(dataBlooming);
 		});
-		
+
 		function convertdata(bloomingdata) {
-			resBlooming = bloomingdata;	 
+			resBlooming = bloomingdata;
 		}
 
 		return resBlooming;
-}
-	catch(err) {
+	}
+	catch (err) {
 		console.log('->  function getTreeBlooming() failed!\n' + err);
 	}
-	
+
 }
 
 function Clearall() {
 	shapesLayer.removeAllRenderables();
 	shapesLayer.refresh();
 	placemarkLayer.removeAllRenderables();
-    placemarkLayerend.removeAllRenderables();
+	placemarkLayerend.removeAllRenderables();
 	placemarkLayer.refresh();
-    placemarkLayerend.refresh();
-    deleteLayer();
-    histrec = 2;
+	placemarkLayerend.refresh();
+	hideNav()
+	deleteLayer();
+	histrec = 2;
+	navMenu.style.display = "none";
+	pollenMenu.style.display = "none";
 
 
 };
@@ -438,35 +458,35 @@ function Clearall() {
 let allBlooming;
 
 function getTreeBloomingAll() {
-	
+
 	try {
-		
+
 		// an object with the selected trees for all month
 		let treeBlooming = {};
-		
+
 		for (i = 0; i < treeselection_tmp.length; i++) {
 			treeBlooming[i] = treetrans[i];
-		} 
+		}
 
 		$.ajax({
 			async: false,
 			type: "POST",
 			url: '/getBloomingAll',
 			data: treeBlooming,
-		}).done(function (dataBlooming) { 
+		}).done(function (dataBlooming) {
 			convertdata(dataBlooming);
 		});
-		
+
 		function convertdata(bloomingdata) {
-			allBlooming = bloomingdata;	 
+			allBlooming = bloomingdata;
 		}
-		
+
 		return allBlooming;
-}
-	catch(err) {
+	}
+	catch (err) {
 		console.log('->  function getTreeBlooming() failed!\n' + err);
 	}
-	
+
 }
 
 
@@ -478,9 +498,9 @@ function getTreeBloomingAll() {
 let histBlooming;
 
 function getTreeBloomingHist() {
-	
+
 	try {
-		
+
 		// object with the view coordinates,
 		// the selected trees
 		// and the current month
@@ -488,14 +508,14 @@ function getTreeBloomingHist() {
 
 		// selected wind data
 		let monthdata = histwind;
-		
+
 		// temporary count variable
-		let tmp_cnt = 0; 
-		
+		let tmp_cnt = 0;
+
 		for (i = 0; i < treeselection_tmp.length; i++) {
 			treeBlooming[i] = treetrans[i];
-			tmp_cnt = tmp_cnt + 1; 
-		} 
+			tmp_cnt = tmp_cnt + 1;
+		}
 		treeBlooming[tmp_cnt] = monthdata;
 
 		$.ajax({
@@ -503,18 +523,18 @@ function getTreeBloomingHist() {
 			type: "POST",
 			url: '/getBloomingHist',
 			data: treeBlooming,
-		}).done(function (dataBlooming) { 
+		}).done(function (dataBlooming) {
 			convertdata(dataBlooming);
 		});
-		
+
 		function convertdata(bloomingdata) {
-			histBlooming = bloomingdata;	 
+			histBlooming = bloomingdata;
 		}
-		
+
 		return histBlooming;
-	}	
-	catch(err) {
+	}
+	catch (err) {
 		console.log('->  function getTreeBlooming() failed!\n' + err);
 	}
-	
+
 }

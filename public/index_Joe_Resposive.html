@@ -40,7 +40,7 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="stylesheets/bootstrap-multiselect.css" type="text/css">
     <script type="text/javascript" src="javascripts/bootstrap-multiselect.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAr2UC0yoJCAAMXXxcvuFpEnzJZt_Ubsn4&libraries=places&callback=initAutocomplete" async defer></script>
+    
     <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
     <!--
     <link rel="stylesheet" type="text/css" href="stylesheets/default.css" />
@@ -214,11 +214,13 @@
             <span style="color:azure">Navigation</span>
             <span style="color:crimson">Menu</span>
         </h2>
-        
+
         <h4>Path</h4>
-        select mode :
+        select mode <span class="glyphicons glyphicons-bicycle"></span>:
         <button class="myButtonBlue" type="button" onclick="toggleText()" id="bike">bike</button>
-        <div class="input-group" id="searchBox1">
+
+        <!-- Old Text search for direction -->
+        <!-- <div class="input-group" id="searchBox1">
             <input type="text" class="form-control" placeholder="Starting Point" id="searchTextStart" />
         </div>
         <div class="input-group" id="searchBox2">
@@ -228,31 +230,53 @@
                     <span class="glyphicon glyphicon-search"></span>
                 </button>
             </span>
-        </div>
+        </div> -->
+        <br>
+        From : 
         <div class="input-group" id="searchBox3">
-            <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+            <input id="pac-input" class="controls" type="text" placeholder="Starting Point">
             <div id="map" style="display: none;"></div>
         </div>
-        <button class="myButtonRed" type="button" onclick="removeNav()">remove navigation layer</button><br>
+        To : 
+        <div class="input-group" id="searchBox4">
+            <input id="pac-input2" class="controls" type="text" placeholder="Ending Point">
+        </div><br>
+        <button id="searchButton" onclick="StartNav()" class="myButtonBlue" type="button">
+            <span class="glyphicon glyphicon-search"> Start-Navigation</span>
+        </button><br><br>
+        <button class="myButtonRed" type="button" onclick="removeNav()">remove navigation layer</button>
+        <br>
         <button class="myButtonRed" type="button" onclick="navClick()">close window</button>
     </div>
     <div class="backdrop" id="pollenMenu" style="display: none;">
-        <h4>
+        <h2>
             <span style="color:azure">Pollen</span>
             <span style="color:crimson">Simulation</span>
-        </h4><br>
+        </h2>
+        <br>
         <!-- <h4 style="font-size:1vw">Select Month</h4> -->
-        Real-time/ Historic
-        <select class="selectpicker" id="recentold-order" data-width="150px">
+        Select Mode: 
+        <!-- <br>
+        <select class="selectpicker" id="recentold-order" data-width="120px">
             <option value="2">Recent Data</option>
             <option value="1">Historic Data</option>
-        </select>
-        <br>
-        <div id="monthSelector" style="display: none;">
-
-
+        </select> -->
+        <div class="radio">
+            <label>
+              <input type="radio" name="optionsRadios" id="recentold-order1" value="option1" checked>
+              Real-time Mode
+            </label>
+          </div>
+          <div class="radio">
+            <label>
+              <input type="radio" name="optionsRadios" id="recentold-order2" value="option2">
+              Historical Mode
+            </label>
+          </div>
+        <span id="monthSelector" style="display: none;">
             Select Month
-            <select class="selectpicker" id="month" data-width="150px" data-show-tick="true" style="display: none;">
+            <br>
+            <select class="selectpicker" id="month" data-width="100px" data-show-tick="true">
                 <option value="1">January</option>
                 <option value="2">February</option>
                 <option value="3">March</option>
@@ -266,10 +290,9 @@
                 <option value="11">November</option>
                 <option value="12">December</option>
             </select>
-        </div>
-
+        </span>
+        <br>
         <!-- <button id="example-order-button1" class="btn btn-success" >Apply Month</button> -->
-
         Select Tree-type
         <select id="tree-order" class="selectpicker" multiple data-live-search="true" data-width="100%" multiple title="Choose types of tree/ Type for search"
             data-dropup-auto="false">
@@ -308,20 +331,18 @@
             <optgroup label="other">
                 <option value="11">other</option>
             </optgroup>
-
         </select>
+        <button id="tree-order-button" class="myButtonGreen" type="button">Confirm <span class="glyphicon glyphicon-ok"></span></button>
 
-        <br>
-
-        <button id="tree-order-button" class="myButtonGreen" type="button">Confirm Selection</button>
-        <button class="myButtonRed" type="button" onclick="pollenClick()">close</button>
-        <br>
-        <h4>Lable Options:</h4>
+        <br><br><br>
+        Lable Options:
         <button class="myButtonBlue" type="button" onclick="showLabel()">show label</button>
         <button class="myButtonRed" type="button" onclick="hideLabel()">hide label</button>
 
         <br>
-
+        <button class="myButtonRed" type="button" onclick="pollenClick()">
+            <span class="glyphicon glyphicon-remove"></span>
+        </button>
 
     </div>
 
@@ -422,6 +443,7 @@
         var pollenClick = function () {
             if (pollenMenu.style.display === 'none') {
                 pollenMenu.style.display = "block";
+                navMenu.style.display = "none";
             }
             else {
                 pollenMenu.style.display = "none";
@@ -431,6 +453,7 @@
         var navClick = function () {
             if (navMenu.style.display === 'none') {
                 navMenu.style.display = "block";
+                pollenMenu.style.display = "none";
             }
             else {
                 navMenu.style.display = "none";
@@ -449,13 +472,13 @@
             <button onclick="test()">post wind</button>
             <button onclick="getTrees()">get trees</button>
         </div>-->
-        <script src="javascripts/GoogleAutoPlaceComplete.js"></script>
+    <script src="javascripts/GoogleAutoPlaceComplete.js"></script>
 
     <script src="CustomPlacemark.js"></script>
     <script src="javascripts/createNewTree.js"></script>
     <script src="javascripts/info.js"></script>
     <script src="javascripts/statistic.js"></script>
-
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAr2UC0yoJCAAMXXxcvuFpEnzJZt_Ubsn4&libraries=places&callback=initAutocomplete" async defer></script>
 </body>
 
 </html>

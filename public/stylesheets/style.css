@@ -447,7 +447,17 @@ div[aria-describedby="Info"]{
     margin-left: 12px;
     padding: 0 11px 0 13px;
     text-overflow: ellipsis;
-    width: 250px;
+    width: 200px;
+  }
+  #pac-input2 {
+    background-color: rgb(24, 3, 3);
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+    margin-left: 12px;
+    padding: 0 11px 0 13px;
+    text-overflow: ellipsis;
+    width: 200px;
   }
   
   #pac-input:focus {
