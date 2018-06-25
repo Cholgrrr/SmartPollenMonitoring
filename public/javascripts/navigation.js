@@ -7,7 +7,8 @@ var shapesLayer = new WorldWind.RenderableLayer("line");
 var placemarkLayer = new WorldWind.RenderableLayer("Start");
 var placemarkLayerend = new WorldWind.RenderableLayer("Finish");
 //var placemarklabel = new WorldWind.RenderableLayer();
-var placemarklabel;
+var mm = 0;
+var placemarklabel = [];
 
 var navResultLat,
     navResultLong;
@@ -32,10 +33,12 @@ function removeNav() {
     shapesLayer.refresh();
     placemarkLayer.refresh();
     placemarkLayerend.refresh();
+    placemarklabel[mm].enabled = false;
     //placemarklabel.refresh();
     wwd.redraw();
 };
 function StartNav() {
+    
     //shapesLayer.removeAllRenderables();
     //shapesLayer.refresh();
     //placemarkLayer.removeAllRenderables();
@@ -47,7 +50,11 @@ function StartNav() {
 var text_startingPoint = document.getElementById("pac-input").value;
 var text_endingPoint = document.getElementById("pac-input2").value;
     //Text Renderable layer to be add instead
-    var placemarklabel = new WorldWind.RenderableLayer();
+    placemarklabel[mm] = new WorldWind.RenderableLayer();
+    if (mm > 0) {
+        console.log("second request: Delete last layer");
+        placemarklabel[mm-1].enabled = false;
+    }
     shapesLayer.removeAllRenderables();
     placemarkLayer.removeAllRenderables();
     placemarkLayerend.removeAllRenderables();
@@ -63,15 +70,18 @@ var text_endingPoint = document.getElementById("pac-input2").value;
         } else if (document.getElementById("bike").firstChild.data == "bike") {
             LoadJson("https://cors.io/?https://maps.googleapis.com/maps/api/directions/json?origin=" + text_startingPoint + "&destination=" + text_endingPoint + "&avoid=highways&mode=bicycling&key=AIzaSyAHKsTWBLNuyJ4-3zlG8GDkPQzVWtmvbtI");
         };
-    }, 500);
+    }, 50);
     setTimeout(function () {
         wwd.goTo(new WorldWind.Position(navResultLat, navResultLong, 2500));
         // Add the placemark to the layer.
-        placemarkLayerend.addRenderable(placemarktxt);
-        placemarkLayerend.addRenderable(placemarktxt1);
+        
+        //placemarkLayerend.addRenderable(placemarktxt);
+        //placemarkLayerend.addRenderable(placemarktxt1);
         shapesLayer.addRenderable(shape);
         placemarkLayer.addRenderable(placemark);
         placemarkLayerend.addRenderable(placemarkend);
+        placemarklabel[mm].addRenderable(placemarktxt);
+        placemarklabel[mm].addRenderable(placemarktxt1);
 
         
         //placemarklabel.addRenderable(placemarktxt);
@@ -79,9 +89,14 @@ var text_endingPoint = document.getElementById("pac-input2").value;
         wwd.addLayer(placemarkLayer);
         wwd.addLayer(placemarkLayerend);
         wwd.addLayer(shapesLayer);
+        wwd.addLayer(placemarklabel[mm]);
         //wwd.addLayer(placemarklabel);
         wwd.redraw();
+        //mm=mm+1;
     }, 2000);
+    setTimeout(function () {
+        mm=mm+1;
+    }, 2500);
 
     //console.log(dataset[0].legs.steps[0].start_location.lat)
 };
