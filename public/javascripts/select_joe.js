@@ -364,6 +364,7 @@ function getTreeRecCurrent(latmin, latmax, lonmin, lonmax) {
 
 		function convertdata(treedata) {
 			viewTrees = treedata;
+			console.log(viewTrees)
 		}
 
 		return viewTrees;

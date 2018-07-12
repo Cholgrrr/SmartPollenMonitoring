@@ -80,8 +80,25 @@ var handleClick = function (recognizer) {
 	// get the trees which are in the rectangle and which are selected
 	// getTreeRecCurrent form select js will be called.
 	// -> in this function the trees will be requested and the multiselect list is readed out
-	viewTrees = getTreeRecCurrent(minLat, maxLat, minLong, maxLong);
+	let numberofTreetypes = [];
 	
+	viewTrees = getTreeRecCurrent(minLat, maxLat, minLong, maxLong);
+	getnumberofTrees();
+
+	function getnumberofTrees(){
+		for (j= 0; j < treetrans.length; j++){
+			var amount = 0;
+			for (i = 0; i < viewTrees.length; i++) {
+				if (viewTrees[i].treetype == treetrans[j]){
+					amount += 1
+					console.log(amount);
+				
+				};
+			};
+			numberofTreetypes.push(treetrans[j],amount);
+			console.log(numberofTreetypes);
+		};
+	};
 	// the function which draws the ellipses, will be called
 	// after a delay to wait for the required ajax requests ()
 	
