@@ -10,6 +10,7 @@ let histwind;
 var treetrans = [];
 histrec = 0;
 let monthselection = {};
+let locationselection = {};
 // ----------------------------------
 // Generation of the select structure
 
@@ -166,8 +167,37 @@ try {
 			}
 
 		});
+		//-----------------------------------------------------------
+		//location selection
+	
+
+		$('#location-select-button').on('click', function () {
+			// Navigate to the starting location
+			let locationselection_tmp = $('#location option:selected');
+			console.log(locationselection_tmp);
+
+			for (i = 0; i < locationselection_tmp.length; i++) {
+				locationselection[i] = locationselection_tmp[i].className;
+			}
+			
+			console.log(locationselection[0])
+
+			if (locationselection[0] == "FM"){
+				wwd.navigator.lookAtLocation.latitude = Location_Germany_Frankfurt_Lat; 
+				wwd.navigator.lookAtLocation.longitude = Location_Germany_Frankfurt_Long; 
+				wwd.navigator.range = 10e3;
+				wwd.navigator.tilt = 45;
+			} else if (locationselection[0] == "NY"){
+				wwd.navigator.lookAtLocation.latitude = Location_USA_NewYork_Lat; 
+				wwd.navigator.lookAtLocation.longitude = Location_USA_NewYork_Long; 
+				wwd.navigator.range = 30e3;
+				wwd.navigator.tilt = 45;
+			};
+			
+		});
 	});
 
+	
 
 	// --------------------------------------
 	// Generation of the tree multiselection
