@@ -1,9 +1,10 @@
 
 var chartdata = [
-    { name: 'Apple', y: 600 },
-    { name: 'Cherry', y: 300 },
-    { name: 'Buch', y: 100 }
+    { name: 'Apple', y: 1 },
+    { name: 'Cherry', y: 16 },
+    { name: 'Buch', y: 0 }
 ];
+
 
 Highcharts.setOptions({
     colors: Highcharts.map(Highcharts.getOptions().colors, function (color) {
@@ -20,7 +21,7 @@ Highcharts.setOptions({
         };
     })
 });
-
+function treechart(treedata) {
 // Build the chart
 Highcharts.chart('chartcontainer', {
     chart: {
@@ -51,6 +52,8 @@ Highcharts.chart('chartcontainer', {
     },
     series: [{
         name: 'Tree',
-        data: chartdata
+        //data: chartdata
+        data: treedata
     }]
 });
+};
