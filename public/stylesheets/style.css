@@ -304,9 +304,18 @@ div[aria-describedby="Info"]{
 #pollenMenu {
     position: absolute;
     right: 30px;
-    top:100px;
+    top:55px;
+    width: 300px;
+    height: 65%;
+}
+#pollenPieChart {
+    position: absolute;
+    right: 40px;
+    top:70%;
     width: 300px;
     height: 70%;
+    background: rgba(42, 42, 42, 0);
+    border : none
 }
 #navMenu {
     position: absolute;
