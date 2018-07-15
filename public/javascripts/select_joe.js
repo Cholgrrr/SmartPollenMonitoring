@@ -11,6 +11,25 @@ var treetrans = [];
 histrec = 0;
 let monthselection = {};
 let locationselection = {};
+var current_area_select;
+// Joe's Area selection
+
+var Area_NYC_Select = function () {
+	wwd.navigator.lookAtLocation.latitude = Location_USA_NewYork_Lat;
+	wwd.navigator.lookAtLocation.longitude = Location_USA_NewYork_Long;
+	wwd.navigator.range = 30e3;
+	wwd.navigator.tilt = 45;
+	current_area_select = "NYC";
+	console.log("current area :" + current_area_select);
+}
+var Area_FF_Select = function () {
+	wwd.navigator.lookAtLocation.latitude = Location_Germany_Frankfurt_Lat;
+	wwd.navigator.lookAtLocation.longitude = Location_Germany_Frankfurt_Long;
+	wwd.navigator.range = 10e3;
+	wwd.navigator.tilt = 45;
+	current_area_select = "FF";
+	console.log("current area :" + current_area_select);
+}
 // ----------------------------------
 // Generation of the select structure
 
@@ -23,11 +42,11 @@ try {
 		// $("#month").hide();
 		$("#Info").hide();
 		$('#recentold-order1, #recentold-order2').on('change', function () {
-			if ($("#recentold-order1").prop( "checked" ) == true) {
+			if ($("#recentold-order1").prop("checked") == true) {
 				monthSelector.style.display = "none";
 				histrec = 0;
 				console.log("real-time mode activated");
-			} else if ($("#recentold-order2").prop( "checked" ) == true) {
+			} else if ($("#recentold-order2").prop("checked") == true) {
 				monthSelector.style.display = "block";
 				console.log("historical mode activated");
 			}
@@ -169,7 +188,7 @@ try {
 		});
 		//-----------------------------------------------------------
 		//location selection
-	
+
 
 		$('#location-select-button').on('click', function () {
 			// Navigate to the starting location
@@ -179,25 +198,25 @@ try {
 			for (i = 0; i < locationselection_tmp.length; i++) {
 				locationselection[i] = locationselection_tmp[i].className;
 			}
-			
+
 			console.log(locationselection[0])
 
-			if (locationselection[0] == "FM"){
-				wwd.navigator.lookAtLocation.latitude = Location_Germany_Frankfurt_Lat; 
-				wwd.navigator.lookAtLocation.longitude = Location_Germany_Frankfurt_Long; 
+			if (locationselection[0] == "FM") {
+				wwd.navigator.lookAtLocation.latitude = Location_Germany_Frankfurt_Lat;
+				wwd.navigator.lookAtLocation.longitude = Location_Germany_Frankfurt_Long;
 				wwd.navigator.range = 10e3;
 				wwd.navigator.tilt = 45;
-			} else if (locationselection[0] == "NY"){
-				wwd.navigator.lookAtLocation.latitude = Location_USA_NewYork_Lat; 
-				wwd.navigator.lookAtLocation.longitude = Location_USA_NewYork_Long; 
+			} else if (locationselection[0] == "NY") {
+				wwd.navigator.lookAtLocation.latitude = Location_USA_NewYork_Lat;
+				wwd.navigator.lookAtLocation.longitude = Location_USA_NewYork_Long;
 				wwd.navigator.range = 30e3;
 				wwd.navigator.tilt = 45;
 			};
-			
+
 		});
 	});
 
-	
+
 
 	// --------------------------------------
 	// Generation of the tree multiselection
@@ -273,7 +292,7 @@ try {
 				// } else {
 				// 	histrec = 0;
 				// };
-				if ($("#recentold-order2").prop( "checked" ) == true) {
+				if ($("#recentold-order2").prop("checked") == true) {
 					histrec = 1;
 				} else {
 					histrec = 0;
