@@ -12,6 +12,7 @@ histrec = 0;
 let monthselection = {};
 let locationselection = {};
 var current_area_select = "NYC";
+var current_hist_wind = "CUR";
 // Joe's Area selection
 
 var Area_NYC_Select = function () {
@@ -45,10 +46,12 @@ try {
 			if ($("#recentold-order1").prop("checked") == true) {
 				monthSelector.style.display = "none";
 				histrec = 0;
+				current_hist_wind = "CUR";
 				console.log("real-time mode activated");
 			} else if ($("#recentold-order2").prop("checked") == true) {
 				monthSelector.style.display = "block";
 				console.log("historical mode activated");
+				current_hist_wind = "HIS";
 			}
 		});
 		$('#recentold-order').on('change', function () {
@@ -179,7 +182,7 @@ try {
 				histwind = 'nov';
 			}
 			else if (histwind == 'December') {
-				histwind = 'dec';
+				histwind = 'dez';
 			}
 			else {
 				histwind = 'aug';

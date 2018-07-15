@@ -90,6 +90,25 @@ app.get('/currentWind', function(req, res) {
 	}
 		
 });
+app.get('/histWindNY', function(req, res) {
+	const data = req.body;
+	try {
+		
+		db.result("SELECT speed, direction from wind_hist_test WHERE city = 'newyork' AND "  + data[0] + " ;", false)
+		.then(result => {
+			res.json(result.rows);
+		})
+		.catch(error => {
+			console.log('ERROR:', error);
+		});
+		console.log('.../histWind successful!');
+	}
+	
+	catch(err) {
+		console.log('.../histWind failed!\n' + err);
+	}
+		
+});
 app.get('/currentWindNY', function(req, res) {
   
 	try {
@@ -110,7 +129,35 @@ app.get('/currentWindNY', function(req, res) {
 		
 });
 
+app.post('/getWindHist', function (req, res) {
+ 
+    try {
+		
+        const data = req.body;
+		
+		// set the month
+		let month = data[Object.keys(data).length-1];
+ 
+		let query_string = "select speed, direction "; 
+		query_string += " from wind_hist where city = '" + data[1] + "' AND (month='" + data[0] + "'";
+		query_string += ");";  
+		console.log(query_string)
+		// request the data 
+		db.result(query_string)
+		.then(result => {
+			res.json(result.rows);
+		})
+		.catch(error => {
+			console.log('ERROR:', error);
+		});			
+		console.log('.../getWindHistFFM successful!');
+    }
+	
+    catch (err) {
+        console.log('.../getWindHistFFM failed!\n' + err);
+    }
 
+}); 
 
 // -------------------------------------------------------------------------------------------
 // Select the trees, which were filtered through the multi tree selection in the current view
@@ -237,7 +284,7 @@ app.post('/getBlooming', function (req, res) {
 			month = 'nov';
 		}
 		else if (data[Object.keys(data).length-1] === '12') {
-			month = 'dec';
+			month = 'dez';
 		}
 		else {
 			month = 'aug';

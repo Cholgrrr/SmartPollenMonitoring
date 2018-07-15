@@ -71,16 +71,129 @@ var handleClick = function (recognizer) {
 	
 	// query current wind data (speed, direction, date)
 	var currentWind = {};
-	if(current_area_select == "NYC") {
+	var histwindnumb = 0;
+	function translatehistwind(){
+		if (histwind == 'jan') {
+			histwindnumb = 1;
+		}
+		else if (histwind == 'feb') {
+			histwindnumb = 2;
+		}
+		else if (histwind == 'mar') {
+			histwindnumb = 3;
+		}
+		else if (histwind == 'apr') {
+			histwindnumb = 4;
+		}
+		else if (histwind == 'may') {
+			histwindnumb = 5;
+		}
+		else if (histwind == 'jun') {
+			histwindnumb = 6;
+		}
+		else if (histwind == 'jul') {
+			histwindnumb = 7;
+		}
+		else if (histwind == 'aug') {
+			histwindnumb = 8;
+		}
+		else if (histwind == 'sep') {
+			histwindnumb = 9;
+		}
+		else if (histwind == 'okt') {
+			histwindnumb = 10;
+		}
+		else if (histwind == 'nov') {
+			histwindnumb = 11;
+		}
+		else if (histwind == 'dez') {
+			histwindnumb = 12;
+		}
+		else {
+			histwindnumb = 8;
+		}
+
+	};
+
+	//alert(current_area_select)
+	//alert(current_hist_wind)
+	if(current_area_select == "NYC" && current_hist_wind == "CUR") {
 	$.get("/currentWindNY", function(data, status){
 		currentWind = data; 
 		async: false;
 	});
-	} else if (current_area_select = "FFM"){
+	} else if (current_area_select == "FFM" && current_hist_wind == "CUR"){
 		$.get("/currentWind", function(data, status){
 			currentWind = data; 
 			async: false;
 		});
+	} else if (current_area_select == "FFM" && current_hist_wind == "HIS") {
+
+		translatehistwind();
+
+		currentWind = HistWindData();
+		//alert(currentWind)
+		function HistWindData() {
+		
+			try {
+		
+				let monthdata = {};
+						
+				monthdata[0] = histwindnumb;
+				monthdata[1] = "frankfurt"
+				$.ajax({
+					async: false,
+					type: "POST",
+					url: '/getWindHist',
+					data: monthdata,
+				}).done(function (histwinddata) {
+					convertdata(histwinddata);
+				});
+		
+				function convertdata(histwinddt) {
+					currentwind = histwinddt;
+				}
+		
+				return currentwind;
+			}
+			catch (err) {
+				console.log('->  function gethistWind() failed!\n' + err);
+			}
+		
+		}
+		
+	} else if (current_area_select == "NYC" && current_hist_wind == "HIS") {
+		translatehistwind();
+		currentWind = HistWindData();
+		//alert(currentWind)
+		function HistWindData() {
+		
+			try {
+		
+				let monthdata = {};
+						
+				monthdata[0] = histwindnumb;
+				monthdata[1] = "newyork"
+				$.ajax({
+					async: false,
+					type: "POST",
+					url: '/getWindHist',
+					data: monthdata,
+				}).done(function (histwinddata) {
+					convertdata(histwinddata);
+				});
+		
+				function convertdata(histwinddt) {
+					currentwind = histwinddt;
+				}
+		
+				return currentwind;
+			}
+			catch (err) {
+				console.log('->  function gethistWind() failed!\n' + err);
+			}
+		
+		}
 	};
 	
 	// get the trees which are in the rectangle and which are selected
