@@ -335,6 +335,7 @@ app.post('/getBloomingAll', function (req, res) {
 
 let insert_interval;
 let wind_data_current = [];
+let wind_data_currentny = [];
 
 // insert all 3 minutes new wind data
 function insert_current_wind() {
@@ -349,7 +350,7 @@ function insertFunc() {
 			wind_data_current[0] = body.wind.speed;
 			wind_data_current[1] = body.wind.deg;
 			wind_data_current[2] = body.name;
-
+			
 			db.none('INSERT INTO wind_from_service(speed, direction, city) VALUES($1, $2, $3)', wind_data_current)
 				.then(() => {
 					console.log('->  wind data were inserted!');
@@ -359,15 +360,34 @@ function insertFunc() {
 				});
 		}
 	})
+	request('http://api.openweathermap.org/data/2.5/weather?id=5128638&APPID=6639a27f3eaab1bee8fa943c7a51a302', function (error, response, body) {
+		if (!error && response.statusCode == 200) {
+			body = JSON.parse(body);
+			wind_data_currentny[0] = body.wind.speed;
+			wind_data_currentny[1] = body.wind.deg;
+			wind_data_currentny[2] = body.name;
+			
+			db.none('INSERT INTO wind_from_service(speed, direction, city) VALUES($1, $2, $3)', wind_data_currentny)
+				.then(() => {
+					console.log('->  wind data NY were inserted!');
+				})
+				.catch(error => {
+					// error;
+					console.log("error NY!!")
+				});
+		}
+	})
  
 }
 
 try {
 	insert_current_wind();
+	
 }
 catch(err) {
 	console.log('->  Update of wind data successful!\n' + err);
 }
+
 
 
 
