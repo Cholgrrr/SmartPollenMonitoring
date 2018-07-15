@@ -310,11 +310,10 @@ div[aria-describedby="Info"]{
 }
 #pollenPieChart {
     position: absolute;
-    left: 40px;
-    top:70%;
-    width: 300px;
-    height: 70%;
-    background: rgba(42, 42, 42, 0);
+    left: 0px;
+    top:65%;
+    width: 420px;
+    background: rgba(42, 42, 42, 0.8);
     border : none
 }
 #navMenu {

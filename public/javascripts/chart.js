@@ -21,7 +21,7 @@ Highcharts.setOptions({
         };
     })
 });
-function treechart(treedata) {
+function treechart(treedata) { 
 // Build the chart
 Highcharts.chart('chartcontainer', {
     chart: {
@@ -31,10 +31,10 @@ Highcharts.chart('chartcontainer', {
         type: 'pie'
     },
     title: {
-        text: 'Tree Statistic (on Current Window)'
+        text: 'Tree Statistic <br>(on Current Window)'
     },
     tooltip: {
-        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>({point.y} trees)'
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b><br>({point.y} trees)'
     },
     plotOptions: {
         pie: {
@@ -42,12 +42,17 @@ Highcharts.chart('chartcontainer', {
             cursor: 'pointer',
             dataLabels: {
                 enabled: true,
-                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                format: '<b>{point.name}</b>: {point.percentage:.1f} % ({point.y} trees)',
                 style: {
                     color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
                 },
                 connectorColor: 'silver'
-            }
+                
+            },
+            // dataLabels: {
+            //     enabled: false
+            // },
+            showInLegend: true
         }
     },
     series: [{

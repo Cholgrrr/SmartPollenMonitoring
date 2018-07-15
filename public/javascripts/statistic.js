@@ -1,6 +1,6 @@
 function TreeStat() {
-   
-    var svg = d3.select("svg").call(responsivefy),
+    // var svg = d3.select("svg").call(responsivefy),
+    var svg = d3.select("svg"),
         margin = { top: 20, right: 20, bottom: 20, left: 20 },
         width = +svg.attr("width") - margin.left - margin.right,
         height = +svg.attr("height") - margin.top - margin.bottom,
@@ -104,18 +104,32 @@ function TreeStat() {
 		
 
         //console.log(mdata);
-        var jan = { Month: "January" };
-        var feb = { Month: "February" };
-        var mar = { Month: "March" };
-        var apr = { Month: "April" };
-        var may = { Month: "May" };
-        var jun = { Month: "June" };
-        var jul = { Month: "July" };
-        var aug = { Month: "August" };
-        var sep = { Month: "September" };
-        var okt = { Month: "October" };
-        var nov = { Month: "November" };
-        var dez = { Month: "December" };
+        // Optional for full name
+        // var jan = { Month: "January" };
+        // var feb = { Month: "February" };
+        // var mar = { Month: "March" };
+        // var apr = { Month: "April" };
+        // var may = { Month: "May" };
+        // var jun = { Month: "June" };
+        // var jul = { Month: "July" };
+        // var aug = { Month: "August" };
+        // var sep = { Month: "September" };
+        // var okt = { Month: "October" };
+        // var nov = { Month: "November" };
+        // var dez = { Month: "December" };
+// In case of short name
+        var jan = { Month: "JAN" };
+        var feb = { Month: "FEB" };
+        var mar = { Month: "MAR" };
+        var apr = { Month: "APR" };
+        var may = { Month: "MAY" };
+        var jun = { Month: "JUN" };
+        var jul = { Month: "JUL" };
+        var aug = { Month: "AUG" };
+        var sep = { Month: "SEP" };
+        var okt = { Month: "OCT" };
+        var nov = { Month: "NOV" };
+        var dez = { Month: "DEC" };
 
         for (i = 0; i < mdata.length; i++) {
             //console.log(i);
