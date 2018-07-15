@@ -11,7 +11,7 @@ var treetrans = [];
 histrec = 0;
 let monthselection = {};
 let locationselection = {};
-var current_area_select;
+var current_area_select = "NYC";
 // Joe's Area selection
 
 var Area_NYC_Select = function () {
@@ -27,7 +27,7 @@ var Area_FF_Select = function () {
 	wwd.navigator.lookAtLocation.longitude = Location_Germany_Frankfurt_Long;
 	wwd.navigator.range = 10e3;
 	wwd.navigator.tilt = 45;
-	current_area_select = "FF";
+	current_area_select = "FFM";
 	console.log("current area :" + current_area_select);
 }
 // ----------------------------------

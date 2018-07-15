@@ -75,7 +75,7 @@ app.get('/currentWind', function(req, res) {
   
 	try {
 		
-		db.result("SELECT speed, direction, in_date from wind_from_service order by wind_from_service.in_date desc limit 1;", false)
+		db.result("SELECT speed, direction, in_date from wind_from_service WHERE city = 'Frankfurt' order by wind_from_service.in_date desc limit 1;", false)
 		.then(result => {
 			res.json(result.rows);
 		})
@@ -90,7 +90,25 @@ app.get('/currentWind', function(req, res) {
 	}
 		
 });
-
+app.get('/currentWindNY', function(req, res) {
+  
+	try {
+		
+		db.result("SELECT speed, direction, in_date from wind_from_service WHERE city = 'New York' order by wind_from_service.in_date desc limit 1;", false)
+		.then(result => {
+			res.json(result.rows);
+		})
+		.catch(error => {
+			console.log('ERROR:', error);
+		});
+		console.log('.../currentWind successful!');
+	}
+	
+	catch(err) {
+		console.log('.../currentWind failed!\n' + err);
+	}
+		
+});
 
 
 

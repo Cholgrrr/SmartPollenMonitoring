@@ -71,11 +71,17 @@ var handleClick = function (recognizer) {
 	
 	// query current wind data (speed, direction, date)
 	var currentWind = {};
-	$.get("/currentWind", function(data, status){
+	if(current_area_select == "NYC") {
+	$.get("/currentWindNY", function(data, status){
 		currentWind = data; 
 		async: false;
 	});
-
+	} else if (current_area_select = "FFM"){
+		$.get("/currentWind", function(data, status){
+			currentWind = data; 
+			async: false;
+		});
+	};
 	
 	// get the trees which are in the rectangle and which are selected
 	// getTreeRecCurrent form select js will be called.
