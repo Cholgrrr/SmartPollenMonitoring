@@ -48,6 +48,7 @@
     <script src="https://code.highcharts.com/js/themes/dark-unica.js"></script>
 
     <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/style_loader.css">
     <!--
     <link rel="stylesheet" type="text/css" href="stylesheets/default.css" />
     <link rel="stylesheet" type="text/css" href="stylesheets/component.css" />
@@ -274,9 +275,7 @@
             <span style="color:azure">Pollen</span>
             <span style="color:crimson">Simulation</span>
         </h2>
-        <br>
-
-        Select Mode:
+        <br> Select Mode:
         <!-- <br>
         <select class="selectpicker" id="recentold-order" data-width="120px">
             <option value="2">Recent Data</option>
@@ -357,11 +356,13 @@
 
         <br>
         <br>
-        <br> Lable Options: <br>
+        <br> Lable Options:
+        <br>
         <button class="myButtonBlue" type="button" onclick="showLabel()">on</button>
         <button class="myButtonRed" type="button" onclick="hideLabel()">off</button>
         <br>
-        <br> Tree-Statistic Pie Chart (current-display): <br>
+        <br> Tree-Statistic Pie Chart (current-display):
+        <br>
         <button class="myButtonBlue" type="button" onclick="showPieChart()">on</button>
         <button class="myButtonRed" type="button" onclick="hidePieChart()">off</button>
         <br>
@@ -369,11 +370,17 @@
         <button class="myButtonRed" type="button" onclick="pollenClick()">
             <span class="glyphicon glyphicon-remove"></span> Close Window
         </button>
-        
+
 
     </div>
     <div class="backdrop" id="pollenPieChart" style="display: none;">
-        <div id="chartcontainer" style="width: 400px; height: 200px; margin: 0 auto"></div>
+        <div id="chartcontainer" style="width: 480px; height: 230px; margin: 0 auto"></div>
+        <div class="chartcontainerLoading" id="chartcontainerLoading" 
+        style="position: absolute;left: 325px;bottom: 90px; display: none;"></div>
+        <div id="chartcontainerMessage" 
+        style="position: absolute;left: 185;bottom: 100px;">
+        Please, select tree type(s) in the Pollen Simulation Menu and click on the globe to zoom in.
+    </div>
     </div>
 
     <div id="dialog_addTree" title="Add custom tree">
@@ -491,10 +498,10 @@
 
         };
         var showPieChart = function () {
-                pollenPieChart.style.display = "block";
+            pollenPieChart.style.display = "block";
         };
         var hidePieChart = function () {
-                pollenPieChart.style.display = "none";
+            pollenPieChart.style.display = "none";
         };
         var csvUpload = function () {
             alert("Coming Soon, Dude!");

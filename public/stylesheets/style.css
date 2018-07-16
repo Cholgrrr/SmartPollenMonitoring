@@ -65,8 +65,7 @@ position: absolute;
 .bootstrap-select.btn-group:not(.input-group-btn), .bootstrap-select.btn-group[class*="span"] {
     margin: 0 !important;
     width:10%;
-    height:10%;
-
+    height: 40px;
 }
 .btn-group{
     margin-top:4px;
@@ -311,9 +310,10 @@ div[aria-describedby="Info"]{
 }
 #pollenPieChart {
     position: absolute;
-    left: 0px;
-    top:65%;
-    width: 420px;
+    left: 5px;
+    height:250px;
+    width: 500px;
+    bottom:5px;
     background: rgba(42, 42, 42, 0.8);
     border : none
 }
