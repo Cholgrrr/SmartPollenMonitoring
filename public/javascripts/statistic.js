@@ -267,7 +267,7 @@ var span = document.getElementsByClassName("close")[0];
 //     TreeStat();
 // }
 btn2.onclick = function () {
-    modal.style.display = "block";
+    //modal.style.display = "block";
     d3.selectAll("svg > *").remove();
     TreeStat();
 }

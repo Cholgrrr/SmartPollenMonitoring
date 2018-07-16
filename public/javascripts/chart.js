@@ -23,10 +23,7 @@ Highcharts.setOptions({
 });
 function treechart(treedata) {
     // Build the chart
-    setTimeout(function () {
-        
-
-
+    // setTimeout(function () {
         Highcharts.chart('chartcontainer', {
             chart: {
                 plotBackgroundColor: null,
@@ -65,7 +62,7 @@ function treechart(treedata) {
                 data: treedata
             }]
         });
-    }, 500);
+    // }, 500);
 };
 
 
