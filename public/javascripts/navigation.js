@@ -13,6 +13,7 @@ var placemarklabel = [];
 var navResultLat,
     navResultLong;
 var placemark, placemarkend, shape, placemarktxt;
+var deleteplacemarklabel_error;
 
 function bike() {
     if (document.getElementById("bike").text == "bike") {
@@ -33,27 +34,39 @@ function removeNav() {
     shapesLayer.refresh();
     placemarkLayer.refresh();
     placemarkLayerend.refresh();
-    placemarklabel[mm].enabled = false;
+
+    //Check to completely delete the Navigation [mm] correctly
+    try {
+        placemarklabel[mm].enabled = false;
+    } catch (e) {
+        deleteplacemarklabel_error = e;
+        if (deleteplacemarklabel_error == null) {
+            console.log("no error");
+        } else {
+            placemarklabel[mm - 1].enabled = false;
+        }
+    }
+
     //placemarklabel.refresh();
     wwd.redraw();
 };
 function StartNav() {
-    
+
     //shapesLayer.removeAllRenderables();
     //shapesLayer.refresh();
     //placemarkLayer.removeAllRenderables();
     //placemarkLayerend.removeAllRenderables();
     //placemarkLayer.refresh();
     //placemarkLayerend.refresh();
-//var text_startingPoint = document.getElementById("searchTextStart").value;
-//var text_endingPoint = document.getElementById("searchTextEnd").value;
-var text_startingPoint = document.getElementById("pac-input").value;
-var text_endingPoint = document.getElementById("pac-input2").value;
+    //var text_startingPoint = document.getElementById("searchTextStart").value;
+    //var text_endingPoint = document.getElementById("searchTextEnd").value;
+    var text_startingPoint = document.getElementById("pac-input").value;
+    var text_endingPoint = document.getElementById("pac-input2").value;
     //Text Renderable layer to be add instead
     placemarklabel[mm] = new WorldWind.RenderableLayer();
     if (mm > 0) {
         console.log("second request: Delete last layer");
-        placemarklabel[mm-1].enabled = false;
+        placemarklabel[mm - 1].enabled = false;
     }
     shapesLayer.removeAllRenderables();
     placemarkLayer.removeAllRenderables();
@@ -74,7 +87,7 @@ var text_endingPoint = document.getElementById("pac-input2").value;
     setTimeout(function () {
         wwd.goTo(new WorldWind.Position(navResultLat, navResultLong, 2500));
         // Add the placemark to the layer.
-        
+
         //placemarkLayerend.addRenderable(placemarktxt);
         //placemarkLayerend.addRenderable(placemarktxt1);
         shapesLayer.addRenderable(shape);
@@ -83,7 +96,7 @@ var text_endingPoint = document.getElementById("pac-input2").value;
         placemarklabel[mm].addRenderable(placemarktxt);
         placemarklabel[mm].addRenderable(placemarktxt1);
 
-        
+
         //placemarklabel.addRenderable(placemarktxt);
         // Add the placemarks layer to the WorldWindow's layer list.
         wwd.addLayer(placemarkLayer);
@@ -95,7 +108,7 @@ var text_endingPoint = document.getElementById("pac-input2").value;
         //mm=mm+1;
     }, 2000);
     setTimeout(function () {
-        mm=mm+1;
+        mm = mm + 1;
     }, 2500);
 
     //console.log(dataset[0].legs.steps[0].start_location.lat)
