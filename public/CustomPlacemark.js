@@ -346,8 +346,13 @@ var handleClick = function (recognizer) {
 	let numberofTreetypes = [];
 	
 	viewTrees = getTreeRecCurrent(minLat, maxLat, minLong, maxLong);
-	getnumberofTrees();
-
+	setTimeout(function () { 
+		getnumberofTrees();
+	}, 500);
+	//getnumberofTrees();
+	chartcontainerLoading.style.display = "block";
+	chartcontainerMessage.style.display = "none";
+	
 	function getnumberofTrees(){
 		for (j= 0; j < treetrans.length; j++){
 			var amount = 0;
@@ -367,6 +372,10 @@ var handleClick = function (recognizer) {
 			//  };
 			treechart(numberofTreetypes);
 			showPieChart();
+			setTimeout(function () { 
+			chartcontainerLoading.style.display = "none";
+		}, 500);
+			
 		};
 	};
 };
