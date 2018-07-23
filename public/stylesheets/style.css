@@ -332,8 +332,8 @@ div[aria-describedby="Info"]{
 
 .myButtonRed {
 	-moz-box-shadow:inset 0px 1px 0px 0px #f5978e;
-	-webkit-box-shadow:inset 0px 1px 0px 0px #f5978e;
-	box-shadow:inset 0px 1px 0px 0px #f5978e;
+	/* -webkit-box-shadow:inset 0px 1px 0px 0px #f5978e; */
+	/* box-shadow:inset 0px 1px 0px 0px #f5978e; */
 	background-color:#f24537;
 	-moz-border-radius:3px;
 	-webkit-border-radius:2px;
@@ -342,7 +342,7 @@ div[aria-describedby="Info"]{
 	display:inline-block;
 	cursor:pointer;
 	color:#ffffff;
-	font-family:Trebuchet MS;
+	/* font-family:Trebuchet MS; */
 	font-size:12px;
 	padding:2px 2px;
 	text-decoration:none;
@@ -357,19 +357,19 @@ div[aria-describedby="Info"]{
 
 .myButtonGreen {
 	-moz-box-shadow:inset 0px 1px 0px 0px #caefab;
-	-webkit-box-shadow:inset 0px 1px 0px 0px #caefab;
-	box-shadow:inset 0px 1px 0px 0px #caefab;
+	/* -webkit-box-shadow:inset 0px 1px 0px 0px #caefab; */
+	/* box-shadow:inset 0px 1px 0px 0px #caefab; */
 	background-color:#77d42a;
 	-moz-border-radius:3px;
 	-webkit-border-radius:2px;
-	border-radius:2px;
+	/* border-radius:2px; */
 	border:1px solid #268a16;
 	display:inline-block;
 	cursor:pointer;
 	color:#0a0a0a;
-	font-family:Trebuchet MS;
+	/* font-family:Trebuchet MS; */
 	font-size:12px;
-	padding:2px 2px;
+	/* padding:2px 2px; */
 	text-decoration:none;
 }
 .myButtonGreen:hover {
@@ -382,8 +382,8 @@ div[aria-describedby="Info"]{
 
 .myButtonBlue {
 	-moz-box-shadow:inset 0px 1px 0px 0px #97c4fe;
-	-webkit-box-shadow:inset 0px 1px 0px 0px #97c4fe;
-	box-shadow:inset 0px 1px 0px 0px #97c4fe;
+	/* -webkit-box-shadow:inset 0px 1px 0px 0px #97c4fe; */
+	/* box-shadow:inset 0px 1px 0px 0px #97c4fe; */
 	background-color:#3d94f6;
 	-moz-border-radius:3px;
 	-webkit-border-radius:2px;
@@ -392,7 +392,7 @@ div[aria-describedby="Info"]{
 	display:inline-block;
 	cursor:pointer;
 	color:#ffffff;
-	font-family:Trebuchet MS;
+	/* font-family:Trebuchet MS; */
 	font-size:12px;
 	padding:2px 2px;
 	text-decoration:none;
