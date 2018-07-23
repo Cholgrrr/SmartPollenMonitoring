@@ -58,9 +58,7 @@ position: absolute;
 }
 .btn{
     position:absolute;
-    left:0;
-
-
+    /* left:0; */
 }
 .bootstrap-select.btn-group:not(.input-group-btn), .bootstrap-select.btn-group[class*="span"] {
     margin: 0 !important;
@@ -311,11 +309,11 @@ div[aria-describedby="Info"]{
 #pollenPieChart {
     position: absolute;
     left: 5px;
-    height:250px;
-    width: 500px;
+    height: 250px;
+    width: 520px;
     bottom:5px;
     background: rgba(42, 42, 42, 0.8);
-    border : none
+    border : none;
 }
 #navMenu {
     /* position: absolute; */
@@ -479,3 +477,8 @@ div[aria-describedby="Info"]{
     border-color: #4d90fe;
   }
 
+.closeButton {
+    position: absolute;
+    right: 2px;
+    top: 2px;
+}

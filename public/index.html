@@ -268,7 +268,11 @@
         <br>
         <button class="myButtonRed" type="button" onclick="removeNav()">remove navigation layer</button>
         <br>
-        <button class="myButtonRed" type="button" onclick="navClick()">close window</button>
+        <!-- <button class="myButtonRed" type="button" onclick="navClick()">close window</button> -->
+        <button class="btn btn-danger closeButton" type="button" style="right: 2px; padding: 0px 3px" onclick="navClick()">
+            <span class="glyphicon glyphicon-remove"></span>
+        </button>
+
     </div>
     <div class="backdrop" id="pollenMenu" style="display: none;">
         <h2>
@@ -367,20 +371,23 @@
         <button class="myButtonRed" type="button" onclick="hidePieChart()">off</button>
         <br>
         <br>
-        <button class="myButtonRed" type="button" onclick="pollenClick()">
-            <span class="glyphicon glyphicon-remove"></span> Close Window
+        <button class="btn btn-danger closeButton" type="button" style="right: 2px; padding: 0px 3px" onclick="pollenClick()">
+            <span class="glyphicon glyphicon-remove"></span>
         </button>
 
 
     </div>
     <div class="backdrop" id="pollenPieChart" style="display: none;">
-        <div id="chartcontainer" style="width: 500px; height: 230px; margin: 0 auto"></div>
-        <div class="chartcontainerLoading" id="chartcontainerLoading" 
-        style="position: absolute;left: 325px;bottom: 90px; display: none;"></div>
-        <div id="chartcontainerMessage" 
-        style="position: absolute;left: 185;bottom: 100px;">
-        Please, select tree type(s) in the Pollen Simulation Menu and click on the globe to zoom in.
-    </div>
+        <button class="btn btn-danger closeButton" type="button" 
+        style="left: 20px;top: 10px; padding: 0px 3px;z-index: 1;" onclick="hidePieChart()">
+            <span class="glyphicon glyphicon-remove"></span>
+        </button>
+        <div id="chartcontainer" style="width: 500px; height: 230px; margin: 0 auto; position: absolute;">
+        </div>
+        <div class="chartcontainerLoading" id="chartcontainerLoading" style="position: absolute;left: 325px;bottom: 90px; display: none;"></div>
+        <div id="chartcontainerMessage" style="position: absolute;left: 185;bottom: 100px;">
+            Please, select tree type(s) in the Pollen Simulation Menu and click on the globe to zoom in.
+        </div>
     </div>
 
     <div id="dialog_addTree" title="Add custom tree">
@@ -486,6 +493,7 @@
             else {
                 // pollenMenu.style.display = "none";
                 $("#pollenMenu").hide("3000");
+                $("#pollenPieChart").hide("3000");
             }
 
         };
@@ -496,16 +504,16 @@
                 pollenMenu.style.display = "none";
             }
             else {
-                $("#navMenu").show("3000");
+                $("#navMenu").hide("3000");
                 // navMenu.style.display = "none";
             }
 
         };
         var showPieChart = function () {
-            pollenPieChart.style.display = "block";
+            $("#pollenPieChart").show("3000");
         };
         var hidePieChart = function () {
-            pollenPieChart.style.display = "none";
+            $("#pollenPieChart").hide("3000");
         };
         var csvUpload = function () {
             alert("Coming Soon, Dude!");
