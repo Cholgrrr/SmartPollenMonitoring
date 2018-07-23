@@ -318,11 +318,17 @@ div[aria-describedby="Info"]{
     border : none
 }
 #navMenu {
+    /* position: absolute; */
+    /* right: 30px; */
+    /* top:100px; */
+    /* width: 300px; */
+    /* height: 70%; */
     position: absolute;
-    right: 30px;
-    top:100px;
+    right: 5px;
+    top: 55px;
     width: 300px;
-    height: 70%;
+    /* height: 100%; */
+    bottom: 5px;
 }
 
 

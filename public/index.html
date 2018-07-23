@@ -479,21 +479,25 @@
         });
         var pollenClick = function () {
             if (pollenMenu.style.display === 'none') {
-                pollenMenu.style.display = "block";
+                $("#pollenMenu").show("5000");
+                //pollenMenu.style.display = "block";
                 navMenu.style.display = "none";
             }
             else {
-                pollenMenu.style.display = "none";
+                // pollenMenu.style.display = "none";
+                $("#pollenMenu").hide("3000");
             }
 
         };
         var navClick = function () {
             if (navMenu.style.display === 'none') {
-                navMenu.style.display = "block";
+                $("#navMenu").show("5000");
+                // navMenu.style.display = "block";
                 pollenMenu.style.display = "none";
             }
             else {
-                navMenu.style.display = "none";
+                $("#navMenu").show("3000");
+                // navMenu.style.display = "none";
             }
 
         };

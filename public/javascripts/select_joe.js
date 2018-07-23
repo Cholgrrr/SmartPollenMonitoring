@@ -120,7 +120,9 @@ try {
 		});
 
 		$('#tree-order-button').on('click', function () {
+			if (ii_for_btn === true) {
 			modal.style.display = "block";
+		}
 			var selected = [];
 			$('#month option:selected').each(function () {
 				selected.push([$(this).val(), $(this).data('order')]);

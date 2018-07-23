@@ -26,82 +26,82 @@ function TreeStat() {
         //return d;
     }, function (error, data) {
         //if (error) throw error;
-       
+
         var columns = ["Month"];
 
         //##############################################################
         let mdata;
         mdata = getTreeBloomingAll();
 
-	
-		// ---- translate the tree_types -----
-		
-		for (i = 0; i < mdata.length; i++) {
-			if (mdata[i].tree_type == 'Birke') {
-				mdata[i].tree_type = 'Birch';
-			} else if (mdata[i].tree_type == 'Erle') {
-				mdata[i].tree_type = 'Alder';
-			} else if (mdata[i].tree_type == 'Hasel') {
-				mdata[i].tree_type = 'Hazel';
-			} else if (mdata[i].tree_type == 'Ahorn') {
-				mdata[i].tree_type = 'Maple';
-			} else if (mdata[i].tree_type == 'Apfel') {
-				mdata[i].tree_type = 'Apple';
-			} else if (mdata[i].tree_type == 'Birne') {
-				mdata[i].tree_type = 'Pear';
-			} else if (mdata[i].tree_type == 'Buche') {
-				mdata[i].tree_type = 'Beech';
-			} else if (mdata[i].tree_type == 'Buchs') {
-				mdata[i].tree_type = 'Buchs';
-			} else if (mdata[i].tree_type == 'Eibe') {
-				mdata[i].tree_type = 'Yew';
-			} else if (mdata[i].tree_type == 'Eiche') {
-				mdata[i].tree_type = 'Oak';
-			} else if (mdata[i].tree_type == 'Esche') {
-				mdata[i].tree_type = 'Ash';
-			} else if (mdata[i].tree_type == 'Flieder') {
-				mdata[i].tree_type = 'Lilac';
-			} else if (mdata[i].tree_type == 'Goetterbaum') {
-				mdata[i].tree_type = 'Ailanthus';
-			} else if (mdata[i].tree_type == 'Holunder') {
-				mdata[i].tree_type = 'Elder';
-			} else if (mdata[i].tree_type == 'Kastanie') {
-				mdata[i].tree_type = 'Chestnut';
-			} else if (mdata[i].tree_type == 'Kiefer') {
-				mdata[i].tree_type = 'Pine';
-			} else if (mdata[i].tree_type == 'Kirsche') {
-				mdata[i].tree_type = 'Cherry';
-			} else if (mdata[i].tree_type == 'Linde') {
-				mdata[i].tree_type = 'Linden';
-			} else if (mdata[i].tree_type == 'Pflaume') {
-				mdata[i].tree_type = 'Plum';
-			} else if (mdata[i].tree_type == 'Robinie') {
-				mdata[i].tree_type = 'Robinie';
-			} else if (mdata[i].tree_type == 'Schlafbaum') {
-				mdata[i].tree_type = 'Sleeping-Tree';
-			} else if (mdata[i].tree_type == 'Schnur') {
-				mdata[i].tree_type = 'Schnur';
-			} else if (mdata[i].tree_type == 'Tanne') {
-				mdata[i].tree_type = 'Fir';
-			} else if (mdata[i].tree_type == 'Ulme') {
-				mdata[i].tree_type = 'Elm';
-			} else if (mdata[i].tree_type == 'Walnuss') {
-				mdata[i].tree_type = 'Walnut';
-			} else if (mdata[i].tree_type == 'Weide') {
-				mdata[i].tree_type = 'Pasture';
-			} else if (mdata[i].tree_type == 'Zeder') {
-				mdata[i].tree_type = 'Cedar';
-			} else if (mdata[i].tree_type == 'Zypresse') {
-				mdata[i].tree_type = 'Cypress';
-			} else if (mdata[i].tree_type == 'other') {
-				mdata[i].tree_type = 'other';
-			} else {
-				mdata[i].tree_type = mdata[i].tree_type;
-			}	
-		}
-		// ---- end of translation -----
-		
-		
+
+        // ---- translate the tree_types -----
+
+        for (i = 0; i < mdata.length; i++) {
+            if (mdata[i].tree_type == 'Birke') {
+                mdata[i].tree_type = 'Birch';
+            } else if (mdata[i].tree_type == 'Erle') {
+                mdata[i].tree_type = 'Alder';
+            } else if (mdata[i].tree_type == 'Hasel') {
+                mdata[i].tree_type = 'Hazel';
+            } else if (mdata[i].tree_type == 'Ahorn') {
+                mdata[i].tree_type = 'Maple';
+            } else if (mdata[i].tree_type == 'Apfel') {
+                mdata[i].tree_type = 'Apple';
+            } else if (mdata[i].tree_type == 'Birne') {
+                mdata[i].tree_type = 'Pear';
+            } else if (mdata[i].tree_type == 'Buche') {
+                mdata[i].tree_type = 'Beech';
+            } else if (mdata[i].tree_type == 'Buchs') {
+                mdata[i].tree_type = 'Buchs';
+            } else if (mdata[i].tree_type == 'Eibe') {
+                mdata[i].tree_type = 'Yew';
+            } else if (mdata[i].tree_type == 'Eiche') {
+                mdata[i].tree_type = 'Oak';
+            } else if (mdata[i].tree_type == 'Esche') {
+                mdata[i].tree_type = 'Ash';
+            } else if (mdata[i].tree_type == 'Flieder') {
+                mdata[i].tree_type = 'Lilac';
+            } else if (mdata[i].tree_type == 'Goetterbaum') {
+                mdata[i].tree_type = 'Ailanthus';
+            } else if (mdata[i].tree_type == 'Holunder') {
+                mdata[i].tree_type = 'Elder';
+            } else if (mdata[i].tree_type == 'Kastanie') {
+                mdata[i].tree_type = 'Chestnut';
+            } else if (mdata[i].tree_type == 'Kiefer') {
+                mdata[i].tree_type = 'Pine';
+            } else if (mdata[i].tree_type == 'Kirsche') {
+                mdata[i].tree_type = 'Cherry';
+            } else if (mdata[i].tree_type == 'Linde') {
+                mdata[i].tree_type = 'Linden';
+            } else if (mdata[i].tree_type == 'Pflaume') {
+                mdata[i].tree_type = 'Plum';
+            } else if (mdata[i].tree_type == 'Robinie') {
+                mdata[i].tree_type = 'Robinie';
+            } else if (mdata[i].tree_type == 'Schlafbaum') {
+                mdata[i].tree_type = 'Sleeping-Tree';
+            } else if (mdata[i].tree_type == 'Schnur') {
+                mdata[i].tree_type = 'Schnur';
+            } else if (mdata[i].tree_type == 'Tanne') {
+                mdata[i].tree_type = 'Fir';
+            } else if (mdata[i].tree_type == 'Ulme') {
+                mdata[i].tree_type = 'Elm';
+            } else if (mdata[i].tree_type == 'Walnuss') {
+                mdata[i].tree_type = 'Walnut';
+            } else if (mdata[i].tree_type == 'Weide') {
+                mdata[i].tree_type = 'Pasture';
+            } else if (mdata[i].tree_type == 'Zeder') {
+                mdata[i].tree_type = 'Cedar';
+            } else if (mdata[i].tree_type == 'Zypresse') {
+                mdata[i].tree_type = 'Cypress';
+            } else if (mdata[i].tree_type == 'other') {
+                mdata[i].tree_type = 'other';
+            } else {
+                mdata[i].tree_type = mdata[i].tree_type;
+            }
+        }
+        // ---- end of translation -----
+
+
 
         //console.log(mdata);
         // Optional for full name
@@ -117,7 +117,7 @@ function TreeStat() {
         // var okt = { Month: "October" };
         // var nov = { Month: "November" };
         // var dez = { Month: "December" };
-// In case of short name
+        // In case of short name
         var jan = { Month: "JAN" };
         var feb = { Month: "FEB" };
         var mar = { Month: "MAR" };
@@ -194,13 +194,13 @@ function TreeStat() {
         y.domain([0, d3.max(data, function (d) { return d3.max(keys, function (key) { return d[key]; }); })]).nice();
 
         g.append("g")
-          .selectAll("g")
-          .data(data)
-          .enter().append("g")
+            .selectAll("g")
+            .data(data)
+            .enter().append("g")
             .attr("transform", function (d) { return "translate(" + x0(d.Month) + ",0)"; })
-          .selectAll("rect")
-          .data(function (d) { return keys.map(function (key) { return { key: key, value: d[key] }; }); })
-          .enter().append("rect")
+            .selectAll("rect")
+            .data(function (d) { return keys.map(function (key) { return { key: key, value: d[key] }; }); })
+            .enter().append("rect")
             .attr("x", function (d) { return x1(d.key); })
             .attr("y", function (d) { return y(d.value); })
             .attr("width", x1.bandwidth())
@@ -215,7 +215,7 @@ function TreeStat() {
         g.append("g")
             .attr("class", "axis")
             .call(d3.axisLeft(y).ticks(null, "s"))
-          .append("text")
+            .append("text")
             .attr("x", 2)
             .attr("y", y(y.ticks().pop()) + 0.5)
             .attr("dy", "0.32em")
@@ -228,9 +228,9 @@ function TreeStat() {
             .attr("font-family", "sans-serif")
             .attr("font-size", 10)
             .attr("text-anchor", "end")
-          .selectAll("g")
-          .data(keys.slice().reverse())
-          .enter().append("g")
+            .selectAll("g")
+            .data(keys.slice().reverse())
+            .enter().append("g")
             .attr("transform", function (d, i) { return "translate(0," + i * 20 + ")"; });
 
         legend.append("rect")
@@ -247,7 +247,8 @@ function TreeStat() {
             .text(function (d) { return d; });
 
     }
-    )};
+    )
+};
 
 
 // Get the modal
@@ -261,11 +262,19 @@ var btn2 = document.getElementById("showStat");
 var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks the button, open the modal
-// btn.onclick = function () {
-//     modal.style.display = "block";
-//     d3.selectAll("svg > *").remove();
-//     TreeStat();
-// }
+var ii_for_btn = true;
+btn.onclick = function () {
+    if (ii_for_btn === true) {
+        modal.style.display = "block";
+        d3.selectAll("svg > *").remove();
+        TreeStat();
+        ii_for_btn = false;
+    }
+    else {
+        d3.selectAll("svg > *").remove();
+        TreeStat();
+    }
+}
 btn2.onclick = function () {
     //modal.style.display = "block";
     d3.selectAll("svg > *").remove();
