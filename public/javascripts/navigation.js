@@ -122,6 +122,29 @@ var hideNav = function () {
 var result_temporary;
 function LoadJson(resourcesUrl) {
 
+	// -------------------------------------------------
+	// call postgres routing function
+
+
+	var routeStandartDevinition = {
+		latStart: "40.60468", 
+		lonStart: "-73.99052", 
+		latEnd: "40.62804", 
+		lonEnd: "-74.00175"
+	};
+
+	$.ajax({
+		async: false,
+		type: "POST",
+		url: '/routeStandard',
+		data: routeStandartDevinition,
+	}).done(function (routeStandartDevinition) { 
+		console.log("POSTGRES ROUTE:");
+		console.log(routeStandartDevinition);
+	});
+
+
+	// --------------------------------------------------
 
     $.getJSON(resourcesUrl, function (result) {
         result_temporary = result;

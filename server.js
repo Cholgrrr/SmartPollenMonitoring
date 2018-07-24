@@ -395,6 +395,46 @@ app.post('/getBloomingAll', function (req, res) {
 
 
 
+
+// -------------------------------------------
+// Request route standard (without tree avoid)
+	
+// http://localhost:8081/routeStandard
+
+app.post('/routeStandard', function (req, res) {
+ 
+    try {
+		
+		const data = req.body;
+		console.log("routeStandard Body:");
+		console.log(req.body); 
+		
+		let query_string = "select id, round(y_coord::numeric, 8) lat, round(x_coord::numeric, 8) lon from get_route_standard('-73.99052', '40.60468', '-74.00175', '40.62804')"; 
+		
+		// request the data 
+		db.result(query_string)
+		.then(result => {
+			res.json(result.rows);
+		})
+		.catch(error => {
+			console.log('ERROR:', error);
+		});			
+		console.log('.../getBloomingAll successful!');
+    }
+	
+    catch (err) {
+        console.log('.../getBloomingAll failed!\n' + err);
+    }
+
+});
+
+
+
+
+
+
+
+
 // ------------------------------------------------------------------------
 // Insert wind datat (speed and direction) every 5 minutes in the database
 
@@ -444,6 +484,7 @@ function insertFunc() {
 	})
  
 }
+
 
 try {
 	insert_current_wind();
