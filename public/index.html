@@ -49,6 +49,9 @@
 
     <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
     <link rel="stylesheet" type="text/css" href="stylesheets/style_loader.css">
+
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <!--
     <link rel="stylesheet" type="text/css" href="stylesheets/default.css" />
     <link rel="stylesheet" type="text/css" href="stylesheets/component.css" />
@@ -235,10 +238,20 @@
         </h2>
 
         <h4>Path</h4>
-        select mode
-        <span class="glyphicons glyphicons-bicycle"></span>:
-        <button class="myButtonBlue" type="button" onclick="toggleText()" id="bike">bike</button>
-
+        Select mode :
+        <!-- <span class="glyphicons glyphicons-bicycle"></span>: -->
+        <!-- <button class="myButtonBlue" type="button" onclick="toggleText()" id="bike">bike</button> -->
+        <div class="radio">
+            <label>
+                <input type="radio" name="optionsRadios1" id="navMode2" value="option2" checked> <i class="fas fa-walking"></i>  Walking Mode
+            </label>
+        </div>
+        <div class="radio">
+            <label>
+                <input type="radio" name="optionsRadios1" id="navMode1" value="option1"> <i class="fas fa-bicycle"></i>  Bike Mode
+            </label>
+        </div>
+        
         <!-- Old Text search for direction -->
         <!-- <div class="input-group" id="searchBox1">
             <input type="text" class="form-control" placeholder="Starting Point" id="searchTextStart" />
@@ -262,17 +275,17 @@
         </div>
         <br>
         <button id="searchButton" onclick="StartNav()" class="myButtonBlue" type="button">
-            <span class="glyphicon glyphicon-search"> Start-Navigation</span>
+            <!-- <span class="glyphicon glyphicon-search"> </span> -->
+            <i class="fas fa-search"></i> Start-Navigation
         </button>
         <br>
         <br>
-        <button class="myButtonRed" type="button" onclick="removeNav()">remove navigation layer</button>
+        <button class="myButtonRed" type="button" onclick="removeNav()"><i class="fas fa-times"></i> Remove-Navigation</button>
         <br>
         <!-- <button class="myButtonRed" type="button" onclick="navClick()">close window</button> -->
         <button class="btn btn-danger closeButton" type="button" style="right: 2px; padding: 0px 3px" onclick="navClick()">
             <span class="glyphicon glyphicon-remove"></span>
         </button>
-
     </div>
     <div class="backdrop" id="pollenMenu" style="display: none;">
         <h2>
@@ -360,11 +373,15 @@
 
         <br>
         <br>
-        <br> Lable Options:
+        <br> Label Options:
         <br>
         <button class="myButtonBlue" type="button" onclick="showLabel()">on</button>
         <button class="myButtonRed" type="button" onclick="hideLabel()">off</button>
         <br>
+        <label class="switch">
+            <input type="checkbox" checked>
+            <span class="slider round"></span>
+          </label>
         <br> Tree-Statistic Pie Chart (current-display):
         <br>
         <button class="myButtonBlue" type="button" onclick="showPieChart()">on</button>
@@ -392,6 +409,9 @@
 
     <div id="dialog_addTree" title="Add custom tree">
     </div>
+<!-- new Tutorial -->
+
+<!-- Old Tutorial -->
     <div id="Info" title="Info">
         <h4>
             <b>Basic Info</b>

@@ -26,6 +26,20 @@ function toggleText() {
     var text = document.getElementById("bike").firstChild;
     text.data = text.data == "bike" ? "walk" : "bike";
 }
+var NavModeSelected = "Walking";
+$(document).ready(function () { 
+    
+    $('#navMode1, #navMode2').on('change', function () {
+        if ($("#navMode1").prop("checked") == true) {
+            NavModeSelected = "Bike";
+            console.log("Bike activated");
+        } else if ($("#navMode2").prop("checked") == true) {
+            NavModeSelected = "Walking";
+            console.log("Walking activated");
+        }
+    });
+}
+);
 function removeNav() {
     shapesLayer.removeAllRenderables();
     placemarkLayer.removeAllRenderables();
@@ -78,9 +92,13 @@ function StartNav() {
     //placemarklabel.refresh();
     wwd.redraw();
     setTimeout(function () {
-        if (document.getElementById("bike").firstChild.data == "walk") {
+        // if (document.getElementById("bike").firstChild.data == "walk") {
+        if (NavModeSelected == "Walking") {
+
             LoadJson("https://cors.io/?https://maps.googleapis.com/maps/api/directions/json?origin=" + text_startingPoint + "&destination=" + text_endingPoint + "&avoid=highways&mode=walking&key=AIzaSyAHKsTWBLNuyJ4-3zlG8GDkPQzVWtmvbtI");
-        } else if (document.getElementById("bike").firstChild.data == "bike") {
+        // } else if (document.getElementById("bike").firstChild.data == "bike") {
+        } else if (NavModeSelected == "Bike") {
+
             LoadJson("https://cors.io/?https://maps.googleapis.com/maps/api/directions/json?origin=" + text_startingPoint + "&destination=" + text_endingPoint + "&avoid=highways&mode=bicycling&key=AIzaSyAHKsTWBLNuyJ4-3zlG8GDkPQzVWtmvbtI");
         };
     }, 50);

@@ -39,7 +39,7 @@ try {
 	// --------------------------------------------
 	// Generation of the selection for the Map Type
 
-	$(document).ready(function () {
+	$(document).ready(function () { 
 		// $("#month").hide();
 		$("#Info").hide();
 		$('#recentold-order1, #recentold-order2').on('change', function () {

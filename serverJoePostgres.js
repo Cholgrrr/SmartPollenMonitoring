@@ -11,7 +11,7 @@ app.use(bodyParser.json())
 const request = require('ajax-request');
 
 app.use(express.static('public'));
-app.listen(process.env.PORT || 8080);
+app.listen(process.env.PORT || 3000);
 
 
 
@@ -460,7 +460,7 @@ catch(err) {
 // -----------------
 // Server runs info
 
-console.log('server is running on port 8080!');
+console.log('server is running on port 3000!');
 
 
 
