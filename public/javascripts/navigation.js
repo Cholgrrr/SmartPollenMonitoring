@@ -12,8 +12,9 @@ var placemarklabel = [];
 
 var navResultLat,
     navResultLong;
-var placemark, placemarkend, shape, placemarktxt;
+var placemark, placemarkend, shape, placemarktxt, placemarktxt1;
 var deleteplacemarklabel_error;
+var dfd_NavigationRequest = $.Deferred();
 
 function bike() {
     if (document.getElementById("bike").text == "bike") {
@@ -27,8 +28,8 @@ function toggleText() {
     text.data = text.data == "bike" ? "walk" : "bike";
 }
 var NavModeSelected = "Walking";
-$(document).ready(function () { 
-    
+$(document).ready(function () {
+
     $('#navMode1, #navMode2').on('change', function () {
         if ($("#navMode1").prop("checked") == true) {
             NavModeSelected = "Bike";
@@ -64,19 +65,8 @@ function removeNav() {
     //placemarklabel.refresh();
     wwd.redraw();
 };
-function StartNav() {
+function lightRefresh() {
 
-    //shapesLayer.removeAllRenderables();
-    //shapesLayer.refresh();
-    //placemarkLayer.removeAllRenderables();
-    //placemarkLayerend.removeAllRenderables();
-    //placemarkLayer.refresh();
-    //placemarkLayerend.refresh();
-    //var text_startingPoint = document.getElementById("searchTextStart").value;
-    //var text_endingPoint = document.getElementById("searchTextEnd").value;
-    var text_startingPoint = document.getElementById("pac-input").value;
-    var text_endingPoint = document.getElementById("pac-input2").value;
-    //Text Renderable layer to be add instead
     placemarklabel[mm] = new WorldWind.RenderableLayer();
     if (mm > 0) {
         console.log("second request: Delete last layer");
@@ -85,41 +75,48 @@ function StartNav() {
     shapesLayer.removeAllRenderables();
     placemarkLayer.removeAllRenderables();
     placemarkLayerend.removeAllRenderables();
-    //placemarklabel.removeAllRenderables();
     shapesLayer.refresh();
     placemarkLayer.refresh();
     placemarkLayerend.refresh();
-    //placemarklabel.refresh();
     wwd.redraw();
+};
+
+function AddNAVtoWW() {
+    shapesLayer.addRenderable(shape);
+    placemarkLayer.addRenderable(placemark);
+    placemarkLayerend.addRenderable(placemarkend);
+    placemarklabel[mm].addRenderable(placemarktxt);
+    placemarklabel[mm].addRenderable(placemarktxt1);
+    wwd.addLayer(placemarkLayer);
+    wwd.addLayer(placemarkLayerend);
+    wwd.addLayer(shapesLayer);
+    wwd.addLayer(placemarklabel[mm]);
+    wwd.redraw();
+}
+function MoveToNavLocation () {
+    wwd.goTo(new WorldWind.Position(navResultLat, navResultLong, 4500));
+}
+
+function StartNav() {
+    var text_startingPoint = document.getElementById("pac-input").value;
+    var text_endingPoint = document.getElementById("pac-input2").value;
     setTimeout(function () {
-        NavRequestGoogle(NavModeSelected)
+        $.when(lightRefresh()).done(function () {
+            console.log("Nav_Step..1")
+            $.when(NavRequest_Google(text_startingPoint, text_endingPoint)).done(function () {
+                console.log("Nav_Step..2")
+                $.when(AddNAVtoWW()).done(function () {
+                    console.log("Nav_Step..3")
+                    MoveToNavLocation();
+                    mm = mm + 1;
+                    //$.when(AddNAVtoWW()).done(function () {
+                        
+                    //});
+                });
+            });
+        })
     }, 50);
-    setTimeout(function () {
-        wwd.goTo(new WorldWind.Position(navResultLat, navResultLong, 2500));
-        // Add the placemark to the layer.
 
-        //placemarkLayerend.addRenderable(placemarktxt);
-        //placemarkLayerend.addRenderable(placemarktxt1);
-        shapesLayer.addRenderable(shape);
-        placemarkLayer.addRenderable(placemark);
-        placemarkLayerend.addRenderable(placemarkend);
-        placemarklabel[mm].addRenderable(placemarktxt);
-        placemarklabel[mm].addRenderable(placemarktxt1);
-
-
-        //placemarklabel.addRenderable(placemarktxt);
-        // Add the placemarks layer to the WorldWindow's layer list.
-        wwd.addLayer(placemarkLayer);
-        wwd.addLayer(placemarkLayerend);
-        wwd.addLayer(shapesLayer);
-        wwd.addLayer(placemarklabel[mm]);
-        //wwd.addLayer(placemarklabel);
-        wwd.redraw();
-        //mm=mm+1;
-    }, 2000);
-    setTimeout(function () {
-        mm = mm + 1;
-    }, 2500);
 
     //console.log(dataset[0].legs.steps[0].start_location.lat)
 };
@@ -134,36 +131,36 @@ var result_temporary;
 
 function LoadJson(resourcesUrl) {
 
-	// -------------------------------------------------
-	// call postgres routing function
+    // -------------------------------------------------
+    // call postgres routing function
 
 
-	var routeStandartDevinition = {
-		latStart: "40.60468", 
-		lonStart: "-73.99052", 
-		latEnd: "40.62804", 
-		lonEnd: "-74.00175"
-	};
+    // var routeStandartDevinition = {
+    //     latStart: "40.60468",
+    //     lonStart: "-73.99052",
+    //     latEnd: "40.62804",
+    //     lonEnd: "-74.00175"
+    // };
 
-	$.ajax({
-		async: false,
-		type: "POST",
-		url: '/routeStandard',
-		data: routeStandartDevinition,
-	}).done(function (routeStandartDevinition) { 
-		console.log("POSTGRES ROUTE:");
-		console.log(routeStandartDevinition);
-	});
+    // $.ajax({
+    //     async: false,
+    //     type: "POST",
+    //     url: '/routeStandard',
+    //     data: routeStandartDevinition,
+    // }).done(function (routeStandartDevinition) {
+    //     console.log("POSTGRES ROUTE:");
+    //     console.log(routeStandartDevinition);
+    // });
 
 
-	// --------------------------------------------------
+    // --------------------------------------------------
 
     $.getJSON(resourcesUrl, function (result) {
         result_temporary = result;
         $.each(result, function (i, field) {
             dataset = field;
-            console.log(dataset)
-            console.log(i)
+            console.log("Dataset :" +dataset);
+            console.log("i :" + i);
             if (i == "routes") {
                 routes = field
                 console.log(routes)
