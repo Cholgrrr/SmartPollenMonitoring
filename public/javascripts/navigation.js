@@ -92,15 +92,7 @@ function StartNav() {
     //placemarklabel.refresh();
     wwd.redraw();
     setTimeout(function () {
-        // if (document.getElementById("bike").firstChild.data == "walk") {
-        if (NavModeSelected == "Walking") {
-
-            LoadJson("https://cors.io/?https://maps.googleapis.com/maps/api/directions/json?origin=" + text_startingPoint + "&destination=" + text_endingPoint + "&avoid=highways&mode=walking&key=AIzaSyAHKsTWBLNuyJ4-3zlG8GDkPQzVWtmvbtI");
-        // } else if (document.getElementById("bike").firstChild.data == "bike") {
-        } else if (NavModeSelected == "Bike") {
-
-            LoadJson("https://cors.io/?https://maps.googleapis.com/maps/api/directions/json?origin=" + text_startingPoint + "&destination=" + text_endingPoint + "&avoid=highways&mode=bicycling&key=AIzaSyAHKsTWBLNuyJ4-3zlG8GDkPQzVWtmvbtI");
-        };
+        NavRequestGoogle(NavModeSelected)
     }, 50);
     setTimeout(function () {
         wwd.goTo(new WorldWind.Position(navResultLat, navResultLong, 2500));
@@ -138,6 +130,8 @@ var hideNav = function () {
     wwd.redraw();
 };
 var result_temporary;
+
+
 function LoadJson(resourcesUrl) {
 
 	// -------------------------------------------------
