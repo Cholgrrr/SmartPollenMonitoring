@@ -96,30 +96,49 @@ function AddNAVtoWW() {
 function MoveToNavLocation () {
     wwd.goTo(new WorldWind.Position(navResultLat, navResultLong, 4500));
 }
-
+//********** StartNav old version *******************
+// function StartNav() {
+//     var text_startingPoint = document.getElementById("pac-input").value;
+//     var text_endingPoint = document.getElementById("pac-input2").value;
+//     setTimeout(function () {
+//         $.when(lightRefresh()).done(function () {
+//             console.log("Nav_Step..1")
+//             $.when(NavRequest_Google(text_startingPoint, text_endingPoint)).done(function () {
+//                 console.log("Nav_Step..2")
+//                 $.when(AddNAVtoWW()).done(function () {
+//                     console.log("Nav_Step..3")
+//                     MoveToNavLocation();
+//                     mm = mm + 1;
+//                     //$.when(AddNAVtoWW()).done(function () {
+                        
+//                     //});
+//                 });
+//             });
+//         })
+//     }, 50);
+// };
+//********** StartNav cb version *******************
 function StartNav() {
     var text_startingPoint = document.getElementById("pac-input").value;
     var text_endingPoint = document.getElementById("pac-input2").value;
     setTimeout(function () {
-        $.when(lightRefresh()).done(function () {
-            console.log("Nav_Step..1")
-            $.when(NavRequest_Google(text_startingPoint, text_endingPoint)).done(function () {
-                console.log("Nav_Step..2")
-                $.when(AddNAVtoWW()).done(function () {
-                    console.log("Nav_Step..3")
-                    MoveToNavLocation();
-                    mm = mm + 1;
-                    //$.when(AddNAVtoWW()).done(function () {
-                        
-                    //});
+        console.log("1");
+        lightRefresh_cb(() => {
+            setTimeout(function () {
+            console.log("2");
+            NavRequest_Google_cb(text_startingPoint,text_endingPoint,() => {
+                setTimeout(function () {
+                console.log("3");
+                AddNAVtoWW_cb(() => {
+                    console.log("4");
                 });
+            }, 1500);
             });
-        })
+        }, 150);
+        });
     }, 50);
-
-
-    //console.log(dataset[0].legs.steps[0].start_location.lat)
 };
+
 var hideNav = function () {
     shapesLayer.enabled = false;
     placemarkLayer.enabled = false;
