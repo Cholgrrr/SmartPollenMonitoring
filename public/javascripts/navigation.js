@@ -32,14 +32,7 @@ $(document).ready(function () {
             console.log("PG_Routing activated");
         }
     });
-    $('#LabelOptionSwitch').on('change', function () {
-        console.log("label Check");
-        if ($("#LabelOptionSwitch").prop("checked") == true) {
-            console.log("label Check true");
-        } else {
-            console.log("label Check false");
-        }
-    });
+    
 }
 );
 function removeNav() {
@@ -237,16 +230,16 @@ function LoadJson(resourcesUrl, requestMode) {
                     textAttributes1.color = WorldWind.Color.GREEN;
                     placemarktxt1.attributes = textAttributes1;
 
-                    routeStandartDevinition = {
-                        // latStart: "40.60468",
-                        // lonStart: "-73.99052",
-                        // latEnd: "40.62804",
-                        // lonEnd: "-74.00175"
-                        latStart: start_point_lat.toString(),
-                        lonStart: start_point_lng.toString(),
-                        latEnd: end_point_lat.toString(),
-                        lonEnd: end_point_lng.toString()
-                    };
+                    // routeStandartDevinition = {
+                    //     // latStart: "40.60468",
+                    //     // lonStart: "-73.99052",
+                    //     // latEnd: "40.62804",
+                    //     // lonEnd: "-74.00175"
+                    //     latStart: start_point_lat.toString(),
+                    //     lonStart: start_point_lng.toString(),
+                    //     latEnd: end_point_lat.toString(),
+                    //     lonEnd: end_point_lng.toString()
+                    // };
                     routePG_Input = {
                         // latStart: "40.60468",
                         // lonStart: "-73.99052",

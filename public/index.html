@@ -409,13 +409,19 @@
             <input id="LabelOptionSwitch" type="checkbox" checked>
             <span class="slider round"></span>
         </label>
-        <!-- test -->
-        <br> <strong>Tree-Statistic Pie Chart </strong>(current-display):
+        <br> <strong>Display only outer ellipse : </strong> <br>
+        (Click on Globe to see change!) <br>
+        <label class="switch">
+            <input id="LoadOnlyOutSwitch" type="checkbox">
+            <span class="slider round"></span>
+        </label>
+        <!-- Temporary turn the Pie Chart off because of buggy  -->
+        <!-- <br> <strong>Tree-Statistic Pie Chart </strong>(current-display):
         <br>
         <label class="switch">
             <input id="pieChartSwitch" type="checkbox" checked>
             <span class="slider round"></span>
-        </label>
+        </label> -->
         <!-- <button class="myButtonBlue" type="button" onclick="showPieChart()">on</button>
         <button class="myButtonRed" type="button" onclick="hidePieChart()">off</button>
         <br>
@@ -569,6 +575,7 @@
         var csvUpload = function () {
             alert("Coming Soon, Dude!");
         }
+        var LoadOnlyOutSwitch = false;
         $(document).ready(function () {
             $('#LabelOptionSwitch').on('change', function () {
                 
@@ -580,16 +587,25 @@
                     console.log("label Check false");
                 }
             });
-            $('#pieChartSwitch').on('change', function () {
+            // $('#pieChartSwitch').on('change', function () {
                 
-                if ($("#LabelOptionSwitch").prop("checked") == true) {
-                    showPieChart();
-                    console.log("label Check true");
+            //     if ($("#LabelOptionSwitch").prop("checked") == true) {
+            //         showPieChart();
+            //         console.log("label Check true");
+            //     } else {
+            //         hidePieChart();
+            //         console.log("label Check false");
+            //     }
+            // });
+            $('#LoadOnlyOutSwitch').on('change', function () {
+                
+                if ($("#LoadOnlyOutSwitch").prop("checked") == true) {
+                    LoadOnlyOutSwitch = true;
                 } else {
-                    hidePieChart();
-                    console.log("label Check false");
+                    LoadOnlyOutSwitch = false;
                 }
             });
+            
         });
 
 
