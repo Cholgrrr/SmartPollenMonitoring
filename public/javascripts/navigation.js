@@ -50,7 +50,6 @@ function removeNav() {
             placemarklabel[mm - 1].enabled = false;
         }
     }
-
     //placemarklabel.refresh();
     wwd.redraw();
 };
@@ -91,13 +90,13 @@ function StartNav() {
     var text_endingPoint = document.getElementById("pac-input2").value;
     setTimeout(function () {
         $.when(lightRefresh()).done(function () {
-            console.log("Nav_Step..1")
+            console.log("Nav_Step..1..Light Refresh")
             $.when(NavRequest_Google(text_startingPoint, text_endingPoint)).done(function () {
                 setTimeout(function () {
-                    console.log("Nav_Step..2")
+                    console.log("Nav_Step..2..Load Navigation Request")
                     $.when(AddNAVtoWW()).done(function () {
                         setTimeout(function () {
-                            console.log("Nav_Step..3")
+                            console.log("Nav_Step..3..Add Nav Layer to Map")
                             MoveToNavLocation();
                             mm = mm + 1;
                         }, 1200);
@@ -143,15 +142,24 @@ var hideNav = function () {
 
 function LoadJson(resourcesUrl, requestMode) {
     // Initial Setting for all mode
+        //Setting for Placemark Starting Point
     var placemarkAttributes = new WorldWind.PlacemarkAttributes(null);
     placemarkAttributes.imageOffset = new WorldWind.Offset(WorldWind.OFFSET_FRACTION, 0.5, WorldWind.OFFSET_FRACTION, 0.5);
     placemarkAttributes.imageScale = 7;
     placemarkAttributes.imageColor = WorldWind.Color.RED;
+        //Setting for Placemark Ending Point
     var placemarkAttributesend = new WorldWind.PlacemarkAttributes(null);
     placemarkAttributesend.imageOffset = new WorldWind.Offset(WorldWind.OFFSET_FRACTION, 0.5, WorldWind.OFFSET_FRACTION, 0.5);
     placemarkAttributesend.imageScale = 7;
     placemarkAttributesend.imageColor = WorldWind.Color.GREEN;
 
+        //Setting for Shape Attribute 
+    attributes = new WorldWind.ShapeAttributes(null);
+    attributes.outlineColor = new WorldWind.Color(0, 1, 1, 0.9);
+    highlightAttributes = new WorldWind.ShapeAttributes(attributes);
+    highlightAttributes.outlineColor = new WorldWind.Color(1, 1, 1, 1);
+    shape = new WorldWind.SurfacePolyline(boundary, attributes);
+    shape.highlightAttributes = highlightAttributes;
     //Mode PG Routing
     if (requestMode == "PG_Routing") {
         console.log("Mode: Routing with PG_Routing");
@@ -200,6 +208,28 @@ function LoadJson(resourcesUrl, requestMode) {
                     placemarkend = new WorldWind.Placemark(placemarkPositionend, false, placemarkAttributesend)
                     navResultLat = (start_point_lat + end_point_lat)/2;
                     navResultLong = (start_point_lng + end_point_lng)/2;
+
+                    //---Label/Text Starting Point
+                    var textPosition = new WorldWind.Position(start_point_lat, start_point_lng, 30);
+                    placemarktxt = new WorldWind.GeographicText(textPosition, "Start - " + routes[0].legs[0].start_address + "\n"
+                        + "Lat " + routes[0].legs[0].steps[0].start_location.lat.toPrecision(4).toString() + "\n"
+                        + "Lon " + routes[0].legs[0].steps[0].start_location.lng.toPrecision(5).toString());
+                    var textAttributes = new WorldWind.TextAttributes(null);
+                    textAttributes.depthTest = true;
+                    textAttributes.color = WorldWind.Color.RED;
+                    placemarktxt.attributes = textAttributes;
+
+                    //---Label/Text Ending Point
+                    var textPosition1 = new WorldWind.Position(end_point_lat, end_point_lng, 30);
+                    placemarktxt1 = new WorldWind.GeographicText(textPosition1, "Finish - " + routes[0].legs[0].end_address + "\n"
+                        + "Lat " + routes[0].legs[0].steps[0].end_location.lat.toPrecision(4).toString() + "\n"
+                        + "Lon " + routes[0].legs[0].steps[0].end_location.lng.toPrecision(5).toString());
+                    var textAttributes1 = new WorldWind.TextAttributes(null);
+                    textAttributes1.depthTest = true;
+                    textAttributes1.color = WorldWind.Color.GREEN;
+                    placemarktxt1.attributes = textAttributes1;
+
+
                     boundary = [];
 
 
@@ -209,34 +239,8 @@ function LoadJson(resourcesUrl, requestMode) {
                         boundary.push(new WorldWind.Location(routes[0].legs[0].steps[j].end_location.lat, routes[0].legs[0].steps[j].end_location.lng));
                         j++;
                     }
-                    console.log(routes[0].legs[0].steps.length)
-                    attributes = new WorldWind.ShapeAttributes(null);
-                    attributes.outlineColor = new WorldWind.Color(0, 1, 1, 0.9);
 
-                    highlightAttributes = new WorldWind.ShapeAttributes(attributes);
-                    highlightAttributes.outlineColor = new WorldWind.Color(1, 1, 1, 1);
-
-                    shape = new WorldWind.SurfacePolyline(boundary, attributes);
-                    shape.highlightAttributes = highlightAttributes;
-
-                    //Label
-                    var textAttributes = new WorldWind.TextAttributes(null);
-                    textAttributes.depthTest = true;
-                    var textPosition = new WorldWind.Position(routes[0].legs[0].steps[0].start_location.lat, routes[0].legs[0].steps[0].start_location.lng, 30);
-                    placemarktxt = new WorldWind.GeographicText(textPosition, "Start - " + routes[0].legs[0].start_address + "\n"
-                        + "Lat " + routes[0].legs[0].steps[0].start_location.lat.toPrecision(4).toString() + "\n"
-                        + "Lon " + routes[0].legs[0].steps[0].start_location.lng.toPrecision(5).toString());
-                    textAttributes.color = WorldWind.Color.RED;
-                    placemarktxt.attributes = textAttributes;
-
-                    var textAttributes1 = new WorldWind.TextAttributes(null);
-                    textAttributes1.depthTest = true;
-                    var textPosition1 = new WorldWind.Position(routes[0].legs[0].steps[lengthofit].end_location.lat, routes[0].legs[0].steps[lengthofit].end_location.lng, 30);
-                    placemarktxt1 = new WorldWind.GeographicText(textPosition1, "Finish - " + routes[0].legs[0].end_address + "\n"
-                        + "Lat " + routes[0].legs[0].steps[0].end_location.lat.toPrecision(4).toString() + "\n"
-                        + "Lon " + routes[0].legs[0].steps[0].end_location.lng.toPrecision(5).toString());
-                    textAttributes1.color = WorldWind.Color.GREEN;
-                    placemarktxt1.attributes = textAttributes1;
+                    
                     
 
                 };
