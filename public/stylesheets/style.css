@@ -88,10 +88,9 @@ position: absolute;
 }
 
 #tree-order-button,#example-order-button{
-    width:50%;
+    /* width:50%; */
     position:relative;
-    float:left;
-
+    /* float:left; */
 }
 @-moz-document url-prefix() {
     #tree-order-button, #example-order-button {

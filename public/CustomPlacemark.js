@@ -561,16 +561,18 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, blo
 		// make the ShapeAttributes for small Ellispe
 		var att2 = new WorldWind.ShapeAttributes(null);
 		att2.drawInterior = true;
-		att2.drawOutline = true;
+		att2.drawOutline = false;
 		att2.outlineColor = boundary_big;
 		att2.interiorColor = color_low;
+		att.outerWidth = 0.1;
 		
 		// make the ShapeAttributes for medium Ellispe
 		var attm = new WorldWind.ShapeAttributes(null);
 		attm.drawInterior = true;
-		attm.drawOutline = true;
+		attm.drawOutline = false;
 		attm.outlineColor = boundary_big;
 		attm.interiorColor = color_mid;
+		att.outerWidth = 0.1;
 		
 		// make the ShapeAttributes for the circle
 		var attc = new WorldWind.ShapeAttributes(null);
@@ -635,8 +637,8 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, blo
 		
 }
 wwd.addLayer(rend);    //draw big ellipse (Lowest)
-//wwd.addLayer(rendme);  //draw medium ellipse
-//wwd.addLayer(rendse);  //draw small ellipse
+wwd.addLayer(rendme);  //draw medium ellipse
+wwd.addLayer(rendse);  //draw small ellipse
 wwd.addLayer(rendtext);
 wwd.addLayer(rendtop); //draw circle points of tree last (top)
 var showLabel = function(){
