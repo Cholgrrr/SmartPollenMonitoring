@@ -396,24 +396,30 @@
         </button> -->
         <hr>
         <h3>Option:</h3>
-        <br> Label Options:
-        <br>
+        <br> <strong>Label Options : </strong> <br>
+        
+        <!-- Old Trigger -->
+        <!-- <br>
         <button class="myButtonBlue" type="button" onclick="showLabel()">on</button>
         <button class="myButtonRed" type="button" onclick="hideLabel()">off</button>
         <br>
+        <br> -->
         <!-- test -->
         <label class="switch">
-            <input type="checkbox" checked>
+            <input id="LabelOptionSwitch" type="checkbox" checked>
             <span class="slider round"></span>
         </label>
-        <input type="checkbox" class="js-switch" checked />
         <!-- test -->
-        <br> Tree-Statistic Pie Chart (current-display):
+        <br> <strong>Tree-Statistic Pie Chart </strong>(current-display):
         <br>
-        <button class="myButtonBlue" type="button" onclick="showPieChart()">on</button>
+        <label class="switch">
+            <input id="pieChartSwitch" type="checkbox" checked>
+            <span class="slider round"></span>
+        </label>
+        <!-- <button class="myButtonBlue" type="button" onclick="showPieChart()">on</button>
         <button class="myButtonRed" type="button" onclick="hidePieChart()">off</button>
         <br>
-        <br>
+        <br> -->
         <button class="btn btn-danger closeButton" type="button" style="right: 2px; padding: 0px 3px" onclick="pollenClick()">
             <span class="glyphicon glyphicon-remove"></span>
         </button>
@@ -563,6 +569,29 @@
         var csvUpload = function () {
             alert("Coming Soon, Dude!");
         }
+        $(document).ready(function () {
+            $('#LabelOptionSwitch').on('change', function () {
+                
+                if ($("#LabelOptionSwitch").prop("checked") == true) {
+                    showLabel();
+                    console.log("label Check true");
+                } else {
+                    hideLabel();
+                    console.log("label Check false");
+                }
+            });
+            $('#pieChartSwitch').on('change', function () {
+                
+                if ($("#LabelOptionSwitch").prop("checked") == true) {
+                    showPieChart();
+                    console.log("label Check true");
+                } else {
+                    hidePieChart();
+                    console.log("label Check false");
+                }
+            });
+        });
+
 
     </script>
 

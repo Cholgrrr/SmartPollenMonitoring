@@ -32,6 +32,14 @@ $(document).ready(function () {
             console.log("PG_Routing activated");
         }
     });
+    $('#LabelOptionSwitch').on('change', function () {
+        console.log("label Check");
+        if ($("#LabelOptionSwitch").prop("checked") == true) {
+            console.log("label Check true");
+        } else {
+            console.log("label Check false");
+        }
+    });
 }
 );
 function removeNav() {
