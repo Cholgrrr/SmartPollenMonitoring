@@ -461,7 +461,8 @@ function Clearall() {
 	histrec = 2;
 	navMenu.style.display = "none";
 	pollenMenu.style.display = "none";
-
+treetrans = [];
+$("#pollenPieChart").hide("3000");
 
 };
 // ---------------------------------------------------------------------
