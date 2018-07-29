@@ -478,7 +478,7 @@ function getTreeBloomingAll() {
 
 		// an object with the selected trees for all month
 		let treeBlooming = {};
-
+		console.log(treetrans)
 		for (i = 0; i < treeselection_tmp.length; i++) {
 			treeBlooming[i] = treetrans[i];
 		}

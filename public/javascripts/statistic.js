@@ -32,7 +32,7 @@ function TreeStat() {
         //##############################################################
         let mdata;
         mdata = getTreeBloomingAll();
-
+        //console.log("mdata " + mdata)
 
         // ---- translate the tree_types -----
 
