@@ -370,6 +370,9 @@ var handleClick = function (recognizer) {
 			//for (var i = 0; numberofTreetypes.length; i ++) {
 			//	var test = translate_treeype_de_en(numberofTreetypes[i].name)
 			//  };
+			for (t = 0; t < numberofTreetypes.length; t ++){
+				numberofTreetypes[t].name = translate_treeype_de_en(numberofTreetypes[t].name)
+			};
 			treechart(numberofTreetypes);
 			showPieChart();
 			setTimeout(function () {
