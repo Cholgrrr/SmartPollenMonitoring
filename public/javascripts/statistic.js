@@ -278,7 +278,13 @@ btn.onclick = function () {
 btn2.onclick = function () {
     //modal.style.display = "block";
     d3.selectAll("svg > *").remove();
-    TreeStat();
+    if (treetrans.length !== 0) {
+        $("#pollenPieChart").show("3000");
+        TreeStat();
+    } else {
+        alert("Please, select tree types from Pollen Simulation Menu");
+    }
+    
 }
 
 // When the user clicks on <span> (x), close the modal
