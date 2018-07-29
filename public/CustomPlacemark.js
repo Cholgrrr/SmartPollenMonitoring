@@ -398,7 +398,7 @@ var rendse = new WorldWind.RenderableLayer();  //Layer for small ellispe
 var rendtop = new WorldWind.RenderableLayer(); //Tree Point will always be on top
 var rendtext = new WorldWind.RenderableLayer(); //Tree Point will always be on top
 var text;
-
+var PollenOutline = false;
 // Now set up to handle highlighting.
 var highlightController = new WorldWind.HighlightController(wwd);
 
@@ -553,7 +553,7 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, blo
 		// make the ShapeAttributes for Big Ellispe
 		var att = new WorldWind.ShapeAttributes(null);
 		att.drawInterior = true;
-		att.drawOutline = false;
+
 		att.outlineColor = boundary_big;
 		att.interiorColor = color_start;
 		att.outerWidth = 0.1;
@@ -561,7 +561,7 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, blo
 		// make the ShapeAttributes for small Ellispe
 		var att2 = new WorldWind.ShapeAttributes(null);
 		att2.drawInterior = true;
-		att2.drawOutline = false;
+
 		att2.outlineColor = boundary_big;
 		att2.interiorColor = color_low;
 		att.outerWidth = 0.1;
@@ -569,11 +569,20 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, blo
 		// make the ShapeAttributes for medium Ellispe
 		var attm = new WorldWind.ShapeAttributes(null);
 		attm.drawInterior = true;
-		attm.drawOutline = false;
+
 		attm.outlineColor = boundary_big;
 		attm.interiorColor = color_mid;
 		att.outerWidth = 0.1;
-
+		// Set outline parameter
+		if (PollenOutline) {
+			att.drawOutline = true;
+			att2.drawOutline = true;
+			attm.drawOutline = true;
+		} else {
+			att.drawOutline = false;
+			att2.drawOutline = false;
+			attm.drawOutline = false;
+		};
 		// make the ShapeAttributes for the circle
 		var attc = new WorldWind.ShapeAttributes(null);
 		attc.drawInterior = true;
@@ -594,7 +603,7 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, blo
 		var el_lom = new WorldWind.Position(EllispeCenterLATm, EllispeCenterLONGm, 1e5);
 		var SEm = new WorldWind.SurfaceEllipse(el_lom, SEm_a_axe, SEm_b_axe, windDeg, attm);
 		if (LoadOnlyOutSwitch == false) {
-		rendme.addRenderable(SEm); // add Big ellispe to the globe
+			rendme.addRenderable(SEm); // add Big ellispe to the globe
 		}
 
 		//------------Draw Small Ellipse----------------
@@ -603,7 +612,7 @@ function drawPollenSpread(windStr, windDeg, TreeLat, TreeLong, StrenghtPara, blo
 		var el_los = new WorldWind.Position(EllispeCenterLATs, EllispeCenterLONGs, 1e5);
 		var SEs = new WorldWind.SurfaceEllipse(el_los, SEs_a_axe, SEs_b_axe, windDeg, att2);
 		if (LoadOnlyOutSwitch == false) {
-		rendse.addRenderable(SEs);
+			rendse.addRenderable(SEs);
 		}
 		//------------Draw Circle at Tree Position-------------------
 		var cir = new WorldWind.Position(TreeLat, TreeLong, 1e5);

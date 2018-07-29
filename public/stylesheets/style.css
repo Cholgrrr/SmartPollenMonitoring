@@ -57,7 +57,7 @@ position: absolute;
     z-index:100;
 }
 .btn{
-    position:absolute;
+    /* position:absolute; */
     /* left:0; */
 }
 .bootstrap-select.btn-group:not(.input-group-btn), .bootstrap-select.btn-group[class*="span"] {
@@ -452,24 +452,26 @@ div[aria-describedby="Info"]{
   }
 
   #pac-input {
-    background-color: rgb(24, 3, 3);
-    font-family: Roboto;
-    font-size: 15px;
-    font-weight: 300;
+    /* background-color: rgb(24, 3, 3); */
+    /* font-family: Roboto; */
+    /* font-size: 15px; */
+    /* font-weight: 300; */
     margin-left: 12px;
     padding: 0 11px 0 13px;
     text-overflow: ellipsis;
     width: 200px;
+    color: black;
   }
   #pac-input2 {
-    background-color: rgb(24, 3, 3);
-    font-family: Roboto;
-    font-size: 15px;
+    /* background-color: rgb(24, 3, 3); */
+    /* font-family: Roboto; */
+    /* font-size: 15px; */
     font-weight: 300;
     margin-left: 12px;
     padding: 0 11px 0 13px;
     text-overflow: ellipsis;
     width: 200px;
+    color: black;
   }
   
   #pac-input:focus {

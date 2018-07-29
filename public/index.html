@@ -245,8 +245,8 @@
         </h2>
 
         <h4>Path</h4>
-        Select mode :
-
+        
+        <h3>Select mode :</h3>
         <div class="radio">
             <label>
                 <input type="radio" name="optionsRadios1" id="navMode3" value="option3" checked>
@@ -270,37 +270,25 @@
                 <i class="fab fa-google"></i> Google Maps API)
             </label>
         </div>
-
-        <!-- Old Text search for direction -->
-        <!-- <div class="input-group" id="searchBox1">
-            <input type="text" class="form-control" placeholder="Starting Point" id="searchTextStart" />
-        </div>
-        <div class="input-group" id="searchBox2">
-            <input type="text" class="form-control" placeholder="Ending Point" id="searchTextEnd" />
-            <span class="input-group-btn">
-                <button id="searchButton" onclick="StartNav()" class="btn btn-primary" type="button">
-                    <span class="glyphicon glyphicon-search"></span>
-                </button>
-            </span>
-        </div> -->
-        <br> From :
+<hr>
+<h3>Select Start-End Point :</h3>
         <div class="input-group" id="searchBox3">
             <input id="pac-input" class="controls" type="text" placeholder="Starting Point">
             <div id="map" style="display: none;"></div>
         </div>
-        To :
+        <br>
         <div class="input-group" id="searchBox4">
+
             <input id="pac-input2" class="controls" type="text" placeholder="Ending Point">
         </div>
         <br>
-        <button id="searchButton" onclick="StartNav()" class="myButtonBlue" type="button">
+        <button id="searchButton" onclick="StartNav()" class="btn btn-default" type="button">
             <!-- <span class="glyphicon glyphicon-search"> </span> -->
             <i class="fas fa-search"></i> Start-Navigation
         </button>
-        <br>
-        <br>
-        <button class="myButtonRed" type="button" onclick="removeNav()">
-            <i class="fas fa-times"></i> Remove-Navigation</button>
+        <button class="btn btn-default" type="button" onclick="removeNav()">
+            <i class="fas fa-times"></i> Remove
+        </button>
         <br>
         <!-- <button class="myButtonRed" type="button" onclick="navClick()">close window</button> -->
         <button class="btn btn-danger closeButton" type="button" style="right: 2px; padding: 0px 3px" onclick="navClick()">
@@ -397,14 +385,7 @@
         <hr>
         <h3>Option:</h3>
         <br> <strong>Label Options : </strong> <br>
-        
-        <!-- Old Trigger -->
-        <!-- <br>
-        <button class="myButtonBlue" type="button" onclick="showLabel()">on</button>
-        <button class="myButtonRed" type="button" onclick="hideLabel()">off</button>
-        <br>
-        <br> -->
-        <!-- test -->
+
         <label class="switch">
             <input id="LabelOptionSwitch" type="checkbox" checked>
             <span class="slider round"></span>
@@ -413,6 +394,12 @@
         (Click on Globe to see change!) <br>
         <label class="switch">
             <input id="LoadOnlyOutSwitch" type="checkbox">
+            <span class="slider round"></span>
+        </label>
+        <br> <strong>Display Ellipse Outline: </strong> <br>
+        (Click on Globe to see change!) <br>
+        <label class="switch">
+            <input id="EllipseOutlineDisplay" type="checkbox">
             <span class="slider round"></span>
         </label>
         <!-- Temporary turn the Pie Chart off because of buggy  -->
@@ -603,6 +590,15 @@
                     LoadOnlyOutSwitch = true;
                 } else {
                     LoadOnlyOutSwitch = false;
+                }
+            });
+            
+            $('#EllipseOutlineDisplay').on('change', function () {
+                
+                if ($("#EllipseOutlineDisplay").prop("checked") == true) {
+                    PollenOutline = true;
+                } else {
+                    PollenOutline = false;
                 }
             });
             
