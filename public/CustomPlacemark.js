@@ -203,9 +203,9 @@ var handleClick = function (recognizer) {
 	// the function which draws the ellipses, will be called
 	// after a delay to wait for the required ajax requests ()
 
-	if (histrec == 0) {
+	if (current_hist_wind == "CUR") {
 		setTimeout(function () { callDrawPollen() }, 500);
-	} else if (histrec == 1) {
+	} else if (current_hist_wind == "HIS") {
 		setTimeout(function () { callPollenHistory() }, 500);
 	}
 	;
@@ -286,7 +286,7 @@ var handleClick = function (recognizer) {
 			// history blooming
 			var blooming = getTreeBloomingHist();
 			// get the blooming valuesl
-			var blooming = getTreeBloomingHist();
+			//var blooming = getTreeBloomingHist();
 			// defines the blooming value of the tree
 			var bloomFactor;
 			// ellipse color factor 
