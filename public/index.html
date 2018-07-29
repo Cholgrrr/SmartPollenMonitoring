@@ -245,15 +245,9 @@
         </h2>
 
         <h4>Path</h4>
-        
+
         <h3>Select mode :</h3>
-        <div class="radio">
-            <label>
-                <input type="radio" name="optionsRadios1" id="navMode3" value="option3" checked>
-                <i class="fas fa-walking"></i> Walking Mode
-                <br>(OpenStreetMap + PGrouting)
-            </label>
-        </div>
+
         <div class="radio">
             <label>
                 <input type="radio" name="optionsRadios1" id="navMode2" value="option2" checked>
@@ -270,16 +264,36 @@
                 <i class="fab fa-google"></i> Google Maps API)
             </label>
         </div>
-<hr>
-<h3>Select Start-End Point :</h3>
+        <div class="radio">
+            <label>
+                <input type="radio" name="optionsRadios1" id="navMode3" value="option3">
+                <i class="fas fa-walking"></i> Walking Mode
+                <br>(OpenStreetMap + PGrouting)
+            </label>
+        </div>
+        <div class="radio">
+            <label>
+                <input type="radio" name="optionsRadios1" id="navMode4" value="option4">
+                <i class="fas fa-walking"></i> Walking-Avoid Pollen Mode
+                <br>(OpenStreetMap + PGrouting)
+                <!-- <br>(Please select the tree-type to avoid from <strong>Pollen-Simulation</strong> Pollen-Simulation menu) -->
+            </label>
+        </div>
+        <hr>
+        <h3>Starting/Ending:</h3>
         <div class="input-group" id="searchBox3">
-            <input id="pac-input" class="controls" type="text" placeholder="Starting Point">
+            <span style="color:red">
+                <i class="fas fa-map-marker-alt"></i>
+            </span>
+            <input id="pac-input" class="controls" type="text" placeholder="Type a Starting Location">
             <div id="map" style="display: none;"></div>
         </div>
         <br>
         <div class="input-group" id="searchBox4">
-
-            <input id="pac-input2" class="controls" type="text" placeholder="Ending Point">
+            <span style="color:green">
+                <i class="fas fa-map-marker-alt"></i>
+            </span>
+            <input id="pac-input2" class="controls" type="text" placeholder="Type an Ending Location">
         </div>
         <br>
         <button id="searchButton" onclick="StartNav()" class="btn btn-default" type="button">
@@ -383,21 +397,26 @@
             <span class="glyphicon glyphicon-ok"></span>
         </button> -->
         <hr>
-        <h3>Option:</h3>
-        <br> <strong>Label Options : </strong> <br>
+        <h3>Options:</h3>
+        <strong>Label On/Off : </strong>
+        <br>
 
         <label class="switch">
             <input id="LabelOptionSwitch" type="checkbox" checked>
             <span class="slider round"></span>
         </label>
-        <br> <strong>Display only outer ellipse : </strong> <br>
-        (Click on Globe to see change!) <br>
+        <br>
+        <strong>Display only outer ellipse : </strong>
+        <br> (Click on Globe to see change!)
+        <br>
         <label class="switch">
             <input id="LoadOnlyOutSwitch" type="checkbox">
             <span class="slider round"></span>
         </label>
-        <br> <strong>Display Ellipse Outline: </strong> <br>
-        (Click on Globe to see change!) <br>
+        <br>
+        <strong>Display Ellipse Outline: </strong>
+        <br> (Click on Globe to see change!)
+        <br>
         <label class="switch">
             <input id="EllipseOutlineDisplay" type="checkbox">
             <span class="slider round"></span>
@@ -565,7 +584,7 @@
         var LoadOnlyOutSwitch = false;
         $(document).ready(function () {
             $('#LabelOptionSwitch').on('change', function () {
-                
+
                 if ($("#LabelOptionSwitch").prop("checked") == true) {
                     showLabel();
                     console.log("label Check true");
@@ -575,7 +594,7 @@
                 }
             });
             // $('#pieChartSwitch').on('change', function () {
-                
+
             //     if ($("#LabelOptionSwitch").prop("checked") == true) {
             //         showPieChart();
             //         console.log("label Check true");
@@ -585,23 +604,23 @@
             //     }
             // });
             $('#LoadOnlyOutSwitch').on('change', function () {
-                
+
                 if ($("#LoadOnlyOutSwitch").prop("checked") == true) {
                     LoadOnlyOutSwitch = true;
                 } else {
                     LoadOnlyOutSwitch = false;
                 }
             });
-            
+
             $('#EllipseOutlineDisplay').on('change', function () {
-                
+
                 if ($("#EllipseOutlineDisplay").prop("checked") == true) {
                     PollenOutline = true;
                 } else {
                     PollenOutline = false;
                 }
             });
-            
+
         });
 
 

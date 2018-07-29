@@ -20,7 +20,7 @@ var boundaryPG = [];
 var NavModeSelected = "Walking";
 $(document).ready(function () {
 
-    $('#navMode1, #navMode2, #navMode3').on('change', function () {
+    $('#navMode1, #navMode2, #navMode3,#navMode4').on('change', function () {
         if ($("#navMode1").prop("checked") == true) {
             NavModeSelected = "Bike";
             console.log("Bike activated");
@@ -30,6 +30,10 @@ $(document).ready(function () {
         } else if ($("#navMode3").prop("checked") == true) {
             NavModeSelected = "PG_Routing";
             console.log("PG_Routing activated");
+        } else if ($("#navMode4").prop("checked") == true) {
+            NavModeSelected = "PG_Routing_AvoidPollen";
+            console.log("PG_Routing_AvoidPollen activated");
+            alert("Current Select tree types to avoid: \n"+ treetrans + "\n You can select or change the tree-type to avoid from Pollen-Simulation menu");
         }
     });
     
@@ -98,7 +102,7 @@ function StartNav() {
     lightRefresh();
     //--------------------------------------------
     console.log("Nav_Step..2..Load Navigation Request")
-    NavRequest_Google(text_startingPoint, text_endingPoint);
+    NavRequest_GoogleOrPG(text_startingPoint, text_endingPoint);
     //--------------------------------------------
     setTimeout(function () {
 
@@ -133,30 +137,7 @@ function StartNavCB() {
     });
     //}, 50);
 };
-function StartNavCB2() {
-    var text_startingPoint = document.getElementById("pac-input").value;
-    var text_endingPoint = document.getElementById("pac-input2").value;
-    setTimeout(function () {
-        $.when(lightRefresh()).done(function () {
-            console.log("Nav_Step..1..Light Refresh")
-            $.when(NavRequest_Google(text_startingPoint, text_endingPoint)).done(function () {
-                setTimeout(function () {
-                    console.log("Nav_Step..2..Load Navigation Request")
-                    $.when(AddNAVtoWW()).done(function () {
-                        setTimeout(function () {
-                            console.log("Nav_Step..3..Add Nav Layer to Map")
-                            MoveToNavLocation();
-                            mm = mm + 1;
-                        }, 50);
-                        //$.when(AddNAVtoWW()).done(function () {
 
-                        //});
-                    });
-                }, 2000);
-            });
-        })
-    }, 50);
-};
 
 var hideNav = function () {
     shapesLayer.enabled = false;
@@ -186,6 +167,9 @@ function LoadJson(resourcesUrl, requestMode) {
     highlightAttributes.outlineColor = new WorldWind.Color(1, 1, 1, 1);
 
     //Mode PG Routing
+    if (requestMode == "PG_Routing_AvoidPollen") {
+        alert("PG_Routing_AvoidPollen is Underconstruction!");
+    }
     if (requestMode == "PG_Routing") {
         console.log("Mode: Routing with PG_Routing");
         // -------------------------------------------------

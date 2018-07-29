@@ -226,51 +226,9 @@ try {
 
 	// --------------------------------------
 	// Generation of the tree multiselection
-
+	
 	$(document).ready(function () {
 		var orderCount = 0;
-		// $('#tree-order').multiselect({
-		// 	maxHeight: 300,
-		// 	onChange: function (option, checked) {
-		// 		if (checked) {
-		// 			orderCount++;
-		// 			$(option).data('order', orderCount);
-
-		// 			//alert($('select#tree-order').val());
-		// 		}
-		// 		else {
-		// 			$(option).data('order', '');
-		// 		}
-
-		// 	},
-
-		// 	buttonText: function (options) {
-		// 		if (options.length === 0) {
-		// 			return 'Select Trees';
-		// 		}
-		// 		else if (options.length > 3) {
-		// 			return options.length + ' selected';
-		// 		}
-		// 		else {
-		// 			var selected = [];
-		// 			options.each(function () {
-		// 				selected.push([$(this).text(), $(this).data('order')]);
-		// 			});
-
-		// 			selected.sort(function (a, b) {
-		// 				return a[1] - b[1];
-		// 			});
-
-		// 			var text = '';
-		// 			for (var i = 0; i < selected.length; i++) {
-		// 				text += selected[i][0] + ', ';
-		// 			}
-
-		// 			return text.substr(0, text.length - 2);
-		// 		}
-		// 	}
-
-		// });
 		var selected;
 		$('#tree-order-button').on('click', function () {
 			selected = [];

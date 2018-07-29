@@ -1,4 +1,4 @@
-var NavRequest_Google = function(text_startingPoint,text_endingPoint) {
+var NavRequest_GoogleOrPG = function(text_startingPoint,text_endingPoint) {
     if (NavModeSelected == "Walking") {
         LoadJson("https://cors.io/?https://maps.googleapis.com/maps/api/directions/json?origin=" + text_startingPoint + "&destination=" + text_endingPoint + "&avoid=highways&mode=walking&key=AIzaSyAHKsTWBLNuyJ4-3zlG8GDkPQzVWtmvbtI", "Google");
         // } else if (document.getElementById("bike").firstChild.data == "bike") {
@@ -7,6 +7,9 @@ var NavRequest_Google = function(text_startingPoint,text_endingPoint) {
         LoadJson("https://cors.io/?https://maps.googleapis.com/maps/api/directions/json?origin=" + text_startingPoint + "&destination=" + text_endingPoint + "&avoid=highways&mode=bicycling&key=AIzaSyAHKsTWBLNuyJ4-3zlG8GDkPQzVWtmvbtI", "Google");
     } else if (NavModeSelected == "PG_Routing") {
         LoadJson("https://cors.io/?https://maps.googleapis.com/maps/api/directions/json?origin=" + text_startingPoint + "&destination=" + text_endingPoint + "&avoid=highways&mode=bicycling&key=AIzaSyAHKsTWBLNuyJ4-3zlG8GDkPQzVWtmvbtI", "PG_Routing");
+    } else if (NavModeSelected == "PG_Routing_AvoidPollen") {
+        // alert("PG_Routing_AvoidPollen is Underconstruction!");
+        LoadJson("https://cors.io/?https://maps.googleapis.com/maps/api/directions/json?origin=" + text_startingPoint + "&destination=" + text_endingPoint + "&avoid=highways&mode=bicycling&key=AIzaSyAHKsTWBLNuyJ4-3zlG8GDkPQzVWtmvbtI", "PG_Routing_AvoidPollen");
     };
 };
 
