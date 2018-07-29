@@ -252,30 +252,40 @@
             <label>
                 <input type="radio" name="optionsRadios1" id="navMode2" value="option2" checked>
                 <i class="fas fa-walking"></i> Walking Mode
-                <br>(
-                <i class="fab fa-google"></i> Google Maps API)
+                <div class="alert JojoeBadge">
+                        <i class="fab fa-google"></i> Google Maps API
+                </div>
             </label>
         </div>
         <div class="radio">
             <label>
                 <input type="radio" name="optionsRadios1" id="navMode1" value="option1">
                 <i class="fas fa-bicycle"></i> Bike Mode
-                <br>(
-                <i class="fab fa-google"></i> Google Maps API)
+                <div class="alert JojoeBadge">
+                        <i class="fab fa-google"></i> Google Maps API
+                </div>
             </label>
         </div>
         <div class="radio">
             <label>
                 <input type="radio" name="optionsRadios1" id="navMode3" value="option3">
                 <i class="fas fa-walking"></i> Walking Mode
-                <br>(OpenStreetMap + PGrouting)
+                <div class="alert JojoeBadge">
+                        OpenStreetMap + PGrouting
+                </div>
+                
             </label>
         </div>
         <div class="radio">
             <label>
                 <input type="radio" name="optionsRadios1" id="navMode4" value="option4">
                 <i class="fas fa-walking"></i> Walking-Avoid Pollen Mode
-                <br>(OpenStreetMap + PGrouting)
+                <div class="alert JojoeBadge">
+                        OpenStreetMap + PGrouting
+                </div>
+                <div class="alert JojoeBadgeRed">
+                       <strong>Warning</strong> High Computation Time
+                </div>
                 <!-- <br>(Please select the tree-type to avoid from <strong>Pollen-Simulation</strong> Pollen-Simulation menu) -->
             </label>
         </div>
@@ -407,16 +417,19 @@
         </label>
         <br>
         <strong>Display only outer ellipse : </strong>
-        <br> (Click on Globe to see change!)
-        <br>
+        <div class="alert JojoeBadge">
+                (Click on Globe to see change!)
+              </div>
         <label class="switch">
             <input id="LoadOnlyOutSwitch" type="checkbox">
             <span class="slider round"></span>
         </label>
         <br>
         <strong>Display Ellipse Outline: </strong>
-        <br> (Click on Globe to see change!)
-        <br>
+        <div class="alert JojoeBadge">
+                (Click on Globe to see change!)
+              </div>
+        
         <label class="switch">
             <input id="EllipseOutlineDisplay" type="checkbox">
             <span class="slider round"></span>

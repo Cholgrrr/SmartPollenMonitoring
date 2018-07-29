@@ -541,3 +541,22 @@ div[aria-describedby="Info"]{
   .slider.round:before {
     border-radius: 50%;
   }
+
+.JojoeBadge {
+    width: fit-content;
+    margin-bottom: 5px;
+    padding: 2px;
+    color: #31708f;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+    font-size: 0.9em;
+}
+.JojoeBadgeRed {
+    width: fit-content;
+    margin-bottom: 5px;
+    padding: 2px;
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    font-size: 0.9em;
+}
