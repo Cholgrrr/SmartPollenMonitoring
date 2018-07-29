@@ -354,18 +354,23 @@ var handleClick = function (recognizer) {
 	chartcontainerMessage.style.display = "none";
 
 	function getnumberofTrees() {
+		//console.log("TreeTransOLD" + treeselection_tmp)
+		// for (i = 0; i<numberofTreetypes.length; i++){
+		// 	delete numberofTreetypes[i]
+		// };
+		
 		for (j = 0; j < treetrans.length; j++) {
 			var amount = 0;
 			for (i = 0; i < viewTrees.length; i++) {
-				if (viewTrees[i].treetype == treetrans[j]) {
+				if (viewTrees[i].treetype == treeselection_tmp[j].className) {
 					amount += 1
-					console.log(amount);
+					//console.log(amount);
 
 				};
 			};
-			var objTree = { name: treetrans[j], y: amount };
+			var objTree = { name: treeselection_tmp[j].className, y: amount };
 			numberofTreetypes.push(objTree);
-			console.log(numberofTreetypes);
+			//console.log(numberofTreetypes);
 			//console.log(chartdata);
 			//for (var i = 0; numberofTreetypes.length; i ++) {
 			//	var test = translate_treeype_de_en(numberofTreetypes[i].name)
@@ -373,7 +378,9 @@ var handleClick = function (recognizer) {
 			for (t = 0; t < numberofTreetypes.length; t ++){
 				numberofTreetypes[t].name = translate_treeype_de_en(numberofTreetypes[t].name)
 			};
+			//console.log(numberofTreetypes);
 			treechart(numberofTreetypes);
+			
 			showPieChart();
 			setTimeout(function () {
 				chartcontainerLoading.style.display = "none";
