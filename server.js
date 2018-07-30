@@ -399,7 +399,7 @@ app.post('/getBloomingAll', function (req, res) {
 // -------------------------------------------
 // Request route standard (without tree avoid)
 	
-// http://localhost:8081/routeStandard
+// http://localhost:8080/routeStandard
 
 app.post('/routeStandard', function (req, res) {
  
@@ -408,27 +408,71 @@ app.post('/routeStandard', function (req, res) {
 		const data = req.body;
 		console.log("routeStandard Body:");
 		console.log(req.body); 
-		
+		console.log(req.body.lonStart);
+		console.log(req.body.latStart);
+		console.log(req.body.lonEnd);
+		console.log(req.body.latEnd);
+
 		let query_string = "select id, round(y_coord::numeric, 8) lat, round(x_coord::numeric, 8) lon from get_route_standard('-73.99052', '40.60468', '-74.00175', '40.62804')"; 
-		
+		let queryStr = "select id, round(y_coord::numeric, 8) lat, round(x_coord::numeric, 8) lon from get_route_standard('" + req.body.lonStart + "', '" + req.body.latStart + "' ,'"  + req.body.lonEnd + "', '" + req.body.latEnd + "')";
+		console.log("Query String: " + queryStr); 
 		// request the data 
-		db.result(query_string)
+		db.result(queryStr)
 		.then(result => {
 			res.json(result.rows);
 		})
 		.catch(error => {
 			console.log('ERROR:', error);
 		});			
-		console.log('.../getBloomingAll successful!');
+		console.log('.../routeStandard successful!');
     }
 	
     catch (err) {
-        console.log('.../getBloomingAll failed!\n' + err);
+        console.log('.../routeStandard failed!\n' + err);
     }
 
 });
 
 
+
+// -------------------------------------------
+// Request route standard (without tree avoid)
+	
+// http://localhost:8080/routeTreeAvoid
+
+app.post('/routeTreeAvoid', function (req, res) {
+ 
+    try {
+		
+		const data = req.body;
+		
+		console.log("routeTreeAvoid Body:");
+		console.log(data); 
+		console.log(data.lonStart);
+		console.log(data.latStart);
+		console.log(data.lonEnd);
+		console.log(data.latEnd);
+		console.log(data.treeList);
+
+		let queryWhereStr = data.treeList; 
+		let queryStr = "select id, round(y_coord::numeric, 8) lat, round(x_coord::numeric, 8) lon from get_route_tree_avoiding('" + req.body.lonStart + "', '" + req.body.latStart + "' ,'"  + req.body.lonEnd + "', '" + req.body.latEnd + "' , " + queryWhereStr + ")";
+		console.log("Query String: " + queryStr); 
+		// request the data 
+		db.result(queryStr)
+		.then(result => {
+			res.json(result.rows);
+		})
+		.catch(error => {
+			console.log('ERROR:', error);
+		});			
+		console.log('.../routeTreeAvoid successful!');
+    }
+	
+    catch (err) {
+        console.log('.../routeTreeAvoid failed!\n' + err);
+    }
+
+});
 
 
 

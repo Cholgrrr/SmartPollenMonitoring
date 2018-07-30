@@ -254,6 +254,38 @@ function LoadJson(resourcesUrl, requestMode) {
                         shape = new WorldWind.SurfacePolyline(boundary, attributes);
                         shape.highlightAttributes = highlightAttributes;
                     });
+
+                    
+                    // --------------------------------------------------------------------------
+                    // Route tree avoid 
+
+                    let treeListStr = " 'where (treetype ilike ''%birke%'' or treetype ilike ''%erle%'')'";
+                    routeAvoidPG_Input = {
+                        latStart: start_point_lat.toString(),
+                        lonStart: start_point_lng.toString(),
+                        latEnd: end_point_lat.toString(),
+                        lonEnd: end_point_lng.toString(),
+                        treeList: treeListStr
+                    };
+                    
+                    console.log(routeAvoidPG_Input);
+                    
+                    
+                    $.ajax({
+                        async: false,
+                        type: "POST",
+                        url: '/routeTreeAvoid',
+                        data: routeAvoidPG_Input,
+                    }).done(function (routeAvoidDevinition) {
+                        console.log("POSTGRES ROUTE AVOID INPUT:" + routeAvoidPG_Input);
+                        console.log("POSTGRES ROUTE AVOID:");
+                        console.log(routeAvoidDevinition);
+                    });
+                    
+
+                    // ------------------------------------------------------------------------------
+
+
                 };
 
                 //                
