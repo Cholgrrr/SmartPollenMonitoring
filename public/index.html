@@ -293,7 +293,7 @@
         <h3>Starting/Ending:</h3>
         <div class="input-group" id="searchBox3">
             <span style="color:red">
-                <i class="fas fa-map-marker-alt"></i>
+                <i id="startP" style="cursor: pointer;" class="fas fa-map-marker-alt"></i>
             </span>
             <input id="pac-input" class="controls" type="text" placeholder="Type a Starting Location">
             <div id="map" style="display: none;"></div>
@@ -301,7 +301,7 @@
         <br>
         <div class="input-group" id="searchBox4">
             <span style="color:green">
-                <i class="fas fa-map-marker-alt"></i>
+                <i id="endP" style="cursor: pointer;" class="fas fa-map-marker-alt"></i>
             </span>
             <input id="pac-input2" class="controls" type="text" placeholder="Type an Ending Location">
         </div>
@@ -565,7 +565,7 @@
             <img src="images/help5.png" alt="help5" style="width:59px;height:20px;"> button. The Statistic shows you in which month your selected Trees are blooming.</p>
     </div> -->
     <div class="col-sm-9" id="globe">
-        <canvas id="canvasOne">
+        <canvas id="canvasOne" style="cursor: pointer;">
             Your browser does not support HTML5 Canvas.
         </canvas>
     </div>

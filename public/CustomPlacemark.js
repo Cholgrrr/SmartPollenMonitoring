@@ -1,6 +1,9 @@
 // -------------------------------------------------------------------
 // set needed parameters and dependencies
-
+let startxglob,
+	startyglob,
+	endxglob,
+	endyglob;
 var trees;
 // Tell World Wind to log only warnings.
 WorldWind.Logger.setLoggingLevel(WorldWind.Logger.LEVEL_WARNING);
@@ -41,6 +44,92 @@ for (var l = 0; l < layers.length; l++) {
 var handleClick = function (recognizer) {
 	// Obtain the event location.
 	// Add the coordinates on the cursor to the dialog
+	if (startPreg == true) {
+		//alert("left click startP")
+		startPreg = false;
+		var startx = recognizer.clientX,
+		starty = recognizer.clientY;
+		//alert("Points: " + startx + " " + starty);
+		var StartPoint = wwd.pick(wwd.canvasCoordinates(startx, starty));
+			
+		if (StartPoint.objects.length == 1 && StartPoint.objects[0].isTerrain) {
+			var position = StartPoint.objects[0].position;
+			alert(position.latitude.toFixed(6));
+			alert(position.longitude.toFixed(6));
+			startxglob = position.latitude.toFixed(6);
+			startyglob = position.longitude.toFixed(6);
+			startPnav = true; 
+		}
+
+            // Create the placemark and its label.
+            var startmark = new WorldWind.Placemark(new WorldWind.Position(startxglob, startyglob, 0), true, null);
+            startmark.label = "START Point " + "\n";
+            startmark.altitudeMode = WorldWind.RELATIVE_TO_GROUND;
+
+            // Create the placemark attributes for this placemark. Note that the attributes differ only by their
+            // image URL.
+            var placemarkAttributes = new WorldWind.PlacemarkAttributes(placemarkAttributes);
+            //placemarkAttributes.imageSource = "../images/location.png";
+            startmark.attributes = placemarkAttributes;
+
+            // Create the highlight attributes for this placemark. Note that the normal attributes are specified as
+            // the default highlight attributes so that all properties are identical except the image scale. You could
+            // instead vary the color, image, or other property to control the highlight representation.
+            highlightAttributes = new WorldWind.PlacemarkAttributes(placemarkAttributes);
+			placemarkAttributes.imageScale = 10;
+			placemarkAttributes.imageColor = WorldWind.Color.RED;
+            startmark.highlightAttributes = highlightAttributes;
+
+            // Add the placemark to the layer.
+            placemarkLayer.addRenderable(startmark);
+
+
+        // Add the placemarks layer to the WorldWindow's layer list.
+		wwd.addLayer(placemarkLayer);
+		document.getElementById('pac-input').value = "Manual Selection";
+	} else if (endPreg == true) {
+		endPreg = false;
+		var endx = recognizer.clientX,
+		endy = recognizer.clientY;
+		//alert("Points: " + endx + " " + endy);
+		var EndPoint = wwd.pick(wwd.canvasCoordinates(endx, endy));
+			
+		if (EndPoint.objects.length == 1 && EndPoint.objects[0].isTerrain) {
+			var position = EndPoint.objects[0].position;
+			alert(position.latitude.toFixed(6));
+			alert(position.longitude.toFixed(6));
+			endxglob = position.latitude.toFixed(6);
+			endyglob = position.longitude.toFixed(6);
+			endPnav = true; 
+		}
+		// Create the placemark and its label.
+		var startmark = new WorldWind.Placemark(new WorldWind.Position(endxglob, endyglob, 0), true, null);
+		startmark.label = "END Point " + "\n";
+		startmark.altitudeMode = WorldWind.RELATIVE_TO_GROUND;
+
+		// Create the placemark attributes for this placemark. Note that the attributes differ only by their
+		// image URL.
+		var placemarkAttributes = new WorldWind.PlacemarkAttributes(placemarkAttributes);
+		//placemarkAttributes.imageSource = "../images/location.png";
+		startmark.attributes = placemarkAttributes;
+
+		// Create the highlight attributes for this placemark. Note that the normal attributes are specified as
+		// the default highlight attributes so that all properties are identical except the image scale. You could
+		// instead vary the color, image, or other property to control the highlight representation.
+		highlightAttributes = new WorldWind.PlacemarkAttributes(placemarkAttributes);
+		placemarkAttributes.imageScale = 10;
+		placemarkAttributes.imageColor = WorldWind.Color.GREEN;
+		startmark.highlightAttributes = highlightAttributes;
+
+		// Add the placemark to the layer.
+		placemarkLayer.addRenderable(startmark);
+
+
+	// Add the placemarks layer to the WorldWindow's layer list.
+	wwd.addLayer(placemarkLayer);
+	document.getElementById('pac-input2').value = "Manual Selection";
+	
+	} else {
 	var x = recognizer.clientX,
 		y = recognizer.clientY;
 
@@ -50,6 +139,7 @@ var handleClick = function (recognizer) {
 		var position = pickList.objects[0].position;
 		$("#dialogLat").val(position.latitude.toFixed(6));
 		$("#dialogLon").val(position.longitude.toFixed(6));
+		wwd.goTo(new WorldWind.Position(position.latitude, position.longitude, 2500));
 	}
 
 	// delete the previous layer
@@ -388,6 +478,7 @@ var handleClick = function (recognizer) {
 
 		};
 	};
+};
 };
 
 

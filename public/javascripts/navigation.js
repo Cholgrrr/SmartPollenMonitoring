@@ -3,6 +3,10 @@
 let dataset;
 let routes;
 let i;
+let startPreg = false;
+let startPnav = false;
+let endPreg = false;
+let endPnav = false;
 var shapesLayer = new WorldWind.RenderableLayer("line");
 var placemarkLayer = new WorldWind.RenderableLayer("Start");
 var placemarkLayerend = new WorldWind.RenderableLayer("Finish");
@@ -36,7 +40,17 @@ $(document).ready(function () {
             alert("Current Select tree types to avoid: \n"+ treetrans + "\n You can select or change the tree-type to avoid from Pollen-Simulation menu");
         }
     });
-    
+    $('#startP').on('click', function(){
+        //alert("StartP clicked")
+        startPreg = true;
+        //startPnav = true; 
+    });
+
+    $('#endP').on('click', function(){
+        //alert("endP clicked")
+        endPreg = true;
+        //endPnav = true;
+    });
 }
 );
 function removeNav() {
@@ -170,7 +184,7 @@ function LoadJson(resourcesUrl, requestMode) {
     if (requestMode == "PG_Routing_AvoidPollen") {
         alert("PG_Routing_AvoidPollen is Underconstruction!");
     }
-    if (requestMode == "PG_Routing") {
+    if (requestMode == "PG_Routing" && startPnav == false && endPnav == false) {
         console.log("Mode: Routing with PG_Routing");
         // -------------------------------------------------
         // call postgres routing function
@@ -290,14 +304,118 @@ function LoadJson(resourcesUrl, requestMode) {
 
                 //                
             });
-        });
+        });}
+    if (requestMode == "PG_Routing" && startPnav == true && endPnav == true) {
+        startPnav = false;
+        endPnav = false;
+        console.log("Mode: Routing with PG_Routing manual");
 
+                    // define start and end points
+                    
+                    var start_point_lat = startxglob;
+                    var start_point_lng = startyglob;
+                    var end_point_lat = endxglob;
+                    var end_point_lng = endyglob;
+                    var placemarkPosition = new WorldWind.Position(start_point_lat, start_point_lng, 0);
+                    var placemarkPositionend = new WorldWind.Position(end_point_lat, end_point_lng, 0);
+                    placemark = new WorldWind.Placemark(placemarkPosition, false, placemarkAttributes);
+                    placemarkend = new WorldWind.Placemark(placemarkPositionend, false, placemarkAttributesend)
+                    navResultLat = (start_point_lat + end_point_lat) / 2;
+                    navResultLong = (start_point_lng + end_point_lng) / 2;
+
+                    //---Label/Text Starting Point
+                    var textPosition = new WorldWind.Position(start_point_lat, start_point_lng, 30);
+                    placemarktxt = new WorldWind.GeographicText(textPosition, "Start " + "\n"
+                        + "Lat " + startxglob.toString() + "\n"
+                        + "Lon " + startyglob.toString());
+                    var textAttributes = new WorldWind.TextAttributes(null);
+                    textAttributes.depthTest = true;
+                    textAttributes.color = WorldWind.Color.RED;
+                    placemarktxt.attributes = textAttributes;
+
+                    //---Label/Text Ending Point
+                    var textPosition1 = new WorldWind.Position(end_point_lat, end_point_lng, 30);
+                    placemarktxt1 = new WorldWind.GeographicText(textPosition1, "Finish " + "\n"
+                        + "Lat " + endxglob.toString() + "\n"
+                        + "Lon " + endyglob.toString());
+                    var textAttributes1 = new WorldWind.TextAttributes(null);
+                    textAttributes1.depthTest = true;
+                    textAttributes1.color = WorldWind.Color.GREEN;
+                    placemarktxt1.attributes = textAttributes1;
+
+
+                    routePG_Input = {
+
+                        latStart: start_point_lat.toString(),
+                        lonStart: start_point_lng.toString(),
+                        latEnd: end_point_lat.toString(),
+                        lonEnd: end_point_lng.toString()
+                    };
+
+                    $.ajax({
+                        async: false,
+                        type: "POST",
+                        url: '/routeStandard',
+                        data: routePG_Input,
+                    }).done(function (routeStandartDevinition) {
+                        console.log("POSTGRES ROUTE INPUT:" + routePG_Input);
+                        console.log("POSTGRES ROUTE:");
+                        console.log(routeStandartDevinition);
+                        boundaryPG = routeStandartDevinition;
+                        boundary = [];
+                        var jj = 0;
+                        while (jj < boundaryPG.length) {
+                            boundary.push(new WorldWind.Location(parseFloat(boundaryPG[jj]["lat"]), parseFloat(boundaryPG[jj]["lon"])));
+                            jj++;
+                        }
+                        shape = new WorldWind.SurfacePolyline(boundary, attributes);
+                        shape.highlightAttributes = highlightAttributes;
+                    });
+
+                    
+                    // --------------------------------------------------------------------------
+                    // Route tree avoid 
+
+                    let treeListStr = " 'where (treetype ilike ''%birke%'' or treetype ilike ''%erle%'')'";
+                    routeAvoidPG_Input = {
+                        latStart: start_point_lat.toString(),
+                        lonStart: start_point_lng.toString(),
+                        latEnd: end_point_lat.toString(),
+                        lonEnd: end_point_lng.toString(),
+                        treeList: treeListStr
+                    };
+                    
+                    console.log(routeAvoidPG_Input);
+                    
+                    
+                    $.ajax({
+                        async: false,
+                        type: "POST",
+                        url: '/routeTreeAvoid',
+                        data: routeAvoidPG_Input,
+                    }).done(function (routeAvoidDevinition) {
+                        console.log("POSTGRES ROUTE AVOID INPUT:" + routeAvoidPG_Input);
+                        console.log("POSTGRES ROUTE AVOID:");
+                        console.log(routeAvoidDevinition);
+                    });
+                    
+
+                    // ------------------------------------------------------------------------------
+
+
+        
+
+        // ------------------------------------------------------------------------------
+
+
+    
+    
 
         // --------------------------------------------------
 
         //Mode Google API
     } else if (requestMode == "Google") {
-        console.log("Mode: Routing wiht Google API");
+        console.log("Mode: Routing with Google API");
         $.getJSON(resourcesUrl, function (result) {
             $.each(result, function (i, field) {
                 dataset = field;
