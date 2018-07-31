@@ -37,16 +37,16 @@ $(document).ready(function () {
         } else if ($("#navMode4").prop("checked") == true) {
             NavModeSelected = "PG_Routing_AvoidPollen";
             console.log("PG_Routing_AvoidPollen activated");
-            alert("Current Select tree types to avoid: \n"+ treetrans + "\n You can select or change the tree-type to avoid from Pollen-Simulation menu");
+            alert("Current Select tree types to avoid: \n" + treetrans + "\n You can select or change the tree-type to avoid from Pollen-Simulation menu");
         }
     });
-    $('#startP').on('click', function(){
+    $('#startP').on('click', function () {
         //alert("StartP clicked")
         startPreg = true;
         //startPnav = true; 
     });
 
-    $('#endP').on('click', function(){
+    $('#endP').on('click', function () {
         //alert("endP clicked")
         endPreg = true;
         //endPnav = true;
@@ -127,7 +127,7 @@ function StartNav() {
         setTimeout(function () {
             mm = mm + 1;
         }, 50);
-    }, 2000);
+    }, 3000);
 };
 //********** StartNav cb version *******************
 //********** Still Unuse for some reasons *******************
@@ -159,7 +159,7 @@ var hideNav = function () {
     placemarkLayerend.enabled = false;
     wwd.redraw();
 };
-
+let treeListStr = "";
 var routeStandartDevinition, routePG_Input;
 function LoadJson(resourcesUrl, requestMode) {
     // Initial Setting for all mode
@@ -182,9 +182,27 @@ function LoadJson(resourcesUrl, requestMode) {
 
     //Mode PG Routing
     if (requestMode == "PG_Routing_AvoidPollen") {
-        alert("PG_Routing_AvoidPollen is Underconstruction!");
+        //alert("PG_Routing_AvoidPollen is Underconstruction!");
+        //generate Input String to PG Routing - Avoid Tree
+        treeListStr = " 'where (treetype ilike ''%";
+        if (treetrans.length === 0) {
+            alert("Please, select tree type to avoid from Pollen Simulation Menu!");
+        } else if (treetrans.length === 1) {
+            treeListStr = " 'where (treetype ilike ''%" + treetrans[0] + "%'')'";
+        } else if (treetrans.length > 1) {
+            let ee;
+            for (ee = 0; ee <= treetrans.length - 1; ee++) {
+                if (ee === 0) {
+                    treeListStr = " 'where (treetype ilike ''%" + treetrans[0];
+                } else if (ee > 0 && ee < treetrans.length - 1) {
+                    treeListStr += "%'' or treetype ilike ''%" + treetrans[ee];
+                } else if (ee === treetrans.length - 1) {
+                    treeListStr += "%'' or treetype ilike ''%" + treetrans[ee] + "%'')'";
+                }
+            }
+        }
     }
-    if (requestMode == "PG_Routing" && startPnav == false && endPnav == false) {
+    if ((requestMode == "PG_Routing" || requestMode == "PG_Routing_AvoidPollen") && startPnav == false && endPnav == false) {
         console.log("Mode: Routing with PG_Routing");
         // -------------------------------------------------
         // call postgres routing function
@@ -238,178 +256,200 @@ function LoadJson(resourcesUrl, requestMode) {
                     //     latEnd: end_point_lat.toString(),
                     //     lonEnd: end_point_lng.toString()
                     // };
-                    routePG_Input = {
-                        // latStart: "40.60468",
-                        // lonStart: "-73.99052",
-                        // latEnd: "40.62804",
-                        // lonEnd: "-74.00175"
-                        latStart: start_point_lat.toString(),
-                        lonStart: start_point_lng.toString(),
-                        latEnd: end_point_lat.toString(),
-                        lonEnd: end_point_lng.toString()
-                    };
+                    if (requestMode == "PG_Routing") {
+                        routePG_Input = {
+                            // latStart: "40.60468",
+                            // lonStart: "-73.99052",
+                            // latEnd: "40.62804",
+                            // lonEnd: "-74.00175"
+                            latStart: start_point_lat.toString(),
+                            lonStart: start_point_lng.toString(),
+                            latEnd: end_point_lat.toString(),
+                            lonEnd: end_point_lng.toString()
+                        };
 
-                    $.ajax({
-                        async: false,
-                        type: "POST",
-                        url: '/routeStandard',
-                        data: routePG_Input,
-                    }).done(function (routeStandartDevinition) {
-                        console.log("POSTGRES ROUTE INPUT:" + routePG_Input);
-                        console.log("POSTGRES ROUTE:");
-                        console.log(routeStandartDevinition);
-                        boundaryPG = routeStandartDevinition;
-                        boundary = [];
-                        var jj = 0;
-                        while (jj < boundaryPG.length) {
-                            boundary.push(new WorldWind.Location(parseFloat(boundaryPG[jj]["lat"]), parseFloat(boundaryPG[jj]["lon"])));
-                            jj++;
-                        }
-                        shape = new WorldWind.SurfacePolyline(boundary, attributes);
-                        shape.highlightAttributes = highlightAttributes;
-                    });
+                        $.ajax({
+                            async: false,
+                            type: "POST",
+                            url: '/routeStandard',
+                            data: routePG_Input,
+                        }).done(function (routeStandartDevinition) {
+                            console.log("POSTGRES ROUTE INPUT:" + routePG_Input);
+                            console.log("POSTGRES ROUTE:");
+                            console.log(routeStandartDevinition);
+                            boundaryPG = routeStandartDevinition;
+                            boundary = [];
+                            var jj = 0;
+                            while (jj < boundaryPG.length) {
+                                boundary.push(new WorldWind.Location(parseFloat(boundaryPG[jj]["lat"]), parseFloat(boundaryPG[jj]["lon"])));
+                                jj++;
+                            }
+                            shape = new WorldWind.SurfacePolyline(boundary, attributes);
+                            shape.highlightAttributes = highlightAttributes;
+                        });
+                    }
 
-                    
                     // --------------------------------------------------------------------------
                     // Route tree avoid 
 
-                    let treeListStr = " 'where (treetype ilike ''%birke%'' or treetype ilike ''%erle%'')'";
-                    routeAvoidPG_Input = {
-                        latStart: start_point_lat.toString(),
-                        lonStart: start_point_lng.toString(),
-                        latEnd: end_point_lat.toString(),
-                        lonEnd: end_point_lng.toString(),
-                        treeList: treeListStr
-                    };
-                    
-                    console.log(routeAvoidPG_Input);
-                    
-                    
-                    $.ajax({
-                        async: false,
-                        type: "POST",
-                        url: '/routeTreeAvoid',
-                        data: routeAvoidPG_Input,
-                    }).done(function (routeAvoidDevinition) {
-                        console.log("POSTGRES ROUTE AVOID INPUT:" + routeAvoidPG_Input);
-                        console.log("POSTGRES ROUTE AVOID:");
-                        console.log(routeAvoidDevinition);
-                    });
-                    
 
-                    // ------------------------------------------------------------------------------
+                    //treeListStr = " 'where (treetype ilike ''%birke%'' or treetype ilike ''%erle%'')'";
+                    if (requestMode == "PG_Routing_AvoidPollen") {
+                        routeAvoidPG_Input = {
+                            latStart: start_point_lat.toString(),
+                            lonStart: start_point_lng.toString(),
+                            latEnd: end_point_lat.toString(),
+                            lonEnd: end_point_lng.toString(),
+                            treeList: treeListStr
+                        };
 
 
+                        $.ajax({
+                            async: false,
+                            type: "POST",
+                            url: '/routeTreeAvoid',
+                            data: routeAvoidPG_Input,
+                        }).done(function (routeAvoidDevinition) {
+                            console.log("POSTGRES ROUTE AVOID INPUT:" + routeAvoidPG_Input);
+                            console.log("POSTGRES ROUTE AVOID:");
+                            console.log(routeAvoidDevinition);
+                            boundaryPG = routeAvoidDevinition;
+                            boundary = [];
+                            var jj = 0;
+                            while (jj < boundaryPG.length) {
+                                boundary.push(new WorldWind.Location(parseFloat(boundaryPG[jj]["lat"]), parseFloat(boundaryPG[jj]["lon"])));
+                                jj++;
+                            }
+                            shape = new WorldWind.SurfacePolyline(boundary, attributes);
+                            shape.highlightAttributes = highlightAttributes;
+                        });
+                    }
                 };
 
                 //                
             });
-        });}
-    if (requestMode == "PG_Routing" && startPnav == true && endPnav == true) {
+        });
+    }
+    if ((requestMode == "PG_Routing" || requestMode == "PG_Routing_AvoidPollen") && startPnav == true && endPnav == true) {
         startPnav = false;
         endPnav = false;
         console.log("Mode: Routing with PG_Routing manual");
 
-                    // define start and end points
-                    
-                    var start_point_lat = startxglob;
-                    var start_point_lng = startyglob;
-                    var end_point_lat = endxglob;
-                    var end_point_lng = endyglob;
-                    var placemarkPosition = new WorldWind.Position(start_point_lat, start_point_lng, 0);
-                    var placemarkPositionend = new WorldWind.Position(end_point_lat, end_point_lng, 0);
-                    placemark = new WorldWind.Placemark(placemarkPosition, false, placemarkAttributes);
-                    placemarkend = new WorldWind.Placemark(placemarkPositionend, false, placemarkAttributesend)
-                    navResultLat = (start_point_lat + end_point_lat) / 2;
-                    navResultLong = (start_point_lng + end_point_lng) / 2;
+        // define start and end points
 
-                    //---Label/Text Starting Point
-                    var textPosition = new WorldWind.Position(start_point_lat, start_point_lng, 30);
-                    placemarktxt = new WorldWind.GeographicText(textPosition, "Start " + "\n"
-                        + "Lat " + startxglob.toString() + "\n"
-                        + "Lon " + startyglob.toString());
-                    var textAttributes = new WorldWind.TextAttributes(null);
-                    textAttributes.depthTest = true;
-                    textAttributes.color = WorldWind.Color.RED;
-                    placemarktxt.attributes = textAttributes;
+        var start_point_lat = startxglob;
+        var start_point_lng = startyglob;
+        var end_point_lat = endxglob;
+        var end_point_lng = endyglob;
+        var placemarkPosition = new WorldWind.Position(start_point_lat, start_point_lng, 0);
+        var placemarkPositionend = new WorldWind.Position(end_point_lat, end_point_lng, 0);
+        placemark = new WorldWind.Placemark(placemarkPosition, false, placemarkAttributes);
+        placemarkend = new WorldWind.Placemark(placemarkPositionend, false, placemarkAttributesend)
+        navResultLat = (start_point_lat + end_point_lat) / 2;
+        navResultLong = (start_point_lng + end_point_lng) / 2;
 
-                    //---Label/Text Ending Point
-                    var textPosition1 = new WorldWind.Position(end_point_lat, end_point_lng, 30);
-                    placemarktxt1 = new WorldWind.GeographicText(textPosition1, "Finish " + "\n"
-                        + "Lat " + endxglob.toString() + "\n"
-                        + "Lon " + endyglob.toString());
-                    var textAttributes1 = new WorldWind.TextAttributes(null);
-                    textAttributes1.depthTest = true;
-                    textAttributes1.color = WorldWind.Color.GREEN;
-                    placemarktxt1.attributes = textAttributes1;
+        //---Label/Text Starting Point
+        var textPosition = new WorldWind.Position(start_point_lat, start_point_lng, 30);
+        placemarktxt = new WorldWind.GeographicText(textPosition, "Start " + "\n"
+            + "Lat " + startxglob.toString() + "\n"
+            + "Lon " + startyglob.toString());
+        var textAttributes = new WorldWind.TextAttributes(null);
+        textAttributes.depthTest = true;
+        textAttributes.color = WorldWind.Color.RED;
+        placemarktxt.attributes = textAttributes;
 
+        //---Label/Text Ending Point
+        var textPosition1 = new WorldWind.Position(end_point_lat, end_point_lng, 30);
+        placemarktxt1 = new WorldWind.GeographicText(textPosition1, "Finish " + "\n"
+            + "Lat " + endxglob.toString() + "\n"
+            + "Lon " + endyglob.toString());
+        var textAttributes1 = new WorldWind.TextAttributes(null);
+        textAttributes1.depthTest = true;
+        textAttributes1.color = WorldWind.Color.GREEN;
+        placemarktxt1.attributes = textAttributes1;
 
-                    routePG_Input = {
-
-                        latStart: start_point_lat.toString(),
-                        lonStart: start_point_lng.toString(),
-                        latEnd: end_point_lat.toString(),
-                        lonEnd: end_point_lng.toString()
-                    };
-
-                    $.ajax({
-                        async: false,
-                        type: "POST",
-                        url: '/routeStandard',
-                        data: routePG_Input,
-                    }).done(function (routeStandartDevinition) {
-                        console.log("POSTGRES ROUTE INPUT:" + routePG_Input);
-                        console.log("POSTGRES ROUTE:");
-                        console.log(routeStandartDevinition);
-                        boundaryPG = routeStandartDevinition;
-                        boundary = [];
-                        var jj = 0;
-                        while (jj < boundaryPG.length) {
-                            boundary.push(new WorldWind.Location(parseFloat(boundaryPG[jj]["lat"]), parseFloat(boundaryPG[jj]["lon"])));
-                            jj++;
-                        }
-                        shape = new WorldWind.SurfacePolyline(boundary, attributes);
-                        shape.highlightAttributes = highlightAttributes;
-                    });
-
-                    
-                    // --------------------------------------------------------------------------
-                    // Route tree avoid 
-
-                    let treeListStr = " 'where (treetype ilike ''%birke%'' or treetype ilike ''%erle%'')'";
-                    routeAvoidPG_Input = {
-                        latStart: start_point_lat.toString(),
-                        lonStart: start_point_lng.toString(),
-                        latEnd: end_point_lat.toString(),
-                        lonEnd: end_point_lng.toString(),
-                        treeList: treeListStr
-                    };
-                    
-                    console.log(routeAvoidPG_Input);
-                    
-                    
-                    $.ajax({
-                        async: false,
-                        type: "POST",
-                        url: '/routeTreeAvoid',
-                        data: routeAvoidPG_Input,
-                    }).done(function (routeAvoidDevinition) {
-                        console.log("POSTGRES ROUTE AVOID INPUT:" + routeAvoidPG_Input);
-                        console.log("POSTGRES ROUTE AVOID:");
-                        console.log(routeAvoidDevinition);
-                    });
-                    
-
-                    // ------------------------------------------------------------------------------
+        if (requestMode == "PG_Routing") {
 
 
-        
+
+            routePG_Input = {
+
+                latStart: start_point_lat.toString(),
+                lonStart: start_point_lng.toString(),
+                latEnd: end_point_lat.toString(),
+                lonEnd: end_point_lng.toString()
+            };
+
+            $.ajax({
+                async: false,
+                type: "POST",
+                url: '/routeStandard',
+                data: routePG_Input,
+            }).done(function (routeStandartDevinition) {
+                console.log("POSTGRES ROUTE INPUT:" + routePG_Input);
+                console.log("POSTGRES ROUTE:");
+                console.log(routeStandartDevinition);
+                boundaryPG = routeStandartDevinition;
+                boundary = [];
+                var jj = 0;
+                while (jj < boundaryPG.length) {
+                    boundary.push(new WorldWind.Location(parseFloat(boundaryPG[jj]["lat"]), parseFloat(boundaryPG[jj]["lon"])));
+                    jj++;
+                }
+                shape = new WorldWind.SurfacePolyline(boundary, attributes);
+                shape.highlightAttributes = highlightAttributes;
+            });
+        }
+
+        // --------------------------------------------------------------------------
+        // Route tree avoid 
+
+        // let treeListStr = " 'where (treetype ilike ''%birke%'' or treetype ilike ''%erle%'')'";
+        if (requestMode == "PG_Routing_AvoidPollen") {
+
+
+            routeAvoidPG_Input = {
+                latStart: start_point_lat.toString(),
+                lonStart: start_point_lng.toString(),
+                latEnd: end_point_lat.toString(),
+                lonEnd: end_point_lng.toString(),
+                treeList: treeListStr
+            };
+
+            console.log(routeAvoidPG_Input);
+
+
+            $.ajax({
+                async: false,
+                type: "POST",
+                url: '/routeTreeAvoid',
+                data: routeAvoidPG_Input,
+            }).done(function (routeAvoidDevinition) {
+                console.log("POSTGRES ROUTE AVOID INPUT:" + routeAvoidPG_Input);
+                console.log("POSTGRES ROUTE AVOID:");
+                console.log(routeAvoidDevinition);
+                boundaryPG = routeAvoidDevinition;
+                boundary = [];
+                var jj = 0;
+                while (jj < boundaryPG.length) {
+                    boundary.push(new WorldWind.Location(parseFloat(boundaryPG[jj]["lat"]), parseFloat(boundaryPG[jj]["lon"])));
+                    jj++;
+                }
+                shape = new WorldWind.SurfacePolyline(boundary, attributes);
+                shape.highlightAttributes = highlightAttributes;
+            });
+        }
 
         // ------------------------------------------------------------------------------
 
 
-    
-    
+
+
+        // ------------------------------------------------------------------------------
+
+
+
+
 
         // --------------------------------------------------
 

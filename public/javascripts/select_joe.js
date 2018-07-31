@@ -231,6 +231,7 @@ try {
 		var orderCount = 0;
 		var selected;
 		$('#tree-order-button').on('click', function () {
+			treetrans = [];
 			selected = [];
 			$('#tree-order option:selected').each(function () {
 				selected.push([$(this).val(), $(this).data('order')]);
