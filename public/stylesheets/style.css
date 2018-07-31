@@ -560,3 +560,13 @@ div[aria-describedby="Info"]{
     border-color: #ebccd1;
     font-size: 0.9em;
 }
+.JojoeBadgeYellow {
+    width: fit-content;
+    margin-bottom: 5px;
+    padding: 2px;
+    font-size: 0.9em;
+    color: #8a6d3b;
+    background-color: #fcf8e3;
+    border-color: #faebcc;
+    
+}
