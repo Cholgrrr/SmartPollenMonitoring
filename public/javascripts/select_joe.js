@@ -466,6 +466,7 @@ function Clearall() {
 	histrec = 2;
 	navMenu.style.display = "none";
 	pollenMenu.style.display = "none";
+	removeNav();
 treetrans = [];
 $("#pollenPieChart").hide("3000");
 

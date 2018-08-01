@@ -87,20 +87,20 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right" style="margin-right: 10px;">
-                
+
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <span class="glyphicon glyphicon-globe" class="caret"></span> Area Selection</a>
                     <ul class="dropdown-menu">
                         <li onclick="Area_NYC_Select()">
                             <a href="#">
-                                <i class="fas fa-building"></i> New York City
+                                    <img src="images/usa-flag-xs.png" height="20px"> New York City
                                 <i class="fas fa-check" id="newYorkCheck"></i>
                             </a>
                         </li>
                         <li onclick="Area_FF_Select()">
                             <a href="#">
-                                <i class="fas fa-warehouse"></i> Frankfurt City
+                                <img src="images/germany-flag-xs.png" height="20px">  Frankfurt City
                                 <i class="fas fa-check" id="FrankfurtCheck" style="display: none"></i>
                             </a>
                         </li>
@@ -120,15 +120,15 @@
                         <span class="glyphicon glyphicon-stats"></span> Show Statistic </a>
                 </li>
                 <li onclick="openDialog()" title="Add new tree">
-                        <a href="#">
-                            <span class="glyphicon glyphicon-plus" class="caret"></span> Add Tree</a>
-                    </li>
+                    <a href="#">
+                        <span class="glyphicon glyphicon-plus" class="caret"></span> Add Tree</a>
+                </li>
                 <li onclick="Info()" title="help">
-                        <a href="#">
-                            <span class="glyphicon glyphicon-question-sign"></span> Tutorial
-                        </a>
-                    </li>
-                    
+                    <a href="#">
+                        <span class="glyphicon glyphicon-question-sign"></span> Tutorial
+                    </a>
+                </li>
+
                 <li id="clear-button" onclick="Clearall()" title="With a click here you can clear your tree selection">
                     <a href="#">
                         <span class="glyphicon glyphicon-remove"></span> Clear Map </a>
@@ -372,11 +372,17 @@
     </div>
     <!-- new Tutorial -->
     <div id="Info" title="Smart Pollen Monitoring - Tutorial">
-        <h4>
-            <b>
-                <span class="glyphicon glyphicon-globe" class="caret"></span> Area Selection</b>
-        </h4>
-        <p>
+            <div class="alert JojoeBadge"><b>Tip:</b> Please, select a topic to show tutorial contents.</div>
+        
+        <a onclick="Tutorial_AreaSelection_pop()" style="cursor: pointer;">
+            <h4>
+                <b>
+                    <span class="glyphicon glyphicon-globe" class="caret"></span>
+                    Area Selection
+                </b>
+            </h4>
+        </a>
+        <p id="Tutorial_AreaSelection" style="display:none">
             From the
             <b>Area Selection</b> menu, you can select the available areas which in the current version are "New York city,
             USA" or "Frankfurt city, Germany".
@@ -384,11 +390,15 @@
             <img src="images/Tutorial/AreaSelection.JPG" style="border-radius: 15px; height: 100px;">
         </p>
         <hr>
-        <h4>
-            <b>
-                <span class="glyphicon glyphicon-tree-deciduous"></span> Pollen Simulation</b>
-        </h4>
-        <p>
+        <a onclick="Tutorial_PollenSimulation_pop()" style="cursor: pointer;">
+            <h4>
+                <b>
+                    <span class="glyphicon glyphicon-tree-deciduous"></span>
+                    Pollen Simulation
+                </b>
+            </h4>
+        </a>
+        <p id="Tutorial_PollenSimulation" style="display:none">
             <b>Step.1</b> Select the
             <b>Pollen Simulation</b> menu and then select your desired mode between Real-time mode or Historical mode. If you
             select Historical mode, you are able to choose the month for display the pollen.
@@ -416,26 +426,64 @@
             <br />
         </p>
         <hr>
-        <h4>
-            <b>
-                <span class="glyphicon glyphicon-plus" class="caret"></span> Add Tree</b>
-        </h4>
-        <p>You can help expanding the application database by adding more trees. To do this, click on the
-            <b>Add tree</b> menu. Then, a pop-up window will be opened and allows you to add a tree information. To get the coordinates, you can just
-            click at the specific point in the map or type it in manually.</p>
+        <a onclick="Tutorial_Navigation_pop()" style="cursor: pointer;">
+            <h4>
+                <b>
+                    <span class="glyphicon glyphicon-map-marker"></span>
+                    Navigation
+                </b>
+            </h4>
+        </a>
+        <p id="Tutorial_Navigation" style="display:none">
+                <b>Step.1</b> Select the
+                <b>Navigation</b> menu and then select your desired mode: Walking Mode (Google API)/ Biking Mode (Google API)/ Walking Mode (PG-routing)/ Walking Mode (PG-routing avoid pollen)
+                <br>
+                <b>Step.2</b> Then, please type-in your desired starting and ending point. Then, the navigation result will shown on the globe. 
+                <img src="images/AppDemo/Navigation.JPG" style="border-radius: 5px; width: 100%;">
+                <br> <b>Step.3</b> You can click on the globe to zoom in and display the pollen dispersal along your route.
+                <br> <b>Step.3</b> You can close the navigated route by click on the <b>Remove</b> button or <b>Clear Map</b> button on the navigation bar.
+        </p>
         <hr>
-        <h4>
-            <b>
-                <span class="glyphicon glyphicon-remove"></span> Clear Map</b>
-        </h4>
-        <p>A click on
-            <img src="images/help6.png" alt="help6" style="width:46px;height:20px;"> will clear the map and your previous selection. You have to apply new selection to display pollen analysis again.</p>
-        <h4>
-            <b>
-                <span class="glyphicon glyphicon-stats"></span> Show Statistic</b>
-        </h4>
-        <p>The Statistic will automatically display after the tree selection, or when you click this
-            <img src="images/help5.png" alt="help5" style="width:59px;height:20px;"> button. The Statistic shows you in which month your selected Trees are blooming.</p>
+
+        <a onclick="Tutorial_AddTree_pop()" style="cursor: pointer;">
+            <h4>
+                <b>
+                    <span class="glyphicon glyphicon-plus" class="caret"></span> Add Tree
+
+                </b>
+            </h4>
+        </a>
+        <p id="Tutorial_AddTree" style="display:none">
+            You can help expanding the application database by adding more trees. To do this, click on the
+            <b>Add tree</b> menu. Then, a pop-up window will be opened and allows you to add a tree information. To get the
+            coordinates, you can just click at the specific point in the map or type it in manually.
+        </p>
+        <hr>
+        <a onclick="Tutorial_ClearMap_pop()" style="cursor: pointer;">
+            <h4>
+                <b>
+                    <span class="glyphicon glyphicon-remove" class="caret"></span> Clear Map
+
+                </b>
+            </h4>
+        </a>
+        <p id="Tutorial_ClearMap" style="display:none">
+            A click on
+            <b>Clear Map</b> menu will clear pollen dispersals, navigation and your previous selection. You have to apply new
+            selection to display new pollen dispersal analysis again.</p>
+        <hr>
+        <a onclick="Tutorial_ShowStatistic_pop()" style="cursor: pointer;">
+            <h4>
+                <b>
+                    <span class="glyphicon glyphicon-stats" class="caret"></span> Show Statistic
+
+                </b>
+            </h4>
+        </a>
+        <p id="Tutorial_Statistic" style="display:none">
+            The Statistic will automatically display after the tree selection, or when you click on the
+            <b>Statistic</b> menu. The Statistic chart shows you in which month your selected Trees are blooming.
+        </p>
     </div>
     <div class="col-sm-9" id="globe">
         <canvas id="canvasOne" style="cursor: pointer;">
@@ -549,7 +597,86 @@
             });
 
         });
+        var Tutorial_AreaSelection_pop = function () {
+            if ($('#Tutorial_AreaSelection').is(':visible')) {
+                $("#Tutorial_AreaSelection").hide("3000");
+            } else {
+                $("#Tutorial_AreaSelection").show("3000");
+                $("#Tutorial_PollenSimulation").hide("3000");
+                $("#Tutorial_Navigation").hide("3000")
+                $("#Tutorial_AddTree").hide("3000");
+                $("#Tutorial_ClearMap").hide("3000");
+                $("#Tutorial_Statistic").hide("3000");
+            }
+        }
+        var Tutorial_PollenSimulation_pop = function () {
+            if ($('#Tutorial_PollenSimulation').is(':visible')) {
+                $("#Tutorial_PollenSimulation").hide("3000");
+            } else {
+                $("#Tutorial_PollenSimulation").show("3000");
+                $("#Tutorial_AreaSelection").hide("3000");
+                $("#Tutorial_Navigation").hide("3000")
+                $("#Tutorial_AddTree").hide("3000");
+                $("#Tutorial_ClearMap").hide("3000");
+                $("#Tutorial_Statistic").hide("3000");
+            }
 
+
+        }
+        var Tutorial_Navigation_pop = function () {
+            if ($('#Tutorial_Navigation').is(':visible')) {
+                $("#Tutorial_Navigation").hide("3000");
+            } else {
+                $("#Tutorial_Navigation").show("3000");
+                $("#Tutorial_AreaSelection").hide("3000");
+                $("#Tutorial_PollenSimulation").hide("3000")
+                $("#Tutorial_AddTree").hide("3000");
+                $("#Tutorial_ClearMap").hide("3000");
+                $("#Tutorial_Statistic").hide("3000");
+            }
+        }
+        var Tutorial_AddTree_pop = function () {
+            if ($('#Tutorial_AddTree').is(':visible')) {
+                $("#Tutorial_AddTree").hide("3000");
+            } else {
+                $("#Tutorial_AddTree").show("3000");
+                $("#Tutorial_AreaSelection").hide("3000");
+                $("#Tutorial_PollenSimulation").hide("3000")
+                $("#Tutorial_Navigation").hide("3000");
+                $("#Tutorial_ClearMap").hide("3000");
+                $("#Tutorial_Statistic").hide("3000");
+            }
+
+
+        }
+        var Tutorial_ClearMap_pop = function () {
+
+            if ($('#Tutorial_ClearMap').is(':visible')) {
+                $("#Tutorial_ClearMap").hide("3000");
+            }
+            else {
+                $("#Tutorial_ClearMap").show("3000");
+                $("#Tutorial_AreaSelection").hide("3000");
+                $("#Tutorial_PollenSimulation").hide("3000")
+                $("#Tutorial_Navigation").hide("3000");
+                $("#Tutorial_AddTree").hide("3000");
+                $("#Tutorial_Statistic").hide("3000");
+            }
+        }
+        var Tutorial_ShowStatistic_pop = function () {
+            if ($('#Tutorial_Statistic').is(':visible')) {
+                $("#Tutorial_Statistic").hide("3000");
+            } else {
+                $("#Tutorial_Statistic").show("3000");
+                $("#Tutorial_AreaSelection").hide("3000");
+                $("#Tutorial_PollenSimulation").hide("3000")
+                $("#Tutorial_Navigation").hide("3000");
+                $("#Tutorial_AddTree").hide("3000");
+                $("#Tutorial_ClearMap").hide("3000");
+            }
+
+
+        }
 
     </script>
 
