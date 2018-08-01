@@ -1,4 +1,5 @@
 var NavRequest_GoogleOrPG = function(text_startingPoint,text_endingPoint) {
+    //WALKING
     if (NavModeSelected == "Walking" && startPnav == false && endPnav == false) {
         LoadJson("https://cors.io/?https://maps.googleapis.com/maps/api/directions/json?origin=" + text_startingPoint + "&destination=" + text_endingPoint + "&avoid=highways&mode=walking&key=AIzaSyAHKsTWBLNuyJ4-3zlG8GDkPQzVWtmvbtI", "Google");
         // } else if (document.getElementById("bike").firstChild.data == "bike") {
@@ -6,18 +7,68 @@ var NavRequest_GoogleOrPG = function(text_startingPoint,text_endingPoint) {
         startPnav = false;
         endPnav = false;
         LoadJson("https://cors.io/?https://maps.googleapis.com/maps/api/directions/json?origin=" + startxglob + "," + startyglob + "&destination=" + endxglob + "," + endyglob + "&avoid=highways&mode=walking&key=AIzaSyAHKsTWBLNuyJ4-3zlG8GDkPQzVWtmvbtI", "Google");
+    } else if (NavModeSelected == "Walking" && startPnav == false && endPnav == true){
+        startPnav = false;
+        endPnav = false;
+        LoadJson("https://cors.io/?https://maps.googleapis.com/maps/api/directions/json?origin=" + text_startingPoint + "&destination=" + endxglob + "," + endyglob + "&avoid=highways&mode=walking&key=AIzaSyAHKsTWBLNuyJ4-3zlG8GDkPQzVWtmvbtI", "Google");
+    } else if (NavModeSelected == "Walking" && startPnav == true && endPnav == false){
+        startPnav = false;
+        endPnav = false;
+        LoadJson("https://cors.io/?https://maps.googleapis.com/maps/api/directions/json?origin="+ startxglob + "," + startyglob + "&destination=" + text_endingPoint + "&avoid=highways&mode=walking&key=AIzaSyAHKsTWBLNuyJ4-3zlG8GDkPQzVWtmvbtI", "Google");
+    //BIKING
     } else if (NavModeSelected == "Bike" && startPnav == true && endPnav == true) {
         startPnav = false;
         endPnav = false;
         LoadJson("https://cors.io/?https://maps.googleapis.com/maps/api/directions/json?origin=" +  startxglob + "," + startyglob  + "&destination=" + endxglob + "," + endyglob + "&avoid=highways&mode=bicycling&key=AIzaSyAHKsTWBLNuyJ4-3zlG8GDkPQzVWtmvbtI", "Google");
-    } else if (NavModeSelected == "Bike" && startPnav == false && endPnav == false) {
+    } else if (NavModeSelected == "Bike" && (startPnav == false && endPnav == false)) {
 
         LoadJson("https://cors.io/?https://maps.googleapis.com/maps/api/directions/json?origin=" + text_startingPoint + "&destination=" + text_endingPoint + "&avoid=highways&mode=bicycling&key=AIzaSyAHKsTWBLNuyJ4-3zlG8GDkPQzVWtmvbtI", "Google");
-    } else if (NavModeSelected == "PG_Routing") {
+    } else if (NavModeSelected == "Bike" && startPnav == false && endPnav == true) {
+        startPnav = false;
+        endPnav = false;
+        LoadJson("https://cors.io/?https://maps.googleapis.com/maps/api/directions/json?origin=" + text_startingPoint + "&destination=" + endxglob + "," + endyglob + "&avoid=highways&mode=bicycling&key=AIzaSyAHKsTWBLNuyJ4-3zlG8GDkPQzVWtmvbtI", "Google");
+    } else if (NavModeSelected == "Bike" && startPnav == true && endPnav == false) {
+        startPnav = false;
+        endPnav = false;
+        LoadJson("https://cors.io/?https://maps.googleapis.com/maps/api/directions/json?origin=" +  startxglob + "," + startyglob  + "&destination="  + text_endingPoint +  "&avoid=highways&mode=bicycling&key=AIzaSyAHKsTWBLNuyJ4-3zlG8GDkPQzVWtmvbtI", "Google");
+    //PG
+    } else if (NavModeSelected == "PG_Routing" && startPnav == false && endPnav == false) {
+        startPnav = false;
+        endPnav = false;
         LoadJson("https://cors.io/?https://maps.googleapis.com/maps/api/directions/json?origin=" + text_startingPoint + "&destination=" + text_endingPoint + "&avoid=highways&mode=bicycling&key=AIzaSyAHKsTWBLNuyJ4-3zlG8GDkPQzVWtmvbtI", "PG_Routing");
-    } else if (NavModeSelected == "PG_Routing_AvoidPollen") {
+    } else if (NavModeSelected == "PG_Routing" && startPnav == true && endPnav == true) {
+        startPnav = false;
+        endPnav = false;
+        LoadJson("https://cors.io/?https://maps.googleapis.com/maps/api/directions/json?origin="  +  startxglob + "," + startyglob  +  "&destination=" + endxglob + "," + endyglob + "&avoid=highways&mode=bicycling&key=AIzaSyAHKsTWBLNuyJ4-3zlG8GDkPQzVWtmvbtI", "PG_Routing");
+    } else if (NavModeSelected == "PG_Routing" && startPnav == true && endPnav == false) {
+        startPnav = false;
+        endPnav = false;
+        LoadJson("https://cors.io/?https://maps.googleapis.com/maps/api/directions/json?origin=" +  startxglob + "," + startyglob  + "&destination=" + text_endingPoint + "&avoid=highways&mode=bicycling&key=AIzaSyAHKsTWBLNuyJ4-3zlG8GDkPQzVWtmvbtI", "PG_Routing");
+    } else if (NavModeSelected == "PG_Routing" && startPnav == false && endPnav == true) {
+        startPnav = false;
+        endPnav = false;
+        LoadJson("https://cors.io/?https://maps.googleapis.com/maps/api/directions/json?origin=" + text_startingPoint + "&destination=" + endxglob + "," + endyglob + "&avoid=highways&mode=bicycling&key=AIzaSyAHKsTWBLNuyJ4-3zlG8GDkPQzVWtmvbtI", "PG_Routing");
+    //AVOIDPOLLEN
+    } else if (NavModeSelected == "PG_Routing_AvoidPollen" && startPnav == false && endPnav == false) {
+        startPnav = false;
+        endPnav = false;
         // alert("PG_Routing_AvoidPollen is Underconstruction!");
         LoadJson("https://cors.io/?https://maps.googleapis.com/maps/api/directions/json?origin=" + text_startingPoint + "&destination=" + text_endingPoint + "&avoid=highways&mode=bicycling&key=AIzaSyAHKsTWBLNuyJ4-3zlG8GDkPQzVWtmvbtI", "PG_Routing_AvoidPollen");
+    }else if (NavModeSelected == "PG_Routing_AvoidPollen" && startPnav == true && endPnav == true) {
+        startPnav = false;
+        endPnav = false;
+        // alert("PG_Routing_AvoidPollen is Underconstruction!");
+        LoadJson("https://cors.io/?https://maps.googleapis.com/maps/api/directions/json?origin=" +  startxglob + "," + startyglob  + "&destination=" + endxglob + "," + endyglob + "&avoid=highways&mode=bicycling&key=AIzaSyAHKsTWBLNuyJ4-3zlG8GDkPQzVWtmvbtI", "PG_Routing_AvoidPollen");
+    }else if (NavModeSelected == "PG_Routing_AvoidPollen" && startPnav == true && endPnav == false) {
+        startPnav = false;
+        endPnav = false;
+        // alert("PG_Routing_AvoidPollen is Underconstruction!");
+        LoadJson("https://cors.io/?https://maps.googleapis.com/maps/api/directions/json?origin=" +  startxglob + "," + startyglob  + "&destination=" + text_endingPoint + "&avoid=highways&mode=bicycling&key=AIzaSyAHKsTWBLNuyJ4-3zlG8GDkPQzVWtmvbtI", "PG_Routing_AvoidPollen");
+    }else if (NavModeSelected == "PG_Routing_AvoidPollen" && startPnav == false && endPnav == true) {
+        startPnav = false;
+        endPnav = false;
+        // alert("PG_Routing_AvoidPollen is Underconstruction!");
+        LoadJson("https://cors.io/?https://maps.googleapis.com/maps/api/directions/json?origin=" + text_startingPoint + "&destination=" + endxglob + "," + endyglob + "&avoid=highways&mode=bicycling&key=AIzaSyAHKsTWBLNuyJ4-3zlG8GDkPQzVWtmvbtI", "PG_Routing_AvoidPollen");
     };
 };
 

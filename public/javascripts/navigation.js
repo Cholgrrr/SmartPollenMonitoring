@@ -202,7 +202,7 @@ function LoadJson(resourcesUrl, requestMode) {
             }
         }
     }
-    if ((requestMode == "PG_Routing" || requestMode == "PG_Routing_AvoidPollen") && startPnav == false && endPnav == false) {
+    if ((requestMode == "PG_Routing" || requestMode == "PG_Routing_AvoidPollen") && (startPnav == false || endPnav == false)) {
         console.log("Mode: Routing with PG_Routing");
         // -------------------------------------------------
         // call postgres routing function
