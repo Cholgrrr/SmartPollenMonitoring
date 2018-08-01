@@ -1,5 +1,5 @@
 /* Color the Three different classes */
-/* .Birke {
+.Birke {
     color: white !important;
     background: rgba(217,0,217,0.6) !important;
 }
@@ -10,7 +10,7 @@
 .Hasel{
     color: #fff !important;
     background: rgba(0,0,255,0.6) !important;
-} */
+}
 
 
 #canvasOne{

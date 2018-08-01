@@ -87,7 +87,15 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right" style="margin-right: 10px;">
-
+                <li onclick="Info()" title="help">
+                    <a href="#">
+                        <span class="glyphicon glyphicon-question-sign"></span> Tutorial
+                    </a>
+                </li>
+                <li onclick="openDialog()" title="Add new tree">
+                    <a href="#">
+                        <span class="glyphicon glyphicon-plus" class="caret"></span> Add Tree</a>
+                </li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <span class="glyphicon glyphicon-globe" class="caret"></span> Area Selection</a>
@@ -119,16 +127,8 @@
                     <a href="#">
                         <span class="glyphicon glyphicon-stats"></span> Show Statistic </a>
                 </li>
-                <li onclick="openDialog()" title="Add new tree">
-                    <a href="#">
-                        <span class="glyphicon glyphicon-plus" class="caret"></span> Add Tree</a>
-                </li>
-                <li onclick="Info()" title="help">
-                    <a href="#">
-                        <span class="glyphicon glyphicon-question-sign"></span> Tutorial
-                    </a>
-                </li>
-
+                
+               
                 <li id="clear-button" onclick="Clearall()" title="With a click here you can clear your tree selection">
                     <a href="#">
                         <span class="glyphicon glyphicon-remove"></span> Clear Map </a>
