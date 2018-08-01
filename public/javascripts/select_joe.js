@@ -22,6 +22,8 @@ var Area_NYC_Select = function () {
 	wwd.navigator.tilt = 45;
 	current_area_select = "NYC";
 	console.log("current area :" + current_area_select);
+	$("#newYorkCheck").show();
+	$("#FrankfurtCheck").hide();
 }
 var Area_FF_Select = function () {
 	wwd.navigator.lookAtLocation.latitude = Location_Germany_Frankfurt_Lat;
@@ -30,6 +32,8 @@ var Area_FF_Select = function () {
 	wwd.navigator.tilt = 45;
 	current_area_select = "FFM";
 	console.log("current area :" + current_area_select);
+	$("#newYorkCheck").hide();
+	$("#FrankfurtCheck").show();
 }
 // ----------------------------------
 // Generation of the select structure

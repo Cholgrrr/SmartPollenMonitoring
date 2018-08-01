@@ -574,6 +574,9 @@ div[aria-describedby="Info"]{
     border-color: #faebcc;
     
 }
+
+
+/* Hide Scroll bar x and pretty right */
 ::-webkit-scrollbar {
       width: 5px;
 }
@@ -593,3 +596,19 @@ div[aria-describedby="Info"]{
 ::-webkit-scrollbar-corner {
       background-color: rgba(42, 42, 42, 0);
 } 
+
+
+@media (min-width: 500px) and (max-width: 1000px) {
+    .navbar-collapse.collapse {
+        display: none !important;
+    }
+    .navbar-collapse.collapse.in {
+        display: block !important;
+    }
+    .navbar-header .collapse, .navbar-toggle {
+        display:block !important;
+    }
+    .navbar-header {
+        float:none;
+    }
+}

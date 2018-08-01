@@ -74,14 +74,6 @@
                     <!-- New Branding Left-->
 
                 </button>
-                <!-- <a class="navbar-brand" onclick="TreeStat()"></a> -->
-                <!-- Branding Old -->
-                <!-- <a class="navbar-brand" >
-                    <strong>Smart Pollen Monitoring</strong>
-                </a> -->
-                <!-- <a class="navbar-brand">
-                    <img src="images/SPMBrand/logonew.png" alt="SmartPollenMonitoring">
-                </a> -->
             </div>
             <!-- New Branding on the left (optional1) -->
             <div class="brand-left">
@@ -90,126 +82,27 @@
                 </a>
             </div>
 
-            <!-- New Branding in the middle (optional2) -->
-            <!-- <div class="brand-centered">
-                <a class="navbar-brand"><img style="margin-right: 10px; padding: 0;" src="images/SPMBrand/logonew_Short.png">
-                </a> </div>-->
 
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-            <!-- <div class="btn-group test tooltipstuff" titel="Here you can select if you want to see Historic Wind Data or recent Wind Data">
-                    <select id="recentold-order">
-                        <option value="2">Recent Data</option>
-                        <option value="1">Historic Data</option>
-
-                    </select>
-
-                </div> -->
-            <!-- <div class="btn-group tooltipstuff" id="month" title="Here you can select which month interests you.">
-                    <select id="example-order">
-                        <option value="1">January</option>
-                        <option value="2">February</option>
-                        <option value="3">March</option>
-                        <option value="4">April</option>
-                        <option value="5">May</option>
-                        <option value="6">June</option>
-                        <option value="7">July</option>
-                        <option value="8">August</option>
-                        <option value="9">September</option>
-                        <option value="10">October</option>
-                        <option value="11">November</option>
-                        <option value="12">December</option>
-                    </select>
-                    <button id="example-order-button" class="btn btn-success">Apply Month</button>
-                </div> -->
-
-
-
-            <!-- <div class="btn-group tooltipstuff" id="treeres" title="Here you can select which types of Trees interest you.">
-                    <span class="input-group-btn">
-                        <select id="tree-order" multiple="multiple">
-                            <optgroup label="High allergenic">
-                                <option class="Birke" value="25">Alder</option>
-                                <option class="Erle" value="23">Birch</option>
-                                <option class="Hasel" value="20">Hazel</option>
-                            </optgroup>
-                            <optgroup label="Low allergenic">
-                                <option value="3">Ailanthus</option>
-                                <option value="27">Apple</option>
-                                <option value="24">Ash</option>
-                                <option value="2">Beech</option>
-                                <option value="17">Buchs</option>
-                                <option value="10">Cherry</option>
-                                <option value="30">Chestnut</option>
-                                <option value="6">Cedar</option>
-                                <option value="18">Cypress</option>
-                                <option value="14">Elder</option>
-                                <option value="26">Elm</option>
-                                <option value="12">Fir</option>
-                                <option value="28">Yew</option>
-                                <option value="29">Lilac</option>
-                                <option value="13">Linden</option>
-                                <option value="4">Maple</option>
-                                <option value="22">Oak</option>
-                                <option value="9">Pasture</option>
-                                <option value="5">Pear</option>
-                                <option value="16">Pine</option>
-                                <option value="1">Plum</option>
-                                <option value="15">Robinie</option>
-                                <option value="21">Schnur</option>
-                                <option value="7">Sleeping-Tree</option>
-                                <option value="8">Walnut</option>
-                            </optgroup>
-                            <optgroup label="other">
-                                <option value="11">other</option>
-                            </optgroup>
-
-                        </select>
-                        <button id="tree-order-button" class="btn btn-success">
-                            Apply Tree(s)
-                        </button>
-
-                    </span>
-                </div> -->
-            <!-- <ul class="nav navbar-nav">
-
-                    left Menu
-
-                </ul> -->
-            <ul class="nav navbar-nav navbar-right">
-                <li onclick="Info()" title="help">
-                    <a href="#">
-                        <span class="glyphicon glyphicon-question-sign"></span> Tutorial
-                    </a>
-                </li>
-                <!-- Preparation for new tree with CSV to the system -->
-                <!-- <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <span class="glyphicon glyphicon-plus" class="caret"></span> Add Tree</a>
-                    <ul class="dropdown-menu">
-                        <li onclick="openDialog()">
-                            <a href="#">Singel Tree</a>
-                        </li>
-                        <li onclick="csvUpload()">
-                            <a href="#">Multiple Trees (CSV upload)</a>
-                        </li>
-                    </ul>
-                </li> -->
-                <li onclick="openDialog()" title="Add new tree">
-                    <a href="#">
-                        <span class="glyphicon glyphicon-plus" class="caret"></span> Add Tree</a>
-                </li>
+            <ul class="nav navbar-nav navbar-right" style="margin-right: 10px;">
+                
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <span class="glyphicon glyphicon-globe" class="caret"></span> Area Selection</a>
                     <ul class="dropdown-menu">
                         <li onclick="Area_NYC_Select()">
-                            <a href="#"><i class="fas fa-building"></i>   New York City</a>
+                            <a href="#">
+                                <i class="fas fa-building"></i> New York City
+                                <i class="fas fa-check" id="newYorkCheck"></i>
+                            </a>
                         </li>
                         <li onclick="Area_FF_Select()">
-                            <a href="#"><i class="fas fa-warehouse"></i> Frankfurt City</a>
+                            <a href="#">
+                                <i class="fas fa-warehouse"></i> Frankfurt City
+                                <i class="fas fa-check" id="FrankfurtCheck" style="display: none"></i>
+                            </a>
                         </li>
                     </ul>
                 </li>
@@ -226,6 +119,16 @@
                     <a href="#">
                         <span class="glyphicon glyphicon-stats"></span> Show Statistic </a>
                 </li>
+                <li onclick="openDialog()" title="Add new tree">
+                        <a href="#">
+                            <span class="glyphicon glyphicon-plus" class="caret"></span> Add Tree</a>
+                    </li>
+                <li onclick="Info()" title="help">
+                        <a href="#">
+                            <span class="glyphicon glyphicon-question-sign"></span> Tutorial
+                        </a>
+                    </li>
+                    
                 <li id="clear-button" onclick="Clearall()" title="With a click here you can clear your tree selection">
                     <a href="#">
                         <span class="glyphicon glyphicon-remove"></span> Clear Map </a>
@@ -250,7 +153,8 @@
                 <input type="radio" name="optionsRadios1" id="navMode2" value="option2" checked>
                 <i class="fas fa-walking"></i> Walking Mode
                 <div class="alert JojoeBadge">
-                    **Consume <i class="fab fa-google"></i> Google Maps API
+                    **Consume
+                    <i class="fab fa-google"></i> Google Maps API
                 </div>
             </label>
         </div>
@@ -259,7 +163,8 @@
                 <input type="radio" name="optionsRadios1" id="navMode1" value="option1">
                 <i class="fas fa-bicycle"></i> Bike Mode
                 <div class="alert JojoeBadge">
-                        **Consume <i class="fab fa-google"></i> Google Maps API
+                    **Consume
+                    <i class="fab fa-google"></i> Google Maps API
                 </div>
             </label>
         </div>
@@ -268,14 +173,14 @@
                 <input type="radio" name="optionsRadios1" id="navMode3" value="option3">
                 <i class="fas fa-walking"></i> Walking Mode
                 <div class="alert JojoeBadge">
-                        OpenStreetMap + PGrouting
+                    OpenStreetMap + PGrouting
                 </div>
                 <div class="alert JojoeBadgeYellow">
                     Select the fastest way.
-             </div>
-             <div class="alert JojoeBadgeRed">
-                This mode is currently only available in New York City area
-         </div>
+                </div>
+                <div class="alert JojoeBadgeRed">
+                    This mode is currently only available in New York City area
+                </div>
             </label>
         </div>
         <div class="radio">
@@ -283,14 +188,14 @@
                 <input type="radio" name="optionsRadios1" id="navMode4" value="option4">
                 <i class="fas fa-walking"></i> Walking-Avoid Pollen Mode
                 <div class="alert JojoeBadge">
-                        OpenStreetMap + PGrouting
+                    OpenStreetMap + PGrouting
                 </div>
                 <div class="alert JojoeBadgeYellow">
                     Select the best way to avoid Pollen.
-             </div>
-             <div class="alert JojoeBadgeRed">
-                This mode is currently only available in New York City area
-         </div>
+                </div>
+                <div class="alert JojoeBadgeRed">
+                    This mode is currently only available in New York City area
+                </div>
                 <!-- <br>(Please select the tree-type to avoid from <strong>Pollen-Simulation</strong> Pollen-Simulation menu) -->
             </label>
         </div>
@@ -329,13 +234,8 @@
             <span style="color:azure">Pollen</span>
             <span style="color:crimson">Simulation</span>
         </h2>
-        
+
         <h3>Select Mode:</h3>
-        <!-- <br>
-        <select class="selectpicker" id="recentold-order" data-width="120px">
-            <option value="2">Recent Data</option>
-            <option value="1">Historic Data</option>
-        </select> -->
         <div class="radio">
             <label>
                 <input type="radio" name="optionsRadios" id="recentold-order1" value="option1" checked> Real-time Mode
@@ -423,8 +323,8 @@
         <br>
         <strong>Display only outer ellipse : </strong>
         <div class="alert JojoeBadge">
-                (Click on Globe to see change!)
-              </div>
+            (Click on Globe to see change!)
+        </div>
         <label class="switch">
             <input id="LoadOnlyOutSwitch" type="checkbox">
             <span class="slider round"></span>
@@ -432,9 +332,9 @@
         <br>
         <strong>Display Ellipse Outline: </strong>
         <div class="alert JojoeBadge">
-                (Click on Globe to see change!)
-              </div>
-        
+            (Click on Globe to see change!)
+        </div>
+
         <label class="switch">
             <input id="EllipseOutlineDisplay" type="checkbox">
             <span class="slider round"></span>
@@ -471,104 +371,72 @@
     <div id="dialog_addTree" title="Add custom tree">
     </div>
     <!-- new Tutorial -->
-    <div id="Info" title="Info">
-            <h4>
-                <b>Pollen Simulation</b>
-            </h4>
-            <p>
-                <b>Step.1</b> Select the Pollen-Simulation menu <img src="images/Tutorial/RealtimeOrHistoricMode.png" height="25px"> and select your desired mode between Real-time mode or Historical mode. If you select Historical mode, you have to also choose the specific
-                month. 
-                <br>
-                <b>Step.2</b> Then, on the next section "Select tree type", please make selection of tree types you are interested to and confirm the selection with Confirm button. <img src="images/Tutorial/confirm_button.png" height="25px">
-                <br>
-                <b>Step.3</b> Then, the pollen statistical information window will pop up.
-                <br />
-                <img src="images/help41.png" alt="help41">
-                <br /> It describes all the pollen dispersals for each month. You can click somewhere on the map area to close this
-                window. The statistic window can always be called back with the "Show statistic" button
-                <br />
-                <br />
-                <b>Step.4</b> Then, every time you click on the map, the view will be zoomed in and the analyzed pollen dispersal
-                area of your selection will be loaded.
-                <br />
-                <img src="images/help50.png" alt="help50">
-                <br />
-                <br />
-            </p>
-            <h4>
-                <b>Add Tree</b>
-            </h4>
-            <p>You can help expanding the application database by adding more trees. To do this, click on the
-                <img src="images/plus.png" alt="help4" style="width:20px;height:20px;"> button.
-                <br/> A pop-up window will be opened and allows you to add a tree information. To get the coordinates, you can just
-                click at the specific point in the map.</p>
-            <h4>
-                <b>Clear Map</b>
-            </h4>
-            <p>A click on
-                <img src="images/help6.png" alt="help6" style="width:46px;height:20px;"> will clear the map and your previous selection. You have to apply new selection to display pollen analysis again.</p>
-            <h4>
-                <b>Statistic</b>
-            </h4>
-            <p>The Statistic will automatically display after the tree selection, or when you click this
-                <img src="images/help5.png" alt="help5" style="width:59px;height:20px;"> button. The Statistic shows you in which month your selected Trees are blooming.</p>
-    </div>
-    <!-- Old Tutorial -->
-    <!-- <div id="Info_Old" title="Info_Old">
+    <div id="Info" title="Smart Pollen Monitoring - Tutorial">
         <h4>
-            <b>Basic Info</b>
+            <b>
+                <span class="glyphicon glyphicon-globe" class="caret"></span> Area Selection</b>
         </h4>
         <p>
-            <b>Step.1</b> The element
-            <img src="images/help1.png" alt="help1" style="width:100px;height:20px;"> or
-            <img src="images/help2.png" alt="help2" style="width:100px;height:20px;"> you find on the top bar allows you to choose between
-            <b>recent</b> and
-            <b>historic </b>data.
-            <br />
-            <br />
+            From the
+            <b>Area Selection</b> menu, you can select the available areas which in the current version are "New York city,
+            USA" or "Frankfurt city, Germany".
+            <br>
+            <img src="images/Tutorial/AreaSelection.JPG" style="border-radius: 15px; height: 100px;">
+        </p>
+        <hr>
+        <h4>
+            <b>
+                <span class="glyphicon glyphicon-tree-deciduous"></span> Pollen Simulation</b>
+        </h4>
+        <p>
+            <b>Step.1</b> Select the
+            <b>Pollen Simulation</b> menu and then select your desired mode between Real-time mode or Historical mode. If you
+            select Historical mode, you are able to choose the month for display the pollen.
+            <br>
+            <img src="images/Tutorial/RealtimeOrHistoricMode.png" style="border-radius: 15px; height: 100px;">
+            <img src="images/Tutorial/selectMonth.JPG" style="border-radius: 5px; height: 100px;">
 
-            <b>Step.2</b> On the next element, If you select historic data on step 1, you will be able to choose also the specific
-            month. Please, make selection of a month and confirm the selection with the green button.
+            <br>
+            <b>Step.2</b> Then, on the next section
+            <b>Select tree type</b> , please make selection of tree types you are interested in and confirm the selection with
+            <b>Confirm</b> button
+            <img src="images/Tutorial/selectTreeType.JPG" style="border-radius: 5px; height: 75px;">
+            <br>
+            <b>Step.3</b> Then, the pollen statistical information window will pop up. It describes all the pollen dispersals
+            for each month. You can click somewhere on the map area to close this window. The statistic window can always
+            be called back with the "Show statistic" button
             <br />
-            <img src="images/help32.png" alt="help32">
-            <br /> Then, please make selection of tree types you are interested to and confirm the selection with the green button.
-            <br />
-            <img src="images/help31.png" alt="help31">
-            <br />
-            <br />
-
-            <b>Step.3</b> Then, the pollen statistical information window will pop up.
-            <br />
-            <img src="images/help41.png" alt="help41">
-            <br /> It describes all the pollen dispersals for each month. You can click somewhere on the map area to close this
-            window. The statistic window can always be called back with the yellow "Show statistic" button
-            <br />
+            <img src="images/AppDemo/TreeStatisticChart.JPG" alt="help41" width="100%">
             <br />
             <b>Step.4</b> Then, every time you click on the map, the view will be zoomed in and the analyzed pollen dispersal
             area of your selection will be loaded.
             <br />
-            <img src="images/help50.png" alt="help50">
+            <img src="images/AppDemo/SPM_WebApp.PNG" style="border-radius: 5px; width: 100%;">
             <br />
             <br />
         </p>
+        <hr>
         <h4>
-            <b>Add Tree</b>
+            <b>
+                <span class="glyphicon glyphicon-plus" class="caret"></span> Add Tree</b>
         </h4>
         <p>You can help expanding the application database by adding more trees. To do this, click on the
-            <img src="images/plus.png" alt="help4" style="width:20px;height:20px;"> button.
-            <br/> A pop-up window will be opened and allows you to add a tree information. To get the coordinates, you can just
-            click at the specific point in the map.</p>
+            <b>Add tree</b> menu. Then, a pop-up window will be opened and allows you to add a tree information. To get the coordinates, you can just
+            click at the specific point in the map or type it in manually.</p>
+        <hr>
         <h4>
-            <b>Clear Map</b>
+            <b>
+                <span class="glyphicon glyphicon-remove"></span> Clear Map</b>
         </h4>
         <p>A click on
             <img src="images/help6.png" alt="help6" style="width:46px;height:20px;"> will clear the map and your previous selection. You have to apply new selection to display pollen analysis again.</p>
         <h4>
-            <b>Statistic</b>
+            <b>
+                <span class="glyphicon glyphicon-stats"></span> Show Statistic</b>
         </h4>
         <p>The Statistic will automatically display after the tree selection, or when you click this
             <img src="images/help5.png" alt="help5" style="width:59px;height:20px;"> button. The Statistic shows you in which month your selected Trees are blooming.</p>
-    </div> -->
+    </div>
     <div class="col-sm-9" id="globe">
         <canvas id="canvasOne" style="cursor: pointer;">
             Your browser does not support HTML5 Canvas.
