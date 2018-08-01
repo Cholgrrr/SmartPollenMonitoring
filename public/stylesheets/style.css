@@ -1,20 +1,16 @@
-.Birke {
-    /*font-weight: bold !important;*/
+/* Color the Three different classes */
+/* .Birke {
     color: white !important;
     background: rgba(217,0,217,0.6) !important;
-    /*text-transform: uppercase;*/
 }
 .Erle {
-    /*font-weight: bold !important;*/
     color: #fff !important;
     background: rgba(255,76,0,0.6) !important;
-    /*text-transform: uppercase;*/
 }
 .Hasel{
     color: #fff !important;
     background: rgba(0,0,255,0.6) !important;
-
-}
+} */
 
 
 #canvasOne{
