@@ -292,7 +292,9 @@ div[aria-describedby="Info"]{
     border: 1px solid #444;
     padding: 5px 10px;
     color: #fff;
-	font: 1em "Fira Sans", sans-serif;
+    font: 1em "Fira Sans", sans-serif;
+    overflow: scroll;
+    overflow-x: hidden;
 }
 .backdrop a:link, .backdrop a:visited, .backdrop a:hover {
     color: #fff
@@ -326,6 +328,8 @@ div[aria-describedby="Info"]{
     width: 300px;
     /* height: 100%; */
     bottom: 5px;
+    /* overflow: scroll; */
+    /* overflow-x: hidden; */
 }
 
 
@@ -570,3 +574,22 @@ div[aria-describedby="Info"]{
     border-color: #faebcc;
     
 }
+::-webkit-scrollbar {
+      width: 5px;
+}
+::-webkit-scrollbar-track {
+      background-color: rgba(42, 42, 42, 0);
+} /* the new scrollbar will have a flat appearance with the set background color */
+ 
+::-webkit-scrollbar-thumb {
+      background-color: rgba(250, 250, 250, 0.5); 
+      border-radius:20px
+} /* this will style the thumb, ignoring the track */
+ 
+::-webkit-scrollbar-button {
+      background-color: rgba(42, 42, 42, 0);
+} /* optionally, you can style the top and the bottom buttons (left and right for horizontal bars) */
+ 
+::-webkit-scrollbar-corner {
+      background-color: rgba(42, 42, 42, 0);
+} 
