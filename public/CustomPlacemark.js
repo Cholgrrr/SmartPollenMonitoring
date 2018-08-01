@@ -54,8 +54,8 @@ var handleClick = function (recognizer) {
 			
 		if (StartPoint.objects.length == 1 && StartPoint.objects[0].isTerrain) {
 			var position = StartPoint.objects[0].position;
-			alert(position.latitude.toFixed(6));
-			alert(position.longitude.toFixed(6));
+			//alert(position.latitude.toFixed(6));
+			//alert(position.longitude.toFixed(6));
 			startxglob = position.latitude.toFixed(6);
 			startyglob = position.longitude.toFixed(6);
 			startPnav = true; 
@@ -96,8 +96,8 @@ var handleClick = function (recognizer) {
 			
 		if (EndPoint.objects.length == 1 && EndPoint.objects[0].isTerrain) {
 			var position = EndPoint.objects[0].position;
-			alert(position.latitude.toFixed(6));
-			alert(position.longitude.toFixed(6));
+			//alert(position.latitude.toFixed(6));
+			//alert(position.longitude.toFixed(6));
 			endxglob = position.latitude.toFixed(6);
 			endyglob = position.longitude.toFixed(6);
 			endPnav = true; 
