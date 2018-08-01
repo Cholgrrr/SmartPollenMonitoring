@@ -26,7 +26,7 @@ wwd.navigator.tilt = 45;
 var layers = [
 
 	{ layer: new WorldWind.BingAerialWithLabelsLayer(null), enabled: true },
-	{ layer: new WorldWind.CompassLayer(), enabled: true },
+	//{ layer: new WorldWind.CompassLayer(), enabled: true },
 
 ];
 
