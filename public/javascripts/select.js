@@ -412,7 +412,8 @@ function getTreeBlooming(monthdata) {
 }
 
 function Clearall() {
-
+	$("#tree-order").val([]);
+	document.getElementById("tree-order-button").click();
     deleteLayer();
     histrec = 2;
 

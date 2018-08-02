@@ -455,6 +455,10 @@ function getTreeBlooming(monthdata) {
 }
 
 function Clearall() {
+	$('#tree-order').selectpicker('deselectAll')
+	//$("#tree-order").val([]);
+	hidePieChart();
+	document.getElementById("tree-order-button").click();
 	shapesLayer.removeAllRenderables();
 	shapesLayer.refresh();
 	placemarkLayer.removeAllRenderables();
