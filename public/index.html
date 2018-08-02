@@ -373,7 +373,20 @@
     <!-- new Tutorial -->
     <div id="Info" title="Smart Pollen Monitoring - Tutorial">
             <div class="alert JojoeBadgeYellow"><b>Tip:</b> Please, click on a topic menu to show tutorial contents.</div>
-        
+        <a onclick="Tutorial_AddTree_pop()" style="cursor: pointer;">
+            <h4>
+                <b>
+                    <span class="glyphicon glyphicon-plus" class="caret"></span> Add Tree
+
+                </b>
+            </h4>
+        </a>
+        <p id="Tutorial_AddTree" style="display:none">
+            You can help expanding the application database by adding more trees. To do this, click on the
+            <b>Add tree</b> menu. Then, a pop-up window will be opened and allows you to add a tree information. To get the
+            coordinates, you can just click at the specific point in the map or type it in manually.
+        </p>
+        <hr>
         <a onclick="Tutorial_AreaSelection_pop()" style="cursor: pointer;">
             <h4>
                 <b>
@@ -399,7 +412,7 @@
             </h4>
         </a>
         <p id="Tutorial_PollenSimulation" style="display:none">
-            <b>Step.1</b> Select the
+            <b>Step 1:</b> Select the
             <b>Pollen Simulation</b> menu and then select your desired mode between Real-time mode or Historical mode. If you
             select Historical mode, you are able to choose the month for display the pollen.
             <br>
@@ -407,18 +420,18 @@
             <img src="images/Tutorial/selectMonth.JPG" style="border-radius: 5px; height: 100px;">
 
             <br>
-            <b>Step.2</b> Then, on the next section
+            <b>Step 2:</b> Then, on the next section
             <b>Select tree type</b> , please make selection of tree types you are interested in and confirm the selection with
             <b>Confirm</b> button
             <img src="images/Tutorial/selectTreeType.JPG" style="border-radius: 5px; height: 75px;">
             <br>
-            <b>Step.3</b> Then, the pollen statistical information window will pop up. It describes all the pollen dispersals
+            <b>Step 3:</b> Then, the pollen statistical information window will pop up. It describes all the pollen dispersals
             for each month. You can click somewhere on the map area to close this window. The statistic window can always
             be called back with the "Show statistic" button
             <br />
             <img src="images/AppDemo/TreeStatisticChart.JPG" alt="help41" width="100%">
             <br />
-            <b>Step.4</b> Then, every time you click on the map, the view will be zoomed in and the analyzed pollen dispersal
+            <b>Step 4:</b> Then, every time you click on the map, the view will be zoomed in and the analyzed pollen dispersal
             area of your selection will be loaded.
             <br />
             <img src="images/AppDemo/SPM_WebApp.PNG" style="border-radius: 5px; width: 100%;">
@@ -435,42 +448,14 @@
             </h4>
         </a>
         <p id="Tutorial_Navigation" style="display:none">
-                <b>Step.1</b> Select the
+                <b>Step 1:</b> Select the
                 <b>Navigation</b> menu and then select your desired mode: Walking Mode (Google API)/ Biking Mode (Google API)/ Walking Mode (PG-routing)/ Walking Mode (PG-routing avoid pollen)
                 <br>
-                <b>Step.2</b> Then, please type-in your desired starting and ending point. Then, the navigation result will shown on the globe. 
+                <b>Step 2:</b> Then, please type-in your desired starting and ending point. Then, the navigation result will shown on the globe. 
                 <img src="images/AppDemo/Navigation.JPG" style="border-radius: 5px; width: 100%;">
-                <br> <b>Step.3</b> You can click on the globe to zoom in and display the pollen dispersal along your route.
-                <br> <b>Step.3</b> You can close the navigated route by click on the <b>Remove</b> button or <b>Clear Map</b> button on the navigation bar.
+                <br> <b>Step 3:</b> You can click on the globe to zoom in and display the pollen dispersal along your route.
+                <br> <b>Step 4:</b> You can close the navigated route by click on the <b>Remove</b> button or <b>Clear Map</b> button on the navigation bar.
         </p>
-        <hr>
-
-        <a onclick="Tutorial_AddTree_pop()" style="cursor: pointer;">
-            <h4>
-                <b>
-                    <span class="glyphicon glyphicon-plus" class="caret"></span> Add Tree
-
-                </b>
-            </h4>
-        </a>
-        <p id="Tutorial_AddTree" style="display:none">
-            You can help expanding the application database by adding more trees. To do this, click on the
-            <b>Add tree</b> menu. Then, a pop-up window will be opened and allows you to add a tree information. To get the
-            coordinates, you can just click at the specific point in the map or type it in manually.
-        </p>
-        <hr>
-        <a onclick="Tutorial_ClearMap_pop()" style="cursor: pointer;">
-            <h4>
-                <b>
-                    <span class="glyphicon glyphicon-remove" class="caret"></span> Clear Map
-
-                </b>
-            </h4>
-        </a>
-        <p id="Tutorial_ClearMap" style="display:none">
-            A click on
-            <b>Clear Map</b> menu will clear pollen dispersals, navigation and your previous selection. You have to apply new
-            selection to display new pollen dispersal analysis again.</p>
         <hr>
         <a onclick="Tutorial_ShowStatistic_pop()" style="cursor: pointer;">
             <h4>
@@ -484,6 +469,21 @@
             The Statistic will automatically display after the tree selection, or when you click on the
             <b>Statistic</b> menu. The Statistic chart shows you in which month your selected Trees are blooming.
         </p>
+        <hr>
+     
+        <a onclick="Tutorial_ClearMap_pop()" style="cursor: pointer;">
+            <h4>
+                <b>
+                    <span class="glyphicon glyphicon-remove" class="caret"></span> Clear Map
+
+                </b>
+            </h4>
+        </a>
+        <p id="Tutorial_ClearMap" style="display:none">
+            A click on
+            <b>Clear Map</b> menu will clear pollen dispersals, navigation and your previous selection. You have to apply new
+            selection to display new pollen dispersal analysis again.</p>
+        
     </div>
     <div class="col-sm-9" id="globe">
         <canvas id="canvasOne" style="cursor: pointer;">

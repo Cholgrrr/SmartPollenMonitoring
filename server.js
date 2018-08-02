@@ -203,7 +203,7 @@ app.post('/postTreeType', function (req, res) {
 // Select the trees, which were filtered through the multi tree selection
 
 app.post('/insertTree', function (req, res) {
- 
+	
     try {
 		
         const data = req.body;

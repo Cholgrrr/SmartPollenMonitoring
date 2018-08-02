@@ -62,6 +62,69 @@ function openDialog() {
 				click: function () {
 					
 					var inTyp = $("#dialogTree-order").val();
+					
+						if (inTyp == 'Birch') {
+							inTyp = 'Birke';
+						} else if (inTyp == 'Alder') {
+							inTyp = 'Erle';
+						} else if (inTyp == 'Hazel') {
+							inTyp = 'Hasel';
+						} else if (inTyp == 'Maple') {
+							inTyp = 'Ahorn';
+						} else if (inTyp == 'Apple') {
+							inTyp = 'Apfel';
+						} else if (inTyp == 'Pear') {
+							inTyp = 'Birne';
+						} else if (inTyp == 'Beech') {
+							inTyp = 'Buche';
+						} else if (inTyp == 'Buchs') {
+							inTyp = 'Buchs';
+						} else if (inTyp == 'Yew') {
+							inTyp = 'Eibe';
+						} else if (inTyp == 'Oak') {
+							inTyp = 'Eiche';
+						} else if (inTyp == 'Ash') {
+							inTyp = 'Esche';
+						} else if (inTyp == 'Lilac') {
+							inTyp = 'Flieder';
+						} else if (inTyp == 'Ailanthus') {
+							inTyp = 'Goetterbaum';
+						} else if (inTyp == 'Elder') {
+							inTyp = 'Holunder';
+						} else if (inTyp == 'Chestnut') {
+							inTyp = 'Kastanie';
+						} else if (inTyp == 'Pine') {
+							inTyp = 'Kiefer';
+						} else if (inTyp == 'Cherry') {
+							inTyp = 'Kirsche';
+						} else if (inTyp == 'Linden') {
+							inTyp = 'Linde';
+						} else if (inTyp == 'Plum') {
+							inTyp = 'Pflaume';
+						} else if (inTyp == 'Robinie') {
+							inTyp = 'Robinie';
+						} else if (inTyp == 'Sleeping-Tree') {
+							inTyp = 'Schlafbaum';
+						} else if (inTyp == 'Schnur') {
+							inTyp = 'Schnur';
+						} else if (inTyp == 'Fir') {
+							inTyp = 'Tanne';
+						} else if (inTyp == 'Elm') {
+							inTyp = 'Ulme';
+						} else if (inTyp == 'Walnut') {
+							inTyp = 'Walnuss';
+						} else if (inTyp == 'Pasture') {
+							inTyp = 'Weide';
+						} else if (inTyp == 'Cedar') {
+							inTyp = 'Zeder';
+						} else if (inTyp == 'Cypress') {
+							inTyp = 'Zypresse';
+						} else if (inTyp == 'other') {
+							inTyp = 'other';
+						} else {
+							inTyp = 'Buche';
+						}	
+					
 					var inLat = $("#dialogLat").val();
 					var inLon = $("#dialogLon").val();
 					var inDia = $("#dialogDia").val();
@@ -71,7 +134,7 @@ function openDialog() {
 					if (checkInput(inLat, inLon, inAge) != true) {
 						return;
 					};
-					
+					inAge = 2018 - inAge;
 					// If input is valid, then go on with sending the data to the server.
 				        try {
 
