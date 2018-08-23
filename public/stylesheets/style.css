@@ -608,3 +608,26 @@ div[aria-describedby="Info"]{
         float:none;
     }
 }
+
+
+
+/*-------------------------------------------------------------------*/
+*{ margin: 0; padding: 0; }
+
+.error{ color: #B71C1C; }
+#userActions{
+	display: table-cell;
+	height: 150px;
+	width: 200px;
+	vertical-align: middle;
+	text-align: center;
+	color: #37474F;
+	background-color: #FFFFFF;
+	border: solid 2px #333333;
+	border-radius: 10px;
+}
+#userActions input{
+	width: 150px;
+	margin: auto;
+}
+#imgPrime{ display: none; }
