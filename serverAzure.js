@@ -26,10 +26,10 @@ const pgp = require('pg-promise')({
 
 const connection = {
 
-  user: 'postgres@smartpollen2', 															// name of the user account
-  database: 'postgres', 																	// name of the database
+  user: 'postgres@smartpollen3', 															// name of the user account
+  database: 'nasawind', 																	// name of the database
   password: 'N@saPollen', 																	// env var: PGPASSWORD 
-  host: 'smartpollen2.postgres.database.azure.com', 				// Server hosting the postgres database (host: '35.187.21.114')
+  host: 'smartpollen3.postgres.database.azure.com', 				// Server hosting the postgres database (host: '35.187.21.114')
   port: 5432, 																				// env var: PGPORT 
   max: 10,
 	ssl: false, 

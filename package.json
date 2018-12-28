@@ -2,7 +2,7 @@
   "name": "nasaproject",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "serverAzure.js",
   "dependencies": {
     "@nasaworldwind/worldwind": "^0.9.0",
     "ajax-request": "^1.2.1",
