@@ -26,8 +26,8 @@ const pgp = require('pg-promise')({
 const connection = {
 
   user: 'postgres', 																		// name of the user account
-  database: 'NASAWIND', 																	// name of the database
-  password: 'postgres', 																	// env var: PGPASSWORD 
+  database: 'nasawind', 																	// name of the database
+  password: 'password', 																	// env var: PGPASSWORD 
   host: 'localhost', 				// Server hosting the postgres database (host: '35.187.21.114')
   port: 5432, 																				// env var: PGPORT 
   max: 10, 																					// max number of clients in the pool

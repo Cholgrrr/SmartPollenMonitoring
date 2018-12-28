@@ -13,6 +13,7 @@ let monthselection = {};
 let locationselection = {};
 var current_area_select = "NYC";
 var current_hist_wind = "CUR";
+var TestTempSelected;
 // Joe's Area selection
 
 var Area_NYC_Select = function () {
@@ -278,65 +279,65 @@ try {
 			// ---- translate the treeselection for the database queries ----
 
 			treeselection_tmp = $('#tree-order option:selected');
-
+			TestTempSelected = $('#tree-order option:selected');
 			for (i = 0; i < treeselection_tmp.length; i++) {
-				if (treeselection_tmp[i].innerText == 'Birch') {
+				if (treeselection_tmp[i].text == 'Birch') {
 					treetrans[i] = 'Birke';
-				} else if (treeselection_tmp[i].innerText == 'Alder') {
+				} else if (treeselection_tmp[i].text == 'Alder') {
 					treetrans[i] = 'Erle';
-				} else if (treeselection_tmp[i].innerText == 'Hazel') {
+				} else if (treeselection_tmp[i].text == 'Hazel') {
 					treetrans[i] = 'Hasel';
-				} else if (treeselection_tmp[i].innerText == 'Maple') {
+				} else if (treeselection_tmp[i].text == 'Maple') {
 					treetrans[i] = 'Ahorn';
-				} else if (treeselection_tmp[i].innerText == 'Apple') {
+				} else if (treeselection_tmp[i].text == 'Apple') {
 					treetrans[i] = 'Apfel';
-				} else if (treeselection_tmp[i].innerText == 'Pear') {
+				} else if (treeselection_tmp[i].text == 'Pear') {
 					treetrans[i] = 'Birne';
-				} else if (treeselection_tmp[i].innerText == 'Beech') {
+				} else if (treeselection_tmp[i].text == 'Beech') {
 					treetrans[i] = 'Buche';
-				} else if (treeselection_tmp[i].innerText == 'Buchs') {
+				} else if (treeselection_tmp[i].text == 'Buchs') {
 					treetrans[i] = 'Buchs';
-				} else if (treeselection_tmp[i].innerText == 'Yew') {
+				} else if (treeselection_tmp[i].text == 'Yew') {
 					treetrans[i] = 'Eibe';
-				} else if (treeselection_tmp[i].innerText == 'Oak') {
+				} else if (treeselection_tmp[i].text == 'Oak') {
 					treetrans[i] = 'Eiche';
-				} else if (treeselection_tmp[i].innerText == 'Ash') {
+				} else if (treeselection_tmp[i].text == 'Ash') {
 					treetrans[i] = 'Esche';
-				} else if (treeselection_tmp[i].innerText == 'Lilac') {
+				} else if (treeselection_tmp[i].text == 'Lilac') {
 					treetrans[i] = 'Flieder';
-				} else if (treeselection_tmp[i].innerText == 'Ailanthus') {
+				} else if (treeselection_tmp[i].text == 'Ailanthus') {
 					treetrans[i] = 'Goetterbaum';
-				} else if (treeselection_tmp[i].innerText == 'Elder') {
+				} else if (treeselection_tmp[i].text == 'Elder') {
 					treetrans[i] = 'Holunder';
-				} else if (treeselection_tmp[i].innerText == 'Chestnut') {
+				} else if (treeselection_tmp[i].text == 'Chestnut') {
 					treetrans[i] = 'Kastanie';
-				} else if (treeselection_tmp[i].innerText == 'Pine') {
+				} else if (treeselection_tmp[i].text == 'Pine') {
 					treetrans[i] = 'Kiefer';
-				} else if (treeselection_tmp[i].innerText == 'Cherry') {
+				} else if (treeselection_tmp[i].text == 'Cherry') {
 					treetrans[i] = 'Kirsche';
-				} else if (treeselection_tmp[i].innerText == 'Linden') {
+				} else if (treeselection_tmp[i].text == 'Linden') {
 					treetrans[i] = 'Linde';
-				} else if (treeselection_tmp[i].innerText == 'Plum') {
+				} else if (treeselection_tmp[i].text == 'Plum') {
 					treetrans[i] = 'Pflaume';
-				} else if (treeselection_tmp[i].innerText == 'Robinie') {
+				} else if (treeselection_tmp[i].text == 'Robinie') {
 					treetrans[i] = 'Robinie';
-				} else if (treeselection_tmp[i].innerText == 'Sleeping-Tree') {
+				} else if (treeselection_tmp[i].text == 'Sleeping-Tree') {
 					treetrans[i] = 'Schlafbaum';
-				} else if (treeselection_tmp[i].innerText == 'Schnur') {
+				} else if (treeselection_tmp[i].text == 'Schnur') {
 					treetrans[i] = 'Schnur';
-				} else if (treeselection_tmp[i].innerText == 'Fir') {
+				} else if (treeselection_tmp[i].text == 'Fir') {
 					treetrans[i] = 'Tanne';
-				} else if (treeselection_tmp[i].innerText == 'Elm') {
+				} else if (treeselection_tmp[i].text == 'Elm') {
 					treetrans[i] = 'Ulme';
-				} else if (treeselection_tmp[i].innerText == 'Walnut') {
+				} else if (treeselection_tmp[i].text == 'Walnut') {
 					treetrans[i] = 'Walnuss';
-				} else if (treeselection_tmp[i].innerText == 'Pasture') {
+				} else if (treeselection_tmp[i].text == 'Pasture') {
 					treetrans[i] = 'Weide';
-				} else if (treeselection_tmp[i].innerText == 'Cedar') {
+				} else if (treeselection_tmp[i].text == 'Cedar') {
 					treetrans[i] = 'Zeder';
-				} else if (treeselection_tmp[i].innerText == 'Cypress') {
+				} else if (treeselection_tmp[i].text == 'Cypress') {
 					treetrans[i] = 'Zypresse';
-				} else if (treeselection_tmp[i].innerText == 'other') {
+				} else if (treeselection_tmp[i].text == 'other') {
 					treetrans[i] = 'other';
 				} else {
 					treetrans[i] = 'Buche';
