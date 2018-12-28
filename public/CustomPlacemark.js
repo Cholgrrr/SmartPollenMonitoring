@@ -294,9 +294,9 @@ var handleClick = function (recognizer) {
 	// after a delay to wait for the required ajax requests ()
 
 	if (current_hist_wind == "CUR") {
-		setTimeout(function () { callDrawPollen() }, 500);
+		setTimeout(function () { callDrawPollen() }, 2500);
 	} else if (current_hist_wind == "HIS") {
-		setTimeout(function () { callPollenHistory() }, 500);
+		setTimeout(function () { callPollenHistory() }, 2500);
 	}
 	;
 
